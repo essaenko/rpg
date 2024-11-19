@@ -1,0 +1,9 @@
+.root {
+    position: absolute;
+    background-image: url("../../assets/login-screen.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 100vw;
+    height: 100vh;
+}
