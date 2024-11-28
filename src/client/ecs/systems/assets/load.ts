@@ -1,7 +1,7 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { AsepriteAssetComponent } from '@client/ecs/components/game/aseprite-asset';
-import { SpriteAssetComponent } from '@client/ecs/components/game/sprite-asset';
+import { AsepriteAssetComponent } from '@client/ecs/components/game/asset/aseprite-asset';
+import { SpriteAssetComponent } from '@client/ecs/components/game/asset/sprite-asset';
 
 export class LoadSystem extends System {
   constructor() {

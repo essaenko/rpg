@@ -1,4 +1,4 @@
-import { Directions } from '@shared/types';
+import { Directions, SpellBinding } from '@shared/types';
 
 export enum Keys {
   Up = 'up', // W
@@ -18,9 +18,9 @@ export enum Keys {
   Spell10 = 'spell10', // 5
 }
 
-export type ServerKeyValues = Directions;
+export type ServerKeyValues = Directions | SpellBinding;
 
-export const clientKeyToServerValue = (key: Keys): Directions => {
+export const clientKeyToServerValue = (key: Keys): ServerKeyValues => {
   switch (key) {
     case Keys.Up:
       return Directions.Forward;
@@ -30,6 +30,26 @@ export const clientKeyToServerValue = (key: Keys): Directions => {
       return Directions.Left;
     case Keys.Right:
       return Directions.Right;
+    case Keys.Spell1:
+      return SpellBinding.Spell1;
+    case Keys.Spell2:
+      return SpellBinding.Spell2;
+    case Keys.Spell3:
+      return SpellBinding.Spell3;
+    case Keys.Spell4:
+      return SpellBinding.Spell4;
+    case Keys.Spell5:
+      return SpellBinding.Spell5;
+    case Keys.Spell6:
+      return SpellBinding.Spell6;
+    case Keys.Spell7:
+      return SpellBinding.Spell7;
+    case Keys.Spell8:
+      return SpellBinding.Spell8;
+    case Keys.Spell9:
+      return SpellBinding.Spell9;
+    case Keys.Spell10:
+      return SpellBinding.Spell10;
   }
 };
 

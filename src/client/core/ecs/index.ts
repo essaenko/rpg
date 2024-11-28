@@ -35,7 +35,7 @@ export class ECSContainer {
 
   query(components: string[]) {
     return this.entities.values().filter((entity: Entity) => {
-      return components.every((component) => entity.get(component));
+      return components.every((component) => entity.has(component));
     });
   }
 }

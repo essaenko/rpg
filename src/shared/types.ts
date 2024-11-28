@@ -10,6 +10,19 @@ export enum Directions {
   Right,
 }
 
+export enum SpellBinding {
+  Spell1,
+  Spell2,
+  Spell3,
+  Spell4,
+  Spell5,
+  Spell6,
+  Spell7,
+  Spell8,
+  Spell9,
+  Spell10,
+}
+
 export type Position = {
   x: number;
   y: number;

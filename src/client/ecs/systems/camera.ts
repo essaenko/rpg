@@ -3,7 +3,7 @@ import { ECSContainer } from '@client/core/ecs';
 import { Room } from 'colyseus.js';
 import type { SceneState } from '@shared/schemas/scene';
 import { CameraComponent } from '@client/ecs/components/game/camera';
-import { SpriteComponent } from '@client/ecs/components/game/sprite';
+import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
 
 export class CameraSystem extends System {
   constructor(public room: Room<SceneState>) {

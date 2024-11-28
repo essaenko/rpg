@@ -21,12 +21,11 @@ export class EquipComponent extends Component {
   @type(EquipItem) trinket: EquipItem;
 
   init(state: any): void {
-    const a = Object.keys(this);
     Object.keys(this).forEach((key) => {
-      if (key in state) {
-        const type = state.type;
-        if (isItemType(type)) {
-          const Factory = map[type];
+      if (key in state && state[key]) {
+        const factory = state[key].factory;
+        if (isItemType(factory)) {
+          const Factory = map[factory];
 
           const item = new Factory();
           item.init(state[key]);

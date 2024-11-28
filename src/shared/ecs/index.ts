@@ -5,10 +5,10 @@ import { Entity } from './entity';
 import { Scene } from '../../server/core/scene/scene';
 
 export class ECSContainer {
-  constructor(
-    private systems: Map<string, System> = new Map(),
-    private entities: Map<string, Entity> = new Map(),
-  ) {}
+  private systems: Map<string, System> = new Map();
+  private entities: Map<string, Entity> = new Map();
+
+  constructor(public scene: Scene) {}
 
   addSystem(system: System) {
     this.systems.set(system.name, system);
@@ -25,6 +25,7 @@ export class ECSContainer {
   removeEntity(id: string): void {
     this.getEntity(id).onDestroy();
     this.entities.delete(id);
+    this.scene.state.entities.delete(id);
   }
 
   getEntity(id: string): Entity {

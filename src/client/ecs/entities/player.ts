@@ -1,9 +1,9 @@
 import DummySprite from '@client/assets/sprites/dummy/dummy-sprite.png';
 import DummyAtlas from '@client/assets/sprites/dummy/dummy-sprite.json?url';
-import { SpriteComponent } from '@client/ecs/components/game/sprite';
-import { AsepriteAssetComponent } from '@client/ecs/components/game/aseprite-asset';
+import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
+import { AsepriteAssetComponent } from '@client/ecs/components/game/asset/aseprite-asset';
 import { CameraComponent } from '@client/ecs/components/game/camera';
-import { AnimationComponent } from '@client/ecs/components/game/animation';
+import { AnimationComponent } from '@client/ecs/components/game/asset/animation';
 
 import { Character } from './character';
 

@@ -1,3 +1,26 @@
+export type TiledMapObject = {
+  gid?: number;
+  height?: number;
+  id: number;
+  name: string;
+  rotation: number;
+  type: string;
+  visible: boolean;
+  width?: number;
+  x: number;
+  y: number;
+};
+
+export type TiledMapTilesetTile = {
+  id: number;
+  objectgroup?: {
+    id: number;
+    name: string;
+    type: string;
+    objects: TiledMapObject[];
+  };
+};
+
 export type TiledMapLayer = {
   data?: number[];
   height?: number;
@@ -9,6 +32,7 @@ export type TiledMapLayer = {
   width?: number;
   x: number;
   y: number;
+  objects?: TiledMapObject[];
 };
 
 export type TiledMapTileset = {
@@ -23,6 +47,7 @@ export type TiledMapTileset = {
   tilecount: number;
   tileheight: number;
   tilewidth: number;
+  tiles?: TiledMapTilesetTile[];
 };
 
 export type TiledMap = {

@@ -3,9 +3,9 @@ import Phaser from 'phaser';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { PositionComponent } from '@client/ecs/components/physics/position';
-import { SpriteComponent } from '@client/ecs/components/game/sprite';
+import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
 import { SightDirectionComponent } from '@client/ecs/components/physics/sight-direction';
-import { AnimationComponent } from '@client/ecs/components/game/animation';
+import { AnimationComponent } from '@client/ecs/components/game/asset/animation';
 
 export class MovementSystem extends System {
   constructor() {

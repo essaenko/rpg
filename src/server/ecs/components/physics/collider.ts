@@ -1,9 +1,16 @@
 import { Component } from '@shared/ecs/component';
+import { type } from '@colyseus/schema';
 
 export class ColliderComponent extends Component {
   constructor() {
     super('collider');
   }
+
+  // @type('number') x: number = 0; // 22
+  // @type('number') y: number = 0; // 40
+  // @type('number') width: number = 0; // 24
+  // @type('number') height: number = 0; // 20
+  // @type('boolean') collides: boolean = false; // false
 
   public x: number = 0; // 22
   public y: number = 0; // 40

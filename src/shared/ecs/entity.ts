@@ -18,5 +18,9 @@ export class Entity extends Schema {
     this.components.set(component.name, component);
   }
 
+  removeComponent(name: string): void {
+    this.components.delete(name);
+  }
+
   onDestroy(): void {}
 }
