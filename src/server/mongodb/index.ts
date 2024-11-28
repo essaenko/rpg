@@ -37,11 +37,13 @@ export class MDBClient {
     });
 
     if (isRoomSavedConfig(mapConfig)) {
-      mapConfig.characters.forEach((character) => {
-        character.components = new Map(Object.entries(character.components));
-      });
-
-      return mapConfig as unknown as SavedRoomConfig;
+      return {
+        ...mapConfig,
+        characters: mapConfig.characters.map((character) => ({
+          id: character.id,
+          components: new Map(character.components.map((c) => [c.name, c])),
+        })),
+      };
     }
 
     return undefined;
@@ -54,9 +56,10 @@ export class MDBClient {
     });
 
     if (isCharacterSave(save)) {
-      save.components = new Map(Object.entries(save.components));
-
-      return save as unknown as CharacterSave;
+      return {
+        id,
+        components: new Map(save.components.map((c) => [c.name, c])),
+      };
     }
 
     return undefined;
@@ -70,8 +73,8 @@ export class MDBClient {
       },
       {
         $set: {
-          ...entity,
           id: 'character',
+          components: Array.from(entity.components.entries()).map(([_, instance]) => instance.serialize()),
         },
       },
       {

@@ -10,4 +10,8 @@ export abstract class Component extends Schema {
   @type('string') name: string;
 
   abstract init(state: Record<string, any>): void;
+
+  public serialize(): Record<string, any> {
+    return { ...this };
+  }
 }

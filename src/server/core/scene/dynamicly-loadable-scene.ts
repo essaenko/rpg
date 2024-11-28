@@ -11,6 +11,10 @@ import type { Component } from '@shared/ecs/component';
 import { Client } from '@colyseus/core';
 import { nanoid } from 'nanoid';
 import { CharacterSave } from '@server/mongodb/types';
+import { BodyComponent } from '@server/ecs/components/physics/body';
+import { ColliderComponent } from '@server/ecs/components/physics/collider';
+import { PositionComponent } from '@server/ecs/components/physics/position';
+import { ObjectComponent } from '@server/ecs/components/game/tags/object';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -23,6 +27,10 @@ export class DynamicallyLoadableScene extends Scene {
     this.setState(new SceneState());
     if (isMapKey(this.roomName)) {
       this.map = maps[this.roomName];
+
+      if (this.map) {
+        this.processMapObjects();
+      }
     }
 
     const state = await MDBClient.instance().readMapConfig(this.roomName);
@@ -66,7 +74,6 @@ export class DynamicallyLoadableScene extends Scene {
     switch (type) {
       case 'tag-npc': {
         entity = new Npc();
-        entity.id = nanoid();
         break;
       }
       case 'tag-player': {
@@ -78,5 +85,54 @@ export class DynamicallyLoadableScene extends Scene {
 
     this.initEntityComponents(entity, state);
     this.addEntity(entity);
+  }
+
+  processMapObjects() {
+    const layer = this.map.layers.find((layer) => layer.name === 'objects');
+
+    if (layer && layer.objects) {
+      layer.objects.forEach((object) => {
+        const entity = new Entity();
+        const set = this.map.tilesets.find((tileset) => tileset.name === object.type);
+        entity.id = nanoid(9);
+        entity.addComponent(new ObjectComponent());
+
+        if (object.width && object.height) {
+          const body = new BodyComponent();
+          body.width = object.width;
+          body.height = object.height;
+
+          entity.addComponent(body);
+        }
+
+        if (object.x && object.y) {
+          const position = new PositionComponent();
+          position.x = object.x;
+          position.y = object.y;
+
+          entity.addComponent(position);
+        }
+
+        if (set && set.tiles) {
+          const tile = set.tiles.find(({ id }) => id === object.gid - set.firstgid);
+
+          if (tile && tile.objectgroup) {
+            const collider = tile.objectgroup.objects?.find(({ type }) => type === 'collider');
+
+            if (collider) {
+              const component = new ColliderComponent();
+              component.x = collider.x;
+              component.y = collider.y;
+              component.width = collider.width;
+              component.height = collider.height;
+
+              entity.addComponent(component);
+            }
+          }
+        }
+
+        this.addEntity(entity);
+      });
+    }
   }
 }

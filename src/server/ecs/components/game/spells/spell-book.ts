@@ -11,11 +11,22 @@ export class SpellBookComponent extends Component {
   @type({ map: Spell }) spells = new MapSchema<Spell>();
 
   init(state: Record<string, any>): void {
-    Object.keys(state).forEach((key: string) => {
-      if (isSpellName(key)) {
-        const Factory = map[key];
-        this.spells.set(key, new Factory());
-      }
-    });
+    const spells = state.spells;
+
+    if (spells && Array.isArray(spells)) {
+      spells.forEach((spell) => {
+        if (isSpellName(spell)) {
+          const Factory = map[spell];
+          this.spells.set(spell, new Factory());
+        }
+      });
+    }
+  }
+
+  public serialize() {
+    return {
+      name: this.name,
+      spells: Array.from(this.spells.keys()),
+    };
   }
 }

@@ -1,8 +1,18 @@
 import { Room } from 'colyseus.js';
 
-import DummyTileSet from '@client/assets/tilesets/dummy-tile.png';
-
 import { NetworkScene } from './network-scene';
+import { isMapBundleKey, map } from '@client/assets/tilesets/map';
+import { TiledMapLayer } from '@shared/utils/types';
+import ObjectLayer = Phaser.Tilemaps.ObjectLayer;
+import { Entity } from '@client/core/ecs/entity/entity';
+import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
+import { LocalEntity } from '@client/core/ecs/entity/local-entity';
+import { SpriteAssetComponent } from '@client/ecs/components/game/asset/sprite-asset';
+import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
+import Tilemap = Phaser.Tilemaps.Tilemap;
+import Sprite = Phaser.GameObjects.Sprite;
+import { equal } from '@client/utils/array';
+import { ObjectComponent } from '@client/ecs/components/game/tag/object';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -13,46 +23,115 @@ export class WorldScene extends NetworkScene {
   }
 
   preload() {
-    this.load.image('dummy-tile', DummyTileSet);
+    super.preload();
+    this.preloadAssets();
   }
 
-  async create() {
-    await super.create();
+  preloadAssets() {
+    const name = this.registry.get('scene');
 
-    this.initRoom(this.room);
-  }
+    if (isMapBundleKey(name)) {
+      const {
+        map: { key, asset },
+        assets,
+      } = map[name];
+      this.load.tilemapTiledJSON(key, asset);
 
-  initRoom(room: Room | undefined) {
-    if (room && room instanceof Room) {
-      this.createMap();
-    } else {
-      this.add.text(10, 10, `Can't connect to server room`, {
-        fontSize: 14,
-        color: 'white',
+      assets.forEach(({ key, asset, type, config }) => {
+        if (type === 'sprite' && config) {
+          this.load.spritesheet(key, asset, config);
+        } else {
+          this.load.image(key, asset);
+        }
       });
     }
   }
 
-  createMap() {
-    const map = this.make.tilemap({ key: `${this.name}-scene-map` });
-    map.addTilesetImage('ground', 'fl-ground-tileset');
-    map.addTilesetImage('hills', 'fl-hills-tileset');
-    map.addTilesetImage('dummy-tile', 'dummy-tile');
+  create() {
+    const name = this.registry.get('scene');
 
-    map.createLayer('ground', ['ground', 'hills']);
-    map.createLayer('hills', ['ground', 'hills']);
+    if (isMapBundleKey(name)) {
+      const bundle = map[name];
+      const phaserMap = this.make.tilemap({ key: bundle.map.key });
+      bundle.assets.forEach((asset) => {
+        phaserMap.addTilesetImage(asset.key, asset.key);
+      });
 
-    if (this.debugCollider) {
-      map.createLayer('collision', ['dummy-tile']);
+      phaserMap.layers
+        .filter((layer) => layer.visible)
+        .forEach((layer) => {
+          phaserMap.createLayer(
+            layer.name,
+            bundle.assets.map(({ key }) => key),
+          );
+        });
 
-      const g = this.add.graphics();
+      if (this.debugCollider) {
+        phaserMap.createLayer('collision', ['dummy-tile']);
 
-      g.lineStyle(2, 0xff00ff, 1);
-      g.strokeRect(0, 0, map.width * map.tileWidth, map.height * map.tileHeight);
+        const g = this.add.graphics();
+
+        g.lineStyle(2, 0xff00ff, 1);
+        g.strokeRect(0, 0, phaserMap.width * phaserMap.tileWidth, phaserMap.height * phaserMap.tileHeight);
+      }
+      if (phaserMap.tilesets.some((set) => set.tileData)) {
+        this.initTilesetAnimations(phaserMap);
+      }
+
+      const objects = phaserMap.objects.find((l) => l.name === 'objects');
+      if (objects) {
+        this.initTiledMapObjects(phaserMap);
+      }
     }
   }
 
   update(now: number, delta: number) {
     super.update(now, delta);
+  }
+
+  initTilesetAnimations(m: Tilemap) {
+    m.tilesets
+      .filter((set) => Object.keys(set.tileData).length)
+      .forEach((tileset) => {
+        const data = tileset.tileData as Record<string, { animation?: { duration: number; tileid: number }[] }>;
+
+        for (const tileId in data) {
+          const tile = data[tileId];
+
+          if (tile.animation) {
+            const frames = tile.animation.map(({ duration, tileid }) => ({ key: 'tree', frame: tileid, duration }));
+
+            this.anims.create({
+              key: `${tileset.name}-animation-${tileId}`,
+              frames: frames,
+              repeat: -1,
+            });
+          }
+        }
+      });
+  }
+
+  initTiledMapObjects(m: Tilemap) {
+    m.getObjectLayer('objects').objects.forEach((object) => {
+      const set = m.tilesets.find((set) => set.name === object.type);
+      if (object.visible && set) {
+        const sprite = this.physics.add.sprite(object.x, object.y, object.type, object.gid - set.firstgid);
+        sprite.setOrigin(0, 0);
+        sprite.depth = sprite.y + sprite.height;
+        const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
+
+        if (this.anims.exists(animKey)) {
+          sprite.play(animKey);
+        }
+
+        const entity = new LocalEntity();
+        const sComponent = new SpriteComponent();
+        sComponent.sprite = sprite;
+
+        entity.addComponent(sComponent);
+        entity.addComponent(new ObjectComponent());
+        this.ecs.addEntity(entity);
+      }
+    });
   }
 }

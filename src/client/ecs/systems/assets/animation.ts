@@ -1,7 +1,7 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { AnimationComponent } from '@client/ecs/components/game/animation';
-import { SpriteComponent } from '@client/ecs/components/game/sprite';
+import { AnimationComponent } from '@client/ecs/components/game/asset/animation';
+import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
 
 export class AnimationSystem extends System {
   constructor() {

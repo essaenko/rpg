@@ -6,11 +6,13 @@ import type { SceneState } from '@shared/schemas/scene';
 import { ECSContainer } from '@client/core/ecs';
 import { InputSystem } from '@client/ecs/systems/input';
 import { NetworkSystem } from '@client/ecs/systems/network';
-import { LoadSystem } from '@client/ecs/systems/load';
-import { SpriteSystem } from '@client/ecs/systems/sprite';
-import { MovementSystem } from '@client/ecs/systems/movement';
-import { AnimationSystem } from '@client/ecs/systems/animation';
+import { LoadSystem } from '@client/ecs/systems/assets/load';
+import { SpriteSystem } from '@client/ecs/systems/assets/sprite';
+import { MovementSystem } from '@client/ecs/systems/physics/movement';
+import { AnimationSystem } from '@client/ecs/systems/assets/animation';
 import { CameraSystem } from '@client/ecs/systems/camera';
+import { TargetSystem } from '@client/ecs/systems/combat/target';
+import { HealthSystem } from '@client/ecs/systems/assets/health';
 
 export class NetworkScene extends Scene {
   public room: Room<SceneState>;
@@ -20,16 +22,18 @@ export class NetworkScene extends Scene {
     super(name);
   }
 
-  async create(): Promise<void> {
+  preload() {
     this.ecs.addSystem(new InputSystem(this));
     this.ecs.addSystem(new MovementSystem());
     this.ecs.addSystem(new AnimationSystem());
     this.ecs.addSystem(new NetworkSystem());
     this.ecs.addSystem(new LoadSystem());
     this.ecs.addSystem(new SpriteSystem());
+    this.ecs.addSystem(new TargetSystem());
+    this.ecs.addSystem(new HealthSystem());
     (window as any).ecs = this.ecs;
 
-    await this.joinServerRoom();
+    this.joinServerRoom();
   }
 
   update(time: number, delta: number) {
@@ -50,6 +54,11 @@ export class NetworkScene extends Scene {
 
         return true;
       } catch (err) {
+        this.add.text(10, 10, `Can't connect to server room`, {
+          fontSize: 14,
+          color: 'white',
+        });
+
         return false;
       }
     }

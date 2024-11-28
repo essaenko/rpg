@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     width: 1280,
     height: 720,
+    antialias: false,
+    pixelArt: true,
+    // roundPixels: true,
     scale: {
       mode: Scale.ScaleModes.ENVELOP,
       min: {
@@ -43,4 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
   InitUI({
     scene: sceneSubj,
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    (window as any).game = game;
+  }
 });

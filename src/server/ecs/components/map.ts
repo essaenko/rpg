@@ -30,8 +30,6 @@ export const map = {
   // Game components
   equip: EquipComponent,
 
-  cast: CastComponent,
-  'cast-request': CastRequestComponent,
   damage: DamageComponent,
   dot: DotComponent,
   heal: HealComponent,

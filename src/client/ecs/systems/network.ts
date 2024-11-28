@@ -10,6 +10,7 @@ import type { Component } from '@shared/ecs/component';
 import { isKeyOf } from '@client/utils/types';
 import { Components } from '@client/ecs/components/map';
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
+import { Game } from 'phaser';
 
 export class NetworkSystem extends System {
   constructor() {
@@ -44,6 +45,23 @@ export class NetworkSystem extends System {
       });
 
       container.addEntity(entity);
+
+      if (process.env.NODE_ENV === 'development') {
+        if (type === 'tag-object' && eSchema.components.has('collider')) {
+          const position = eSchema.components.get('position') as any;
+          const collider = eSchema.components.get('collider') as any;
+          const g = ((window as any).game as Game).scene.getScene('dummy').add.graphics({
+            lineStyle: {
+              width: 1,
+              color: 0xff0000,
+            },
+            fillStyle: {
+              color: 0xff0000,
+            },
+          });
+          g.fillRect(position.x + collider.x, position.y + collider.y, collider.width, collider.height);
+        }
+      }
     }
   }
 

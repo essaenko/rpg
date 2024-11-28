@@ -67,40 +67,280 @@
          "name":"objects",
          "objects":[
                 {
-                 "gid":1820,
-                 "height":59,
-                 "id":4,
+                 "gid":1818,
+                 "height":64,
+                 "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"decorations_medium",
                  "visible":true,
-                 "width":48,
-                 "x":934.5,
-                 "y":766.5
+                 "width":64,
+                 "x":575.333333333333,
+                 "y":736
                 }, 
                 {
                  "gid":1820,
-                 "height":59,
-                 "id":5,
+                 "height":64,
+                 "id":9,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"decorations_medium",
                  "visible":true,
-                 "width":48,
-                 "x":582.5,
-                 "y":1022
+                 "width":64,
+                 "x":862.666666666667,
+                 "y":734
                 }, 
                 {
-                 "gid":1820,
-                 "height":59,
-                 "id":6,
+                 "gid":1819,
+                 "height":64,
+                 "id":10,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"decorations_medium",
                  "visible":true,
-                 "width":48,
-                 "x":582.5,
-                 "y":765.5
+                 "width":64,
+                 "x":574,
+                 "y":964
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":17,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":932.5,
+                 "y":549.5
+                }, 
+                {
+                 "gid":1848,
+                 "height":128,
+                 "id":18,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":948.5,
+                 "y":922.5
+                }, 
+                {
+                 "gid":1848,
+                 "height":128,
+                 "id":19,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":262,
+                 "y":737
+                }, 
+                {
+                 "gid":1848,
+                 "height":128,
+                 "id":20,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":224,
+                 "y":417
+                }, 
+                {
+                 "gid":1860,
+                 "height":128,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":457,
+                 "y":193.5
+                }, 
+                {
+                 "gid":1860,
+                 "height":128,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1158,
+                 "y":65.5
+                }, 
+                {
+                 "gid":1860,
+                 "height":128,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1352,
+                 "y":263
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":24,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1407,
+                 "y":328
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":25,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1360,
+                 "y":401
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":26,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1414,
+                 "y":485.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":27,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1364,
+                 "y":570
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":28,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1423.5,
+                 "y":654.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1377,
+                 "y":729
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1378,
+                 "y":807
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":31,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1423.5,
+                 "y":882.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":32,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1430.5,
+                 "y":962
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":33,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":1181,
+                 "y":928.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":34,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":771.5,
+                 "y":540.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":35,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":941,
+                 "y":686.5
+                }, 
+                {
+                 "gid":1836,
+                 "height":128,
+                 "id":36,
+                 "name":"",
+                 "rotation":0,
+                 "type":"tree",
+                 "visible":true,
+                 "width":128,
+                 "x":542.5,
+                 "y":544.75
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -115,27 +355,21 @@
          "objects":[
                 {
                  "height":0,
-                 "id":2,
-                 "name":"npc_1_spawn",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":878.666666666667,
-                 "y":751.333333333333
-                }, 
-                {
-                 "height":0,
                  "id":1,
                  "name":"spawn",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"id",
+                         "type":"string",
+                         "value":"953SBx26R"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":624,
-                 "y":624
+                 "x":736.5,
+                 "y":864
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -261,8 +495,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":7,
+ "nextlayerid":9,
+ "nextobjectid":57,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.0",
@@ -271,7 +505,7 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/..\/..\/client\/static\/tilesets\/flset\/ground.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/ground.png",
          "imageheight":1056,
          "imagewidth":1024,
          "margin":0,
@@ -284,7 +518,7 @@
         {
          "columns":25,
          "firstgid":1057,
-         "image":"..\/..\/..\/client\/static\/tilesets\/flset\/hills.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/hills.png",
          "imageheight":512,
          "imagewidth":800,
          "margin":0,
@@ -297,7 +531,7 @@
         {
          "columns":1,
          "firstgid":1457,
-         "image":"..\/..\/..\/client\/static\/tilesets\/dummy-tile.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/dummy-tile.png",
          "imageheight":32,
          "imagewidth":32,
          "margin":0,
@@ -327,25 +561,20 @@
          "tilewidth":32
         }, 
         {
-         "columns":0,
+         "columns":7,
          "firstgid":1818,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/decorations_medium.png",
+         "imageheight":64,
+         "imagewidth":448,
          "margin":0,
-         "name":"decorations",
+         "name":"decorations_medium",
+         "objectalignment":"topleft",
          "spacing":0,
-         "tilecount":3,
-         "tileheight":59,
+         "tilecount":7,
+         "tileheight":64,
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/root_green_3.png",
-                 "imageheight":59,
-                 "imagewidth":48,
                  "objectgroup":
                     {
                      "draworder":"index",
@@ -353,15 +582,15 @@
                      "name":"",
                      "objects":[
                             {
-                             "height":25.8421052631579,
-                             "id":3,
+                             "height":27.25,
+                             "id":1,
                              "name":"",
                              "rotation":0,
-                             "type":"",
+                             "type":"collider",
                              "visible":true,
-                             "width":32.2105263157895,
-                             "x":9.27631578947368,
-                             "y":30.7894736842105
+                             "width":38.5,
+                             "x":12.625,
+                             "y":29.625
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -372,9 +601,6 @@
                 }, 
                 {
                  "id":1,
-                 "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/root_green_2.png",
-                 "imageheight":59,
-                 "imagewidth":48,
                  "objectgroup":
                     {
                      "draworder":"index",
@@ -382,15 +608,15 @@
                      "name":"",
                      "objects":[
                             {
-                             "height":28.2105263157895,
+                             "height":30.75,
                              "id":1,
                              "name":"",
                              "rotation":0,
-                             "type":"",
+                             "type":"collider",
                              "visible":true,
-                             "width":34.9736842105263,
-                             "x":6.90789473684211,
-                             "y":30.1973684210526
+                             "width":40.375,
+                             "x":12,
+                             "y":26.875
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -401,9 +627,6 @@
                 }, 
                 {
                  "id":2,
-                 "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/root_green_1.png",
-                 "imageheight":59,
-                 "imagewidth":48,
                  "objectgroup":
                     {
                      "draworder":"index",
@@ -411,15 +634,119 @@
                      "name":"",
                      "objects":[
                             {
-                             "height":31.1710526315789,
+                             "height":28.25,
                              "id":1,
                              "name":"",
                              "rotation":0,
-                             "type":"",
+                             "type":"collider",
                              "visible":true,
-                             "width":37.5394736842105,
-                             "x":5.52631578947368,
-                             "y":26.0526315789474
+                             "width":40.875,
+                             "x":11.375,
+                             "y":27.625
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":3,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":26.5,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":30.5,
+                             "x":15.375,
+                             "y":29.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":4,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":20.625,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":29.25,
+                             "x":17.625,
+                             "y":34.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":5,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":23.75,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":34.5,
+                             "x":14.875,
+                             "y":32.25
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":6,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":20.25,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":32.875,
+                             "x":15.25,
+                             "y":34.875
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -428,7 +755,253 @@
                      "y":0
                     }
                 }],
-         "tilewidth":48
+         "tilewidth":64
+        }, 
+        {
+         "columns":4,
+         "firstgid":1825,
+         "grid":
+            {
+             "height":32,
+             "orientation":"orthogonal",
+             "width":32
+            },
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/Tree_A_v1.png",
+         "imageheight":1152,
+         "imagewidth":512,
+         "margin":0,
+         "name":"tree",
+         "objectalignment":"topleft",
+         "spacing":0,
+         "tilecount":576,
+         "tileheight":128,
+         "tiles":[
+                {
+                 "animation":[
+                        {
+                         "duration":100,
+                         "tileid":0
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":1
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":2
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":3
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":4
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":5
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":6
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":7
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":8
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":9
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":10
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":11
+                        }],
+                 "id":11,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":28.25,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":51,
+                             "x":37.25,
+                             "y":95
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "animation":[
+                        {
+                         "duration":100,
+                         "tileid":12
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":13
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":14
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":15
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":16
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":17
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":18
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":19
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":20
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":21
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":22
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":23
+                        }],
+                 "id":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":27,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":51.75,
+                             "x":36.5,
+                             "y":95.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "animation":[
+                        {
+                         "duration":100,
+                         "tileid":24
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":25
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":26
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":27
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":28
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":29
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":30
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":31
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":32
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":33
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":34
+                        }, 
+                        {
+                         "duration":100,
+                         "tileid":35
+                        }],
+                 "id":35,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":27.75,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":51,
+                             "x":37.5,
+                             "y":95.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
+         "tilewidth":128
         }],
  "tilewidth":32,
  "type":"map",

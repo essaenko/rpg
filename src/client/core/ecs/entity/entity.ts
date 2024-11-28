@@ -2,22 +2,36 @@ import { Component } from '../component/component';
 
 export abstract class Entity {
   public id: string;
-  private components: Map<string, Component> = new Map();
+  private components: Component[] = [];
 
   protected constructor(id: string) {
     this.id = id;
   }
 
   public addComponent(component: Component): void {
-    this.components.set(component.name, component);
+    this.components.push(component);
   }
 
-  public removeComponent(name: string): void {
-    this.components.delete(name);
+  public removeComponent(signature: Component): void;
+  public removeComponent(signature: string): void;
+  public removeComponent(signature: string | Component): void {
+    let component;
+    if (typeof signature === 'string') {
+      component = this.components.find((component) => component.name === signature);
+    } else {
+      component = signature;
+    }
+
+    component?.onRemove();
+    this.components.splice(this.components.indexOf(component), 1);
   }
 
   get<T extends Component>(name: string): T | undefined {
-    return this.components.get(name) as T | undefined;
+    return this.components.find((c) => c.name === name) as T | undefined;
+  }
+
+  has(name: string): boolean {
+    return this.components.some(({ name: n }) => n === name);
   }
 
   destroy() {
