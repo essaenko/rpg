@@ -21,18 +21,19 @@ export class InputSystem extends System {
   onUpdate(): void {
     if (!this.scene.room) return;
 
-    const castKey: Keys = [
-      Keys.Spell1,
-      Keys.Spell2,
-      Keys.Spell3,
-      Keys.Spell4,
-      Keys.Spell5,
-      Keys.Spell6,
-      Keys.Spell7,
-      Keys.Spell8,
-      Keys.Spell9,
-      Keys.Spell10,
-    ].find((key) => InputService.instance().isPressed(key));
+    const castKey: Keys =
+      [
+        Keys.Spell1,
+        Keys.Spell2,
+        Keys.Spell3,
+        Keys.Spell4,
+        Keys.Spell5,
+        Keys.Spell6,
+        Keys.Spell7,
+        Keys.Spell8,
+        Keys.Spell9,
+        Keys.Spell10,
+      ].find((key) => InputService.instance().isPressed(key)) ?? null;
     const moveKeys = [Keys.Up, Keys.Down, Keys.Left, Keys.Right]
       .filter((key) => InputService.instance().isPressed(key))
       .map(clientKeyToServerValue);
@@ -43,12 +44,11 @@ export class InputSystem extends System {
       this.prevMoveUpdate = moveKeys;
     }
     if (castKey !== this.prevCastUpdate) {
-      if (castKey) {
-        const spell = InputService.instance().getSpellBinding(castKey);
-        const target = this.scene.ecs.getEntity(this.scene.room.sessionId).get<TargetComponent>('target');
-        if (spell && target) {
-          this.scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);
-        }
+      const spell = InputService.instance().getSpellBinding(castKey);
+      const target = this.scene.ecs.getEntity(this.scene.room.sessionId).get<TargetComponent>('target');
+
+      if (spell && target) {
+        this.scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);
       }
 
       this.prevCastUpdate = castKey;

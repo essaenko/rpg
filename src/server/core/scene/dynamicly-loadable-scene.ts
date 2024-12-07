@@ -2,19 +2,18 @@ import { Scene } from '@server/core/scene/scene';
 import { SceneState } from '@shared/schemas/scene';
 import { isMapKey, maps } from '@shared/maps/mapping';
 import { MDBClient } from '@server/mongodb';
-import { map as EntityMap } from '@server/ecs/entities/map';
 import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
-import { Player } from '@server/ecs/entities/player';
 import { Entity } from '@shared/ecs/entity';
-import { Npc } from '@server/ecs/entities/npc';
-import type { Component } from '@shared/ecs/component';
 import { Client } from '@colyseus/core';
 import { nanoid } from 'nanoid';
-import { CharacterSave } from '@server/mongodb/types';
+import { EntitySave } from '@server/mongodb/types';
 import { BodyComponent } from '@server/ecs/components/physics/body';
 import { ColliderComponent } from '@server/ecs/components/physics/collider';
 import { PositionComponent } from '@server/ecs/components/physics/position';
-import { ObjectComponent } from '@server/ecs/components/game/tags/object';
+import { ObjectComponent } from '@server/ecs/components/game/tag/object';
+import { createPathFromPolygons, isRoutePathObject } from '@server/utils/tiled-object';
+import { PatrolComponent } from '@server/ecs/components/game/behaviour/patrol';
+import { AStarService } from '@shared/ecs/service/a-star';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -29,13 +28,14 @@ export class DynamicallyLoadableScene extends Scene {
       this.map = maps[this.roomName];
 
       if (this.map) {
+        const colLayer = this.map.layers.find(({ name }) => name === 'collision');
+        if (colLayer) {
+          this.ecs.addService(new AStarService(colLayer));
+        }
         this.processMapObjects();
+        this.processMapNPC();
       }
     }
-
-    const state = await MDBClient.instance().readMapConfig(this.roomName);
-
-    state.characters.forEach((e) => this.initEntity(e));
   }
 
   async onJoin(client: Client) {
@@ -55,7 +55,7 @@ export class DynamicallyLoadableScene extends Scene {
     await MDBClient.instance().writePlayerSave(entity);
   }
 
-  initEntityComponents(entity: Entity, state: { components: Map<string, Component> }) {
+  initEntityComponents(entity: Entity, state: EntitySave) {
     state.components.forEach((cState) => {
       if (isComponentName(cState.name)) {
         const Factory = ComponentMap[cState.name];
@@ -67,24 +67,50 @@ export class DynamicallyLoadableScene extends Scene {
     });
   }
 
-  initEntity(state: CharacterSave, id?: string) {
-    const type = Object.keys(EntityMap).find((tag) => state.components.has(tag));
-    let entity;
-
-    switch (type) {
-      case 'tag-npc': {
-        entity = new Npc();
-        break;
-      }
-      case 'tag-player': {
-        entity = new Player();
-        entity.id = id;
-        break;
-      }
-    }
+  initEntity(state: EntitySave, id?: string) {
+    const entity = new Entity();
+    entity.id = id ?? state.id;
 
     this.initEntityComponents(entity, state);
     this.addEntity(entity);
+
+    return entity;
+  }
+
+  async processMapNPC() {
+    const layer = this.map.layers.find((layer) => layer.name === 'npc');
+
+    if (layer && layer.layers) {
+      for (const l of layer.layers) {
+        const id = l.name;
+        if (l.objects) {
+          const spawn = l.objects.find((o) => o.name === 'spawn');
+
+          if (spawn) {
+            const config = await MDBClient.instance().readNPC(id);
+
+            if (config) {
+              config.components.push({
+                name: 'position',
+                x: spawn.x,
+                y: spawn.y,
+              });
+              const entity = this.initEntity(config);
+              const route = l.objects.find((o) => o.name === 'route');
+              if (route && isRoutePathObject(route)) {
+                const path = createPathFromPolygons(route);
+                const patrol = new PatrolComponent();
+                // patrol.active = false;
+                patrol.path = path;
+                patrol.current = path[0];
+
+                entity.addComponent(patrol);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   processMapObjects() {
@@ -94,8 +120,12 @@ export class DynamicallyLoadableScene extends Scene {
       layer.objects.forEach((object) => {
         const entity = new Entity();
         const set = this.map.tilesets.find((tileset) => tileset.name === object.type);
+        const oComp = new ObjectComponent();
         entity.id = nanoid(9);
-        entity.addComponent(new ObjectComponent());
+        oComp.type = object.type;
+        oComp.gid = object.gid;
+
+        entity.addComponent(oComp);
 
         if (object.width && object.height) {
           const body = new BodyComponent();

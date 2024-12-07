@@ -14,8 +14,8 @@ import { ChangeResourceComponent } from '@server/ecs/components/game/stats/resou
 import { ResourceComponent } from '@server/ecs/components/game/stats/resource/resource';
 import { MainStatsComponent } from '@server/ecs/components/game/stats/main-stats';
 import { SecondaryStatsComponent } from '@server/ecs/components/game/stats/secondary-stats';
-import { NPCComponent } from '@server/ecs/components/game/tags/npc';
-import { PlayerComponent } from '@server/ecs/components/game/tags/player';
+import { NPCComponent } from '@server/ecs/components/game/tag/npc';
+import { PlayerComponent } from '@server/ecs/components/game/tag/player';
 import { ClassComponent } from '@server/ecs/components/game/class';
 import { LevelComponent } from '@server/ecs/components/game/level';
 import { MoveComponent } from '@server/ecs/components/game/move';
@@ -25,15 +25,19 @@ import { ColliderComponent } from '@server/ecs/components/physics/collider';
 import { PositionComponent } from '@server/ecs/components/physics/position';
 import { SpeedComponent } from '@server/ecs/components/physics/speed';
 import { VelocityComponent } from '@server/ecs/components/physics/velocity';
+import { AppearanceComponent } from '@server/ecs/components/game/appearance';
+import { FractionComponent } from '@server/ecs/components/game/fraction';
 
 export const map = {
   // Game components
+  appearance: AppearanceComponent,
   equip: EquipComponent,
 
-  damage: DamageComponent,
-  dot: DotComponent,
-  heal: HealComponent,
-  hot: HotComponent,
+  // Should not persist on save/load character
+  // damage: DamageComponent,
+  // dot: DotComponent,
+  // heal: HealComponent,
+  // hot: HotComponent,
   'negative-effect': NegativeEffectComponent,
   'positive-effect': PositiveEffectComponent,
   'spell-book': SpellBookComponent,
@@ -51,6 +55,7 @@ export const map = {
   'tag-player': PlayerComponent,
 
   class: ClassComponent,
+  fraction: FractionComponent,
   level: LevelComponent,
   move: MoveComponent,
   name: NameComponent,

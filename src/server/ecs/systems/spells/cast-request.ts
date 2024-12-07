@@ -35,7 +35,7 @@ export class CastRequestSystem extends System {
       const castRequest = entity.get<CastRequestComponent>('cast-request');
 
       if (resource && castRequest && castRequest.target && spellBook) {
-        const spell = spellBook.spells.get(castRequest.spell);
+        const spell = spellBook.spells.get(castRequest.spell.toString());
 
         if (spell) {
           if (spell.canCast(entity, castRequest.target)) {

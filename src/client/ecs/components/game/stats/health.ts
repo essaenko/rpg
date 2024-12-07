@@ -5,7 +5,6 @@ import Graphics = Phaser.GameObjects.Graphics;
 export class HealthComponent extends NetworkComponent {
   public max: number;
   public current: number;
-  public object: Graphics;
   constructor() {
     super('health');
   }
@@ -17,9 +16,7 @@ export class HealthComponent extends NetworkComponent {
     });
   }
 
-  onRemove() {
-    super.onRemove();
-
-    this.object?.destroy();
+  destroy() {
+    super.destroy();
   }
 }

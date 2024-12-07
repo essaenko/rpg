@@ -8,8 +8,8 @@ export class SpriteComponent extends Component {
     super('sprite');
   }
 
-  onRemove() {
-    super.onRemove();
+  destroy() {
+    super.destroy();
 
     this.sprite?.destroy(true);
   }

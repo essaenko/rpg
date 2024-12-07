@@ -17,7 +17,7 @@ export class SpellBookComponent extends Component {
       spells.forEach((spell) => {
         if (isSpellName(spell)) {
           const Factory = map[spell];
-          this.spells.set(spell, new Factory());
+          this.spells.set(spell.toString(), new Factory());
         }
       });
     }

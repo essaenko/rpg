@@ -5,6 +5,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { HealthComponent } from '@server/ecs/components/game/stats/health/health';
 import { ChangeHealthComponent } from '@server/ecs/components/game/stats/health/change-health';
+import { DamageComponent } from '@server/ecs/components/game/spells/damage';
 
 export class HealthSystem extends System {
   constructor() {
@@ -18,7 +19,7 @@ export class HealthSystem extends System {
       const health = entity.get<HealthComponent>('health');
       const change = entity.get<ChangeHealthComponent>('change-health');
 
-      health.current += change.value;
+      health.current = Math.min(health.max, health.current + change.value);
       if (health.current <= 0) {
         container.removeEntity(entity.id);
       }

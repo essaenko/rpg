@@ -7,7 +7,7 @@ export class ClassComponent extends Component {
     super('class');
   }
 
-  @type('string') class: Class = null;
+  @type('number') class: Class;
 
   init(state: Record<string, any>): void {
     if ('class' in state) {

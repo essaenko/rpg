@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
   const sceneSubj = new BehaviorSubject('');
+  game.input.mouse.disableContextMenu();
   game.registry.events.on('changedata-scene', (_: Game, v: string) => {
     sceneSubj.next(v);
   });

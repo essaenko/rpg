@@ -13,6 +13,7 @@ import { AnimationSystem } from '@client/ecs/systems/assets/animation';
 import { CameraSystem } from '@client/ecs/systems/camera';
 import { TargetSystem } from '@client/ecs/systems/combat/target';
 import { HealthSystem } from '@client/ecs/systems/assets/health';
+import { AppearanceSystem } from '@client/ecs/systems/assets/appearance';
 
 export class NetworkScene extends Scene {
   public room: Room<SceneState>;
@@ -31,6 +32,7 @@ export class NetworkScene extends Scene {
     this.ecs.addSystem(new SpriteSystem());
     this.ecs.addSystem(new TargetSystem());
     this.ecs.addSystem(new HealthSystem());
+    this.ecs.addSystem(new AppearanceSystem());
     (window as any).ecs = this.ecs;
 
     this.joinServerRoom();

@@ -22,8 +22,10 @@ export abstract class Entity {
       component = signature;
     }
 
-    component?.onRemove();
-    this.components.splice(this.components.indexOf(component), 1);
+    if (component) {
+      component.destroy();
+      this.components.splice(this.components.indexOf(component), 1);
+    }
   }
 
   get<T extends Component>(name: string): T | undefined {
@@ -36,7 +38,7 @@ export abstract class Entity {
 
   destroy() {
     this.components.forEach((component) => {
-      component.onRemove();
+      component.destroy();
     });
   }
 }

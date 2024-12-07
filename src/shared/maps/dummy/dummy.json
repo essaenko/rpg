@@ -75,7 +75,7 @@
                  "type":"decorations_medium",
                  "visible":true,
                  "width":64,
-                 "x":575.333333333333,
+                 "x":575.333,
                  "y":736
                 }, 
                 {
@@ -87,7 +87,7 @@
                  "type":"decorations_medium",
                  "visible":true,
                  "width":64,
-                 "x":862.666666666667,
+                 "x":862.667,
                  "y":734
                 }, 
                 {
@@ -341,9 +341,130 @@
                  "width":128,
                  "x":542.5,
                  "y":544.75
+                }, 
+                {
+                 "gid":1861,
+                 "height":192,
+                 "id":57,
+                 "name":"",
+                 "rotation":0,
+                 "type":"small-buildings",
+                 "visible":true,
+                 "width":160,
+                 "x":266.666666666667,
+                 "y":960.666666666667
+                }, 
+                {
+                 "gid":1862,
+                 "height":192,
+                 "id":58,
+                 "name":"",
+                 "rotation":0,
+                 "type":"small-buildings",
+                 "visible":true,
+                 "width":160,
+                 "x":816,
+                 "y":819.333333333333
+                }, 
+                {
+                 "gid":1863,
+                 "height":192,
+                 "id":59,
+                 "name":"",
+                 "rotation":0,
+                 "type":"small-buildings",
+                 "visible":true,
+                 "width":160,
+                 "x":16,
+                 "y":990
                 }],
          "opacity":1,
          "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "id":12,
+         "layers":[
+                {
+                 "draworder":"topdown",
+                 "id":11,
+                 "name":"QHp67chim",
+                 "objects":[
+                        {
+                         "height":0,
+                         "id":60,
+                         "name":"spawn",
+                         "point":true,
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":304,
+                         "y":1171.33333333333
+                        }, 
+                        {
+                         "height":0,
+                         "id":61,
+                         "name":"route",
+                         "polygon":[
+                                {
+                                 "x":-16,
+                                 "y":13
+                                }, 
+                                {
+                                 "x":48,
+                                 "y":13
+                                }, 
+                                {
+                                 "x":80,
+                                 "y":77
+                                }, 
+                                {
+                                 "x":144,
+                                 "y":109
+                                }, 
+                                {
+                                 "x":144,
+                                 "y":237
+                                }, 
+                                {
+                                 "x":48,
+                                 "y":269
+                                }, 
+                                {
+                                 "x":-144,
+                                 "y":301
+                                }, 
+                                {
+                                 "x":-240,
+                                 "y":237
+                                }, 
+                                {
+                                 "x":-240,
+                                 "y":45
+                                }, 
+                                {
+                                 "x":-80,
+                                 "y":45
+                                }],
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":0,
+                         "x":304,
+                         "y":1171
+                        }],
+                 "opacity":1,
+                 "type":"objectgroup",
+                 "visible":true,
+                 "x":0,
+                 "y":0
+                }],
+         "name":"npc",
+         "opacity":1,
+         "type":"group",
          "visible":true,
          "x":0,
          "y":0
@@ -495,8 +616,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":57,
+ "nextlayerid":13,
+ "nextobjectid":62,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.0",
@@ -505,7 +626,7 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/ground.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/ground.png",
          "imageheight":1056,
          "imagewidth":1024,
          "margin":0,
@@ -518,7 +639,7 @@
         {
          "columns":25,
          "firstgid":1057,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/hills.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/hills.png",
          "imageheight":512,
          "imagewidth":800,
          "margin":0,
@@ -550,7 +671,7 @@
         {
          "columns":12,
          "firstgid":1458,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/flset\/ground_dec_props.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/ground_dec_props.png",
          "imageheight":960,
          "imagewidth":384,
          "margin":0,
@@ -773,7 +894,7 @@
          "name":"tree",
          "objectalignment":"topleft",
          "spacing":0,
-         "tilecount":576,
+         "tilecount":36,
          "tileheight":128,
          "tiles":[
                 {
@@ -1002,6 +1123,99 @@
                     }
                 }],
          "tilewidth":128
+        }, 
+        {
+         "columns":3,
+         "firstgid":1861,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/small_buildings.png",
+         "imageheight":192,
+         "imagewidth":480,
+         "margin":0,
+         "name":"small-buildings",
+         "objectalignment":"topleft",
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":192,
+         "tiles":[
+                {
+                 "id":0,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":91,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":131.333333333333,
+                             "x":14,
+                             "y":82.3333333333333
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":1,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":82,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":118.333333333333,
+                             "x":21,
+                             "y":76.3333333333333
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":2,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":97.6666666666667,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":113.333333333333,
+                             "x":23.3333333333333,
+                             "y":61.3333333333333
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
+         "tilewidth":160
         }],
  "tilewidth":32,
  "type":"map",

@@ -5,4 +5,8 @@ export class TargetComponent extends Component {
   constructor() {
     super('target');
   }
+
+  destroy() {
+    super.destroy();
+  }
 }

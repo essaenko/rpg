@@ -17,6 +17,8 @@ export class CastSystem extends System {
       const cast = entity.get<CastComponent>('cast');
 
       cast.spell.cast(entity, cast.target);
+      cast.spell.proc(entity, cast.target);
+      cast.spell.cooldownTime = cast.spell.cooldown;
       entity.removeComponent('cast');
     });
   }

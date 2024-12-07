@@ -1,7 +1,8 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { AsepriteAssetComponent } from '@client/ecs/components/game/asset/aseprite-asset';
-import { SpriteAssetComponent } from '@client/ecs/components/game/asset/sprite-asset';
+import { HealthFrameComponent } from '@client/ecs/components/game/asset/health-frame';
+import { AppearanceComponent } from '@client/ecs/components/game/appearance';
+import { isAssetKey, map } from '@client/assets/sprites/map';
 
 export class LoadSystem extends System {
   constructor() {
@@ -9,45 +10,47 @@ export class LoadSystem extends System {
   }
 
   onUpdate(scene: Phaser.Scene, container: ECSContainer): void {
-    const spriteAssets = container.query(['sprite-asset']);
-    const asepriteAssets = container.query(['aseprite-asset']);
+    container.query(['appearance']).forEach((entity) => {
+      const appearance = entity.get<AppearanceComponent>('appearance');
 
-    asepriteAssets.forEach((entity) => {
-      const aseprite = entity.get<AsepriteAssetComponent>('aseprite-asset');
-
-      if (scene.textures.exists(aseprite.key)) {
-        aseprite.loaded = true;
+      if (scene.textures.exists(appearance.key)) {
+        appearance.loaded = true;
 
         return;
       }
 
-      if (scene.load)
-        if (!aseprite.loading && !aseprite.loaded) {
-          scene.load.on(`filecomplete-atlasjson-${aseprite.key}`, () => {
-            aseprite.loaded = true;
-            aseprite.loading = false;
-          });
-          scene.load.aseprite(aseprite.key, aseprite.texture, aseprite.atlas);
-          aseprite.loading = true;
+      if (!appearance.loading && !appearance.loaded) {
+        const key = appearance.key;
+        if (isAssetKey(key)) {
+          const asset = map[key];
+
+          switch (asset.type) {
+            case 'aseprite':
+              scene.load.on(`filecomplete-atlasjson-${appearance.key}`, () => {
+                appearance.loaded = true;
+                appearance.loading = false;
+              });
+              scene.load.aseprite(key, asset.asset, asset.json);
+              appearance.loading = true;
+              break;
+          }
         }
+      }
     });
 
-    spriteAssets.forEach((entity) => {
-      const sprite = entity.get<SpriteAssetComponent>('sprite-asset');
+    container.query(['health-frame']).forEach((entity) => {
+      const hfc = entity.get<HealthFrameComponent>('health-frame');
 
-      if (scene.textures.exists(sprite.key)) {
-        sprite.loaded = true;
+      if (scene.textures.exists(hfc.asset.key)) {
+        hfc.asset.loading = false;
+        hfc.asset.loaded = true;
 
         return;
       }
 
-      if (!sprite.loading && !sprite.loaded) {
-        scene.load.on(`filecomplete-sprite-${sprite.key}`, () => {
-          sprite.loaded = true;
-          sprite.loading = false;
-        });
-        scene.load.spritesheet(sprite.key, sprite.url);
-        sprite.loading = true;
+      if (!hfc.asset.loaded && !hfc.asset.loading) {
+        scene.load.spritesheet(hfc.asset.key, hfc.asset.url, hfc.asset.config);
+        hfc.asset.loading = true;
       }
     });
 

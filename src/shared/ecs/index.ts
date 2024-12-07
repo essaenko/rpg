@@ -3,12 +3,22 @@ import { TransportEventTypes } from '../types';
 import { Client } from '@colyseus/core';
 import { Entity } from './entity';
 import { Scene } from '../../server/core/scene/scene';
+import { Service } from '@shared/ecs/service/service';
 
 export class ECSContainer {
   private systems: Map<string, System> = new Map();
   private entities: Map<string, Entity> = new Map();
+  private services: Map<string, Service> = new Map();
 
   constructor(public scene: Scene) {}
+
+  addService(service: Service): void {
+    this.services.set(service.name, service);
+  }
+
+  getService<T extends Service>(name: string): T | undefined {
+    return this.services.get(name) as T;
+  }
 
   addSystem(system: System) {
     this.systems.set(system.name, system);
@@ -33,7 +43,7 @@ export class ECSContainer {
   }
 
   query(components: string[]) {
-    return this.entities.values().filter((entity) => components.every((name) => entity.components.has(name)));
+    return this.entities.values().filter((entity) => components.every((name) => entity.has(name)));
   }
 
   update(delta: number, scene: Scene) {

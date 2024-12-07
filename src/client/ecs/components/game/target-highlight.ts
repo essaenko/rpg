@@ -7,8 +7,8 @@ export class TargetHighlightComponent extends Component {
     super('target-highlight');
   }
 
-  onRemove() {
-    super.onRemove();
+  destroy() {
+    super.destroy();
 
     this.rect.destroy(true);
   }

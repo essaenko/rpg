@@ -1,18 +1,6 @@
-import { Room } from 'colyseus.js';
-
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
-import { TiledMapLayer } from '@shared/utils/types';
-import ObjectLayer = Phaser.Tilemaps.ObjectLayer;
-import { Entity } from '@client/core/ecs/entity/entity';
-import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
-import { LocalEntity } from '@client/core/ecs/entity/local-entity';
-import { SpriteAssetComponent } from '@client/ecs/components/game/asset/sprite-asset';
-import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
 import Tilemap = Phaser.Tilemaps.Tilemap;
-import Sprite = Phaser.GameObjects.Sprite;
-import { equal } from '@client/utils/array';
-import { ObjectComponent } from '@client/ecs/components/game/tag/object';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -112,26 +100,26 @@ export class WorldScene extends NetworkScene {
   }
 
   initTiledMapObjects(m: Tilemap) {
-    m.getObjectLayer('objects').objects.forEach((object) => {
-      const set = m.tilesets.find((set) => set.name === object.type);
-      if (object.visible && set) {
-        const sprite = this.physics.add.sprite(object.x, object.y, object.type, object.gid - set.firstgid);
-        sprite.setOrigin(0, 0);
-        sprite.depth = sprite.y + sprite.height;
-        const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
-
-        if (this.anims.exists(animKey)) {
-          sprite.play(animKey);
-        }
-
-        const entity = new LocalEntity();
-        const sComponent = new SpriteComponent();
-        sComponent.sprite = sprite;
-
-        entity.addComponent(sComponent);
-        entity.addComponent(new ObjectComponent());
-        this.ecs.addEntity(entity);
-      }
-    });
+    // m.getObjectLayer('objects').objects.forEach((object) => {
+    //   const set = m.tilesets.find((set) => set.name === object.type);
+    //   if (object.visible && set) {
+    //     const sprite = this.physics.add.sprite(object.x, object.y, object.type, object.gid - set.firstgid);
+    //     sprite.setOrigin(0, 0);
+    //     sprite.depth = sprite.y + sprite.height;
+    //     const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
+    //
+    //     if (this.anims.exists(animKey)) {
+    //       sprite.play(animKey);
+    //     }
+    //
+    //     const entity = new LocalEntity();
+    //     const sComponent = new SpriteComponent();
+    //     sComponent.sprite = sprite;
+    //
+    //     entity.addComponent(sComponent);
+    //     entity.addComponent(new ObjectComponent());
+    //     this.ecs.addEntity(entity);
+    //   }
+    // });
   }
 }

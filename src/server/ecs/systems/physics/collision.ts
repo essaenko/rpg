@@ -16,7 +16,7 @@ export class CollisionSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
-    const objects = container.query(['position', 'body', 'collider', 'tag-object']);
+    const objects = container.query(['position', 'body', 'collider', 'tag-object']).toArray();
     container.query(['body', 'collider', 'velocity', 'position']).forEach((entity) => {
       const velocity = entity.get<VelocityComponent>('velocity');
       if (velocity.x || velocity.y) {

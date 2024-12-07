@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-up" width="48" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="57">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-up" width="48" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="62">
  <editorsettings>
   <export target="dummy.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="1056" columns="32">
-  <image source="../../../client/assets/tilesets/flset/ground.png" width="1024" height="1056"/>
+  <image source="../../../client/assets/tilesets/fantasy-lands/ground.png" width="1024" height="1056"/>
  </tileset>
  <tileset firstgid="1057" name="hills" tilewidth="32" tileheight="32" tilecount="400" columns="25">
-  <image source="../../../client/assets/tilesets/flset/hills.png" width="800" height="512"/>
+  <image source="../../../client/assets/tilesets/fantasy-lands/hills.png" width="800" height="512"/>
  </tileset>
  <tileset firstgid="1457" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <properties>
@@ -16,7 +16,7 @@
   <image source="../../../client/assets/tilesets/dummy-tile.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="1458" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12">
-  <image source="../../../client/assets/tilesets/flset/ground_dec_props.png" width="384" height="960"/>
+  <image source="../../../client/assets/tilesets/fantasy-lands/ground_dec_props.png" width="384" height="960"/>
  </tileset>
  <tileset firstgid="1818" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/decorations_medium.png" width="448" height="64"/>
@@ -56,7 +56,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="1825" name="tree" tilewidth="128" tileheight="128" tilecount="576" columns="4" objectalignment="topleft">
+ <tileset firstgid="1825" name="tree" tilewidth="128" tileheight="128" tilecount="36" columns="4" objectalignment="topleft">
   <grid orientation="orthogonal" width="32" height="32"/>
   <image source="../../../client/assets/tilesets/fantasy-lands/Tree_A_v1.png" width="512" height="1152"/>
   <tile id="11">
@@ -115,6 +115,24 @@
     <frame tileid="34" duration="100"/>
     <frame tileid="35" duration="100"/>
    </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1861" name="small-buildings" tilewidth="160" tileheight="192" tilecount="3" columns="3" objectalignment="topleft">
+  <image source="../../../client/assets/tilesets/fantasy-lands/small_buildings.png" width="480" height="192"/>
+  <tile id="0">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="14" y="82.3333" width="131.333" height="91"/>
+   </objectgroup>
+  </tile>
+  <tile id="1">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="21" y="76.3333" width="118.333" height="82"/>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="23.3333" y="61.3333" width="113.333" height="97.6667"/>
+   </objectgroup>
   </tile>
  </tileset>
  <layer id="1" name="ground" width="48" height="48">
@@ -193,7 +211,20 @@
   <object id="34" type="tree" gid="1836" x="771.5" y="540.5" width="128" height="128"/>
   <object id="35" type="tree" gid="1836" x="941" y="686.5" width="128" height="128"/>
   <object id="36" type="tree" gid="1836" x="542.5" y="544.75" width="128" height="128"/>
+  <object id="57" type="small-buildings" gid="1861" x="266.667" y="960.667" width="160" height="192"/>
+  <object id="58" type="small-buildings" gid="1862" x="816" y="819.333" width="160" height="192"/>
+  <object id="59" type="small-buildings" gid="1863" x="16" y="990" width="160" height="192"/>
  </objectgroup>
+ <group id="12" name="npc">
+  <objectgroup id="11" name="QHp67chim">
+   <object id="60" name="spawn" x="304" y="1171.33">
+    <point/>
+   </object>
+   <object id="61" name="route" x="304" y="1171">
+    <polygon points="-16,13 48,13 80,77 144,109 144,237 48,269 -144,301 -240,237 -240,45 -80,45"/>
+   </object>
+  </objectgroup>
+ </group>
  <objectgroup id="6" name="locations">
   <object id="1" name="spawn" x="736.5" y="864">
    <properties>

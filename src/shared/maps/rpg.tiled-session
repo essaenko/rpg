@@ -1,0 +1,166 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "dummy/dummy-house.json": {
+            "scale": 0.9936035156249999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -0.5032188313922461,
+                "y": 0
+            }
+        },
+        "dummy/dummy-house.json#beds_and_drobes": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#elements": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#fire_place": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#floors": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#internals": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#kitchen": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.json#wooden_walls": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx": {
+            "scale": 0.9936035156249999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -0.5032188313922461,
+                "y": 0
+            }
+        },
+        "dummy/dummy-house.tmx#beds_and_drobes": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#elements": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#fire_place": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#floors": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#internals": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#kitchen": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#wooden_walls": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json": {
+            "scale": 0.66240234375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 767.6603272888103,
+                "y": 768.4151555358986
+            }
+        },
+        "dummy/dummy.json#decorations_medium": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#dummy-tile": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#ground": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#ground_dec_props": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#hills": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#small-buildings": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.json#tree": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx": {
+            "scale": 0.66240234375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 766.9054990417221,
+                "y": 768.4151555358986
+            }
+        },
+        "dummy/dummy.tmx#decorations_medium": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#dummy-tile": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#ground": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#ground_dec_props": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#hills": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#small-buildings": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy.tmx#tree": {
+            "scaleInDock": 1
+        },
+        "interborder/interborder.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 163.33333333333331,
+                "y": 16
+            }
+        },
+        "interborder/interborder.tmx#decorations_medium": {
+            "scaleInEditor": 1
+        },
+        "interborder/interborder.tmx#ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "interborder/interborder.tmx#tree_a": {
+            "scaleInEditor": 1
+        },
+        "interborder/interborder.tmx#tree_b": {
+            "scaleInEditor": 1
+        },
+        "interborder/interborder.tmx#water_env": {
+            "scaleInEditor": 3
+        }
+    },
+    "last.exportedFilePath": "/home/essaenko/Projects/rpg/rpg-server/src/shared/maps/interborder",
+    "last.imagePath": "/home/essaenko/Projects/rpg/rpg-server/src/client/assets/tilesets/fantasy-lands",
+    "map.fixedSize": false,
+    "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "rpg.tiled-project",
+    "recentFiles": [
+        "dummy/dummy.tmx",
+        "dummy/dummy-house.json",
+        "dummy/dummy.json",
+        "dummy/dummy-house.tmx"
+    ],
+    "tileset.embedInMap": true
+}

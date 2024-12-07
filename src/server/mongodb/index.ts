@@ -1,11 +1,5 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-import {
-  isRoomSavedConfig,
-  DBSavedRoomConfig,
-  SavedRoomConfig,
-  CharacterSave,
-  isCharacterSave,
-} from '@server/mongodb/types';
+import { isRoomSavedConfig, SavedRoomConfig, EntitySave, isEntitySave } from '@server/mongodb/types';
 import { Entity } from '@shared/ecs/entity';
 import { ColliderComponent } from '@server/ecs/components/physics/collider';
 
@@ -30,35 +24,32 @@ export class MDBClient {
     return instance;
   }
 
-  public async readMapConfig(key: string): Promise<SavedRoomConfig | undefined> {
-    const col = this.db.collection('scenes');
-    const mapConfig = await col.findOne({
-      key,
+  public async readNPC(id: string): Promise<EntitySave | undefined> {
+    const col = this.db.collection('npc');
+    const config = await col.findOne({
+      id,
     });
 
-    if (isRoomSavedConfig(mapConfig)) {
+    if (isEntitySave(config)) {
       return {
-        ...mapConfig,
-        characters: mapConfig.characters.map((character) => ({
-          id: character.id,
-          components: new Map(character.components.map((c) => [c.name, c])),
-        })),
+        id,
+        components: config.components,
       };
     }
 
     return undefined;
   }
 
-  public async readPlayerSave(id: string): Promise<CharacterSave | undefined> {
+  public async readPlayerSave(id: string): Promise<EntitySave | undefined> {
     const col = this.db.collection('characters');
     const save = await col.findOne({
       id: id,
     });
 
-    if (isCharacterSave(save)) {
+    if (isEntitySave(save)) {
       return {
         id,
-        components: new Map(save.components.map((c) => [c.name, c])),
+        components: save.components,
       };
     }
 

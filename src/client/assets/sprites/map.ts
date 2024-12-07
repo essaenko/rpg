@@ -8,3 +8,7 @@ export const map = {
     type: 'aseprite',
   },
 } as const;
+
+export const isAssetKey = (key: unknown): key is keyof typeof map => {
+  return typeof key === 'string' && key in map;
+};
