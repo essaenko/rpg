@@ -20,8 +20,7 @@ export class CameraSystem extends System {
         const sprite = player.get<Appearance>('appearance');
 
         if (!camera.following && sprite.sprites) {
-          scene.cameras.main.startFollow(sprite.sprites, true);
-          scene.cameras.main.setLerp(0.02, 0.02);
+          scene.cameras.main.startFollow(sprite.sprites, true, 0.007, 0.007, 0, 0);
           camera.following = true;
         }
       }

@@ -5,10 +5,6 @@ let instance: InputService;
 
 export class InputService {
   private readonly bindings: Record<string, Keys> = {
-    KeyW: Keys.Up,
-    KeyS: Keys.Down,
-    KeyD: Keys.Right,
-    KeyA: Keys.Left,
     KeyQ: Keys.Spell1,
     KeyE: Keys.Spell2,
     KeyR: Keys.Spell3,

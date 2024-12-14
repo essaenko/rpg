@@ -31,29 +31,29 @@ export class MoveSystem extends System {
           appearance.animation = Animation.Idle;
         }
 
-        if (move.direction.includes(Directions.Forward)) {
-          velocity.y -= speed.speed * delta;
+        if (move.vector[1] < 0) {
+          velocity.y += move.vector[1] * speed.speed * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingForward;
           }
         }
-        if (move.direction.includes(Directions.Backward)) {
-          velocity.y += speed.speed * delta;
+        if (move.vector[1] > 0) {
+          velocity.y += move.vector[1] * speed.speed * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingBackward;
           }
         }
-        if (move.direction.includes(Directions.Left)) {
-          velocity.x -= speed.speed * delta;
+        if (move.vector[0] < 0) {
+          velocity.x += move.vector[0] * speed.speed * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingLeft;
           }
         }
-        if (move.direction.includes(Directions.Right)) {
-          velocity.x += speed.speed * delta;
+        if (move.vector[0] > 0) {
+          velocity.x += move.vector[0] * speed.speed * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingRight;

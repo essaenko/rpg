@@ -1,11 +1,6 @@
 import { Directions, SpellBinding } from '@shared/types';
 
 export enum Keys {
-  Up = 'up', // W
-  Down = 'down', // S
-  Right = 'right', // D
-  Left = 'left', // A
-
   Spell1 = 'spell1', // Q
   Spell2 = 'spell2', // E
   Spell3 = 'spell3', // R
@@ -22,14 +17,6 @@ export type ServerKeyValues = Directions | SpellBinding;
 
 export const clientKeyToServerValue = (key: Keys): ServerKeyValues => {
   switch (key) {
-    case Keys.Up:
-      return Directions.Forward;
-    case Keys.Down:
-      return Directions.Backward;
-    case Keys.Left:
-      return Directions.Left;
-    case Keys.Right:
-      return Directions.Right;
     case Keys.Spell1:
       return SpellBinding.Spell1;
     case Keys.Spell2:

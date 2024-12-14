@@ -51,6 +51,12 @@ export type Body = {
   height: number;
 };
 
+export type Triangle = {
+  a: Position;
+  b: Position;
+  c: Position;
+};
+
 export enum ResourceType {
   Mana = 1,
   Rage,

@@ -15,7 +15,6 @@ import { TargetSystem } from '@client/ecs/systems/combat/target';
 import { HealthSystem } from '@client/ecs/systems/assets/health';
 import { AppearanceSystem } from '@client/ecs/systems/assets/appearance';
 import { QuestGiverSystem } from '@client/ecs/systems/quest/quest-giver';
-import { TransportEventTypes } from '@shared/types';
 
 export class NetworkScene extends Scene {
   public room: Room<SceneState>;
@@ -26,7 +25,7 @@ export class NetworkScene extends Scene {
   }
 
   preload() {
-    this.ecs.addSystem(new InputSystem(this));
+    this.ecs.addSystem(new InputSystem());
     this.ecs.addSystem(new MovementSystem());
     this.ecs.addSystem(new AnimationSystem());
     this.ecs.addSystem(new NetworkSystem());

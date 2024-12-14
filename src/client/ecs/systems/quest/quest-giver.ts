@@ -8,7 +8,8 @@ import { passConditions } from '@client/utils/quest';
 import { QuestGiverStates } from '@client/utils/types';
 import { TransportEventTypes } from '@shared/types';
 import { Action } from '@client/ecs/components/game/action';
-import { getDistance } from '@client/utils/physics';
+import { getDistance } from '@shared/utils/physics';
+import { Position } from '@client/ecs/components/physics/position';
 
 export class QuestGiverSystem extends System {
   constructor() {
@@ -44,7 +45,7 @@ export class QuestGiverSystem extends System {
             action.action = () => {
               const player = container.getEntity(scene.room.sessionId);
 
-              if (getDistance(entity, player) <= 48) {
+              if (getDistance(entity.get<Position>('position'), player.get<Position>('position')) <= 48) {
                 scene.room.send(TransportEventTypes.AcceptQuest, [entity.id, availableQuests[0].id]);
               }
             };

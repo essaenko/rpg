@@ -8,7 +8,7 @@ export class Move extends Component {
 
   serializable = true;
 
-  public direction: Directions[] = [];
+  public vector: [number, number] = [0, 0];
 
   init(state: Record<string, any>): void {}
 

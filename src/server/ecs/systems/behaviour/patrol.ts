@@ -7,7 +7,7 @@ import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
 import { Position } from '@server/ecs/components/physics/position';
 import { positionToTile, tileToPosition } from '@server/utils/map/tiled';
-import { getVelocityByVector, isInTheSamePosition } from '@server/utils/physics';
+import { getVelocityByVector, isInTheSamePosition } from '@shared/utils/physics';
 
 export class PatrolSystem extends System {
   constructor() {

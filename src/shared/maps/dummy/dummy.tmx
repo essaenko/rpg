@@ -9,16 +9,41 @@
  <tileset firstgid="1057" name="hills" tilewidth="32" tileheight="32" tilecount="400" columns="25">
   <image source="../../../client/assets/tilesets/fantasy-lands/hills.png" width="800" height="512"/>
  </tileset>
- <tileset firstgid="1457" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+ <tileset firstgid="1457" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="5" columns="5">
   <properties>
    <property name="required" type="bool" value="false"/>
   </properties>
-  <image source="../../../client/assets/tilesets/dummy-tile.png" width="32" height="32"/>
+  <image source="../../../client/assets/tilesets/dummy-tile.png" width="160" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collider" type="int" value="0"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collider" type="int" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collider" type="int" value="2"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collider" type="int" value="3"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="collider" type="int" value="4"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="1458" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12" objectalignment="topleft">
+ <tileset firstgid="1462" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/ground_dec_props.png" width="384" height="960"/>
  </tileset>
- <tileset firstgid="1818" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
+ <tileset firstgid="1822" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/decorations_medium.png" width="448" height="64"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -56,7 +81,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="1825" name="tree" tilewidth="128" tileheight="128" tilecount="36" columns="4" objectalignment="topleft">
+ <tileset firstgid="1829" name="tree" tilewidth="128" tileheight="128" tilecount="36" columns="4" objectalignment="topleft">
   <grid orientation="orthogonal" width="32" height="32"/>
   <image source="../../../client/assets/tilesets/fantasy-lands/Tree_A_v1.png" width="512" height="1152"/>
   <tile id="11">
@@ -117,7 +142,7 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1861" name="small-buildings" tilewidth="160" tileheight="192" tilecount="3" columns="3" objectalignment="topleft">
+ <tileset firstgid="1865" name="small-buildings" tilewidth="160" tileheight="192" tilecount="3" columns="3" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/small_buildings.png" width="480" height="192"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -188,45 +213,45 @@
 </data>
  </layer>
  <objectgroup id="5" name="objects">
-  <object id="8" type="decorations_medium" gid="1818" x="575.333" y="736" width="64" height="64"/>
-  <object id="9" type="decorations_medium" gid="1820" x="862.667" y="734" width="64" height="64"/>
-  <object id="10" type="decorations_medium" gid="1819" x="574" y="964" width="64" height="64"/>
-  <object id="17" type="tree" gid="1836" x="932.5" y="549.5" width="128" height="128"/>
-  <object id="18" type="tree" gid="1848" x="948.5" y="922.5" width="128" height="128"/>
-  <object id="19" type="tree" gid="1848" x="262" y="737" width="128" height="128"/>
-  <object id="20" type="tree" gid="1848" x="224" y="417" width="128" height="128"/>
-  <object id="21" type="tree" gid="1860" x="457" y="193.5" width="128" height="128"/>
-  <object id="22" type="tree" gid="1860" x="1158" y="65.5" width="128" height="128"/>
-  <object id="23" type="tree" gid="1860" x="1352" y="263" width="128" height="128"/>
-  <object id="24" type="tree" gid="1836" x="1407" y="328" width="128" height="128"/>
-  <object id="25" type="tree" gid="1836" x="1360" y="401" width="128" height="128"/>
-  <object id="26" type="tree" gid="1836" x="1414" y="485.5" width="128" height="128"/>
-  <object id="27" type="tree" gid="1836" x="1364" y="570" width="128" height="128"/>
-  <object id="28" type="tree" gid="1836" x="1423.5" y="654.5" width="128" height="128"/>
-  <object id="29" type="tree" gid="1836" x="1377" y="729" width="128" height="128"/>
-  <object id="30" type="tree" gid="1836" x="1378" y="807" width="128" height="128"/>
-  <object id="31" type="tree" gid="1836" x="1423.5" y="882.5" width="128" height="128"/>
-  <object id="32" type="tree" gid="1836" x="1430.5" y="962" width="128" height="128"/>
-  <object id="33" type="tree" gid="1836" x="1181" y="928.5" width="128" height="128"/>
-  <object id="34" type="tree" gid="1836" x="771.5" y="540.5" width="128" height="128"/>
-  <object id="35" type="tree" gid="1836" x="941" y="686.5" width="128" height="128"/>
-  <object id="36" type="tree" gid="1836" x="542.5" y="544.75" width="128" height="128"/>
-  <object id="57" type="small-buildings" gid="1861" x="266.667" y="960.667" width="160" height="192"/>
-  <object id="58" type="small-buildings" gid="1862" x="816" y="819.333" width="160" height="192"/>
-  <object id="59" type="small-buildings" gid="1863" x="16" y="990" width="160" height="192"/>
-  <object id="67" type="ground_dec_props" gid="1731" x="257" y="706.333" width="32" height="32"/>
-  <object id="68" type="ground_dec_props" gid="1731" x="607.5" y="703.667" width="32" height="32"/>
-  <object id="69" type="ground_dec_props" gid="1728" x="831.667" y="706.5" width="32" height="32"/>
-  <object id="70" type="ground_dec_props" gid="1727" x="928.333" y="667" width="32" height="32"/>
-  <object id="71" type="ground_dec_props" gid="1727" x="286" y="632.5" width="32" height="32"/>
-  <object id="72" type="ground_dec_props" gid="1727" x="192.5" y="533.5" width="32" height="32"/>
-  <object id="73" type="ground_dec_props" gid="1728" x="351.5" y="451.5" width="32" height="32"/>
-  <object id="74" type="ground_dec_props" gid="1728" x="256.5" y="356" width="32" height="32"/>
-  <object id="75" type="ground_dec_props" gid="1729" x="96.5" y="190.5" width="32" height="32"/>
-  <object id="76" type="ground_dec_props" gid="1731" x="291" y="99.5" width="32" height="32"/>
-  <object id="77" type="ground_dec_props" gid="1730" x="96" y="88.5" width="32" height="32"/>
-  <object id="78" type="ground_dec_props" gid="1730" x="32.5" y="88.5" width="32" height="32"/>
-  <object id="79" gid="1730" x="0.5" y="314.5" width="32" height="32"/>
+  <object id="8" type="decorations_medium" gid="1822" x="575.333" y="736" width="64" height="64"/>
+  <object id="9" type="decorations_medium" gid="1824" x="862.667" y="734" width="64" height="64"/>
+  <object id="10" type="decorations_medium" gid="1823" x="574" y="964" width="64" height="64"/>
+  <object id="17" type="tree" gid="1840" x="932.5" y="549.5" width="128" height="128"/>
+  <object id="18" type="tree" gid="1852" x="948.5" y="922.5" width="128" height="128"/>
+  <object id="19" type="tree" gid="1852" x="262" y="737" width="128" height="128"/>
+  <object id="20" type="tree" gid="1852" x="224" y="417" width="128" height="128"/>
+  <object id="21" type="tree" gid="1864" x="457" y="193.5" width="128" height="128"/>
+  <object id="22" type="tree" gid="1864" x="1158" y="65.5" width="128" height="128"/>
+  <object id="23" type="tree" gid="1864" x="1352" y="263" width="128" height="128"/>
+  <object id="24" type="tree" gid="1840" x="1407" y="328" width="128" height="128"/>
+  <object id="25" type="tree" gid="1840" x="1360" y="401" width="128" height="128"/>
+  <object id="26" type="tree" gid="1840" x="1414" y="485.5" width="128" height="128"/>
+  <object id="27" type="tree" gid="1840" x="1364" y="570" width="128" height="128"/>
+  <object id="28" type="tree" gid="1840" x="1423.5" y="654.5" width="128" height="128"/>
+  <object id="29" type="tree" gid="1840" x="1377" y="729" width="128" height="128"/>
+  <object id="30" type="tree" gid="1840" x="1378" y="807" width="128" height="128"/>
+  <object id="31" type="tree" gid="1840" x="1423.5" y="882.5" width="128" height="128"/>
+  <object id="32" type="tree" gid="1840" x="1430.5" y="962" width="128" height="128"/>
+  <object id="33" type="tree" gid="1840" x="1181" y="928.5" width="128" height="128"/>
+  <object id="34" type="tree" gid="1840" x="771.5" y="540.5" width="128" height="128"/>
+  <object id="35" type="tree" gid="1840" x="941" y="686.5" width="128" height="128"/>
+  <object id="36" type="tree" gid="1840" x="542.5" y="544.75" width="128" height="128"/>
+  <object id="57" type="small-buildings" gid="1865" x="266.667" y="960.667" width="160" height="192"/>
+  <object id="58" type="small-buildings" gid="1866" x="816" y="819.333" width="160" height="192"/>
+  <object id="59" type="small-buildings" gid="1867" x="16" y="990" width="160" height="192"/>
+  <object id="67" type="ground_dec_props" gid="1735" x="257" y="706.333" width="32" height="32"/>
+  <object id="68" type="ground_dec_props" gid="1735" x="607.5" y="703.667" width="32" height="32"/>
+  <object id="69" type="ground_dec_props" gid="1732" x="831.667" y="706.5" width="32" height="32"/>
+  <object id="70" type="ground_dec_props" gid="1731" x="928.333" y="667" width="32" height="32"/>
+  <object id="71" type="ground_dec_props" gid="1731" x="286" y="632.5" width="32" height="32"/>
+  <object id="72" type="ground_dec_props" gid="1731" x="192.5" y="533.5" width="32" height="32"/>
+  <object id="73" type="ground_dec_props" gid="1732" x="351.5" y="451.5" width="32" height="32"/>
+  <object id="74" type="ground_dec_props" gid="1732" x="256.5" y="356" width="32" height="32"/>
+  <object id="75" type="ground_dec_props" gid="1733" x="96.5" y="190.5" width="32" height="32"/>
+  <object id="76" type="ground_dec_props" gid="1735" x="291" y="99.5" width="32" height="32"/>
+  <object id="77" type="ground_dec_props" gid="1734" x="96" y="88.5" width="32" height="32"/>
+  <object id="78" type="ground_dec_props" gid="1734" x="32.5" y="88.5" width="32" height="32"/>
+  <object id="79" gid="1734" x="0.5" y="314.5" width="32" height="32"/>
  </objectgroup>
  <group id="12" name="npc">
   <objectgroup id="11" name="QHp67chim">
@@ -313,15 +338,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,0,0,0,0,0,1457,1457,0,0,0,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1457,1457,0,0,0,0,0,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,1457,1457,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,1457,0,0,1457,1457,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,1457,1457,1457,1457,1457,0,0,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1457,1457,1457,1457,1457,1457,1457,1459,0,0,0,0,0,1461,1457,0,0,0,0,0,1457,1459,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1461,1457,0,0,0,0,0,0,0,1457,1459,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,1461,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,1457,1460,0,0,1461,1457,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,1457,0,0,1461,1457,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1461,1457,1457,1457,1457,1460,0,0,1458,1457,1457,1457,1457,1457,1457,1457,1457,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
@@ -330,19 +355,19 @@
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1458,1457,1457,1457,1460,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1458,1457,1457,1457,1460,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1458,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1460,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -1,6 +1,8 @@
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
+import { getVelocityByVector } from '@shared/utils/physics';
+import { Position } from '@client/ecs/components/physics/position';
 
 export class WorldScene extends NetworkScene {
   constructor(

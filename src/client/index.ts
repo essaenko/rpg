@@ -5,6 +5,7 @@ import { Boot } from './scenes/boot/boot';
 import { InitUI } from './ui/init';
 import { BehaviorSubject } from 'rxjs';
 import { Dummy } from './scenes/dummy/dummy';
+import Center = Phaser.Scale.Center;
 
 document.addEventListener('DOMContentLoaded', () => {
   const client = new Client('ws://localhost:2567');
@@ -19,19 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     width: 1280,
     height: 720,
-    antialias: false,
+    // antialias: false,
     pixelArt: true,
-    // roundPixels: true,
+    roundPixels: true,
     scale: {
-      mode: Scale.ScaleModes.ENVELOP,
-      min: {
-        width: 1280,
-        height: 720,
-      },
-      max: {
-        width: 2560,
-        height: 1440,
-      },
+      mode: Scale.FIT,
+      autoCenter: Center.CENTER_BOTH,
     },
     callbacks: {
       preBoot: (game) => {

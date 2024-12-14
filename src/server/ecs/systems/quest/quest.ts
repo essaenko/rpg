@@ -3,9 +3,10 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { DynamicallyLoadableScene } from '@server/core/scene/dynamicly-loadable-scene';
-import { getDistance } from '@server/utils/physics';
+import { getDistance } from '@shared/utils/physics';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
+import { Position } from '@server/ecs/components/physics/position';
 
 export class QuestSystem extends System {
   constructor() {
@@ -17,7 +18,7 @@ export class QuestSystem extends System {
       const giver = container.getEntity(message?.[0]);
       const player = container.getEntity(client.sessionId);
 
-      if (player && giver && getDistance(giver, player) <= 50) {
+      if (player && giver && getDistance(giver.get<Position>('position'), player.get<Position>('position')) <= 50) {
         const { quests } = giver.get<QuestGiver>('quest-giver') ?? {};
         const log = player.get<QuestLog>('quest-log');
 

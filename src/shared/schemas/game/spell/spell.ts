@@ -1,10 +1,11 @@
 import { ArraySchema, Schema, type } from '@colyseus/schema';
 import { Entity } from '@shared/ecs/entity';
-import { getDistance } from '@server/utils/physics';
+import { getDistance } from '@shared/utils/physics';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
 import { Fraction } from '@server/ecs/components/game/fraction';
+import { Position } from '@server/ecs/components/physics/position';
 
 export abstract class Spell extends Schema {
   constructor(name: number, cost: number, cooldown: number, range: number, relation: Relation | Relation[]) {
@@ -38,7 +39,7 @@ export abstract class Spell extends Schema {
 
     return (
       !this.cooldownTime &&
-      getDistance(caster, target) <= this.range &&
+      getDistance(caster.get<Position>('position'), target.get<Position>('position')) <= this.range &&
       spellBook.spells.has(this.name.toString()) &&
       this.relation.includes(getRelation(f1, f2))
     );

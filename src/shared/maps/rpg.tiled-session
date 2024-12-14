@@ -116,7 +116,8 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx#dummy-tile": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "dummy/dummy.tmx#ground": {
             "scaleInDock": 1
@@ -177,6 +178,7 @@
     "openFiles": [
     ],
     "project": "rpg.tiled-project",
+    "property.type": "int",
     "recentFiles": [
         "dummy/dummy-house.tmx",
         "dummy/dummy.tmx",

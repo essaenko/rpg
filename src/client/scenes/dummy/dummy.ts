@@ -11,39 +11,10 @@ export class Dummy extends WorldScene {
 
   preload(): void {
     super.preload();
-    this.load.spritesheet('character-test', CharacterTest, {
-      frameWidth: 64,
-      frameHeight: 64,
-    });
-    this.load.spritesheet('boar-test', BoarTest, {
-      frameWidth: 64,
-      frameHeight: 48,
-    });
-    this.load.spritesheet('dog-test', DogTest, {
-      frameWidth: 64,
-      frameHeight: 48,
-    });
-    this.load.spritesheet('boss-test', BossTest, {
-      frameWidth: 256,
-      frameHeight: 256,
-      startFrame: 0,
-      endFrame: 14,
-    });
   }
 
   create() {
     super.create();
-    // this.add.sprite(395, 274, 'character-test');
-    // this.add.sprite(475, 320, 'boar-test');
-    // this.add.sprite(410, 300, 'dog-test');
-    const boss = this.add.sprite(395, 274, 'boss-test');
-    boss.anims.create({
-      key: 'idle',
-      frames: 'boss-test',
-      repeat: -1,
-      frameRate: 10,
-    });
-    boss.anims.play('idle');
   }
 
   init() {

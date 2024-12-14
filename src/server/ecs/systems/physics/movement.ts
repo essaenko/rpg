@@ -16,7 +16,7 @@ export class MovementSystem extends System {
       container.query(['move']).forEach((entity) => {
         if (entity.id === client.sessionId) {
           const move = entity.get<Move>('move');
-          move.direction = message;
+          move.vector = message;
         }
       });
     }

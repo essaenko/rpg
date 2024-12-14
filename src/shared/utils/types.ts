@@ -14,6 +14,11 @@ export type TiledMapObject = {
 
 export type TiledMapTilesetTile = {
   id: number;
+  properties?: {
+    name: string;
+    type: string;
+    value: string | number | boolean;
+  }[];
   objectgroup?: {
     id: number;
     name: string;

@@ -1,24 +1,22 @@
 import { TransportEventTypes } from '@shared/types';
 import { System } from '@client/core/ecs/system';
-import { NetworkScene } from '@client/core/scene/network-scene';
 import { clientKeyToServerValue, Keys, ServerKeyValues } from '@client/utils/types';
 import { equal } from '@client/utils/array';
 
 import { InputService } from '@client/services/input';
 import { Target } from '@client/ecs/components/game/combat/target';
+import { WorldScene } from '@client/core/scene/world-scene';
+import { ECSContainer } from '@client/core/ecs';
+import { Pointer } from '@client/ecs/components/physics/pointer';
 
 export class InputSystem extends System {
-  private prevMoveUpdate: ServerKeyValues[] = [];
   private prevCastUpdate: Keys | null = null;
-  constructor(
-    private scene: NetworkScene,
-    map?: Record<Partial<Keys>, number[]>,
-  ) {
+  constructor() {
     super('input');
   }
 
-  onUpdate(): void {
-    if (!this.scene.room) return;
+  onUpdate(scene: WorldScene, container: ECSContainer): void {
+    if (!scene.room) return;
 
     const castKey: Keys =
       [
@@ -33,24 +31,31 @@ export class InputSystem extends System {
         Keys.Spell9,
         Keys.Spell10,
       ].find((key) => InputService.instance().isPressed(key)) ?? null;
-    const moveKeys = [Keys.Up, Keys.Down, Keys.Left, Keys.Right]
-      .filter((key) => InputService.instance().isPressed(key))
-      .map(clientKeyToServerValue);
-
-    if (!equal(moveKeys, this.prevMoveUpdate)) {
-      this.scene.room.send(TransportEventTypes.Move, moveKeys);
-
-      this.prevMoveUpdate = moveKeys;
-    }
     if (castKey !== this.prevCastUpdate) {
       const spell = InputService.instance().getSpellBinding(castKey);
-      const target = this.scene.ecs.getEntity(this.scene.room.sessionId).get<Target>('target');
+      const target = container.getEntity(scene.room.sessionId).get<Target>('target');
 
       if (spell && target) {
-        this.scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);
+        scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);
       }
 
       this.prevCastUpdate = castKey;
+    }
+
+    const cursor = scene.input.activePointer;
+    if (cursor.isDown && cursor.buttons === 2) {
+      cursor.updateWorldPoint(scene.cameras.main);
+      const player = container.getEntity(scene.room.sessionId);
+      let pointer = player.get<Pointer>('pointer');
+
+      if (!pointer) {
+        pointer = new Pointer();
+        player.addComponent(pointer);
+      }
+      pointer.x = cursor.worldX;
+      pointer.y = cursor.worldY;
+      pointer.lastX = null;
+      pointer.lastY = null;
     }
   }
 }
