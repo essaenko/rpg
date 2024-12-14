@@ -3,9 +3,8 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { HotComponent } from '@server/ecs/components/game/spells/hot';
-import { HealComponent } from '@server/ecs/components/game/spells/heal';
-import { DamageComponent } from '@server/ecs/components/game/spells/damage';
+import { Dot } from '@server/ecs/components/game/spell/dot';
+import { Damage } from '@server/ecs/components/game/spell/damage';
 
 export class DotSystem extends System {
   constructor() {
@@ -16,13 +15,13 @@ export class DotSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['dot']).forEach((entity) => {
-      const dot = entity.get<HotComponent>('dot');
+      const dot = entity.get<Dot>('dot');
       dot.nextTick = Math.max(0, dot.nextTick - delta);
 
       if (dot.nextTick === 0) {
         dot.nextTick = dot.interval;
 
-        const damage = new DamageComponent();
+        const damage = new Damage();
         damage.value = dot.amount;
 
         entity.addComponent(damage);

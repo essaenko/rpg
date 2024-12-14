@@ -18,6 +18,8 @@ import { DamageSystem } from '@server/ecs/systems/spells/damage';
 import { HotSystem } from '@server/ecs/systems/spells/hot';
 import { DotSystem } from '@server/ecs/systems/spells/dot';
 import { PatrolSystem } from '@server/ecs/systems/behaviour/patrol';
+import { QuestSystem } from '@server/ecs/systems/quest/quest';
+import { QuestRequirementSystem } from '@server/ecs/systems/quest/quest-requirement';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -35,6 +37,8 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new PatrolSystem());
 
     this.ecs.addSystem(new LevelSystem());
+    this.ecs.addSystem(new QuestSystem());
+    this.ecs.addSystem(new QuestRequirementSystem());
 
     this.ecs.addSystem(new CastRequestSystem());
     this.ecs.addSystem(new CastSystem());
@@ -53,6 +57,9 @@ export abstract class Scene extends Room<SceneState> {
     });
     this.onMessage(TransportEventTypes.CastRequest, (client: Client, message: any) => {
       this.ecs.processMessage(client, TransportEventTypes.CastRequest, message);
+    });
+    this.onMessage(TransportEventTypes.AcceptQuest, (client: Client, message: any) => {
+      this.ecs.processMessage(client, TransportEventTypes.AcceptQuest, message);
     });
     this.onMessage('*', (client: Client, type: string | number, message: any) => {
       if (isTransportEventType(type)) {

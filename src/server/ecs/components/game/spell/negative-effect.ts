@@ -1,9 +1,11 @@
 import { Component } from '@shared/ecs/component';
 
-export class PositiveEffectComponent extends Component {
+export class NegativeEffect extends Component {
   constructor() {
-    super('positive-effect');
+    super('negative-effect');
   }
+
+  serializable = true;
 
   init(state: Record<string, any>): void {
     //TODO Add init handle

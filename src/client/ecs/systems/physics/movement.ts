@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { PositionComponent } from '@client/ecs/components/physics/position';
-import { AppearanceComponent } from '@client/ecs/components/game/appearance';
+import { Position } from '@client/ecs/components/physics/position';
+import { Appearance } from '@client/ecs/components/game/appearance';
 
 export class MovementSystem extends System {
   constructor() {
@@ -12,8 +12,8 @@ export class MovementSystem extends System {
 
   onUpdate(scene: Phaser.Scene, container: ECSContainer): void {
     container.query(['position']).forEach((entity) => {
-      const position = entity.get<PositionComponent>('position');
-      const { sprites } = entity.get<AppearanceComponent>('appearance') ?? {};
+      const position = entity.get<Position>('position');
+      const { sprites } = entity.get<Appearance>('appearance') ?? {};
 
       if (position && sprites) {
         if (sprites.x !== position.x) {

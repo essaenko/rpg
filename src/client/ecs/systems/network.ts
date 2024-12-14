@@ -4,13 +4,13 @@ import { ECSContainer } from '@client/core/ecs';
 import type { SceneState } from '@shared/schemas/scene';
 import type { Entity } from '@shared/ecs/entity';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { CameraComponent } from '@client/ecs/components/game/camera';
+import { Camera } from '@client/ecs/components/game/camera';
 import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
-import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
-import { ObjectComponent } from '@client/ecs/components/game/tag/object';
+import { Sprite } from '@client/ecs/components/game/asset/sprite';
+import { MapObject } from '@client/ecs/components/game/tag/mapObject';
 import { isMapKey, maps } from '@shared/maps/mapping';
-import { PositionComponent } from '@client/ecs/components/physics/position';
-import { AnimationComponent } from '@client/ecs/components/game/asset/animation';
+import { Position } from '@client/ecs/components/physics/position';
+import { Animation } from '@client/ecs/components/game/asset/animation';
 
 export class NetworkSystem extends System {
   constructor() {
@@ -19,7 +19,7 @@ export class NetworkSystem extends System {
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     container.query(['tag-player']).forEach((player) => {
       if (player.id === scene.room.sessionId && !player.has('camera')) {
-        const camera = new CameraComponent();
+        const camera = new Camera();
         player.addComponent(camera);
       }
     });
@@ -49,8 +49,8 @@ export class NetworkSystem extends System {
 
   initObject(entity: NetworkEntity, scene: WorldScene) {
     const location = scene.registry.get('scene');
-    const object = entity.get<ObjectComponent>('tag-object');
-    const position = entity.get<PositionComponent>('position');
+    const object = entity.get<MapObject>('tag-object');
+    const position = entity.get<Position>('position');
 
     if (isMapKey(location)) {
       const m = maps[location];
@@ -62,12 +62,12 @@ export class NetworkSystem extends System {
         const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
 
         if (scene.anims.exists(animKey)) {
-          const animComponent = new AnimationComponent();
+          const animComponent = new Animation();
           animComponent.key = animKey;
 
           entity.addComponent(animComponent);
         }
-        const sComponent = new SpriteComponent();
+        const sComponent = new Sprite();
         sComponent.sprite = sprite;
 
         entity.addComponent(sComponent);

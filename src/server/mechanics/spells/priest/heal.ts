@@ -1,6 +1,6 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { Entity } from '@shared/ecs/entity';
-import { HealComponent } from '@server/ecs/components/game/spells/heal';
+import { Heal as HealComponent } from '@server/ecs/components/game/spell/heal';
 import { WarriorSpells } from '@shared/utils/spells';
 import { Relation } from '@shared/types';
 

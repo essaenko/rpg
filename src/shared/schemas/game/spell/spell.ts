@@ -1,10 +1,10 @@
 import { ArraySchema, Schema, type } from '@colyseus/schema';
 import { Entity } from '@shared/ecs/entity';
 import { getDistance } from '@server/utils/physics';
-import { SpellBookComponent } from '@server/ecs/components/game/spells/spell-book';
-import { Fraction, Relation } from '@shared/types';
+import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
+import { Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
-import { FractionComponent } from '@server/ecs/components/game/fraction';
+import { Fraction } from '@server/ecs/components/game/fraction';
 
 export abstract class Spell extends Schema {
   constructor(name: number, cost: number, cooldown: number, range: number, relation: Relation | Relation[]) {
@@ -32,9 +32,9 @@ export abstract class Spell extends Schema {
   abstract cast(caster: Entity, target: Entity): void;
 
   canCast(caster: Entity, target: Entity): boolean {
-    const spellBook = caster.get<SpellBookComponent>('spell-book');
-    const { fraction: f1 } = caster.get<FractionComponent>('fraction') ?? { fraction: Fraction.Neutral };
-    const { fraction: f2 } = target.get<FractionComponent>('fraction') ?? { fraction: Fraction.Neutral };
+    const spellBook = caster.get<SpellBook>('spell-book');
+    const { fraction: f1 } = caster.get<Fraction>('fraction') ?? { fraction: Fractions.Neutral };
+    const { fraction: f2 } = target.get<Fraction>('fraction') ?? { fraction: Fractions.Neutral };
 
     return (
       !this.cooldownTime &&

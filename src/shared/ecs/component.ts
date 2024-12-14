@@ -7,6 +7,8 @@ export abstract class Component extends Schema {
     this.name = name;
   }
 
+  public serializable: boolean = false;
+
   @type('string') name: string;
 
   abstract init(state: Record<string, any>): void;

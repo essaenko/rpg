@@ -3,11 +3,10 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { PatrolComponent } from '@server/ecs/components/game/behaviour/patrol';
+import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
-import { PositionComponent } from '@server/ecs/components/physics/position';
+import { Position } from '@server/ecs/components/physics/position';
 import { positionToTile, tileToPosition } from '@server/utils/map/tiled';
-import { VelocityComponent } from '@server/ecs/components/physics/velocity';
 import { getVelocityByVector, isInTheSamePosition } from '@server/utils/physics';
 
 export class PatrolSystem extends System {
@@ -19,8 +18,8 @@ export class PatrolSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['patrol']).forEach(async (entity) => {
-      const patrol = entity.get<PatrolComponent>('patrol');
-      const position = entity.get<PositionComponent>('position');
+      const patrol = entity.get<Patrol>('patrol');
+      const position = entity.get<Position>('position');
 
       if (patrol.active === undefined) {
         patrol.active = false;

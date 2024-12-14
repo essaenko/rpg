@@ -1,11 +1,11 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { TargetComponent } from '@client/ecs/components/game/combat/target';
-import { TargetHighlightComponent } from '@client/ecs/components/game/target-highlight';
-import { PositionComponent } from '@client/ecs/components/physics/position';
-import { BodyComponent } from '@client/ecs/components/physics/body';
-import { HealthFrameComponent } from '@client/ecs/components/game/asset/health-frame';
+import { Target } from '@client/ecs/components/game/combat/target';
+import { TargetHighlight } from '@client/ecs/components/game/target-highlight';
+import { Position } from '@client/ecs/components/physics/position';
+import { Body } from '@client/ecs/components/physics/body';
+import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
 
 export class TargetSystem extends System {
   constructor() {
@@ -14,22 +14,22 @@ export class TargetSystem extends System {
 
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     container.query(['target']).forEach((entity) => {
-      const tComponent = entity.get<TargetComponent>('target');
+      const tComponent = entity.get<Target>('target');
       const target = container.getEntity(tComponent.target);
 
       if (target && !target.has('target-highlight')) {
-        target.addComponent(new TargetHighlightComponent());
-        target.addComponent(new HealthFrameComponent());
+        target.addComponent(new TargetHighlight());
+        target.addComponent(new HealthFrame());
       }
     });
 
     container.query(['target-highlight']).forEach((entity) => {
-      const highlight = entity.get<TargetHighlightComponent>('target-highlight');
-      const position = entity.get<PositionComponent>('position');
-      const body = entity.get<BodyComponent>('body');
+      const highlight = entity.get<TargetHighlight>('target-highlight');
+      const position = entity.get<Position>('position');
+      const body = entity.get<Body>('body');
 
       const originX = position.x;
-      const originY = position.y + body.height * 0.4;
+      const originY = position.y + body.height * 0.6;
 
       if (body && position) {
         if (!highlight.rect) {
@@ -44,7 +44,7 @@ export class TargetSystem extends System {
           });
           g.x = originX;
           g.y = originY;
-          g.strokeEllipse(0, 0, body.width * 0.6, body.height * 0.3);
+          g.strokeEllipse(0, 0, body.width * 1.1, body.height * 0.3);
           highlight.rect = g;
         }
 

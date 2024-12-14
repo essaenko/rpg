@@ -1,9 +1,9 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
-import { FractionComponent as FractionSchema } from '@server/ecs/components/game/fraction';
-import { Fraction } from '@shared/types';
+import { Fraction as FractionSchema } from '@server/ecs/components/game/fraction';
+import { Fraction as Fractions } from '@shared/types';
 
-export class FractionComponent extends NetworkComponent {
-  public fraction: Fraction;
+export class Fraction extends NetworkComponent {
+  public fraction: Fractions;
 
   constructor() {
     super('fraction');

@@ -1,13 +1,10 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
-import { Class, Relation } from '@shared/types';
+import { Relation } from '@shared/types';
 import { Entity } from '@shared/ecs/entity';
-import { EquipComponent } from '@server/ecs/components/game/item/equip';
-import { ResourceComponent } from '@server/ecs/components/game/stats/resource/resource';
-import { getDistance } from '@server/utils/physics';
-import { SpellBookComponent } from '@server/ecs/components/game/spells/spell-book';
-import { ChangeHealthComponent } from '@server/ecs/components/game/stats/health/change-health';
-import { SecondaryStatsComponent } from '@server/ecs/components/game/stats/secondary-stats';
-import { DamageComponent } from '@server/ecs/components/game/spells/damage';
+import { Equip } from '@server/ecs/components/game/item/equip';
+import { Resource } from '@server/ecs/components/game/stats/resource/resource';
+import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
+import { Damage } from '@server/ecs/components/game/spell/damage';
 import { WarriorSpells } from '@shared/utils/spells';
 
 export class Hit extends Spell {
@@ -16,14 +13,14 @@ export class Hit extends Spell {
   }
 
   cast(caster: Entity, target: Entity) {
-    const damage = new DamageComponent();
+    const damage = new Damage();
     damage.value = this.damage(caster);
     target.addComponent(damage);
   }
 
   damage(caster: Entity): number {
-    const secondaryStats = caster.get<SecondaryStatsComponent>('secondary-stats');
-    const weapon = caster.get<EquipComponent>('equip')?.mainHand;
+    const secondaryStats = caster.get<SecondaryStats>('secondary-stats');
+    const weapon = caster.get<Equip>('equip')?.mainHand;
 
     if (weapon) {
       return weapon.damage() + secondaryStats.attackPower;
@@ -33,13 +30,13 @@ export class Hit extends Spell {
   }
 
   canCast(caster: Entity, target: Entity): boolean {
-    const equip = caster.get<EquipComponent>('equip');
+    const equip = caster.get<Equip>('equip');
 
     return super.canCast(caster, target) && !!equip.mainHand;
   }
 
   proc(caster: Entity, target: Entity): void {
-    const resource = caster.get<ResourceComponent>('resource');
+    const resource = caster.get<Resource>('resource');
 
     if (resource) {
       resource.current = Math.min(resource.max, resource.current + 5);

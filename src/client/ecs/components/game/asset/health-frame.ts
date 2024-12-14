@@ -2,7 +2,7 @@ import { Component } from '@client/core/ecs/component/component';
 import HealthFrameSprite from '@client/assets/sprites/UI/health_frame.png';
 import Group = Phaser.GameObjects.Group;
 
-export class HealthFrameComponent extends Component {
+export class HealthFrame extends Component {
   public asset = {
     loading: false,
     loaded: false,
@@ -13,7 +13,6 @@ export class HealthFrameComponent extends Component {
       frameHeight: 10,
     },
   };
-  public sprite: Group;
 
   constructor() {
     super('health-frame');
@@ -21,7 +20,5 @@ export class HealthFrameComponent extends Component {
 
   destroy() {
     super.destroy();
-
-    this.sprite.destroy(true);
   }
 }

@@ -56,3 +56,9 @@ export const clientKeyToServerValue = (key: Keys): ServerKeyValues => {
 export const isKeyOf = (key: string | number | symbol, target: any): key is keyof typeof target => {
   return key in target;
 };
+
+export enum QuestGiverStates {
+  QuestAvailable = 1,
+  QuestInProgress,
+  QuestFinished,
+}

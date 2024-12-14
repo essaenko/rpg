@@ -1,6 +1,12 @@
 export enum TransportEventTypes {
   Move = 1,
   CastRequest,
+  //Quest events
+  QuestAccepted,
+  QuestRejected,
+  QuestFinished,
+  AcceptQuest,
+  RejectQuest,
 }
 
 export enum Directions {

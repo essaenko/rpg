@@ -1,10 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class HotComponent extends Component {
+export class Hot extends Component {
   constructor() {
     super('hot');
   }
+
+  serializable = true;
 
   @type('number') amount: number;
   @type('number') interval: number;

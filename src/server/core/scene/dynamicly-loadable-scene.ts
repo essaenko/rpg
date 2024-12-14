@@ -7,12 +7,12 @@ import { Entity } from '@shared/ecs/entity';
 import { Client } from '@colyseus/core';
 import { nanoid } from 'nanoid';
 import { EntitySave } from '@server/mongodb/types';
-import { BodyComponent } from '@server/ecs/components/physics/body';
-import { ColliderComponent } from '@server/ecs/components/physics/collider';
-import { PositionComponent } from '@server/ecs/components/physics/position';
-import { ObjectComponent } from '@server/ecs/components/game/tag/object';
+import { Body } from '@server/ecs/components/physics/body';
+import { Collider } from '@server/ecs/components/physics/collider';
+import { Position } from '@server/ecs/components/physics/position';
+import { MapObject } from '@server/ecs/components/game/tag/mapObject';
 import { createPathFromPolygons, isRoutePathObject } from '@server/utils/tiled-object';
-import { PatrolComponent } from '@server/ecs/components/game/behaviour/patrol';
+import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
 
 export class DynamicallyLoadableScene extends Scene {
@@ -39,7 +39,7 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onJoin(client: Client) {
-    const save = await MDBClient.instance().readPlayerSave('character');
+    const save = await MDBClient.instance().readPlayer('character');
     if (save) {
       this.initEntity(save, client.sessionId);
     } else {
@@ -52,7 +52,7 @@ export class DynamicallyLoadableScene extends Scene {
     this.ecs.removeEntity(client.sessionId);
     this.state.entities.delete(client.sessionId);
 
-    await MDBClient.instance().writePlayerSave(entity);
+    await MDBClient.instance().writePlayer(entity);
   }
 
   initEntityComponents(entity: Entity, state: EntitySave) {
@@ -69,7 +69,7 @@ export class DynamicallyLoadableScene extends Scene {
 
   initEntity(state: EntitySave, id?: string) {
     const entity = new Entity();
-    entity.id = id ?? state.id;
+    entity.id = id ?? nanoid(9);
 
     this.initEntityComponents(entity, state);
     this.addEntity(entity);
@@ -99,7 +99,7 @@ export class DynamicallyLoadableScene extends Scene {
               const route = l.objects.find((o) => o.name === 'route');
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
-                const patrol = new PatrolComponent();
+                const patrol = new Patrol();
                 // patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
@@ -120,7 +120,7 @@ export class DynamicallyLoadableScene extends Scene {
       layer.objects.forEach((object) => {
         const entity = new Entity();
         const set = this.map.tilesets.find((tileset) => tileset.name === object.type);
-        const oComp = new ObjectComponent();
+        const oComp = new MapObject();
         entity.id = nanoid(9);
         oComp.type = object.type;
         oComp.gid = object.gid;
@@ -128,7 +128,7 @@ export class DynamicallyLoadableScene extends Scene {
         entity.addComponent(oComp);
 
         if (object.width && object.height) {
-          const body = new BodyComponent();
+          const body = new Body();
           body.width = object.width;
           body.height = object.height;
 
@@ -136,7 +136,7 @@ export class DynamicallyLoadableScene extends Scene {
         }
 
         if (object.x && object.y) {
-          const position = new PositionComponent();
+          const position = new Position();
           position.x = object.x;
           position.y = object.y;
 
@@ -150,7 +150,7 @@ export class DynamicallyLoadableScene extends Scene {
             const collider = tile.objectgroup.objects?.find(({ type }) => type === 'collider');
 
             if (collider) {
-              const component = new ColliderComponent();
+              const component = new Collider();
               component.x = collider.x;
               component.y = collider.y;
               component.width = collider.width;

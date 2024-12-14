@@ -4,9 +4,8 @@ import { NetworkScene } from '@client/core/scene/network-scene';
 import { clientKeyToServerValue, Keys, ServerKeyValues } from '@client/utils/types';
 import { equal } from '@client/utils/array';
 
-import Key = Phaser.Input.Keyboard.Key;
 import { InputService } from '@client/services/input';
-import { TargetComponent } from '@client/ecs/components/game/combat/target';
+import { Target } from '@client/ecs/components/game/combat/target';
 
 export class InputSystem extends System {
   private prevMoveUpdate: ServerKeyValues[] = [];
@@ -45,7 +44,7 @@ export class InputSystem extends System {
     }
     if (castKey !== this.prevCastUpdate) {
       const spell = InputService.instance().getSpellBinding(castKey);
-      const target = this.scene.ecs.getEntity(this.scene.room.sessionId).get<TargetComponent>('target');
+      const target = this.scene.ecs.getEntity(this.scene.room.sessionId).get<Target>('target');
 
       if (spell && target) {
         this.scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-up" width="48" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="62">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-up" width="48" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="80">
  <editorsettings>
   <export target="dummy.json" format="json"/>
  </editorsettings>
@@ -15,7 +15,7 @@
   </properties>
   <image source="../../../client/assets/tilesets/dummy-tile.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="1458" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12">
+ <tileset firstgid="1458" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/ground_dec_props.png" width="384" height="960"/>
  </tileset>
  <tileset firstgid="1818" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
@@ -61,7 +61,7 @@
   <image source="../../../client/assets/tilesets/fantasy-lands/Tree_A_v1.png" width="512" height="1152"/>
   <tile id="11">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="collider" x="37.25" y="95" width="51" height="28.25"/>
+    <object id="1" type="collider" x="46.6136" y="96.2727" width="40.4545" height="24.0682"/>
    </objectgroup>
    <animation>
     <frame tileid="0" duration="100"/>
@@ -80,7 +80,7 @@
   </tile>
   <tile id="23">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="collider" x="36.5" y="95.5" width="51.75" height="27"/>
+    <object id="1" type="collider" x="48.0455" y="95.5" width="38.8409" height="26"/>
    </objectgroup>
    <animation>
     <frame tileid="12" duration="100"/>
@@ -99,7 +99,7 @@
   </tile>
   <tile id="35">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="collider" x="37.5" y="95.5" width="51" height="27.75"/>
+    <object id="1" type="collider" x="48.2273" y="95.5" width="37.9091" height="24.9318"/>
    </objectgroup>
    <animation>
     <frame tileid="24" duration="100"/>
@@ -214,6 +214,19 @@
   <object id="57" type="small-buildings" gid="1861" x="266.667" y="960.667" width="160" height="192"/>
   <object id="58" type="small-buildings" gid="1862" x="816" y="819.333" width="160" height="192"/>
   <object id="59" type="small-buildings" gid="1863" x="16" y="990" width="160" height="192"/>
+  <object id="67" type="ground_dec_props" gid="1731" x="257" y="706.333" width="32" height="32"/>
+  <object id="68" type="ground_dec_props" gid="1731" x="607.5" y="703.667" width="32" height="32"/>
+  <object id="69" type="ground_dec_props" gid="1728" x="831.667" y="706.5" width="32" height="32"/>
+  <object id="70" type="ground_dec_props" gid="1727" x="928.333" y="667" width="32" height="32"/>
+  <object id="71" type="ground_dec_props" gid="1727" x="286" y="632.5" width="32" height="32"/>
+  <object id="72" type="ground_dec_props" gid="1727" x="192.5" y="533.5" width="32" height="32"/>
+  <object id="73" type="ground_dec_props" gid="1728" x="351.5" y="451.5" width="32" height="32"/>
+  <object id="74" type="ground_dec_props" gid="1728" x="256.5" y="356" width="32" height="32"/>
+  <object id="75" type="ground_dec_props" gid="1729" x="96.5" y="190.5" width="32" height="32"/>
+  <object id="76" type="ground_dec_props" gid="1731" x="291" y="99.5" width="32" height="32"/>
+  <object id="77" type="ground_dec_props" gid="1730" x="96" y="88.5" width="32" height="32"/>
+  <object id="78" type="ground_dec_props" gid="1730" x="32.5" y="88.5" width="32" height="32"/>
+  <object id="79" gid="1730" x="0.5" y="314.5" width="32" height="32"/>
  </objectgroup>
  <group id="12" name="npc">
   <objectgroup id="11" name="QHp67chim">
@@ -222,6 +235,11 @@
    </object>
    <object id="61" name="route" x="304" y="1171">
     <polygon points="-16,13 48,13 80,77 144,109 144,237 48,269 -144,301 -240,237 -240,45 -80,45"/>
+   </object>
+  </objectgroup>
+  <objectgroup id="13" name="MtyJP39W3">
+   <object id="65" name="spawn" x="751.273" y="1008.6">
+    <point/>
    </object>
   </objectgroup>
  </group>

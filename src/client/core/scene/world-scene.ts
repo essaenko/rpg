@@ -65,11 +65,6 @@ export class WorldScene extends NetworkScene {
       if (phaserMap.tilesets.some((set) => set.tileData)) {
         this.initTilesetAnimations(phaserMap);
       }
-
-      const objects = phaserMap.objects.find((l) => l.name === 'objects');
-      if (objects) {
-        this.initTiledMapObjects(phaserMap);
-      }
     }
   }
 
@@ -97,29 +92,5 @@ export class WorldScene extends NetworkScene {
           }
         }
       });
-  }
-
-  initTiledMapObjects(m: Tilemap) {
-    // m.getObjectLayer('objects').objects.forEach((object) => {
-    //   const set = m.tilesets.find((set) => set.name === object.type);
-    //   if (object.visible && set) {
-    //     const sprite = this.physics.add.sprite(object.x, object.y, object.type, object.gid - set.firstgid);
-    //     sprite.setOrigin(0, 0);
-    //     sprite.depth = sprite.y + sprite.height;
-    //     const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
-    //
-    //     if (this.anims.exists(animKey)) {
-    //       sprite.play(animKey);
-    //     }
-    //
-    //     const entity = new LocalEntity();
-    //     const sComponent = new SpriteComponent();
-    //     sComponent.sprite = sprite;
-    //
-    //     entity.addComponent(sComponent);
-    //     entity.addComponent(new ObjectComponent());
-    //     this.ecs.addEntity(entity);
-    //   }
-    // });
   }
 }

@@ -1,10 +1,11 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class ColliderComponent extends Component {
+export class Collider extends Component {
   constructor() {
     super('collider');
   }
+  serializable = true;
 
   @type('number') x: number = 0; // 22
   @type('number') y: number = 0; // 40

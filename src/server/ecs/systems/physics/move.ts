@@ -3,11 +3,11 @@ import { Client } from '@colyseus/core';
 import { Animation, Directions, TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { MoveComponent } from '../../components/game/move';
-import { VelocityComponent } from '../../components/physics/velocity';
-import { SpeedComponent } from '../../components/physics/speed';
-import { PatrolComponent } from '@server/ecs/components/game/behaviour/patrol';
-import { AppearanceComponent } from '@server/ecs/components/game/appearance';
+import { Move } from '../../components/game/move';
+import { Velocity } from '../../components/physics/velocity';
+import { Speed } from '../../components/physics/speed';
+import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
+import { Appearance } from '@server/ecs/components/game/appearance';
 
 export class MoveSystem extends System {
   constructor() {
@@ -18,10 +18,10 @@ export class MoveSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['move', 'velocity', 'speed']).forEach((entity) => {
-      const move = entity.get<MoveComponent>('move');
-      const velocity = entity.get<VelocityComponent>('velocity');
-      const speed = entity.get<SpeedComponent>('speed');
-      const appearance = entity.get<AppearanceComponent>('appearance');
+      const move = entity.get<Move>('move');
+      const velocity = entity.get<Velocity>('velocity');
+      const speed = entity.get<Speed>('speed');
+      const appearance = entity.get<Appearance>('appearance');
 
       if (velocity && move && speed) {
         velocity.x = 0;
@@ -63,10 +63,10 @@ export class MoveSystem extends System {
     });
 
     container.query(['velocity', 'speed', 'patrol']).forEach((entity) => {
-      const patrol = entity.get<PatrolComponent>('patrol');
-      const velocity = entity.get<VelocityComponent>('velocity');
-      const speed = entity.get<SpeedComponent>('speed');
-      const appearance = entity.get<AppearanceComponent>('appearance');
+      const patrol = entity.get<Patrol>('patrol');
+      const velocity = entity.get<Velocity>('velocity');
+      const speed = entity.get<Speed>('speed');
+      const appearance = entity.get<Appearance>('appearance');
 
       velocity.x = 0;
       velocity.y = 0;

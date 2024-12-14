@@ -1,12 +1,9 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { PositionComponent } from '@client/ecs/components/physics/position';
-import { SpriteComponent } from '@client/ecs/components/game/asset/sprite';
-import { BodyComponent } from '@client/ecs/components/physics/body';
+import { Sprite } from '@client/ecs/components/game/asset/sprite';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { TargetComponent } from '@client/ecs/components/game/combat/target';
 import { collide } from '@server/core/helpers/map';
-import { AppearanceComponent } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/appearance';
 
 export class SpriteSystem extends System {
   constructor() {
@@ -15,7 +12,7 @@ export class SpriteSystem extends System {
 
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     container.query(['tag-object', 'sprite']).forEach((entity) => {
-      const sprite = entity.get<SpriteComponent>('sprite');
+      const sprite = entity.get<Sprite>('sprite');
       const players = container.query(['tag-player', 'appearance']);
 
       if (!sprite.sprite) {
@@ -26,7 +23,7 @@ export class SpriteSystem extends System {
 
       if (
         players.some((player) => {
-          const pSprite = player.get<AppearanceComponent>('appearance');
+          const pSprite = player.get<Appearance>('appearance');
 
           if (!pSprite.sprites) return false;
 

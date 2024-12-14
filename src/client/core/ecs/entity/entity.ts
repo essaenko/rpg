@@ -32,6 +32,10 @@ export abstract class Entity {
     return this.components.find((c) => c.name === name) as T | undefined;
   }
 
+  getAll<T extends Component>(name: string): T[] {
+    return this.components.filter((c) => c.name === name) as T[];
+  }
+
   has(name: string): boolean {
     return this.components.some(({ name: n }) => n === name);
   }

@@ -3,10 +3,12 @@ import { Component } from '@shared/ecs/component';
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { isSpellName, map } from '@server/mechanics/spells/map';
 
-export class SpellBookComponent extends Component {
+export class SpellBook extends Component {
   constructor() {
     super('spell-book');
   }
+
+  serializable = true;
 
   @type({ map: Spell }) spells = new MapSchema<Spell>();
 

@@ -1,8 +1,9 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { HealthFrameComponent } from '@client/ecs/components/game/asset/health-frame';
-import { AppearanceComponent } from '@client/ecs/components/game/appearance';
+import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
+import { Appearance } from '@client/ecs/components/game/appearance';
 import { isAssetKey, map } from '@client/assets/sprites/map';
+import { QuestGiverState } from '@client/ecs/components/game/quest/quest-giver-state';
 
 export class LoadSystem extends System {
   constructor() {
@@ -11,7 +12,7 @@ export class LoadSystem extends System {
 
   onUpdate(scene: Phaser.Scene, container: ECSContainer): void {
     container.query(['appearance']).forEach((entity) => {
-      const appearance = entity.get<AppearanceComponent>('appearance');
+      const appearance = entity.get<Appearance>('appearance');
 
       if (scene.textures.exists(appearance.key)) {
         appearance.loaded = true;
@@ -38,8 +39,24 @@ export class LoadSystem extends System {
       }
     });
 
+    container.query(['quest-giver-state']).forEach((entity) => {
+      const qgs = entity.get<QuestGiverState>('quest-giver-state');
+
+      if (scene.textures.exists(qgs.asset.key)) {
+        qgs.asset.loading = false;
+        qgs.asset.loaded = true;
+
+        return;
+      }
+
+      if (!qgs.asset.loaded && !qgs.asset.loading) {
+        scene.load.spritesheet(qgs.asset.key, qgs.asset.url, qgs.asset.config);
+        qgs.asset.loading = true;
+      }
+    });
+
     container.query(['health-frame']).forEach((entity) => {
-      const hfc = entity.get<HealthFrameComponent>('health-frame');
+      const hfc = entity.get<HealthFrame>('health-frame');
 
       if (scene.textures.exists(hfc.asset.key)) {
         hfc.asset.loading = false;

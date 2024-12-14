@@ -2,11 +2,11 @@ import { System } from '@shared/ecs/system';
 import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { Scene } from '@server/core/scene/scene';
-import { BodyComponent } from '../../components/physics/body';
+import { Body } from '../../components/physics/body';
 import { collide, getTileXY } from '@server/core/helpers/map';
-import { ColliderComponent } from '@server/ecs/components/physics/collider';
-import { VelocityComponent } from '@server/ecs/components/physics/velocity';
-import { PositionComponent } from '@server/ecs/components/physics/position';
+import { Collider } from '@server/ecs/components/physics/collider';
+import { Velocity } from '@server/ecs/components/physics/velocity';
+import { Position } from '@server/ecs/components/physics/position';
 import { ECSContainer } from '@shared/ecs';
 
 export class CollisionSystem extends System {
@@ -18,11 +18,11 @@ export class CollisionSystem extends System {
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     const objects = container.query(['position', 'body', 'collider', 'tag-object']).toArray();
     container.query(['body', 'collider', 'velocity', 'position']).forEach((entity) => {
-      const velocity = entity.get<VelocityComponent>('velocity');
+      const velocity = entity.get<Velocity>('velocity');
       if (velocity.x || velocity.y) {
-        const collider = entity.get<ColliderComponent>('collider');
-        const position = entity.get<PositionComponent>('position');
-        const body = entity.get<BodyComponent>('body');
+        const collider = entity.get<Collider>('collider');
+        const position = entity.get<Position>('position');
+        const body = entity.get<Body>('body');
         const collayer = scene.map.layers.find((layer) => layer.name === 'collision');
         collider.collides = false;
 
@@ -50,9 +50,9 @@ export class CollisionSystem extends System {
         });
 
         objects.forEach((object) => {
-          const objCollider = object.get<ColliderComponent>('collider');
-          const objPosition = object.get<PositionComponent>('position');
-          const objBody = object.get<BodyComponent>('body');
+          const objCollider = object.get<Collider>('collider');
+          const objPosition = object.get<Position>('position');
+          const objBody = object.get<Body>('body');
           if (
             collide(
               {

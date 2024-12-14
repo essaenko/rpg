@@ -1,8 +1,7 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { Entity } from '@shared/ecs/entity';
-import { HotComponent } from '@server/ecs/components/game/spells/hot';
 import { type } from '@colyseus/schema';
-import { DotComponent } from '@server/ecs/components/game/spells/dot';
+import { Dot as DotSpell } from '@server/ecs/components/game/spell/dot';
 import { WarriorSpells } from '@shared/utils/spells';
 import { Relation } from '@shared/types';
 
@@ -16,7 +15,7 @@ export class Dot extends Spell {
   @type('number') interval: number = 2;
 
   cast(caster: Entity, target: Entity): void {
-    const dot = new DotComponent();
+    const dot = new DotSpell();
     dot.amount = (this.amount / this.duration) * this.interval;
     dot.duration = this.duration;
     dot.interval = this.interval;

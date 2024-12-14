@@ -3,7 +3,7 @@ export type RoutePathObject = { x: number; y: number; polygon: { x: number; y: n
 export const isRoutePathObject = (object: unknown): object is RoutePathObject => {
   return (
     typeof object === 'object' &&
-    object !== null &&
+    object != null &&
     'x' in object &&
     'y' in object &&
     'polygon' in object &&

@@ -1,7 +1,7 @@
 import { Component } from '@shared/ecs/component';
 import { Position } from '@shared/types';
 
-export class PatrolComponent extends Component {
+export class Patrol extends Component {
   constructor() {
     super('patrol');
   }

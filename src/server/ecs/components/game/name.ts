@@ -1,10 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class NameComponent extends Component {
+export class Name extends Component {
   constructor() {
     super('name');
   }
+
+  serializable = true;
 
   @type('string') value: string = '';
 

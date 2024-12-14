@@ -1,7 +1,7 @@
 import { Component } from '@shared/ecs/component';
 import { Entity } from '@shared/ecs/entity';
 
-export class CastRequestComponent extends Component {
+export class CastRequest extends Component {
   public spell: string;
   public target: Entity;
   constructor() {

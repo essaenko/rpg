@@ -1,11 +1,15 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class DamageComponent extends Component {
+export class MapObject extends Component {
   constructor() {
-    super('damage');
+    super('tag-object');
   }
 
-  @type('number') value: number;
+  serializable = true;
+
+  @type('string') type: string;
+  @type('number') gid: number;
+
   init(state: Record<string, any>): void {}
 }

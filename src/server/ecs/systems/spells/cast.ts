@@ -3,7 +3,7 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { CastComponent } from '@server/ecs/components/game/spells/cast';
+import { Cast } from '@server/ecs/components/game/spell/cast';
 
 export class CastSystem extends System {
   constructor() {
@@ -14,7 +14,7 @@ export class CastSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['cast']).forEach((entity) => {
-      const cast = entity.get<CastComponent>('cast');
+      const cast = entity.get<Cast>('cast');
 
       cast.spell.cast(entity, cast.target);
       cast.spell.proc(entity, cast.target);

@@ -1,7 +1,6 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-import { isRoomSavedConfig, SavedRoomConfig, EntitySave, isEntitySave } from '@server/mongodb/types';
+import { EntitySave, isEntitySave, isQuest, QuestSave } from '@server/mongodb/types';
 import { Entity } from '@shared/ecs/entity';
-import { ColliderComponent } from '@server/ecs/components/physics/collider';
 
 let instance: MDBClient;
 
@@ -24,6 +23,19 @@ export class MDBClient {
     return instance;
   }
 
+  public async readQuest(id: string): Promise<QuestSave | undefined> {
+    const col = this.db.collection('quests');
+    const config = await col.findOne({
+      id,
+    });
+
+    if (isQuest(config)) {
+      return config;
+    }
+
+    return undefined;
+  }
+
   public async readNPC(id: string): Promise<EntitySave | undefined> {
     const col = this.db.collection('npc');
     const config = await col.findOne({
@@ -40,7 +52,7 @@ export class MDBClient {
     return undefined;
   }
 
-  public async readPlayerSave(id: string): Promise<EntitySave | undefined> {
+  public async readPlayer(id: string): Promise<EntitySave | undefined> {
     const col = this.db.collection('characters');
     const save = await col.findOne({
       id: id,
@@ -56,7 +68,7 @@ export class MDBClient {
     return undefined;
   }
 
-  public async writePlayerSave(entity: Entity): Promise<void> {
+  public async writePlayer(entity: Entity): Promise<void> {
     const col = this.db.collection('characters');
     await col.updateOne(
       {
@@ -65,7 +77,9 @@ export class MDBClient {
       {
         $set: {
           id: 'character',
-          components: Array.from(entity.components.entries()).map(([_, instance]) => instance.serialize()),
+          components: Array.from(entity.components.values())
+            .filter((component) => component.serializable)
+            .map((component) => component.serialize()),
         },
       },
       {

@@ -3,8 +3,8 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { ChangeHealthComponent } from '@server/ecs/components/game/stats/health/change-health';
-import { DamageComponent } from '@server/ecs/components/game/spells/damage';
+import { ChangeHealth } from '@server/ecs/components/game/stats/health/change-health';
+import { Damage } from '@server/ecs/components/game/spell/damage';
 
 export class DamageSystem extends System {
   constructor() {
@@ -14,14 +14,14 @@ export class DamageSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['damage']).forEach((entity) => {
-      let health = entity.get<ChangeHealthComponent>('change-health');
+      let health = entity.get<ChangeHealth>('change-health');
 
       if (!health) {
-        health = new ChangeHealthComponent();
+        health = new ChangeHealth();
         entity.addComponent(health);
       }
 
-      health.value -= entity.get<DamageComponent>('damage').value ?? 0;
+      health.value -= entity.get<Damage>('damage').value ?? 0;
       entity.removeComponent('damage');
     });
   }

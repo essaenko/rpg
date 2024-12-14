@@ -14,6 +14,8 @@ import { CameraSystem } from '@client/ecs/systems/camera';
 import { TargetSystem } from '@client/ecs/systems/combat/target';
 import { HealthSystem } from '@client/ecs/systems/assets/health';
 import { AppearanceSystem } from '@client/ecs/systems/assets/appearance';
+import { QuestGiverSystem } from '@client/ecs/systems/quest/quest-giver';
+import { TransportEventTypes } from '@shared/types';
 
 export class NetworkScene extends Scene {
   public room: Room<SceneState>;
@@ -33,6 +35,7 @@ export class NetworkScene extends Scene {
     this.ecs.addSystem(new TargetSystem());
     this.ecs.addSystem(new HealthSystem());
     this.ecs.addSystem(new AppearanceSystem());
+    this.ecs.addSystem(new QuestGiverSystem());
     (window as any).ecs = this.ecs;
 
     this.joinServerRoom();
@@ -53,6 +56,12 @@ export class NetworkScene extends Scene {
 
         (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
         this.ecs.addSystem(new CameraSystem(this.room));
+
+        this.room.onMessage('*', (type, message) => {
+          if (typeof type === 'number') {
+            this.ecs.handleMessage(type, message, this);
+          }
+        });
 
         return true;
       } catch (err) {

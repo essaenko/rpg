@@ -1,6 +1,6 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { Entity } from '@shared/ecs/entity';
-import { HotComponent } from '@server/ecs/components/game/spells/hot';
+import { Hot as HotComponent } from '@server/ecs/components/game/spell/hot';
 import { type } from '@colyseus/schema';
 import { WarriorSpells } from '@shared/utils/spells';
 import { Relation } from '@shared/types';

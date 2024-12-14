@@ -1,6 +1,6 @@
 import { Component } from '@shared/ecs/component';
 
-export class ChangeHealthComponent extends Component {
+export class ChangeHealth extends Component {
   public value: number = 0;
   constructor() {
     super('change-health');

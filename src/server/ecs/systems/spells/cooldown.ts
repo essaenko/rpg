@@ -3,7 +3,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
-import { SpellBookComponent } from '@server/ecs/components/game/spells/spell-book';
+import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 
 export class CooldownSystem extends System {
   constructor() {
@@ -12,7 +12,7 @@ export class CooldownSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene) {
     container.query(['spell-book']).forEach((entity) => {
-      const spells = entity.get<SpellBookComponent>('spell-book');
+      const spells = entity.get<SpellBook>('spell-book');
 
       spells?.spells.forEach((spell) => {
         if (spell.cooldownTime) {

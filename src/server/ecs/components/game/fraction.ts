@@ -1,13 +1,15 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
-import { Fraction } from '@shared/types';
+import { Fraction as Fractions } from '@shared/types';
 
-export class FractionComponent extends Component {
+export class Fraction extends Component {
   constructor() {
     super('fraction');
   }
 
-  @type('number') fraction: Fraction;
+  serializable = true;
+
+  @type('number') fraction: Fractions;
 
   init(state: Record<string, any>): void {
     if (state.fraction) {

@@ -1,13 +1,15 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
-import { Class } from '@shared/types';
+import { Class as Classes } from '@shared/types';
 
-export class ClassComponent extends Component {
+export class Class extends Component {
   constructor() {
     super('class');
   }
 
-  @type('number') class: Class;
+  serializable = true;
+
+  @type('number') class: Classes;
 
   init(state: Record<string, any>): void {
     if ('class' in state) {

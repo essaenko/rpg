@@ -7,6 +7,10 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "dummy/dummy-house.json": {
             "scale": 0.9936035156249999,
             "selectedLayer": 0,
@@ -95,11 +99,17 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx": {
-            "scale": 0.66240234375,
-            "selectedLayer": 0,
+            "expandedGroupLayers": [
+                12
+            ],
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 766.9054990417221,
-                "y": 768.4151555358986
+                "x": 272.75,
+                "y": 722.5
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -112,7 +122,8 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx#ground_dec_props": {
-            "scaleInDock": 1
+            "scaleInDock": 2,
+            "scaleInEditor": 1
         },
         "dummy/dummy.tmx#hills": {
             "scaleInDock": 1
@@ -127,28 +138,38 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 163.33333333333331,
-                "y": 16
+                "x": 34.333333333333314,
+                "y": -132.66666666666663
             }
         },
         "interborder/interborder.tmx#decorations_medium": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "interborder/interborder.tmx#ground": {
             "scaleInDock": 1,
             "scaleInEditor": 3
         },
+        "interborder/interborder.tmx#ground_dec_props": {
+            "scaleInDock": 1
+        },
+        "interborder/interborder.tmx#hills": {
+            "scaleInDock": 1
+        },
         "interborder/interborder.tmx#tree_a": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "interborder/interborder.tmx#tree_b": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "interborder/interborder.tmx#water_env": {
+            "scaleInDock": 1,
             "scaleInEditor": 3
         }
     },
-    "last.exportedFilePath": "/home/essaenko/Projects/rpg/rpg-server/src/shared/maps/interborder",
+    "last.exportedFilePath": "/home/essaenko/Projects/rpg/rpg-server/src/shared/maps/dummy",
     "last.imagePath": "/home/essaenko/Projects/rpg/rpg-server/src/client/assets/tilesets/fantasy-lands",
     "map.fixedSize": false,
     "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
@@ -157,10 +178,11 @@
     ],
     "project": "rpg.tiled-project",
     "recentFiles": [
+        "dummy/dummy-house.tmx",
         "dummy/dummy.tmx",
+        "interborder/interborder.tmx",
         "dummy/dummy-house.json",
-        "dummy/dummy.json",
-        "dummy/dummy-house.tmx"
+        "dummy/dummy.json"
     ],
     "tileset.embedInMap": true
 }

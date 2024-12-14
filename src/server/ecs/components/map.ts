@@ -1,71 +1,76 @@
-import { EquipComponent } from '@server/ecs/components/game/item/equip';
-import { CastComponent } from '@server/ecs/components/game/spells/cast';
-import { CastRequestComponent } from '@server/ecs/components/game/spells/cast-request';
-import { DamageComponent } from '@server/ecs/components/game/spells/damage';
-import { DotComponent } from '@server/ecs/components/game/spells/dot';
-import { HealComponent } from '@server/ecs/components/game/spells/heal';
-import { HotComponent } from '@server/ecs/components/game/spells/hot';
-import { NegativeEffectComponent } from '@server/ecs/components/game/spells/negative-effect';
-import { PositiveEffectComponent } from '@server/ecs/components/game/spells/positive-effect';
-import { SpellBookComponent } from '@server/ecs/components/game/spells/spell-book';
-import { ChangeHealthComponent } from '@server/ecs/components/game/stats/health/change-health';
-import { HealthComponent } from '@server/ecs/components/game/stats/health/health';
-import { ChangeResourceComponent } from '@server/ecs/components/game/stats/resource/change-resource';
-import { ResourceComponent } from '@server/ecs/components/game/stats/resource/resource';
-import { MainStatsComponent } from '@server/ecs/components/game/stats/main-stats';
-import { SecondaryStatsComponent } from '@server/ecs/components/game/stats/secondary-stats';
-import { NPCComponent } from '@server/ecs/components/game/tag/npc';
-import { PlayerComponent } from '@server/ecs/components/game/tag/player';
-import { ClassComponent } from '@server/ecs/components/game/class';
-import { LevelComponent } from '@server/ecs/components/game/level';
-import { MoveComponent } from '@server/ecs/components/game/move';
-import { NameComponent } from '@server/ecs/components/game/name';
-import { BodyComponent } from '@server/ecs/components/physics/body';
-import { ColliderComponent } from '@server/ecs/components/physics/collider';
-import { PositionComponent } from '@server/ecs/components/physics/position';
-import { SpeedComponent } from '@server/ecs/components/physics/speed';
-import { VelocityComponent } from '@server/ecs/components/physics/velocity';
-import { AppearanceComponent } from '@server/ecs/components/game/appearance';
-import { FractionComponent } from '@server/ecs/components/game/fraction';
+import { Equip } from '@server/ecs/components/game/item/equip';
+import { Cast } from '@server/ecs/components/game/spell/cast';
+import { CastRequest } from '@server/ecs/components/game/spell/cast-request';
+import { Damage } from '@server/ecs/components/game/spell/damage';
+import { Dot } from '@server/ecs/components/game/spell/dot';
+import { Heal } from '@server/ecs/components/game/spell/heal';
+import { Hot } from '@server/ecs/components/game/spell/hot';
+import { NegativeEffect } from '@server/ecs/components/game/spell/negative-effect';
+import { PositiveEffect } from '@server/ecs/components/game/spell/positive-effect';
+import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
+import { ChangeHealth } from '@server/ecs/components/game/stats/health/change-health';
+import { Health } from '@server/ecs/components/game/stats/health/health';
+import { ChangeResource } from '@server/ecs/components/game/stats/resource/change-resource';
+import { Resource } from '@server/ecs/components/game/stats/resource/resource';
+import { MainStats } from '@server/ecs/components/game/stats/main-stats';
+import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
+import { NPC } from '@server/ecs/components/game/tag/npc';
+import { Player } from '@server/ecs/components/game/tag/player';
+import { Class } from '@server/ecs/components/game/class';
+import { Level } from '@server/ecs/components/game/level';
+import { Move } from '@server/ecs/components/game/move';
+import { Name } from '@server/ecs/components/game/name';
+import { Body } from '@server/ecs/components/physics/body';
+import { Collider } from '@server/ecs/components/physics/collider';
+import { Position } from '@server/ecs/components/physics/position';
+import { Speed } from '@server/ecs/components/physics/speed';
+import { Velocity } from '@server/ecs/components/physics/velocity';
+import { Appearance } from '@server/ecs/components/game/appearance';
+import { Fraction } from '@server/ecs/components/game/fraction';
+import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
+import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 
 export const map = {
   // Game components
-  appearance: AppearanceComponent,
-  equip: EquipComponent,
+  appearance: Appearance,
+  equip: Equip,
 
   // Should not persist on save/load character
   // damage: DamageComponent,
-  // dot: DotComponent,
   // heal: HealComponent,
-  // hot: HotComponent,
-  'negative-effect': NegativeEffectComponent,
-  'positive-effect': PositiveEffectComponent,
-  'spell-book': SpellBookComponent,
+  dot: Dot,
+  hot: Hot,
+  'negative-effect': NegativeEffect,
+  'positive-effect': PositiveEffect,
+  'spell-book': SpellBook,
 
-  'change-health': ChangeHealthComponent,
-  health: HealthComponent,
+  'change-health': ChangeHealth,
+  health: Health,
 
-  'change-resource': ChangeResourceComponent,
-  resource: ResourceComponent,
+  'change-resource': ChangeResource,
+  resource: Resource,
 
-  'main-stats': MainStatsComponent,
-  'secondary-stats': SecondaryStatsComponent,
+  'main-stats': MainStats,
+  'secondary-stats': SecondaryStats,
 
-  'tag-npc': NPCComponent,
-  'tag-player': PlayerComponent,
+  'tag-npc': NPC,
+  'tag-player': Player,
 
-  class: ClassComponent,
-  fraction: FractionComponent,
-  level: LevelComponent,
-  move: MoveComponent,
-  name: NameComponent,
+  'quest-giver': QuestGiver,
+  'quest-log': QuestLog,
+
+  class: Class,
+  fraction: Fraction,
+  level: Level,
+  move: Move,
+  name: Name,
 
   // Physics components
-  body: BodyComponent,
-  collider: ColliderComponent,
-  position: PositionComponent,
-  speed: SpeedComponent,
-  velocity: VelocityComponent,
+  body: Body,
+  collider: Collider,
+  position: Position,
+  speed: Speed,
+  velocity: Velocity,
 } as const;
 
 export const isComponentName = (name: unknown): name is keyof typeof map => {

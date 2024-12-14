@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'path';
-import { assets as assetsURIs, maps } from '../src/shared/maps/mapping';
+import { assets as assetsURIs, maps } from '@shared/maps/mapping';
 
 type MapPackage = {
   map: {
@@ -18,7 +18,7 @@ type MapPackage = {
   }[];
 };
 
-const clientPath = path.resolve(__dirname, '../src/client');
+const clientPath = path.resolve(__dirname, '../client');
 const imports: Map<string, string> = new Map();
 const packages: Map<string, MapPackage> = new Map();
 
@@ -28,7 +28,7 @@ for (let key in maps) {
   const assets: MapPackage['assets'] = [];
 
   for (let set of tilesets) {
-    const asset = `@client/${path.relative(clientPath, path.resolve(__dirname, '../src/client', `./${set.image.split('client')[1]}`))}`;
+    const asset = `@client/${path.relative(clientPath, path.resolve(__dirname, '../client', `./${set.image.split('client')[1]}`))}`;
     const assetImport = `import ${set.name.replaceAll('-', '_')}Asset from '${asset}';`;
     imports.set(set.name, assetImport);
 

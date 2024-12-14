@@ -1,9 +1,9 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
-import { AppearanceComponent as AppearanceSchema } from '@server/ecs/components/game/appearance';
+import { Appearance as AppearanceSchema } from '@server/ecs/components/game/appearance';
 import Container = Phaser.GameObjects.Container;
 import { Animation } from '@shared/types';
 
-export class AppearanceComponent extends NetworkComponent {
+export class Appearance extends NetworkComponent {
   public key: string;
   public sprites: Container;
   public animation: Animation;

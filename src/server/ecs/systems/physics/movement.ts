@@ -1,11 +1,11 @@
 import { System } from '@shared/ecs/system';
 import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
-import { VelocityComponent } from '../../components/physics/velocity';
-import { PositionComponent } from '../../components/physics/position';
+import { Velocity } from '../../components/physics/velocity';
+import { Position } from '../../components/physics/position';
 import { ECSContainer } from '@shared/ecs';
-import { MoveComponent } from '../../components/game/move';
-import { ColliderComponent } from '../../components/physics/collider';
+import { Move } from '../../components/game/move';
+import { Collider } from '../../components/physics/collider';
 
 export class MovementSystem extends System {
   constructor() {
@@ -15,7 +15,7 @@ export class MovementSystem extends System {
     if (type === TransportEventTypes.Move) {
       container.query(['move']).forEach((entity) => {
         if (entity.id === client.sessionId) {
-          const move = entity.get<MoveComponent>('move');
+          const move = entity.get<Move>('move');
           move.direction = message;
         }
       });
@@ -24,11 +24,11 @@ export class MovementSystem extends System {
 
   onUpdate(delta: number, container: ECSContainer): void {
     container.query(['position', 'velocity']).forEach((entity) => {
-      const velocity = entity.get<VelocityComponent>('velocity');
+      const velocity = entity.get<Velocity>('velocity');
 
       if (velocity.x || velocity.y) {
-        const position = entity.get<PositionComponent>('position');
-        const collider = entity.get<ColliderComponent>('collider');
+        const position = entity.get<Position>('position');
+        const collider = entity.get<Collider>('collider');
 
         if (!collider?.collides) {
           position.x += velocity.x;

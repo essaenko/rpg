@@ -1,7 +1,7 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
-import type { ObjectComponent as ObjectComponentSchema } from '@server/ecs/components/game/tag/object';
+import type { MapObject as ObjectComponentSchema } from '@server/ecs/components/game/tag/mapObject';
 
-export class ObjectComponent extends NetworkComponent {
+export class MapObject extends NetworkComponent {
   public type: string;
   public gid: number;
   constructor() {

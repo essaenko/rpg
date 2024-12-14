@@ -4,10 +4,12 @@ import { Component } from '@shared/ecs/component';
 import { Weapon } from '@shared/schemas/game/item/weapon';
 import { isItemType, map } from '@shared/schemas/game/item/map';
 
-export class EquipComponent extends Component {
+export class Equip extends Component {
   constructor() {
     super('equip');
   }
+
+  serializable = true;
 
   @type(EquipItem) head: EquipItem;
   @type(EquipItem) chest: EquipItem;
@@ -37,5 +39,21 @@ export class EquipComponent extends Component {
         }
       }
     });
+  }
+
+  serialize(): Record<string, any> {
+    return {
+      name: this.name,
+      head: { ...this.head },
+      chest: { ...this.chest },
+      shoulder: { ...this.shoulder },
+      hand: { ...this.hand },
+      pants: { ...this.pants },
+      boots: { ...this.boots },
+      mainHand: { ...this.mainHand },
+      offHand: { ...this.offHand },
+      ring: { ...this.ring },
+      trinket: { ...this.trinket },
+    };
   }
 }

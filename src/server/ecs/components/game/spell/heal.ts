@@ -1,13 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class ObjectComponent extends Component {
+export class Heal extends Component {
   constructor() {
-    super('tag-object');
+    super('heal');
   }
 
-  @type('string') type: string;
-  @type('number') gid: number;
+  @type('number') value: number;
 
   init(state: Record<string, any>): void {}
 }
