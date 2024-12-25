@@ -53,7 +53,7 @@ export class InputSystem extends System {
         player.addComponent(pointer);
       }
       pointer.x = cursor.worldX;
-      pointer.y = cursor.worldY;
+      pointer.y = cursor.worldY - 24;
       pointer.lastX = null;
       pointer.lastY = null;
     }

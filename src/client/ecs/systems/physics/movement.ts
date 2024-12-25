@@ -34,7 +34,7 @@ export class MovementSystem extends System {
       const pointer = entity.get<Pointer>('pointer');
       const vector = getVelocityByVector(position, pointer);
 
-      if (isInTheSamePosition(position, pointer, 20)) {
+      if (isInTheSamePosition(position, pointer, 3)) {
         scene.room.send(TransportEventTypes.Move, [0, 0]);
         entity.removeComponent(pointer);
 
