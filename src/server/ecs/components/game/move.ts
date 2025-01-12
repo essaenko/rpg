@@ -1,5 +1,4 @@
 import { Component } from '@shared/ecs/component';
-import { Directions } from '@shared/types';
 
 export class Move extends Component {
   constructor() {

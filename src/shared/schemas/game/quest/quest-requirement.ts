@@ -21,7 +21,7 @@ export class QuestRequirement extends Schema {
     if (state.progress != null) {
       this.progress = state.progress;
     }
-    if (state.id) {
+    if (state.req_id) {
       this.req_id = state.req_id;
     }
   }

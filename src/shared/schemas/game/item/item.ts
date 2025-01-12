@@ -4,7 +4,8 @@ export abstract class Item extends Schema {
   @type('string') name: string;
   @type('string') description: string;
   @type('number') cost: number;
+  public id: string = '';
+  public factory: string;
 
-  factory: string;
   abstract init(state: Record<string, any>): void;
 }

@@ -39,7 +39,7 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onJoin(client: Client) {
-    const save = await MDBClient.instance().readPlayer('character');
+    const save = await MDBClient.instance().readPlayer('usqPuANKq');
     if (save) {
       this.initEntity(save, client.sessionId);
     } else {

@@ -28,7 +28,8 @@ import { WarriorSpells } from '@shared/utils/spells';
 import { Fraction } from '@server/ecs/components/game/fraction';
 import { Appearance } from '@server/ecs/components/game/appearance';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
-import { H } from 'vite/dist/node/types.d-aGj9QkWt';
+import { Player } from '@server/ecs/components/game/tag/player';
+import { Move } from '@server/ecs/components/game/move';
 
 const character = new Entity();
 character.id = nanoid(9);
@@ -36,10 +37,12 @@ character.id = nanoid(9);
 character.addComponent(new Class());
 character.get<Class>('class').class = Classes.Warrior;
 
-character.addComponent(new NPC());
-character.addComponent(new Name());
+character.addComponent(new Player());
+character.addComponent(new Move());
 
-character.get<Name>('name').value = 'Манекен';
+character.addComponent(new Name());
+character.get<Name>('name').value = 'Игрок';
+
 character.addComponent(new Body());
 const body = character.get<Body>('body');
 body.width = 64;
@@ -97,25 +100,13 @@ character.get<Appearance>('appearance').key = 'dummy';
 character.get<Appearance>('appearance').animation = Animation.Idle;
 
 character.addComponent(new Equip());
-const equip = character.get<Equip>('equip');
-const weapon = new Weapon();
-weapon.slot = EquipSlot.MainHand;
-weapon.hand = WeaponHand.DualHand;
-weapon.name = 'Тренировочный меч';
-weapon.attackMax = 10;
-weapon.attackMin = 6;
-weapon.type = WeaponType.Sword;
-weapon.speed = 2;
-
-equip.mainHand = weapon;
-
 character.addComponent(new SpellBook());
-const spellBook = character.get<SpellBook>('spell-book');
-const warriorHit = new Hit();
-warriorHit.cooldown = weapon.speed;
-spellBook.spells.set(WarriorSpells.Hit.toString(), warriorHit);
 
-character.addComponent(new QuestGiver());
-// character.get<QuestGiver>('quest-giver').quests.push('y3FmVAjXY');
+const classc = new Class();
+classc.class = Classes.Warrior;
+character.addComponent(classc);
+
+// character.addComponent(new QuestGiver());
+// character.get<QuestGiver>('quest-giver').quests.push('teLNDHzMg');
 
 console.log(JSON.stringify(character));

@@ -16,7 +16,5 @@ export class EquipItem extends Item {
     if (isEquipItemSlot(slot)) {
       this.slot = slot;
     }
-
-    //TODO Add effect init handle
   }
 }

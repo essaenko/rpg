@@ -13,6 +13,18 @@ export type QuestSave = {
   conditions?: [];
 };
 
+export type ItemSave = {
+  name: string;
+  description: string;
+  cost: number;
+  factory: string;
+}
+
+export const isItemSave = (config: unknown): config is ItemSave => {
+  return config && typeof config === 'object' && 'name' in config && 'description' in config;
+}
+
 export const isQuest = (config: unknown): config is QuestSave => {
   return config && typeof config === 'object' && 'rewards' in config && 'description' in config;
 };
+

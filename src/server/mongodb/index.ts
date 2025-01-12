@@ -1,5 +1,5 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-import { EntitySave, isEntitySave, isQuest, QuestSave } from '@server/mongodb/types';
+import { EntitySave, isEntitySave, isItemSave, isQuest, ItemSave, QuestSave } from '@server/mongodb/types';
 import { Entity } from '@shared/ecs/entity';
 
 let instance: MDBClient;
@@ -9,10 +9,12 @@ export class MDBClient {
   private db: Db;
 
   private constructor() {
-    this.client = new MongoClient('mongodb://localhost:27017', {
+    this.client = new MongoClient(process.env['MONGO_DB_LOCATION_URI'], {
       serverApi: ServerApiVersion.v1,
     });
     this.db = this.client.db('rpg');
+
+    this.initializeDB();
   }
 
   public static instance(): MDBClient {
@@ -68,6 +70,19 @@ export class MDBClient {
     return undefined;
   }
 
+  public async readItem(id: string): Promise<ItemSave | undefined> {
+    const col = this.db.collection('items');
+    const item = await col.findOne({
+      id,
+    });
+
+    if (isItemSave(item)) {
+      return item;
+    }
+
+    return undefined;
+  }
+
   public async writePlayer(entity: Entity): Promise<void> {
     const col = this.db.collection('characters');
     await col.updateOne(
@@ -86,5 +101,15 @@ export class MDBClient {
         upsert: true,
       },
     );
+  }
+
+  private async initializeDB() {
+    (await this.db.collections()).forEach(async (col) => {
+      if (!col.indexExists('id')) {
+        await col.createIndex('id', {
+          unique: true,
+        });
+      }
+    });
   }
 }
