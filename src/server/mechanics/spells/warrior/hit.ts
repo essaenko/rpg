@@ -1,49 +1,45 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
-import { Class } from '@shared/types';
+import { Relation } from '@shared/types';
 import { Entity } from '@shared/ecs/entity';
-import { EquipComponent } from '@server/ecs/components/game/item/equip';
-import { ResourceComponent } from '@server/ecs/components/game/stats/resource/resource';
-import { getDistance } from '@server/utils/physics';
-import { SpellBookComponent } from '@server/ecs/components/game/spells/spell-book';
-import { ChangeHealthComponent } from '@server/ecs/components/game/stats/health/change-health';
-import { SecondaryStatsComponent } from '@server/ecs/components/game/stats/secondary-stats';
+import { Equip } from '@server/ecs/components/game/item/equip';
+import { Resource } from '@server/ecs/components/game/stats/resource/resource';
+import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
+import { Damage } from '@server/ecs/components/game/spell/damage';
+import { WarriorSpells } from '@shared/utils/spells';
 
 export class Hit extends Spell {
   constructor() {
-    super('warrior-hit', 0, 1, 2, Class.Warrior);
+    super(WarriorSpells.Hit, 0, 1, 2, [Relation.Hostile, Relation.Neutral]);
   }
 
   cast(caster: Entity, target: Entity) {
-    super.cast(caster, target);
-
-    let health = target.get<ChangeHealthComponent>('change-health');
-
-    if (!health) {
-      health = new ChangeHealthComponent();
-      health.value = 0;
-      target.addComponent(health);
-    }
-
-    health.value -= this.damage(caster);
+    const damage = new Damage();
+    damage.value = this.damage(caster);
+    target.addComponent(damage);
   }
 
   damage(caster: Entity): number {
-    const secondaryStats = caster.get<SecondaryStatsComponent>('secondary-stats');
-    const weapon = caster.get<EquipComponent>('equip')?.mainHand;
+    const secondaryStats = caster.get<SecondaryStats>('secondary-stats');
+    const weapon = caster.get<Equip>('equip')?.mainHand;
 
-    return Math.random() * (weapon.attackMax - weapon.attackMin) + weapon.attackMin + secondaryStats.attackPower;
+    if (weapon) {
+      return weapon.damage() + secondaryStats.attackPower;
+    }
+
+    return 0;
   }
 
   canCast(caster: Entity, target: Entity): boolean {
-    const equip = caster.get<EquipComponent>('equip');
-    const resource = caster.get<ResourceComponent>('resource');
-    const spellBook = caster.get<SpellBookComponent>('spell-book');
+    const equip = caster.get<Equip>('equip');
 
-    return (
-      equip.mainHand &&
-      resource.current >= this.cost &&
-      getDistance(caster, target) <= this.range &&
-      spellBook.spells.has('warrior-hit')
-    );
+    return super.canCast(caster, target) && !!equip.mainHand;
+  }
+
+  proc(caster: Entity, target: Entity): void {
+    const resource = caster.get<Resource>('resource');
+
+    if (resource) {
+      resource.current = Math.min(resource.max, resource.current + 5);
+    }
   }
 }

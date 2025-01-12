@@ -1,6 +1,9 @@
 import { System } from './system';
 import { Entity } from './entity/entity';
 import { Scene } from 'phaser';
+import { TransportEventTypes } from '@shared/types';
+import { NetworkScene } from '@client/core/scene/network-scene';
+import { WorldScene } from '@client/core/scene/world-scene';
 
 export class ECSContainer {
   public systems: Map<string, System> = new Map();
@@ -36,6 +39,12 @@ export class ECSContainer {
   query(components: string[]) {
     return this.entities.values().filter((entity: Entity) => {
       return components.every((component) => entity.has(component));
+    });
+  }
+
+  handleMessage(type: TransportEventTypes, message: any, scene: NetworkScene) {
+    this.systems.forEach((system) => {
+      system.handleMessage(type, message, this, scene);
     });
   }
 }

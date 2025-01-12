@@ -1,6 +1,6 @@
 import { Component } from '@shared/ecs/component';
 
-export class ChangeResourceComponent extends Component {
+export class ChangeResource extends Component {
   constructor() {
     super('change-resource');
   }

@@ -3,6 +3,7 @@ export type TiledMapObject = {
   height?: number;
   id: number;
   name: string;
+  point?: boolean;
   rotation: number;
   type: string;
   visible: boolean;
@@ -13,6 +14,11 @@ export type TiledMapObject = {
 
 export type TiledMapTilesetTile = {
   id: number;
+  properties?: {
+    name: string;
+    type: string;
+    value: string | number | boolean;
+  }[];
   objectgroup?: {
     id: number;
     name: string;
@@ -33,6 +39,7 @@ export type TiledMapLayer = {
   x: number;
   y: number;
   objects?: TiledMapObject[];
+  layers?: TiledMapLayer[];
 };
 
 export type TiledMapTileset = {

@@ -1,10 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class MainStatsComponent extends Component {
+export class MainStats extends Component {
   constructor() {
     super('main-stats');
   }
+
+  serializable = true;
 
   @type('number') intellect: number = 0;
   @type('number') strength: number = 0;

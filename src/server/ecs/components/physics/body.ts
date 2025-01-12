@@ -1,10 +1,13 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class BodyComponent extends Component {
+export class Body extends Component {
   constructor() {
     super('body');
   }
+
+  serializable = true;
+
   @type('number') width: number = 0;
   @type('number') height: number = 0;
   @type('number') pivotX: number = 0;

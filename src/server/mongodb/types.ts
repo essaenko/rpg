@@ -1,12 +1,30 @@
-export type DBSavedRoomConfig = { key: string; characters: DBCharacterSave[] };
-export type SavedRoomConfig = { key: string; characters: CharacterSave[] };
-export type DBCharacterSave = { id: string; components: Record<string, any>[] };
-export type CharacterSave = { id: string; components: Map<string, any> };
+export type EntitySave = { id: string; components: Record<string, any>[] };
 
-export const isRoomSavedConfig = (data: unknown): data is DBSavedRoomConfig => {
-  return typeof data === 'object' && 'key' in data && 'characters' in data;
-};
-
-export const isCharacterSave = (save: unknown): save is DBCharacterSave => {
+export const isEntitySave = (save: unknown): save is EntitySave => {
   return typeof save === 'object' && save != null && 'components' in save;
 };
+
+export type QuestSave = {
+  name: string;
+  short_description: string;
+  description: string;
+  rewards: [];
+  requirements?: [];
+  conditions?: [];
+};
+
+export type ItemSave = {
+  name: string;
+  description: string;
+  cost: number;
+  factory: string;
+}
+
+export const isItemSave = (config: unknown): config is ItemSave => {
+  return config && typeof config === 'object' && 'name' in config && 'description' in config;
+}
+
+export const isQuest = (config: unknown): config is QuestSave => {
+  return config && typeof config === 'object' && 'rewards' in config && 'description' in config;
+};
+

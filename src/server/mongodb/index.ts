@@ -1,13 +1,6 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-import {
-  isRoomSavedConfig,
-  DBSavedRoomConfig,
-  SavedRoomConfig,
-  CharacterSave,
-  isCharacterSave,
-} from '@server/mongodb/types';
+import { EntitySave, isEntitySave, isItemSave, isQuest, ItemSave, QuestSave } from '@server/mongodb/types';
 import { Entity } from '@shared/ecs/entity';
-import { ColliderComponent } from '@server/ecs/components/physics/collider';
 
 let instance: MDBClient;
 
@@ -16,10 +9,12 @@ export class MDBClient {
   private db: Db;
 
   private constructor() {
-    this.client = new MongoClient('mongodb://localhost:27017', {
+    this.client = new MongoClient(process.env['MONGO_DB_LOCATION_URI'], {
       serverApi: ServerApiVersion.v1,
     });
     this.db = this.client.db('rpg');
+
+    this.initializeDB();
   }
 
   public static instance(): MDBClient {
@@ -30,42 +25,65 @@ export class MDBClient {
     return instance;
   }
 
-  public async readMapConfig(key: string): Promise<SavedRoomConfig | undefined> {
-    const col = this.db.collection('scenes');
-    const mapConfig = await col.findOne({
-      key,
+  public async readQuest(id: string): Promise<QuestSave | undefined> {
+    const col = this.db.collection('quests');
+    const config = await col.findOne({
+      id,
     });
 
-    if (isRoomSavedConfig(mapConfig)) {
+    if (isQuest(config)) {
+      return config;
+    }
+
+    return undefined;
+  }
+
+  public async readNPC(id: string): Promise<EntitySave | undefined> {
+    const col = this.db.collection('npc');
+    const config = await col.findOne({
+      id,
+    });
+
+    if (isEntitySave(config)) {
       return {
-        ...mapConfig,
-        characters: mapConfig.characters.map((character) => ({
-          id: character.id,
-          components: new Map(character.components.map((c) => [c.name, c])),
-        })),
+        id,
+        components: config.components,
       };
     }
 
     return undefined;
   }
 
-  public async readPlayerSave(id: string): Promise<CharacterSave | undefined> {
+  public async readPlayer(id: string): Promise<EntitySave | undefined> {
     const col = this.db.collection('characters');
     const save = await col.findOne({
       id: id,
     });
 
-    if (isCharacterSave(save)) {
+    if (isEntitySave(save)) {
       return {
         id,
-        components: new Map(save.components.map((c) => [c.name, c])),
+        components: save.components,
       };
     }
 
     return undefined;
   }
 
-  public async writePlayerSave(entity: Entity): Promise<void> {
+  public async readItem(id: string): Promise<ItemSave | undefined> {
+    const col = this.db.collection('items');
+    const item = await col.findOne({
+      id,
+    });
+
+    if (isItemSave(item)) {
+      return item;
+    }
+
+    return undefined;
+  }
+
+  public async writePlayer(entity: Entity): Promise<void> {
     const col = this.db.collection('characters');
     await col.updateOne(
       {
@@ -74,12 +92,24 @@ export class MDBClient {
       {
         $set: {
           id: 'character',
-          components: Array.from(entity.components.entries()).map(([_, instance]) => instance.serialize()),
+          components: Array.from(entity.components.values())
+            .filter((component) => component.serializable)
+            .map((component) => component.serialize()),
         },
       },
       {
         upsert: true,
       },
     );
+  }
+
+  private async initializeDB() {
+    (await this.db.collections()).forEach(async (col) => {
+      if (!col.indexExists('id')) {
+        await col.createIndex('id', {
+          unique: true,
+        });
+      }
+    });
   }
 }

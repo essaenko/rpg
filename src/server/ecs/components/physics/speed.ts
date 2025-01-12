@@ -1,9 +1,10 @@
 import { Component } from '@shared/ecs/component';
 
-export class SpeedComponent extends Component {
+export class Speed extends Component {
   constructor() {
     super('speed');
   }
+  serializable = true;
 
   public speed: number = 0; // 40
 

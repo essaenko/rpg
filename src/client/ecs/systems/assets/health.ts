@@ -1,53 +1,79 @@
 import { System } from '@client/core/ecs/system';
 import Phaser from 'phaser';
 import { ECSContainer } from '@client/core/ecs';
-import { HealthComponent } from '@client/ecs/components/game/stats/health';
-import { PositionComponent } from '@client/ecs/components/physics/position';
-import { BodyComponent } from '@client/ecs/components/physics/body';
+import { Health } from '@client/ecs/components/game/stats/health';
+import { Position } from '@client/ecs/components/physics/position';
+import { Body } from '@client/ecs/components/physics/body';
+import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
+import { Fraction } from '@client/ecs/components/game/fraction';
+import { WorldScene } from '@client/core/scene/world-scene';
+import { Fraction as Fractions, Relation } from '@shared/types';
+import { getRelation } from '@shared/utils/fractions';
+import Sprite = Phaser.Physics.Arcade.Sprite;
+import { Appearance } from '@client/ecs/components/game/appearance';
+import Container = Phaser.GameObjects.Container;
+import { Target } from '@client/ecs/components/game/combat/target';
 
 export class HealthSystem extends System {
   constructor() {
     super('health');
   }
-  onUpdate(scene: Phaser.Scene, container: ECSContainer) {
-    container.query(['health', 'position', 'body']).forEach((entity) => {
-      const health = entity.get<HealthComponent>('health');
-      const position = entity.get<PositionComponent>('position');
-      const body = entity.get<BodyComponent>('body');
-      const originX = position.x - body.width / 2;
-      const originY = position.y - body.height / 2;
+  onUpdate(scene: WorldScene, container: ECSContainer) {
+    container.query(['health', 'position', 'body', 'health-frame', 'appearance']).forEach((entity) => {
+      const hfc = entity.get<HealthFrame>('health-frame');
+      const appearance = entity.get<Appearance>('appearance');
+      if (!scene.textures.exists(hfc.asset.key) || !appearance.sprites) return;
 
-      if (health.object) {
-        health.object.destroy();
-      }
+      const health = entity.get<Health>('health');
+      const position = entity.get<Position>('position');
+      const body = entity.get<Body>('body');
+      const player = container.getEntity(scene.room.sessionId);
 
-      const graphics = scene.add.graphics({
-        lineStyle: {
-          width: 1,
-          color: 0xffd700,
-        },
-        fillStyle: {
-          color: 0x0,
-        },
-      });
+      const { fraction: f1 } = entity.get<Fraction>('fraction') ?? {
+        fraction: Fractions.Neutral,
+      };
+      const { fraction: f2 } = container.getEntity(scene.room.sessionId)?.get<Fraction>('fraction') ?? {
+        fraction: Fractions.Neutral,
+      };
+      const relation = getRelation(f1, f2);
+      const width = Math.max(body.width, 60);
 
-      graphics.x = originX;
-      graphics.y = originY;
-      graphics.fillRect(0, 0, body.width, 10);
-      graphics.fillStyle(0x09ad00, 1);
-      graphics.fillRect(0, 0, body.width * (health.current / health.max), 10);
-      graphics.strokeRect(0, 0, body.width, 10);
+      let hfcContainer = appearance.sprites.getByName('health-frame') as Container | null;
 
-      health.object = graphics;
+      if (!hfcContainer) {
+        const hfcContainer = scene.add.container(-(width / 2), -body.height * 0.65);
+        hfcContainer.name = 'health-frame';
+        const left = scene.physics.add.sprite(0, 0, hfc.asset.key, 0);
+        left.name = 'health_frame_left';
+        const center = scene.physics.add.sprite(20, 0, hfc.asset.key, 1);
+        center.name = 'health_frame_center';
+        const right = scene.physics.add.sprite(20 + width - 40, 0, hfc.asset.key, 2);
+        right.name = 'health_frame_right';
+        const fill = scene.physics.add.sprite(
+          3,
+          0,
+          hfc.asset.key,
+          relation === Relation.Friendly ? 3 : relation === Relation.Hostile ? 5 : 4,
+        );
+        fill.name = 'health_frame_fill';
+        center.displayWidth = width - 40;
+        fill.displayWidth = (width - 6) * (health.current / health.max);
 
-      if (health.object.x === originX && health.object.y === originY) {
-        health.object.x = Math.round(originX);
-        health.object.y = Phaser.Math.Linear(health.object.y, originY, 0.1);
+        hfcContainer.add([left, center, right, fill]);
+        hfcContainer.iterate((sprite: Sprite) => {
+          sprite.setOrigin(0, 0);
+        });
+
+        appearance.sprites.add(hfcContainer);
       } else {
-        health.object.x = Phaser.Math.Linear(health.object.x, originX, 0.1);
-        health.object.y = Phaser.Math.Linear(health.object.y, originY, 0.1);
+        const fill = hfcContainer.getByName('health_frame_fill') as Sprite;
+
+        if (fill) {
+          fill.displayWidth = (width - 6) * (health.current / health.max);
+        }
+
+        hfcContainer.visible = !(player.has('target') && player.get<Target>('target').target !== entity.id);
       }
-      health.object.depth = position.y + 9999;
     });
   }
 }

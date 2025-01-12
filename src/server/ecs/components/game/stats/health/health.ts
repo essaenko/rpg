@@ -1,10 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class HealthComponent extends Component {
+export class Health extends Component {
   constructor() {
     super('health');
   }
+
+  serializable = true;
 
   @type('number') max: number = 0;
   @type('number') current: number = 0;

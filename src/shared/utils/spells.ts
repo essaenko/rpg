@@ -1,3 +1,6 @@
 export enum WarriorSpells {
-  Hit = 'warrior-hit',
+  Hit = 1,
+  Heal,
+  Dot,
+  Hot,
 }

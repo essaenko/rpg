@@ -1,8 +1,8 @@
-import type { BodyComponent as BodySchema } from '@server/ecs/components/physics/body';
+import type { Body as BodySchema } from '@server/ecs/components/physics/body';
 
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
 
-export class BodyComponent extends NetworkComponent {
+export class Body extends NetworkComponent {
   public width: number;
   public height: number;
   public pivotX: number;

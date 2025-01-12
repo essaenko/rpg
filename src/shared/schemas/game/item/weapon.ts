@@ -25,4 +25,8 @@ export class Weapon extends EquipItem {
       }
     });
   }
+
+  damage(): number {
+    return Math.random() * (this.attackMax - this.attackMin) + this.attackMin;
+  }
 }

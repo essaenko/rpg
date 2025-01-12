@@ -1,10 +1,12 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class SecondaryStatsComponent extends Component {
+export class SecondaryStats extends Component {
   constructor() {
     super('secondary-stats');
   }
+
+  serializable = true;
 
   @type('number') crit: number = 0;
   @type('number') armor: number = 0;

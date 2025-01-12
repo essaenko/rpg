@@ -22,12 +22,18 @@ export abstract class Entity {
       component = signature;
     }
 
-    component?.onRemove();
-    this.components.splice(this.components.indexOf(component), 1);
+    if (component) {
+      component.destroy();
+      this.components.splice(this.components.indexOf(component), 1);
+    }
   }
 
   get<T extends Component>(name: string): T | undefined {
     return this.components.find((c) => c.name === name) as T | undefined;
+  }
+
+  getAll<T extends Component>(name: string): T[] {
+    return this.components.filter((c) => c.name === name) as T[];
   }
 
   has(name: string): boolean {
@@ -36,7 +42,7 @@ export abstract class Entity {
 
   destroy() {
     this.components.forEach((component) => {
-      component.onRemove();
+      component.destroy();
     });
   }
 }

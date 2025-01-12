@@ -2,10 +2,12 @@ import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 import { ResourceType } from '@shared/types';
 
-export class ResourceComponent extends Component {
+export class Resource extends Component {
   constructor() {
     super('resource');
   }
+
+  serializable = true;
 
   @type('number') max: number = 0;
   @type('number') current: number = 0;

@@ -1,6 +1,6 @@
 import { TransportEventTypes } from '../types';
 import { Client } from '@colyseus/core';
-import { Scene } from '../../server/core/scene/scene';
+import { Scene } from '@server/core/scene/scene';
 import { ECSContainer } from './index';
 
 export abstract class System {
