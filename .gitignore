@@ -3,5 +3,6 @@ build
 package-lock.json
 .idea
 .env.*
+.env
 loadtest/
 .vscode/

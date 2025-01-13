@@ -29,6 +29,7 @@ import { Appearance } from '@server/ecs/components/game/appearance';
 import { Fraction } from '@server/ecs/components/game/fraction';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
+import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 
 export const map = {
   // Game components
@@ -58,6 +59,7 @@ export const map = {
 
   'quest-giver': QuestGiver,
   'quest-log': QuestLog,
+  'quest-book': QuestBook,
 
   class: Class,
   fraction: Fraction,

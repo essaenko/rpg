@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     width: 1280,
     height: 720,
-    // antialias: false,
-    pixelArt: true,
-    roundPixels: true,
+    antialias: true,
+    // pixelArt: true,
+    // roundPixels: true,
     scale: {
       mode: Scale.FIT,
       autoCenter: Center.CENTER_BOTH,

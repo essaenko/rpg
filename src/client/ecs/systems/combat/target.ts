@@ -29,7 +29,7 @@ export class TargetSystem extends System {
       const body = entity.get<Body>('body');
 
       const originX = position.x;
-      const originY = position.y + body.height * 0.6;
+      const originY = position.y + body.height * 0.45;
 
       if (body && position) {
         if (!highlight.rect) {
@@ -44,7 +44,7 @@ export class TargetSystem extends System {
           });
           g.x = originX;
           g.y = originY;
-          g.strokeEllipse(0, 0, body.width * 1.1, body.height * 0.3);
+          g.strokeEllipse(0, 0, body.width * 0.7, body.height * 0.35);
           highlight.rect = g;
         }
 

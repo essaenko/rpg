@@ -39,7 +39,11 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onJoin(client: Client) {
-    const save = await MDBClient.instance().readPlayer('usqPuANKq');
+    //TODO Change this to a proper login system
+    if (!client.userData) client.userData = {};
+    client.userData.id = 'usqPuANKq';
+
+    const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
       this.initEntity(save, client.sessionId);
     } else {
@@ -52,6 +56,7 @@ export class DynamicallyLoadableScene extends Scene {
     this.ecs.removeEntity(client.sessionId);
     this.state.entities.delete(client.sessionId);
 
+    entity.id = client.userData?.id as string;
     await MDBClient.instance().writePlayer(entity);
   }
 

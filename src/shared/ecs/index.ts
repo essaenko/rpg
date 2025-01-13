@@ -52,9 +52,9 @@ export class ECSContainer {
     });
   }
 
-  processMessage(client: Client, type: TransportEventTypes, message: any) {
+  processMessage(client: Client, room: Scene, type: TransportEventTypes, message: any) {
     this.systems.forEach((system) => {
-      system.handleMessage(client, type, message, this);
+      system.handleMessage(client, room, type, message, this);
     });
   }
 }

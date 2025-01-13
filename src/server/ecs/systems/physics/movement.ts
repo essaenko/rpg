@@ -6,12 +6,13 @@ import { Position } from '../../components/physics/position';
 import { ECSContainer } from '@shared/ecs';
 import { Move } from '../../components/game/move';
 import { Collider } from '../../components/physics/collider';
+import { Scene } from '@server/core/scene/scene';
 
 export class MovementSystem extends System {
   constructor() {
     super('movement');
   }
-  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
+  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {
     if (type === TransportEventTypes.Move) {
       container.query(['move']).forEach((entity) => {
         if (entity.id === client.sessionId) {

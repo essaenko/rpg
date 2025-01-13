@@ -10,7 +10,7 @@ export class CastSystem extends System {
     super('cast');
   }
 
-  handleMessage(client: Client, type: TransportEventTypes, message: any): void {}
+  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['cast']).forEach((entity) => {

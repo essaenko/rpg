@@ -25,6 +25,11 @@ export class Equip extends Component {
 
   init(state: any): void {
     Object.keys(this).forEach(async (key) => {
+      if (key === 'name') {
+        this.name = state.name;
+
+        return;
+      }
       if (key in state && state[key]) {
         const data = await MDBClient.instance().readItem(state[key]);
 
@@ -53,16 +58,16 @@ export class Equip extends Component {
   serialize(): Record<string, any> {
     return {
       name: this.name,
-      head: this.head.id,
-      chest: this.chest.id,
-      shoulder: this.shoulder.id,
-      hand: this.hand.id,
-      pants: this.pants.id,
-      boots: this.boots.id,
-      mainHand: this.mainHand.id,
-      offHand: this.offHand.id,
-      ring: this.ring.id,
-      trinket: this.trinket.id,
+      head: this.head?.id ?? undefined,
+      chest: this.chest?.id ?? undefined,
+      shoulder: this.shoulder?.id ?? undefined,
+      hand: this.hand?.id ?? undefined,
+      pants: this.pants?.id ?? undefined,
+      boots: this.boots?.id ?? undefined,
+      mainHand: this.mainHand?.id ?? undefined,
+      offHand: this.offHand?.id ?? undefined,
+      ring: this.ring?.id ?? undefined,
+      trinket: this.trinket?.id ?? undefined,
     };
   }
 }

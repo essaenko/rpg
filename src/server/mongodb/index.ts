@@ -87,11 +87,11 @@ export class MDBClient {
     const col = this.db.collection('characters');
     await col.updateOne(
       {
-        id: 'character',
+        id: entity.id,
       },
       {
         $set: {
-          id: 'character',
+          id: entity.id,
           components: Array.from(entity.components.values())
             .filter((component) => component.serializable)
             .map((component) => component.serialize()),

@@ -82,6 +82,9 @@ export class QuestGiverSystem extends System {
         TransportEventTypes.QuestFinished,
       ].includes(type)
     ) {
+      const log = container.getEntity(scene.room.sessionId)?.get<QuestLog>('quest-log');
+
+      console.log(log);
       container.query(['quest-giver']).forEach((entity) => {
         entity.removeComponent('quest-giver-state');
         const action = entity.getAll<Action>('action').find((action) => action.tag === 'quest-giver-action');

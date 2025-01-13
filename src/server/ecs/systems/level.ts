@@ -8,7 +8,7 @@ export class LevelSystem extends System {
   constructor() {
     super('level');
   }
-  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {}
 }

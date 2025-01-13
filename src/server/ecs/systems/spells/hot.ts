@@ -11,7 +11,7 @@ export class HotSystem extends System {
     super('hot');
   }
 
-  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['hot']).forEach((entity) => {

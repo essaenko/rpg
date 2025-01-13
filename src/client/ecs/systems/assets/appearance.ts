@@ -67,6 +67,7 @@ export class AppearanceSystem extends System {
         if (sprite && sprite instanceof ArcadeSprite && sprite.state !== state.state) {
           appearance.sprites.remove(sprite);
           sprite.destroy(true);
+          sprite = null;
         }
 
         if (!sprite && state.asset.loaded) {

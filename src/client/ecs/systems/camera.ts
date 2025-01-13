@@ -6,11 +6,15 @@ import { Camera } from '@client/ecs/components/game/camera';
 import { Appearance } from '@client/ecs/components/game/appearance';
 
 export class CameraSystem extends System {
+  private debugGraphics: Phaser.GameObjects.Graphics;
   constructor(public room: Room<SceneState>) {
     super('camera');
   }
   onUpdate(scene: Phaser.Scene, container: ECSContainer): void {
     if (this.room) {
+      if (!this.debugGraphics) {
+        // this.debugGraphics = scene.add.graphics({ lineStyle: { width: 2, color: 0xff0000 } });
+      }
       const player = container
         .query(['tag-player', 'camera', 'appearance'])
         .find((entity) => entity.id === this.room.sessionId);
@@ -20,10 +24,19 @@ export class CameraSystem extends System {
         const sprite = player.get<Appearance>('appearance');
 
         if (!camera.following && sprite.sprites) {
-          scene.cameras.main.startFollow(sprite.sprites, true, 0.007, 0.007, 0, 0);
+          scene.cameras.main.startFollow(sprite.sprites, true, 0.1, 0.1, 50, 50);
           camera.following = true;
         }
       }
+
+      // Отладка границ камеры
+      // this.debugGraphics.clear();
+      // this.debugGraphics.strokeRect(
+      //   scene.cameras.main.worldView.x,
+      //   scene.cameras.main.worldView.y,
+      //   scene.cameras.main.worldView.width,
+      //   scene.cameras.main.worldView.height,
+      // );
     }
   }
 }

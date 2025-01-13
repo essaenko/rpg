@@ -7,13 +7,15 @@ import { getDistance } from '@shared/utils/physics';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 import { Position } from '@server/ecs/components/physics/position';
+import { Scene } from '@server/core/scene/scene';
 
 export class QuestSystem extends System {
   constructor() {
     super('quest');
   }
 
-  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
+  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {
+    const patch = [];
     if (type === TransportEventTypes.AcceptQuest) {
       const giver = container.getEntity(message?.[0]);
       const player = container.getEntity(client.sessionId);
