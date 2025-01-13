@@ -47,6 +47,7 @@ export class MovementSystem extends System {
 
         scene.room.send(TransportEventTypes.Move, [vector.x, vector.y]);
       }
+
     });
   }
 }

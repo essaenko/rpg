@@ -27,8 +27,6 @@ export class QuestSystem extends System {
 
         if (log && quest && quest.passConditions(player)) {
           log.ongoing.push(quest.id);
-
-          client.send(TransportEventTypes.QuestAccepted, { afterNextPatch: true });
         }
       }
     }
@@ -38,8 +36,6 @@ export class QuestSystem extends System {
 
       if (log) {
         log.ongoing.splice(log.ongoing.indexOf(message?.[0]), 1);
-
-        client.send(TransportEventTypes.QuestRejected, { afterNextPatch: true });
       }
     }
   }

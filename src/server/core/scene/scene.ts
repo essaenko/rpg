@@ -53,17 +53,17 @@ export abstract class Scene extends Room<SceneState> {
 
   onCreate(options: any) {
     this.onMessage(TransportEventTypes.Move, (client: Client, message: any) => {
-      this.ecs.processMessage(client, this, TransportEventTypes.Move, message);
+      this.ecs.processMessage(client, TransportEventTypes.Move, message);
     });
     this.onMessage(TransportEventTypes.CastRequest, (client: Client, message: any) => {
-      this.ecs.processMessage(client, this, TransportEventTypes.CastRequest, message);
+      this.ecs.processMessage(client, TransportEventTypes.CastRequest, message);
     });
     this.onMessage(TransportEventTypes.AcceptQuest, (client: Client, message: any) => {
-      this.ecs.processMessage(client, this, TransportEventTypes.AcceptQuest, message);
+      this.ecs.processMessage(client, TransportEventTypes.AcceptQuest, message);
     });
     this.onMessage('*', (client: Client, type: string | number, message: any) => {
       if (isTransportEventType(type)) {
-        this.ecs.processMessage(client, this, type, message);
+        this.ecs.processMessage(client, type, message);
       }
     });
 

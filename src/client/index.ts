@@ -5,6 +5,8 @@ import { Boot } from './scenes/boot/boot';
 import { InitUI } from './ui/init';
 import { BehaviorSubject } from 'rxjs';
 import { Dummy } from './scenes/dummy/dummy';
+import Cursor from './assets/cursor/Cursor Default.png';
+
 import Center = Phaser.Scale.Center;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,4 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (process.env.NODE_ENV === 'development') {
     (window as any).game = game;
   }
+
+  document.body.style.cursor = `url(${Cursor}), auto`;
 });
