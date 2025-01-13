@@ -26,5 +26,5 @@ export class CooldownSystem extends System {
     });
   }
 
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 }

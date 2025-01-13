@@ -12,7 +12,7 @@ export class QuestRequirementSystem extends System {
     super('quest-requirement');
   }
 
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['quest-book', 'enemy-kill-event']).forEach((entity) => {

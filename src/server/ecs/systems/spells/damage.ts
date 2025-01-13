@@ -10,7 +10,7 @@ export class DamageSystem extends System {
   constructor() {
     super('damage');
   }
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['damage']).forEach((entity) => {

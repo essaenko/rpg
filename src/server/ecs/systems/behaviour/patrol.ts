@@ -14,7 +14,7 @@ export class PatrolSystem extends System {
     super('patrol');
   }
 
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {}
+  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     container.query(['patrol']).forEach(async (entity) => {

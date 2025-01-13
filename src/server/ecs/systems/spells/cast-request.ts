@@ -13,7 +13,7 @@ export class CastRequestSystem extends System {
     super('cast-request');
   }
 
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any, container: ECSContainer): void {
+  handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
     if (type === TransportEventTypes.CastRequest) {
       const entity = container.getEntity(client.sessionId);
       const spell = message[0] as string;

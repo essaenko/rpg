@@ -13,7 +13,7 @@ export class CollisionSystem extends System {
   constructor() {
     super('collision');
   }
-  handleMessage(client: Client, room: Scene, type: TransportEventTypes, message: any): void {}
+  handleMessage(client: Client, type: TransportEventTypes, message: any): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
     const objects = container.query(['position', 'body', 'collider', 'tag-object']).toArray();
