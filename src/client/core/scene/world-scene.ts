@@ -1,8 +1,9 @@
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
-import { getVelocityByVector } from '@shared/utils/physics';
-import { Position } from '@client/ecs/components/physics/position';
+import Shader = Phaser.GameObjects.Shader;
+
+import CloudShaderSrc from '@client/shaders/cloud.glsl';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -67,6 +68,8 @@ export class WorldScene extends NetworkScene {
       if (phaserMap.tilesets.some((set) => set.tileData)) {
         this.initTilesetAnimations(phaserMap);
       }
+
+      this.add.shader('clouds', 0, 0, phaserMap.width * phaserMap.tileWidth, phaserMap.height * phaserMap.tileHeight);
     }
   }
 

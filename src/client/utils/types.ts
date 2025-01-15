@@ -46,6 +46,7 @@ export const isKeyOf = (key: string | number | symbol, target: any): key is keyo
 
 export enum QuestGiverStates {
   QuestAvailable = 1,
-  QuestInProgress,
   QuestFinished,
+  QuestUnawailable,
+  QuestInProgress,
 }

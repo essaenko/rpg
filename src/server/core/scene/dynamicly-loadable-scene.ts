@@ -105,7 +105,7 @@ export class DynamicallyLoadableScene extends Scene {
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
                 const patrol = new Patrol();
-                // patrol.active = false;
+                patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
 

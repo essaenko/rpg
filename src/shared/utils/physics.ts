@@ -4,7 +4,7 @@ export const getDistance = (p1: Position, p2: Position): number => {
   const x = Math.abs(p1.x - p2.x);
   const y = Math.abs(p1.y - p2.y);
 
-  return Math.sqrt(x * x + y * y);
+  return Math.abs(Math.sqrt(x * x + y * y));
 };
 
 export const getVelocityByVector = (p1: Position, p2: Position): Position => {

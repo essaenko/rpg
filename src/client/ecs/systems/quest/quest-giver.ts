@@ -10,6 +10,7 @@ import { TransportEventTypes } from '@shared/types';
 import { Action } from '@client/ecs/components/game/action';
 import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
+import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/quests';
 
 export class QuestGiverSystem extends System {
   constructor() {
@@ -45,8 +46,12 @@ export class QuestGiverSystem extends System {
           action.action = () => {
             const player = container.getEntity(scene.room.sessionId);
 
-            if (getDistance(entity.get<Position>('position'), player.get<Position>('position')) <= 48) {
+            if (
+              getDistance(entity.get<Position>('position'), player.get<Position>('position')) <=
+              QUEST_GIVER_ACTION_DISTANCE
+            ) {
               scene.room.send(TransportEventTypes.AcceptQuest, [entity.id, availableQuests[0].id]);
+              entity.removeComponent(action);
             }
           };
           action.tag = 'quest-giver-action';
@@ -59,6 +64,7 @@ export class QuestGiverSystem extends System {
           const action = new Action();
           action.action = () => {
             scene.room.send(TransportEventTypes.RejectQuest, [ongoingQuests[0].id]);
+            entity.removeComponent(action);
           };
           action.tag = 'quest-giver-action';
           entity.addComponent(action);
@@ -81,16 +87,8 @@ export class QuestGiverSystem extends System {
         TransportEventTypes.QuestFinished,
       ].includes(type)
     ) {
-      const log = container.getEntity(scene.room.sessionId)?.get<QuestLog>('quest-log');
-
-      console.log(log);
       container.query(['quest-giver']).forEach((entity) => {
         entity.removeComponent('quest-giver-state');
-        const action = entity.getAll<Action>('action').find((action) => action.tag === 'quest-giver-action');
-
-        if (action) {
-          entity.removeComponent(action);
-        }
       });
     }
   }

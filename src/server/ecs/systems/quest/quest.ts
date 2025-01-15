@@ -7,6 +7,7 @@ import { getDistance } from '@shared/utils/physics';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 import { Position } from '@server/ecs/components/physics/position';
+import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/quests';
 
 export class QuestSystem extends System {
   constructor() {
@@ -19,7 +20,11 @@ export class QuestSystem extends System {
       const giver = container.getEntity(message?.[0]);
       const player = container.getEntity(client.sessionId);
 
-      if (player && giver && getDistance(giver.get<Position>('position'), player.get<Position>('position')) <= 50) {
+      if (
+        player &&
+        giver &&
+        getDistance(giver.get<Position>('position'), player.get<Position>('position')) <= QUEST_GIVER_ACTION_DISTANCE
+      ) {
         const { quests } = giver.get<QuestGiver>('quest-giver') ?? {};
         const log = player.get<QuestLog>('quest-log');
 
@@ -34,7 +39,7 @@ export class QuestSystem extends System {
       const player = container.getEntity(client.sessionId);
       const log = player.get<QuestLog>('quest-log');
 
-      if (log) {
+      if (log && log.ongoing.includes(message?.[0])) {
         log.ongoing.splice(log.ongoing.indexOf(message?.[0]), 1);
       }
     }

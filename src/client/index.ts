@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   client.getAvailableRooms();
 
   const game = new Game({
-    type: AUTO,
+    type: Phaser.WEBGL,
     scene: [Boot, LoginScreen, Dummy],
     parent: '#game-root',
     physics: {
