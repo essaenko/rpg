@@ -7,7 +7,7 @@ import { QuestGiver } from '@client/ecs/components/game/quest/quest-giver';
 import { passConditions } from '@client/utils/quest';
 import { QuestGiverStates } from '@client/utils/types';
 import { TransportEventTypes } from '@shared/types';
-import { Action } from '@client/ecs/components/game/action';
+import { Action } from '@client/ecs/components/game/mechanics/action';
 import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
 import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/quests';

@@ -6,7 +6,7 @@ export class Speed extends Component {
   }
   serializable = true;
 
-  public speed: number = 0; // 40
+  public speed: number = 0; // 1
 
   init(state: Record<string, any>): void {
     if ('speed' in state) {

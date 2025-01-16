@@ -69,7 +69,7 @@ health.max = 100;
 
 character.addComponent(new Speed());
 const speed = character.get<Speed>('speed');
-speed.speed = 80;
+speed.speed = 100;
 
 character.addComponent(new Resource());
 const resource = character.get<Resource>('resource');

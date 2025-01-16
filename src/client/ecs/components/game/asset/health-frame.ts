@@ -1,6 +1,5 @@
 import { Component } from '@client/core/ecs/component/component';
 import HealthFrameSprite from '@client/assets/sprites/UI/health_frame.png';
-import Group = Phaser.GameObjects.Group;
 
 export class HealthFrame extends Component {
   public asset = {

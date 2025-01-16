@@ -1,13 +1,13 @@
 import { System } from '@client/core/ecs/system';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { ECSContainer } from '@client/core/ecs';
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 import { Position } from '@client/ecs/components/physics/position';
 import { Target } from '@client/ecs/components/game/combat/target';
 import { Body } from '@client/ecs/components/physics/body';
 import { QuestGiverState } from '@client/ecs/components/game/quest/quest-giver-state';
 import ArcadeSprite = Phaser.Physics.Arcade.Sprite;
-import { Action } from '@client/ecs/components/game/action';
+import { Action } from '@client/ecs/components/game/mechanics/action';
 import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
 import Sprite = Phaser.Physics.Arcade.Sprite;
 

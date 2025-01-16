@@ -14,6 +14,8 @@ import { MapObject } from '@server/ecs/components/game/tag/mapObject';
 import { createPathFromPolygons, isRoutePathObject } from '@server/utils/tiled-object';
 import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
+import { InteractableObject } from '@server/ecs/components/game/mechanics/interactable-object';
+import { InteractionTypes } from '@shared/types';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -162,6 +164,26 @@ export class DynamicallyLoadableScene extends Scene {
               component.height = collider.height;
 
               entity.addComponent(component);
+            }
+          }
+        }
+
+        if (object.properties) {
+          if (object.properties.some((p) => p.name === 'action')) {
+            const action = object.properties.find((p) => p.name === 'action');
+
+            switch (action.value) {
+              case 'collect': {
+                const loot = object.properties.find((p) => p.name === 'loot');
+
+                if (loot) {
+                  const comp = new InteractableObject();
+                  comp.action = InteractionTypes.Loot;
+                  comp.loot = loot.value as string;
+                  entity.addComponent(comp);
+                }
+                break;
+              }
             }
           }
         }

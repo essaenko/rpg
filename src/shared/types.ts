@@ -9,6 +9,10 @@ export enum TransportEventTypes {
   RejectQuest,
 }
 
+export enum InteractionTypes {
+  Loot = 1,
+}
+
 export enum Directions {
   Forward = 1,
   Backward,

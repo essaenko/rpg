@@ -241,18 +241,78 @@
   <object id="57" type="small-buildings" gid="1865" x="298.667" y="992.667" width="160" height="192"/>
   <object id="58" type="small-buildings" gid="1866" x="848" y="851.333" width="160" height="192"/>
   <object id="59" type="small-buildings" gid="1867" x="48" y="1022" width="160" height="192"/>
-  <object id="67" type="ground_dec_props" gid="1735" x="289" y="738.333" width="32" height="32"/>
-  <object id="68" type="ground_dec_props" gid="1735" x="639.5" y="735.667" width="32" height="32"/>
-  <object id="69" type="ground_dec_props" gid="1732" x="863.667" y="738.5" width="32" height="32"/>
-  <object id="70" type="ground_dec_props" gid="1731" x="960.333" y="699" width="32" height="32"/>
-  <object id="71" type="ground_dec_props" gid="1731" x="318" y="664.5" width="32" height="32"/>
-  <object id="72" type="ground_dec_props" gid="1731" x="224.5" y="565.5" width="32" height="32"/>
-  <object id="73" type="ground_dec_props" gid="1732" x="383.5" y="483.5" width="32" height="32"/>
-  <object id="74" type="ground_dec_props" gid="1732" x="288.5" y="388" width="32" height="32"/>
-  <object id="75" type="ground_dec_props" gid="1733" x="128.5" y="222.5" width="32" height="32"/>
-  <object id="76" type="ground_dec_props" gid="1735" x="323" y="131.5" width="32" height="32"/>
-  <object id="77" type="ground_dec_props" gid="1734" x="128" y="120.5" width="32" height="32"/>
-  <object id="78" type="ground_dec_props" gid="1734" x="64.5" y="120.5" width="32" height="32"/>
+  <object id="67" type="ground_dec_props" gid="1735" x="289" y="738.333" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="68" type="ground_dec_props" gid="1735" x="639.5" y="735.667" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="69" type="ground_dec_props" gid="1732" x="863.667" y="738.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="70" type="ground_dec_props" gid="1731" x="960.333" y="699" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="71" type="ground_dec_props" gid="1731" x="318" y="664.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="72" type="ground_dec_props" gid="1731" x="224.5" y="565.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="73" type="ground_dec_props" gid="1732" x="383.5" y="483.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="74" type="ground_dec_props" gid="1732" x="288.5" y="388" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="75" type="ground_dec_props" gid="1733" x="128.5" y="222.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="76" type="ground_dec_props" gid="1735" x="323" y="131.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="77" type="ground_dec_props" gid="1734" x="128" y="120.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
+  <object id="78" type="ground_dec_props" gid="1734" x="64.5" y="120.5" width="32" height="32">
+   <properties>
+    <property name="action" value="collect"/>
+    <property name="value" value="9VqaAzUcK"/>
+   </properties>
+  </object>
   <object id="79" gid="1734" x="32.5" y="346.5" width="32" height="32"/>
  </objectgroup>
  <group id="12" name="npc">

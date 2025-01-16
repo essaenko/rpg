@@ -178,7 +178,7 @@
     "openFiles": [
     ],
     "project": "rpg.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "dummy/dummy.tmx",
         "dummy/dummy.json",

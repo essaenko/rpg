@@ -3,11 +3,12 @@ import Phaser from 'phaser';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { Position } from '@client/ecs/components/physics/position';
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 import { Pointer } from '@client/ecs/components/physics/pointer';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { getVelocityByVector, isInTheSamePosition } from '@shared/utils/physics';
 import { TransportEventTypes } from '@shared/types';
+import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class MovementSystem extends System {
   constructor() {
@@ -21,10 +22,10 @@ export class MovementSystem extends System {
 
       if (position && sprites) {
         if (sprites.x !== position.x) {
-          sprites.x = Phaser.Math.Linear(sprites.x, position.x, 0.2);
+          sprites.x = Phaser.Math.Linear(sprites.x, position.x, DEFAULT_LERP_VALUE);
         }
         if (sprites.y !== position.y) {
-          sprites.y = Phaser.Math.Linear(sprites.y, position.y, 0.2);
+          sprites.y = Phaser.Math.Linear(sprites.y, position.y, DEFAULT_LERP_VALUE);
         }
       }
     });
@@ -47,7 +48,6 @@ export class MovementSystem extends System {
 
         scene.room.send(TransportEventTypes.Move, [vector.x, vector.y]);
       }
-
     });
   }
 }

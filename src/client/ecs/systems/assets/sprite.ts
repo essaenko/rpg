@@ -3,7 +3,7 @@ import { ECSContainer } from '@client/core/ecs';
 import { Sprite } from '@client/ecs/components/game/asset/sprite';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { collide } from '@server/core/helpers/map';
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 
 export class SpriteSystem extends System {
   constructor() {

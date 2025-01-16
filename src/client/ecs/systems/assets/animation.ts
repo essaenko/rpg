@@ -2,7 +2,7 @@ import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { Animation } from '@client/ecs/components/game/asset/animation';
 import { Sprite } from '@client/ecs/components/game/asset/sprite';
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 import ArcadeSprite = Phaser.Physics.Arcade.Sprite;
 import { getAnimationConfig, getAnimationKey } from '@client/utils/animation';
 

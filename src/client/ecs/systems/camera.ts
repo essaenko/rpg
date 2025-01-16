@@ -3,7 +3,8 @@ import { ECSContainer } from '@client/core/ecs';
 import { Room } from 'colyseus.js';
 import type { SceneState } from '@shared/schemas/scene';
 import { Camera } from '@client/ecs/components/game/camera';
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class CameraSystem extends System {
   private debugGraphics: Phaser.GameObjects.Graphics;
@@ -24,7 +25,7 @@ export class CameraSystem extends System {
         const sprite = player.get<Appearance>('appearance');
 
         if (!camera.following && sprite.sprites) {
-          scene.cameras.main.startFollow(sprite.sprites, true, 0.1, 0.1, 50, 50);
+          scene.cameras.main.startFollow(sprite.sprites, true, DEFAULT_LERP_VALUE, DEFAULT_LERP_VALUE, 50, 50);
           camera.following = true;
         }
       }

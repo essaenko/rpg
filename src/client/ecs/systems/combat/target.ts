@@ -6,6 +6,7 @@ import { TargetHighlight } from '@client/ecs/components/game/target-highlight';
 import { Position } from '@client/ecs/components/physics/position';
 import { Body } from '@client/ecs/components/physics/body';
 import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
+import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class TargetSystem extends System {
   constructor() {
@@ -48,8 +49,8 @@ export class TargetSystem extends System {
           highlight.rect = g;
         }
 
-        highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, 0.2);
-        highlight.rect.y = Phaser.Math.Linear(highlight.rect.y, originY, 0.2);
+        highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, DEFAULT_LERP_VALUE);
+        highlight.rect.y = Phaser.Math.Linear(highlight.rect.y, originY, DEFAULT_LERP_VALUE);
       }
     });
   }

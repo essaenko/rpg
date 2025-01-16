@@ -8,6 +8,7 @@ import { Velocity } from '../../components/physics/velocity';
 import { Speed } from '../../components/physics/speed';
 import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { Appearance } from '@server/ecs/components/game/appearance';
+import { DEFAULT_SPEED } from '@server/utils/game/const';
 
 export class MoveSystem extends System {
   constructor() {
@@ -32,28 +33,28 @@ export class MoveSystem extends System {
         }
 
         if (move.vector[1] < 0) {
-          velocity.y += move.vector[1] * speed.speed * delta;
+          velocity.y += move.vector[1] * (speed.speed * DEFAULT_SPEED) * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingForward;
           }
         }
         if (move.vector[1] > 0) {
-          velocity.y += move.vector[1] * speed.speed * delta;
+          velocity.y += move.vector[1] * (speed.speed * DEFAULT_SPEED) * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingBackward;
           }
         }
         if (move.vector[0] < 0) {
-          velocity.x += move.vector[0] * speed.speed * delta;
+          velocity.x += move.vector[0] * (speed.speed * DEFAULT_SPEED) * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingLeft;
           }
         }
         if (move.vector[0] > 0) {
-          velocity.x += move.vector[0] * speed.speed * delta;
+          velocity.x += move.vector[0] * (speed.speed * DEFAULT_SPEED) * delta;
 
           if (appearance) {
             appearance.animation = Animation.MovingRight;
@@ -76,8 +77,8 @@ export class MoveSystem extends System {
       }
 
       if (patrol.active && patrol.vector) {
-        velocity.x = patrol.vector.x * speed.speed * delta;
-        velocity.y = patrol.vector.y * speed.speed * delta;
+        velocity.x = patrol.vector.x * (speed.speed * DEFAULT_SPEED) * delta;
+        velocity.y = patrol.vector.y * (speed.speed * DEFAULT_SPEED) * delta;
 
         if (appearance) {
           if (velocity.y > 0) {

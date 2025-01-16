@@ -10,7 +10,7 @@ import { WorldScene } from '@client/core/scene/world-scene';
 import { Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
 import Sprite = Phaser.Physics.Arcade.Sprite;
-import { Appearance } from '@client/ecs/components/game/appearance';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 import Container = Phaser.GameObjects.Container;
 import { Target } from '@client/ecs/components/game/combat/target';
 
@@ -25,7 +25,6 @@ export class HealthSystem extends System {
       if (!scene.textures.exists(hfc.asset.key) || !appearance.sprites) return;
 
       const health = entity.get<Health>('health');
-      const position = entity.get<Position>('position');
       const body = entity.get<Body>('body');
       const player = container.getEntity(scene.room.sessionId);
 
@@ -38,31 +37,22 @@ export class HealthSystem extends System {
       const relation = getRelation(f1, f2);
       const width = Math.max(body.width, 60);
 
-      let hfcContainer = appearance.sprites.getByName('health-frame') as Container | null;
+      let hfcContainer = appearance.sprites.getByName('health_frame') as Container | null;
 
       if (!hfcContainer) {
-        const hfcContainer = scene.add.container(-(width / 2), -body.height * 0.65);
-        hfcContainer.name = 'health-frame';
-        const left = scene.physics.add.sprite(0, 0, hfc.asset.key, 0);
-        left.name = 'health_frame_left';
-        const center = scene.physics.add.sprite(20, 0, hfc.asset.key, 1);
-        center.name = 'health_frame_center';
-        const right = scene.physics.add.sprite(20 + width - 40, 0, hfc.asset.key, 2);
-        right.name = 'health_frame_right';
-        const fill = scene.physics.add.sprite(
-          3,
-          0,
-          hfc.asset.key,
-          relation === Relation.Friendly ? 3 : relation === Relation.Hostile ? 5 : 4,
-        );
-        fill.name = 'health_frame_fill';
-        center.displayWidth = width - 40;
-        fill.displayWidth = (width - 6) * (health.current / health.max);
-
-        hfcContainer.add([left, center, right, fill]);
-        hfcContainer.iterate((sprite: Sprite) => {
-          sprite.setOrigin(0, 0);
-        });
+        const hfcContainer = scene.add.container(-(width / 2), -body.height * 0.5);
+        hfcContainer.name = 'health_frame';
+        const graphics = scene.add.graphics();
+        graphics.name = 'health_frame_grafics';
+        hfcContainer.add(graphics);
+        graphics.fillStyle(0x00, 1);
+        graphics.fillRoundedRect(0, 0, width, 9, 2);
+        graphics.fillStyle(0x8a0303, 1);
+        const healthRect = graphics.fillRoundedRect(1, 1, width - 2, 4, 2);
+        healthRect.name = 'health_frame_fill';
+        hfcContainer.add(healthRect);
+        graphics.fillStyle(0x3146b0, 1);
+        graphics.fillRoundedRect(1, 6, width - 2, 2, 2);
 
         appearance.sprites.add(hfcContainer);
       } else {
