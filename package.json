@@ -16,7 +16,7 @@
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000"
   },
   "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/colyseus/create-colyseus/issues"
   },
@@ -26,8 +26,6 @@
     "@colyseus/testing": "^0.15.0",
     "@types/express": "^4.17.1",
     "@types/mocha": "^10.0.1",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
     "mocha": "^10.2.0",
     "postcss": "^8.4.48",
     "postcss-plugin": "^1.0.0",
@@ -48,9 +46,6 @@
     "install": "^0.13.0",
     "mongodb": "6.10",
     "nanoid": "^5.0.8",
-    "phaser": "^3.86.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "rxjs": "^7.8.1"
+    "phaser": "^3.86.0"
   }
 }

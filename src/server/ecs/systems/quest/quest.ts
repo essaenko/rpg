@@ -7,7 +7,7 @@ import { getDistance } from '@shared/utils/physics';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 import { Position } from '@server/ecs/components/physics/position';
-import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/quests';
+import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/const';
 
 export class QuestSystem extends System {
   constructor() {

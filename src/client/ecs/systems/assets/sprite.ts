@@ -4,6 +4,7 @@ import { Sprite } from '@client/ecs/components/game/asset/sprite';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { collide } from '@server/core/helpers/map';
 import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Cursors } from '@client/utils/types';
 
 export class SpriteSystem extends System {
   constructor() {
@@ -17,6 +18,10 @@ export class SpriteSystem extends System {
 
       if (!sprite.sprite) {
         return;
+      }
+
+      if (sprite.sprite?.input && !sprite.sprite.input.cursor) {
+        sprite.sprite.input.cursor = `url(${Cursors.Loot}), pointer`;
       }
 
       sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height - 16;

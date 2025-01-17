@@ -27,37 +27,32 @@ export class MoveSystem extends System {
       if (velocity && move && speed) {
         velocity.x = 0;
         velocity.y = 0;
+        const vector = {
+          x: move.vector[0] ?? 0,
+          y: move.vector[1] ?? 0,
+        };
 
         if (appearance) {
           appearance.animation = Animation.Idle;
         }
 
-        if (move.vector[1] < 0) {
-          velocity.y += move.vector[1] * (speed.speed * DEFAULT_SPEED) * delta;
+        velocity.x = vector.x * (speed.speed * DEFAULT_SPEED) * delta;
+        velocity.y = vector.y * (speed.speed * DEFAULT_SPEED) * delta;
 
-          if (appearance) {
-            appearance.animation = Animation.MovingForward;
-          }
-        }
-        if (move.vector[1] > 0) {
-          velocity.y += move.vector[1] * (speed.speed * DEFAULT_SPEED) * delta;
-
-          if (appearance) {
+        if (appearance) {
+          if (vector.y > 0) {
             appearance.animation = Animation.MovingBackward;
           }
-        }
-        if (move.vector[0] < 0) {
-          velocity.x += move.vector[0] * (speed.speed * DEFAULT_SPEED) * delta;
-
-          if (appearance) {
-            appearance.animation = Animation.MovingLeft;
+          if (vector.y < 0) {
+            appearance.animation = Animation.MovingForward;
           }
-        }
-        if (move.vector[0] > 0) {
-          velocity.x += move.vector[0] * (speed.speed * DEFAULT_SPEED) * delta;
 
-          if (appearance) {
+          if (vector.x > 0.5) {
             appearance.animation = Animation.MovingRight;
+          }
+
+          if (vector.x < -0.5) {
+            appearance.animation = Animation.MovingLeft;
           }
         }
       }
@@ -81,16 +76,18 @@ export class MoveSystem extends System {
         velocity.y = patrol.vector.y * (speed.speed * DEFAULT_SPEED) * delta;
 
         if (appearance) {
-          if (velocity.y > 0) {
+          if (patrol.vector.y > 0) {
             appearance.animation = Animation.MovingBackward;
           }
-          if (velocity.y < 0) {
+          if (patrol.vector.y < 0) {
             appearance.animation = Animation.MovingForward;
           }
-          if (velocity.x > 0) {
+
+          if (patrol.vector.x > 0.5) {
             appearance.animation = Animation.MovingRight;
           }
-          if (velocity.x < 0) {
+
+          if (patrol.vector.x < -0.5) {
             appearance.animation = Animation.MovingLeft;
           }
         }

@@ -21,6 +21,7 @@ export class NetworkSystem extends System {
       if (player.id === scene.room.sessionId && !player.has('camera')) {
         const camera = new Camera();
         player.addComponent(camera);
+        scene.game.events.emit('player-connected');
       }
     });
 
@@ -48,7 +49,7 @@ export class NetworkSystem extends System {
   }
 
   initObject(entity: NetworkEntity, scene: WorldScene) {
-    const location = scene.registry.get('scene');
+    const location = scene.name;
     const object = entity.get<MapObject>('tag-object');
     const position = entity.get<Position>('position');
 
@@ -57,6 +58,7 @@ export class NetworkSystem extends System {
       const set = m.tilesets.find((set) => set.name === object.type);
       if (set) {
         const sprite = scene.physics.add.sprite(position.x, position.y, object.type, object.gid - set.firstgid);
+        sprite.setPipeline('Light2D');
         sprite.setOrigin(0, 0);
         sprite.depth = sprite.y + sprite.height;
         const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;

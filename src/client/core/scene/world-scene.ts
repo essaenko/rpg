@@ -1,9 +1,7 @@
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
-import Shader = Phaser.GameObjects.Shader;
-
-import CloudShaderSrc from '@client/shaders/cloud.glsl';
+import { IN_GAME_DAY_TIME } from '@client/utils/const';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -19,7 +17,7 @@ export class WorldScene extends NetworkScene {
   }
 
   preloadAssets() {
-    const name = this.registry.get('scene');
+    const name = this.name;
 
     if (isMapBundleKey(name)) {
       const {
@@ -39,7 +37,9 @@ export class WorldScene extends NetworkScene {
   }
 
   create() {
-    const name = this.registry.get('scene');
+    const name = this.name;
+    this.adjustCamera();
+    this.addLight();
 
     if (isMapBundleKey(name)) {
       const bundle = map[name];
@@ -51,10 +51,12 @@ export class WorldScene extends NetworkScene {
       phaserMap.layers
         .filter((layer) => layer.visible)
         .forEach((layer) => {
-          phaserMap.createLayer(
-            layer.name,
-            bundle.assets.map(({ key }) => key),
-          );
+          phaserMap
+            .createLayer(
+              layer.name,
+              bundle.assets.map(({ key }) => key),
+            )
+            .setPipeline('Light2D');
         });
 
       if (this.debugCollider) {
@@ -68,9 +70,51 @@ export class WorldScene extends NetworkScene {
       if (phaserMap.tilesets.some((set) => set.tileData)) {
         this.initTilesetAnimations(phaserMap);
       }
-
-      this.add.shader('clouds', 0, 0, phaserMap.width * phaserMap.tileWidth, phaserMap.height * phaserMap.tileHeight);
     }
+  }
+
+  adjustCamera() {
+    this.cameras.main.setZoom(this.scale.width / 1280);
+    this.cameras.main.setRoundPixels(true);
+  }
+
+  addLight() {
+    this.lights.enable();
+    this.lights.setAmbientColor(0xfbf3d5);
+    const color = {
+      day: Phaser.Display.Color.ValueToColor(0x2a2a55),
+      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),
+    };
+
+    const now = new Date();
+    const fn = (tween: { getValue: () => number }) => {
+      const value = tween.getValue();
+      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, value);
+      this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
+      this.lights.lights.forEach((light) => {
+        light.setIntensity(1.5 * (1 - value / 100));
+      });
+    };
+
+    this.tweens.addCounter({
+      from: (now.getMinutes() / 60) * 100,
+      to: 100,
+      ease: Phaser.Math.Easing.Sine.InOut,
+      duration: (60 - now.getMinutes()) * 60 * 1000,
+      repeat: 1,
+      onComplete: () => {
+        this.tweens.addCounter({
+          from: 0,
+          to: 100,
+          ease: Phaser.Math.Easing.Sine.InOut,
+          duration: IN_GAME_DAY_TIME,
+          repeat: -1,
+          yoyo: true,
+          onUpdate: fn,
+        });
+      },
+      onUpdate: fn,
+    });
   }
 
   update(now: number, delta: number) {

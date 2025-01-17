@@ -83,6 +83,19 @@ export class CollisionSystem extends System {
                       c: { x: b1.x + b1.width, y: b1.y },
                     });
                     break;
+                  case 5:
+                    collision = collide({ ...b1, width: b1.width / 2 }, b2);
+                    break;
+                  case 6:
+                    collision = collide({ ...b1, height: b1.height / 2, y: b1.y + b1.height / 2 }, b2);
+
+                    break;
+                  case 7:
+                    collision = collide({ ...b1, width: b1.width / 2, x: b1.x + b1.width / 2 }, b2);
+                    break;
+                  case 8:
+                    collision = collide({ ...b1, height: b1.height / 2 }, b2);
+                    break;
                 }
               }
             } else {

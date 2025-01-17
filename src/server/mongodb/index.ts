@@ -1,18 +1,27 @@
 import { Db, MongoClient, ServerApiVersion } from 'mongodb';
-import { EntitySave, isEntitySave, isItemSave, isQuest, ItemSave, QuestSave } from '@server/mongodb/types';
+import {
+  EntitySave,
+  isEntitySave,
+  isItem,
+  isLootTable,
+  isQuest,
+  ItemSave,
+  LootTableSave,
+  QuestSave,
+} from '@server/mongodb/types';
 import { Entity } from '@shared/ecs/entity';
 
 let instance: MDBClient;
 
 export class MDBClient {
-  private client: MongoClient;
-  private db: Db;
+  private _client: MongoClient;
+  private _db: Db;
 
   private constructor() {
-    this.client = new MongoClient(process.env['MONGO_DB_LOCATION_URI'], {
+    this._client = new MongoClient(process.env['MONGO_DB_LOCATION_URI'], {
       serverApi: ServerApiVersion.v1,
     });
-    this.db = this.client.db('rpg');
+    this._db = this._client.db('rpg');
 
     this.initializeDB();
   }
@@ -25,8 +34,25 @@ export class MDBClient {
     return instance;
   }
 
+  public get db() {
+    return this._db;
+  }
+
+  public async readLootTable(id: string): Promise<LootTableSave | undefined> {
+    const col = this._db.collection('loot-tables');
+    const config = await col.findOne({
+      id,
+    });
+
+    if (isLootTable(config)) {
+      return config;
+    }
+
+    return undefined;
+  }
+
   public async readQuest(id: string): Promise<QuestSave | undefined> {
-    const col = this.db.collection('quests');
+    const col = this._db.collection('quests');
     const config = await col.findOne({
       id,
     });
@@ -39,7 +65,7 @@ export class MDBClient {
   }
 
   public async readNPC(id: string): Promise<EntitySave | undefined> {
-    const col = this.db.collection('npc');
+    const col = this._db.collection('npc');
     const config = await col.findOne({
       id,
     });
@@ -55,7 +81,7 @@ export class MDBClient {
   }
 
   public async readPlayer(id: string): Promise<EntitySave | undefined> {
-    const col = this.db.collection('characters');
+    const col = this._db.collection('characters');
     const save = await col.findOne({
       id: id,
     });
@@ -71,20 +97,24 @@ export class MDBClient {
   }
 
   public async readItem(id: string): Promise<ItemSave | undefined> {
-    const col = this.db.collection('items');
+    const col = this._db.collection('items');
     const item = await col.findOne({
       id,
     });
 
-    if (isItemSave(item)) {
+    if (isItem(item)) {
       return item;
     }
 
     return undefined;
   }
 
+  public async itemExists(id: string): Promise<boolean> {
+    return !!(await this.db.collection('items').findOne({ id }));
+  }
+
   public async writePlayer(entity: Entity): Promise<void> {
-    const col = this.db.collection('characters');
+    const col = this._db.collection('characters');
     await col.updateOne(
       {
         id: entity.id,
@@ -104,7 +134,7 @@ export class MDBClient {
   }
 
   private async initializeDB() {
-    (await this.db.collections()).forEach(async (col) => {
+    (await this._db.collections()).forEach(async (col) => {
       if (!col.indexExists('id')) {
         await col.createIndex('id', {
           unique: true,

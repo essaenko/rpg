@@ -18,9 +18,13 @@ export class TargetSystem extends System {
       const tComponent = entity.get<Target>('target');
       const target = container.getEntity(tComponent.target);
 
-      if (target && !target.has('target-highlight')) {
-        target.addComponent(new TargetHighlight());
-        target.addComponent(new HealthFrame());
+      if (target) {
+        if (!target.has('health-frame')) {
+          target.addComponent(new HealthFrame());
+        }
+        if (!target.has('target-highlight')) {
+          target.addComponent(new TargetHighlight());
+        }
       }
     });
 

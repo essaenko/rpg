@@ -7,6 +7,9 @@ export enum TransportEventTypes {
   QuestFinished,
   AcceptQuest,
   RejectQuest,
+  Interaction,
+  Loot,
+  PickItem,
 }
 
 export enum InteractionTypes {

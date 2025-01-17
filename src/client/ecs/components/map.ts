@@ -10,6 +10,8 @@ import { Fraction } from '@client/ecs/components/game/fraction';
 import { QuestGiver } from '@client/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@client/ecs/components/game/quest/quest-log';
 import { Level } from '@client/ecs/components/game/level';
+import { InteractableObject } from '@client/ecs/components/game/mechanics/interactable-object';
+import { Loot } from './game/mechanics/loot';
 
 export const Components = {
   body: Body,
@@ -24,5 +26,7 @@ export const Components = {
   'quest-giver': QuestGiver,
   'quest-log': QuestLog,
   level: Level,
+  'interactable-object': InteractableObject,
+  loot: Loot,
   // 'spell-book'
 } as const;

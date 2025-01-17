@@ -5,6 +5,7 @@ import { InteractionTypes } from '@shared/types';
 export class InteractableObject extends Component {
   @type('number') action: InteractionTypes = null;
   @type('string') loot: string = null;
+  @type('boolean') locked: boolean = false;
 
   constructor() {
     super('interactable-object');

@@ -6,9 +6,6 @@ export class Boot extends Scene {
     super('boot');
   }
 
-  init(): void {
-    this.registry.set('scene', 'boot');
-  }
   preload(): void {}
   async create(): Promise<void> {
     const client = this.registry.get('client');
@@ -29,5 +26,7 @@ export class Boot extends Scene {
         }
       }
     }
+
+    
   }
 }

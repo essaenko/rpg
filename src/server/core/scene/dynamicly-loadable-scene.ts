@@ -47,7 +47,9 @@ export class DynamicallyLoadableScene extends Scene {
 
     const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
-      this.initEntity(save, client.sessionId);
+      const entity = new Entity();
+      entity.init(save, client.sessionId);
+      this.addEntity(entity);
     } else {
       client.error(1024, `Can't load player`);
     }
@@ -60,28 +62,6 @@ export class DynamicallyLoadableScene extends Scene {
 
     entity.id = client.userData?.id as string;
     await MDBClient.instance().writePlayer(entity);
-  }
-
-  initEntityComponents(entity: Entity, state: EntitySave) {
-    state.components.forEach((cState) => {
-      if (isComponentName(cState.name)) {
-        const Factory = ComponentMap[cState.name];
-        const component = new Factory();
-        component.init(cState);
-
-        entity.addComponent(component);
-      }
-    });
-  }
-
-  initEntity(state: EntitySave, id?: string) {
-    const entity = new Entity();
-    entity.id = id ?? nanoid(9);
-
-    this.initEntityComponents(entity, state);
-    this.addEntity(entity);
-
-    return entity;
   }
 
   async processMapNPC() {
@@ -102,7 +82,8 @@ export class DynamicallyLoadableScene extends Scene {
                 x: spawn.x,
                 y: spawn.y,
               });
-              const entity = this.initEntity(config);
+              const entity = new Entity();
+              entity.init(config, config.id);
               const route = l.objects.find((o) => o.name === 'route');
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
@@ -113,6 +94,8 @@ export class DynamicallyLoadableScene extends Scene {
 
                 entity.addComponent(patrol);
               }
+
+              this.addEntity(entity);
             }
           }
         }
@@ -174,7 +157,7 @@ export class DynamicallyLoadableScene extends Scene {
 
             switch (action.value) {
               case 'collect': {
-                const loot = object.properties.find((p) => p.name === 'loot');
+                const loot = object.properties.find((p) => p.name === 'value');
 
                 if (loot) {
                   const comp = new InteractableObject();

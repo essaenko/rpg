@@ -12,13 +12,13 @@ export class QuestLog extends NetworkComponent {
   observe(schema: QuestLogSchema): void {
     schema.finished.onAdd((item) => {
       this.finished.push(item);
-    });
+    }, false);
     schema.finished.onRemove((item) => {
       this.finished.splice(this.finished.indexOf(item), 1);
     });
     schema.ongoing.onAdd((item) => {
       this.ongoing.push(item);
-    });
+    }, false);
     schema.ongoing.onRemove((item) => {
       this.ongoing.splice(this.ongoing.indexOf(item), 1);
     });

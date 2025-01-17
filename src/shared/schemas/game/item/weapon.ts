@@ -1,6 +1,7 @@
 import { EquipItem } from '@shared/schemas/game/item/equip-item';
 import { type } from '@colyseus/schema';
 import { WeaponHand, WeaponType } from '@shared/types';
+import { WeaponSave } from '@server/mongodb/types';
 
 export class Weapon extends EquipItem {
   constructor() {
@@ -15,15 +16,14 @@ export class Weapon extends EquipItem {
   @type('number') hand: WeaponHand = null;
   @type('number') type: WeaponType = null;
 
-  init(state: Record<string, any>) {
+  init(state: WeaponSave) {
     super.init(state);
 
-    Object.keys(this).forEach((key) => {
-      if (key in state) {
-        // @ts-ignore
-        this[key] = state[key];
-      }
-    });
+    this.attackMax = state.attackMax;
+    this.attackMin = state.attackMin;
+    this.speed = state.speed;
+    this.hand = state.hand;
+    this.type = state.type;
   }
 
   damage(): number {

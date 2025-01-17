@@ -5,12 +5,13 @@ import { WorldScene } from '@client/core/scene/world-scene';
 import { QuestLog } from '@client/ecs/components/game/quest/quest-log';
 import { QuestGiver } from '@client/ecs/components/game/quest/quest-giver';
 import { passConditions } from '@client/utils/quest';
-import { QuestGiverStates } from '@client/utils/types';
+import { Cursors, QuestGiverStates } from '@client/utils/types';
 import { TransportEventTypes } from '@shared/types';
 import { Action } from '@client/ecs/components/game/mechanics/action';
 import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
-import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/quests';
+import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/const';
+import { Appearance } from '@client/ecs/components/game/asset/appearance';
 
 export class QuestGiverSystem extends System {
   constructor() {
@@ -21,6 +22,8 @@ export class QuestGiverSystem extends System {
     container.query(['quest-giver']).forEach((entity) => {
       let state = entity.get<QuestGiverState>('quest-giver-state');
       const giver = entity.get<QuestGiver>('quest-giver');
+      const appearance = entity.get<Appearance>('appearance');
+      const body = appearance?.sprites?.getByName('body') as Phaser.Physics.Arcade.Sprite;
       const player = container.getEntity(scene.room.sessionId);
       const log = player.get<QuestLog>('quest-log');
       const availableQuests = giver?.quests.filter((quest) => {
@@ -36,8 +39,8 @@ export class QuestGiverSystem extends System {
       if (availableQuests.length || ongoingQuests.length || finishedQuests.length) {
         if (!state) {
           state = new QuestGiverState();
+          entity.addComponent(state);
         }
-        entity.addComponent(state);
 
         if (state.state !== QuestGiverStates.QuestAvailable && availableQuests.length) {
           state.state = QuestGiverStates.QuestAvailable;
@@ -72,6 +75,20 @@ export class QuestGiverSystem extends System {
 
         if (state.state !== QuestGiverStates.QuestFinished && finishedQuests.length) {
           state.state = QuestGiverStates.QuestFinished;
+        }
+
+        if (body && body.input) {
+          switch (state.state) {
+            case QuestGiverStates.QuestAvailable:
+              body.input.cursor = `url(${Cursors.AwailableQiest}), pointer`;
+              break;
+            case QuestGiverStates.QuestInProgress:
+              body.input.cursor = `url(${Cursors.Default}), pointer`;
+              break;
+            case QuestGiverStates.QuestFinished:
+              body.input.cursor = `url(${Cursors.CompletedQuest}), pointer`;
+              break;
+          }
         }
       }
     });

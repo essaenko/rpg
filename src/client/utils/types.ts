@@ -1,5 +1,10 @@
 import { Directions, SpellBinding } from '@shared/types';
 
+import CursorDefault from '@client/assets/cursor/Cursor Default.png';
+import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
+import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
+import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';
+
 export enum Keys {
   Spell1 = 'spell1', // Q
   Spell2 = 'spell2', // E
@@ -49,4 +54,11 @@ export enum QuestGiverStates {
   QuestFinished,
   QuestUnawailable,
   QuestInProgress,
+}
+
+export enum Cursors {
+  Default = CursorDefault,
+  Loot = CursorLoot,
+  AwailableQiest = CursorQuestAwailable,
+  CompletedQuest = CursorQuestComplete,
 }

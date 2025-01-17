@@ -1,7 +1,7 @@
 import { Item } from '@shared/schemas/game/item/item';
 import { type } from '@colyseus/schema';
-import { isEquipItemSlot } from '@shared/schemas/game/item/helpers';
 import { EquipSlot } from '@shared/types';
+import { EquipItemSave } from '@server/mongodb/types';
 
 export class EquipItem extends Item {
   constructor() {
@@ -11,10 +11,8 @@ export class EquipItem extends Item {
   @type('number') slot: EquipSlot;
   @type('string') effect: string = null;
 
-  init(state: Record<string, any>): void {
-    const slot = state.slot;
-    if (isEquipItemSlot(slot)) {
-      this.slot = slot;
-    }
+  init(state: EquipItemSave): void {
+    this.slot = state.slot;
+    this.effect = state.effect;
   }
 }
