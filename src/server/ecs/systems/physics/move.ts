@@ -28,8 +28,8 @@ export class MoveSystem extends System {
         velocity.x = 0;
         velocity.y = 0;
         const vector = {
-          x: move.vector[0] ?? 0,
-          y: move.vector[1] ?? 0,
+          x: move.angle ? Math.cos(move.angle) : 0,
+          y: move.angle ? Math.sin(move.angle) : 0,
         };
 
         if (appearance) {

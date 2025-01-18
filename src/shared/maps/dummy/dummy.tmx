@@ -9,11 +9,11 @@
  <tileset firstgid="1057" name="hills" tilewidth="32" tileheight="32" tilecount="400" columns="25">
   <image source="../../../client/assets/tilesets/fantasy-lands/hills.png" width="800" height="512"/>
  </tileset>
- <tileset firstgid="1457" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+ <tileset firstgid="1457" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="9" columns="9">
   <properties>
    <property name="required" type="bool" value="false"/>
   </properties>
-  <image source="../../../client/assets/tilesets/dummy-tile.png" width="160" height="32"/>
+  <image source="../../../client/assets/tilesets/dummy-tile.png" width="288" height="32"/>
   <tile id="0">
    <properties>
     <property name="collider" type="int" value="0"/>
@@ -39,11 +39,31 @@
     <property name="collider" type="int" value="4"/>
    </properties>
   </tile>
+  <tile id="5">
+   <properties>
+    <property name="collider" type="int" value="5"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="collider" type="int" value="6"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="collider" type="int" value="7"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="collider" type="int" value="8"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="1462" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12" objectalignment="topleft">
+ <tileset firstgid="1466" name="ground_dec_props" tilewidth="32" tileheight="32" tilecount="360" columns="12" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/ground_dec_props.png" width="384" height="960"/>
  </tileset>
- <tileset firstgid="1822" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
+ <tileset firstgid="1826" name="decorations_medium" tilewidth="64" tileheight="64" tilecount="7" columns="7" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/decorations_medium.png" width="448" height="64"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -81,7 +101,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="1829" name="tree" tilewidth="128" tileheight="128" tilecount="36" columns="4" objectalignment="topleft">
+ <tileset firstgid="1833" name="tree" tilewidth="128" tileheight="128" tilecount="36" columns="4" objectalignment="topleft">
   <grid orientation="orthogonal" width="32" height="32"/>
   <image source="../../../client/assets/tilesets/fantasy-lands/Tree_A_v1.png" width="512" height="1152"/>
   <tile id="11">
@@ -142,7 +162,7 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1865" name="small-buildings" tilewidth="160" tileheight="192" tilecount="3" columns="3" objectalignment="topleft">
+ <tileset firstgid="1869" name="small-buildings" tilewidth="160" tileheight="192" tilecount="3" columns="3" objectalignment="topleft">
   <image source="../../../client/assets/tilesets/fantasy-lands/small_buildings.png" width="480" height="192"/>
   <tile id="0">
    <objectgroup draworder="index" id="2">
@@ -215,105 +235,105 @@
 </data>
  </layer>
  <objectgroup id="5" name="objects">
-  <object id="8" type="decorations_medium" gid="1822" x="607.333" y="768" width="64" height="64"/>
-  <object id="9" type="decorations_medium" gid="1824" x="894.667" y="766" width="64" height="64"/>
-  <object id="10" type="decorations_medium" gid="1823" x="606" y="996" width="64" height="64"/>
-  <object id="17" type="tree" gid="1840" x="964.5" y="581.5" width="128" height="128"/>
-  <object id="18" type="tree" gid="1852" x="980.5" y="954.5" width="128" height="128"/>
-  <object id="19" type="tree" gid="1852" x="294" y="769" width="128" height="128"/>
-  <object id="20" type="tree" gid="1852" x="256" y="449" width="128" height="128"/>
-  <object id="21" type="tree" gid="1864" x="489" y="225.5" width="128" height="128"/>
-  <object id="22" type="tree" gid="1864" x="1190" y="97.5" width="128" height="128"/>
-  <object id="23" type="tree" gid="1864" x="1384" y="295" width="128" height="128"/>
-  <object id="24" type="tree" gid="1840" x="1439" y="360" width="128" height="128"/>
-  <object id="25" type="tree" gid="1840" x="1392" y="433" width="128" height="128"/>
-  <object id="26" type="tree" gid="1840" x="1446" y="517.5" width="128" height="128"/>
-  <object id="27" type="tree" gid="1840" x="1396" y="602" width="128" height="128"/>
-  <object id="28" type="tree" gid="1840" x="1455.5" y="686.5" width="128" height="128"/>
-  <object id="29" type="tree" gid="1840" x="1409" y="761" width="128" height="128"/>
-  <object id="30" type="tree" gid="1840" x="1410" y="839" width="128" height="128"/>
-  <object id="31" type="tree" gid="1840" x="1455.5" y="914.5" width="128" height="128"/>
-  <object id="32" type="tree" gid="1840" x="1462.5" y="994" width="128" height="128"/>
-  <object id="33" type="tree" gid="1840" x="1213" y="960.5" width="128" height="128"/>
-  <object id="34" type="tree" gid="1840" x="803.5" y="572.5" width="128" height="128"/>
-  <object id="35" type="tree" gid="1840" x="973" y="718.5" width="128" height="128"/>
-  <object id="36" type="tree" gid="1840" x="574.5" y="576.75" width="128" height="128"/>
-  <object id="57" type="small-buildings" gid="1865" x="298.667" y="992.667" width="160" height="192"/>
-  <object id="58" type="small-buildings" gid="1866" x="848" y="851.333" width="160" height="192"/>
-  <object id="59" type="small-buildings" gid="1867" x="48" y="1022" width="160" height="192"/>
-  <object id="67" type="ground_dec_props" gid="1735" x="289" y="738.333" width="32" height="32">
+  <object id="8" type="decorations_medium" gid="1826" x="607.333" y="768" width="64" height="64"/>
+  <object id="9" type="decorations_medium" gid="1828" x="894.667" y="766" width="64" height="64"/>
+  <object id="10" type="decorations_medium" gid="1827" x="606" y="996" width="64" height="64"/>
+  <object id="17" type="tree" gid="1844" x="964.5" y="581.5" width="128" height="128"/>
+  <object id="18" type="tree" gid="1856" x="980.5" y="954.5" width="128" height="128"/>
+  <object id="19" type="tree" gid="1856" x="294" y="769" width="128" height="128"/>
+  <object id="20" type="tree" gid="1856" x="256" y="449" width="128" height="128"/>
+  <object id="21" type="tree" gid="1868" x="489" y="225.5" width="128" height="128"/>
+  <object id="22" type="tree" gid="1868" x="1190" y="97.5" width="128" height="128"/>
+  <object id="23" type="tree" gid="1868" x="1384" y="295" width="128" height="128"/>
+  <object id="24" type="tree" gid="1844" x="1439" y="360" width="128" height="128"/>
+  <object id="25" type="tree" gid="1844" x="1392" y="433" width="128" height="128"/>
+  <object id="26" type="tree" gid="1844" x="1446" y="517.5" width="128" height="128"/>
+  <object id="27" type="tree" gid="1844" x="1396" y="602" width="128" height="128"/>
+  <object id="28" type="tree" gid="1844" x="1455.5" y="686.5" width="128" height="128"/>
+  <object id="29" type="tree" gid="1844" x="1409" y="761" width="128" height="128"/>
+  <object id="30" type="tree" gid="1844" x="1410" y="839" width="128" height="128"/>
+  <object id="31" type="tree" gid="1844" x="1455.5" y="914.5" width="128" height="128"/>
+  <object id="32" type="tree" gid="1844" x="1462.5" y="994" width="128" height="128"/>
+  <object id="33" type="tree" gid="1844" x="1213" y="960.5" width="128" height="128"/>
+  <object id="34" type="tree" gid="1844" x="803.5" y="572.5" width="128" height="128"/>
+  <object id="35" type="tree" gid="1844" x="973" y="718.5" width="128" height="128"/>
+  <object id="36" type="tree" gid="1844" x="574.5" y="576.75" width="128" height="128"/>
+  <object id="57" type="small-buildings" gid="1869" x="298.667" y="992.667" width="160" height="192"/>
+  <object id="58" type="small-buildings" gid="1870" x="848" y="851.333" width="160" height="192"/>
+  <object id="59" type="small-buildings" gid="1871" x="48" y="1022" width="160" height="192"/>
+  <object id="67" type="ground_dec_props" gid="1739" x="289" y="738.333" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="68" type="ground_dec_props" gid="1735" x="639.5" y="735.667" width="32" height="32">
+  <object id="68" type="ground_dec_props" gid="1739" x="639.5" y="735.667" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="69" type="ground_dec_props" gid="1732" x="863.667" y="738.5" width="32" height="32">
+  <object id="69" type="ground_dec_props" gid="1736" x="863.667" y="738.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="70" type="ground_dec_props" gid="1731" x="960.333" y="699" width="32" height="32">
+  <object id="70" type="ground_dec_props" gid="1735" x="960.333" y="699" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="71" type="ground_dec_props" gid="1731" x="318" y="664.5" width="32" height="32">
+  <object id="71" type="ground_dec_props" gid="1735" x="318" y="664.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="72" type="ground_dec_props" gid="1731" x="224.5" y="565.5" width="32" height="32">
+  <object id="72" type="ground_dec_props" gid="1735" x="224.5" y="565.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="73" type="ground_dec_props" gid="1732" x="383.5" y="483.5" width="32" height="32">
+  <object id="73" type="ground_dec_props" gid="1736" x="383.5" y="483.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="74" type="ground_dec_props" gid="1732" x="288.5" y="388" width="32" height="32">
+  <object id="74" type="ground_dec_props" gid="1736" x="288.5" y="388" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="75" type="ground_dec_props" gid="1733" x="128.5" y="222.5" width="32" height="32">
+  <object id="75" type="ground_dec_props" gid="1737" x="128.5" y="222.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="76" type="ground_dec_props" gid="1735" x="323" y="131.5" width="32" height="32">
+  <object id="76" type="ground_dec_props" gid="1739" x="323" y="131.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="77" type="ground_dec_props" gid="1734" x="128" y="120.5" width="32" height="32">
+  <object id="77" type="ground_dec_props" gid="1738" x="128" y="120.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="78" type="ground_dec_props" gid="1734" x="64.5" y="120.5" width="32" height="32">
+  <object id="78" type="ground_dec_props" gid="1738" x="64.5" y="120.5" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="79" gid="1734" x="32.5" y="346.5" width="32" height="32"/>
+  <object id="79" gid="1738" x="32.5" y="346.5" width="32" height="32"/>
  </objectgroup>
  <group id="12" name="npc">
   <objectgroup id="11" name="QHp67chim">
@@ -392,7 +412,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="collision" width="50" height="50" opacity="0.5">
+ <layer id="3" name="collision" width="50" height="50" visible="0" opacity="0.5">
   <data encoding="csv">
 1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
@@ -403,10 +423,10 @@
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1465,1465,1465,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1458,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1458,1459,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1457,1457,1457,1457,0,0,0,1459,0,0,0,0,0,1461,1460,0,0,0,0,0,1458,1459,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,1461,1465,1465,1465,1465,1465,1465,0,0,1464,1459,0,0,0,0,0,1461,1460,0,0,0,0,0,1458,1459,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,1461,1460,0,0,0,0,0,0,0,1458,1459,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,1457,0,0,0,1461,1460,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,1461,1460,0,0,1461,1460,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,1457,
@@ -420,18 +440,18 @@
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1458,0,0,0,1460,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1458,1462,0,1464,1460,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,1458,1457,1457,1457,1460,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1465,1459,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1457,1457,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1461,1465,1465,1459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1458,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1460,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,1465,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1465,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
-1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
+1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1463,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,1458,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1457,1460,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,
 1457,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1457,

@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: Scale.FIT,
       autoCenter: Center.CENTER_BOTH,
     },
+    fps: {
+      min: 30,
+    },
     callbacks: {
       preBoot: (game) => {
         game.registry.set('client', client);

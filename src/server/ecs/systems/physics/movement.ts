@@ -12,14 +12,15 @@ export class MovementSystem extends System {
   constructor() {
     super('movement');
   }
+
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
     if (type === TransportEventTypes.Move) {
-      container.query(['move']).forEach((entity) => {
-        if (entity.id === client.sessionId) {
-          const move = entity.get<Move>('move');
-          move.vector = message;
-        }
-      });
+      const player = container.getEntity(client.sessionId);
+      const move = player?.get<Move>('move');
+
+      if (move) {
+        move.angle = message[0] || null;
+      }
     }
   }
 
