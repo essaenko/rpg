@@ -11,7 +11,9 @@ import { QuestGiver } from '@client/ecs/components/game/quest/quest-giver';
 import { QuestLog } from '@client/ecs/components/game/quest/quest-log';
 import { Level } from '@client/ecs/components/game/level';
 import { InteractableObject } from '@client/ecs/components/game/mechanics/interactable-object';
-import { Loot } from './game/mechanics/loot';
+import { Loot } from './game/item/loot';
+import { Name } from './game/ui/name';
+import { Inventory } from './game/item/inventory';
 
 export const Components = {
   body: Body,
@@ -28,5 +30,7 @@ export const Components = {
   level: Level,
   'interactable-object': InteractableObject,
   loot: Loot,
+  name: Name,
+  inventory: Inventory,
   // 'spell-book'
 } as const;

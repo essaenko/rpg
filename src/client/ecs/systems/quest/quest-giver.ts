@@ -12,6 +12,7 @@ import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
 import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/const';
 import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { QuestRequest } from '@client/ecs/components/game/ui/quest-request';
 
 export class QuestGiverSystem extends System {
   constructor() {
@@ -53,7 +54,12 @@ export class QuestGiverSystem extends System {
               getDistance(entity.get<Position>('position'), player.get<Position>('position')) <=
               QUEST_GIVER_ACTION_DISTANCE
             ) {
-              scene.room.send(TransportEventTypes.AcceptQuest, [entity.id, availableQuests[0].id]);
+              player.removeComponent('quest-request');
+              const qr = new QuestRequest();
+              qr.quest = availableQuests[0];
+              qr.giver = entity.id;
+
+              player.addComponent(qr);
               entity.removeComponent(action);
             }
           };

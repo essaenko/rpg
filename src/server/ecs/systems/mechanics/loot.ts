@@ -1,6 +1,6 @@
 import { Scene } from '@server/core/scene/scene';
 import { Inventory } from '@server/ecs/components/game/item/inventory';
-import { Loot } from '@server/ecs/components/game/mechanics/loot';
+import { Loot } from '@server/ecs/components/game/item/loot';
 import { ECSContainer } from '@shared/ecs';
 import { System } from '@shared/ecs/system';
 import { TransportEventTypes } from '@shared/types';
@@ -31,6 +31,10 @@ export class LootSystem extends System {
         const item = loot.items.find(({ id }) => id === itemID);
         inventory.items.push(item);
         loot.items.splice(loot.items.indexOf(item), 1);
+
+        if (loot.items.length === 0) {
+          player.removeComponent(loot);
+        }
       }
     }
   }

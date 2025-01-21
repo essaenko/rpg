@@ -4,7 +4,7 @@ import { getDistance } from '@shared/utils/physics';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
-import { Fraction } from '@server/ecs/components/game/fraction';
+import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Position } from '@server/ecs/components/physics/position';
 
 export abstract class Spell extends Schema {

@@ -12,7 +12,7 @@ import { MovementSystem } from '@client/ecs/systems/physics/movement';
 import { AnimationSystem } from '@client/ecs/systems/assets/animation';
 import { CameraSystem } from '@client/ecs/systems/camera';
 import { TargetSystem } from '@client/ecs/systems/combat/target';
-import { HealthSystem } from '@client/ecs/systems/assets/health';
+import { GraphicsSystem } from '@client/ecs/systems/assets/graphics';
 import { AppearanceSystem } from '@client/ecs/systems/assets/appearance';
 import { QuestGiverSystem } from '@client/ecs/systems/quest/quest-giver';
 import { InteractionSystem } from '@client/ecs/systems/mechanics/interaction';
@@ -39,7 +39,7 @@ export class NetworkScene extends Scene {
     this.ecs.addSystem(new SpriteSystem());
 
     this.ecs.addSystem(new TargetSystem());
-    this.ecs.addSystem(new HealthSystem());
+    this.ecs.addSystem(new GraphicsSystem());
     this.ecs.addSystem(new AppearanceSystem());
 
     this.ecs.addSystem(new QuestGiverSystem());

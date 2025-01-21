@@ -1,6 +1,6 @@
 import { Schema, type } from '@colyseus/schema';
 import { Entity } from '@shared/ecs/entity';
-import { Level } from '@server/ecs/components/game/level';
+import { Level } from '@server/ecs/components/game/progression/level';
 import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 
 export class QuestCondition extends Schema {

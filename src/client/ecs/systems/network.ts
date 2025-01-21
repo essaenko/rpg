@@ -21,7 +21,7 @@ export class NetworkSystem extends System {
       if (player.id === scene.room.sessionId && !player.has('camera')) {
         const camera = new Camera();
         player.addComponent(camera);
-        scene.game.events.emit('player-connected');
+        scene.registry.set('player', player);
       }
     });
 

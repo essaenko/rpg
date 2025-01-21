@@ -13,12 +13,65 @@ import Sprite = Phaser.Physics.Arcade.Sprite;
 import { Appearance } from '@client/ecs/components/game/asset/appearance';
 import Container = Phaser.GameObjects.Container;
 import { Target } from '@client/ecs/components/game/combat/target';
+import { Pointer } from '@client/ecs/components/physics/pointer';
+import { TargetHighlight } from '@client/ecs/components/game/target-highlight';
+import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
-export class HealthSystem extends System {
+export class GraphicsSystem extends System {
   constructor() {
-    super('health');
+    super('graphics');
   }
   onUpdate(scene: WorldScene, container: ECSContainer) {
+    container.query(['target-highlight']).forEach((entity) => {
+      const highlight = entity.get<TargetHighlight>('target-highlight');
+      const position = entity.get<Position>('position');
+      const body = entity.get<Body>('body');
+
+      const originX = position.x;
+      const originY = position.y + body.height * 0.45;
+
+      if (body && position) {
+        if (!highlight.rect) {
+          const g = scene.add.graphics({
+            x: 0,
+            y: 0,
+            lineStyle: {
+              width: 1,
+              color: 0xffd600,
+              alpha: 1,
+            },
+          });
+          g.x = originX;
+          g.y = originY;
+          g.strokeEllipse(0, 0, body.width * 0.7, body.height * 0.35);
+          highlight.rect = g;
+        }
+
+        highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, DEFAULT_LERP_VALUE);
+        highlight.rect.y = Phaser.Math.Linear(highlight.rect.y, originY, DEFAULT_LERP_VALUE);
+      }
+    });
+    container.query(['pointer']).forEach((entity) => {
+      const pointer = entity.get<Pointer>('pointer');
+
+      if (!pointer.frame) {
+        pointer.frame = scene.add.graphics({
+          x: pointer.x,
+          y: pointer.y,
+          lineStyle: {
+            width: 1,
+            color: 0xffd600,
+            alpha: 1,
+          },
+        });
+        pointer.frame.strokeCircle(0, 25, 15);
+      }
+
+      if (pointer.x !== pointer.frame.x || pointer.y !== pointer.frame.y) {
+        pointer.frame.x = pointer.x;
+        pointer.frame.y = pointer.y;
+      }
+    });
     container.query(['health', 'position', 'body', 'health-frame', 'appearance']).forEach((entity) => {
       const hfc = entity.get<HealthFrame>('health-frame');
       const appearance = entity.get<Appearance>('appearance');

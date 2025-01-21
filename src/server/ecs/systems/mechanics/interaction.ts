@@ -1,6 +1,6 @@
 import { Scene } from '@server/core/scene/scene';
 import { InteractableObject } from '@server/ecs/components/game/mechanics/interactable-object';
-import { Loot } from '@server/ecs/components/game/mechanics/loot';
+import { Loot } from '@server/ecs/components/game/item/loot';
 import { MDBClient } from '@server/mongodb';
 import { rollLoot } from '@server/utils/game/roll';
 import { ECSContainer } from '@shared/ecs';

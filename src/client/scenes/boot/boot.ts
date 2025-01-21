@@ -8,6 +8,7 @@ export class Boot extends Scene {
 
   preload(): void {}
   async create(): Promise<void> {
+    // await this.game.canvas.requestFullscreen();
     const client = this.registry.get('client');
 
     if (client && client instanceof Client) {
@@ -26,7 +27,5 @@ export class Boot extends Scene {
         }
       }
     }
-
-    
   }
 }

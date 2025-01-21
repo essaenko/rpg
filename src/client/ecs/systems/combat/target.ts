@@ -27,35 +27,5 @@ export class TargetSystem extends System {
         }
       }
     });
-
-    container.query(['target-highlight']).forEach((entity) => {
-      const highlight = entity.get<TargetHighlight>('target-highlight');
-      const position = entity.get<Position>('position');
-      const body = entity.get<Body>('body');
-
-      const originX = position.x;
-      const originY = position.y + body.height * 0.45;
-
-      if (body && position) {
-        if (!highlight.rect) {
-          const g = scene.add.graphics({
-            x: 0,
-            y: 0,
-            lineStyle: {
-              width: 1,
-              color: 0xffd600,
-              alpha: 1,
-            },
-          });
-          g.x = originX;
-          g.y = originY;
-          g.strokeEllipse(0, 0, body.width * 0.7, body.height * 0.35);
-          highlight.rect = g;
-        }
-
-        highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, DEFAULT_LERP_VALUE);
-        highlight.rect.y = Phaser.Math.Linear(highlight.rect.y, originY, DEFAULT_LERP_VALUE);
-      }
-    });
   }
 }

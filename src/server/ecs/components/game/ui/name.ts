@@ -11,8 +11,8 @@ export class Name extends Component {
   @type('string') value: string = '';
 
   init(state: Record<string, any>): void {
-    if ('name' in state) {
-      this.name = state.name;
+    if ('value' in state) {
+      this.value = state.value;
     }
   }
 }
