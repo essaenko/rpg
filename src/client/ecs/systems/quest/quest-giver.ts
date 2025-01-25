@@ -2,7 +2,7 @@ import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { QuestGiverState } from '@client/ecs/components/game/quest/quest-giver-state';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { QuestLog } from '@client/ecs/components/game/quest/quest-log';
+import { QuestBook } from '@client/ecs/components/game/quest/quest-book';
 import { QuestGiver } from '@client/ecs/components/game/quest/quest-giver';
 import { passConditions } from '@client/utils/quest';
 import { Cursors, QuestGiverStates } from '@client/utils/types';
@@ -11,7 +11,7 @@ import { Action } from '@client/ecs/components/game/mechanics/action';
 import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
 import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/const';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { QuestRequest } from '@client/ecs/components/game/ui/quest-request';
 
 export class QuestGiverSystem extends System {
@@ -26,16 +26,16 @@ export class QuestGiverSystem extends System {
       const appearance = entity.get<Appearance>('appearance');
       const body = appearance?.sprites?.getByName('body') as Phaser.Physics.Arcade.Sprite;
       const player = container.getEntity(scene.room.sessionId);
-      const log = player.get<QuestLog>('quest-log');
+      const log = player.get<QuestBook>('quest-book');
       const availableQuests = giver?.quests.filter((quest) => {
         return (
-          !log?.finished.includes(quest.id) &&
-          !log?.ongoing.includes(quest.id) &&
+          !log?.finished.some(({ id }) => id === quest.id) &&
+          !log?.ongoing.some(({ id }) => id === quest.id) &&
           passConditions(quest.conditions, player)
         );
       });
-      const ongoingQuests = giver?.quests.filter((quest) => log?.ongoing.includes(quest.id));
-      const finishedQuests = giver?.quests.filter((quest) => log?.finished.includes(quest.id));
+      const ongoingQuests = giver?.quests.filter((quest) => log?.ongoing.some(({ id }) => quest.id === id));
+      const finishedQuests = giver?.quests.filter((quest) => log?.finished.some(({ id }) => id === quest.id));
 
       if (availableQuests.length || ongoingQuests.length || finishedQuests.length) {
         if (!state) {

@@ -1,7 +1,7 @@
 import { ECSContainer } from '@client/core/ecs';
 import { System } from '@client/core/ecs/system';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
-import { Sprite } from '@client/ecs/components/game/asset/sprite';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
+import { Sprite } from '@client/ecs/components/game/visual/sprite';
 import { Action } from '@client/ecs/components/game/mechanics/action';
 
 export class ActionSystem extends System {

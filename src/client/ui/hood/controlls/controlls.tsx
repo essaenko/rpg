@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import css from './controlls.module.css';
-import { InventoryUI } from './inventory';
+import { InventoryUI } from '../inventory/inventory';
 
 export const Controlls: React.FC = () => {
   const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);

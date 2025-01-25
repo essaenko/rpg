@@ -1,49 +1,35 @@
-import { Directions, SpellBinding } from '@shared/types';
+import { Directions } from '@shared/types';
 
 import CursorDefault from '@client/assets/cursor/Cursor Default.png';
 import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
 import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
 import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';
 
-export enum Keys {
-  Spell1 = 'spell1', // Q
-  Spell2 = 'spell2', // E
-  Spell3 = 'spell3', // R
-  Spell4 = 'spell4', // T
-  Spell5 = 'spell5', // F
-  Spell6 = 'spell6', // 1
-  Spell7 = 'spell7', // 2
-  Spell8 = 'spell8', // 3
-  Spell9 = 'spell9', // 4
-  Spell10 = 'spell10', // 5
+export enum Spells {
+  Spell1 = 1,
+  Spell2,
+  Spell3,
+  Spell4,
+  Spell5,
+  Spell6,
+  Spell7,
+  Spell8,
+  Spell9,
+  Spell10,
 }
 
-export type ServerKeyValues = Directions | SpellBinding;
-
-export const clientKeyToServerValue = (key: Keys): ServerKeyValues => {
-  switch (key) {
-    case Keys.Spell1:
-      return SpellBinding.Spell1;
-    case Keys.Spell2:
-      return SpellBinding.Spell2;
-    case Keys.Spell3:
-      return SpellBinding.Spell3;
-    case Keys.Spell4:
-      return SpellBinding.Spell4;
-    case Keys.Spell5:
-      return SpellBinding.Spell5;
-    case Keys.Spell6:
-      return SpellBinding.Spell6;
-    case Keys.Spell7:
-      return SpellBinding.Spell7;
-    case Keys.Spell8:
-      return SpellBinding.Spell8;
-    case Keys.Spell9:
-      return SpellBinding.Spell9;
-    case Keys.Spell10:
-      return SpellBinding.Spell10;
-  }
-};
+export enum Keys {
+  KeyQ = 'KeyQ',
+  KeyW = 'KeyW',
+  KeyE = 'KeyE',
+  KeyR = 'KeyR',
+  KeyF = 'KeyF',
+  Digit1 = 'Digit1',
+  Digit2 = 'Digit2',
+  Digit3 = 'Digit3',
+  Digit4 = 'Digit4',
+  Digit5 = 'Digit5',
+}
 
 export const isKeyOf = (key: string | number | symbol, target: any): key is keyof typeof target => {
   return key in target;

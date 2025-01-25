@@ -80,10 +80,6 @@ export const GameComponent: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(player?.componentsCount);
-  }, [player?.componentsCount]);
-
   return (
     <ClientContext.Provider value={client}>
       <RoomContext.Provider value={room}>

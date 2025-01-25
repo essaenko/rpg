@@ -20,7 +20,7 @@ export class Hot extends Spell {
     hot.duration = this.duration;
     hot.interval = this.interval;
     hot.nextTick = 0;
-    hot.spell = this.name;
+    hot.spell = this.id;
     hot.caster = caster.id;
 
     target.addComponent(hot);

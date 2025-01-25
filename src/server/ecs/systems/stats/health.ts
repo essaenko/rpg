@@ -18,10 +18,8 @@ export class HealthSystem extends System {
       const health = entity.get<Health>('health');
       const change = entity.get<ChangeHealth>('change-health');
 
-      health.current = Math.min(health.max, health.current + change.value);
-      if (health.current <= 0) {
-        container.removeEntity(entity.id);
-      }
+      health.current = Math.min(health.max, Math.max(0, health.current + change.value));
+
       entity.removeComponent('change-health');
     });
   }

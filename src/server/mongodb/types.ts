@@ -7,6 +7,7 @@ export const isEntitySave = (save: unknown): save is EntitySave => {
 };
 
 export type QuestSave = {
+  id: string;
   name: string;
   short_description: string;
   description: string;

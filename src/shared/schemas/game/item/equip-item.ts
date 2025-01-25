@@ -12,6 +12,8 @@ export class EquipItem extends Item {
   @type('string') effect: string = null;
 
   init(state: EquipItemSave): void {
+    super.init(state);
+
     this.slot = state.slot;
     this.effect = state.effect;
   }

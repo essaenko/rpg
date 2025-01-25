@@ -6,11 +6,11 @@ import type { Entity } from '@shared/ecs/entity';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { Camera } from '@client/ecs/components/game/camera';
 import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
-import { Sprite } from '@client/ecs/components/game/asset/sprite';
+import { Sprite } from '@client/ecs/components/game/visual/sprite';
 import { MapObject } from '@client/ecs/components/game/tag/mapObject';
 import { isMapKey, maps } from '@shared/maps/mapping';
 import { Position } from '@client/ecs/components/physics/position';
-import { Animation } from '@client/ecs/components/game/asset/animation';
+import { Animation } from '@client/ecs/components/game/visual/animation';
 
 export class NetworkSystem extends System {
   constructor() {

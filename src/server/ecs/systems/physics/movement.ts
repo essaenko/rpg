@@ -6,7 +6,6 @@ import { Position } from '../../components/physics/position';
 import { ECSContainer } from '@shared/ecs';
 import { Move } from '../../components/game/move';
 import { Collider } from '../../components/physics/collider';
-import { Scene } from '@server/core/scene/scene';
 
 export class MovementSystem extends System {
   constructor() {

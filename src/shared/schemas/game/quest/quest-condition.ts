@@ -1,7 +1,7 @@
 import { Schema, type } from '@colyseus/schema';
 import { Entity } from '@shared/ecs/entity';
 import { Level } from '@server/ecs/components/game/progression/level';
-import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
+import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 
 export class QuestCondition extends Schema {
   constructor() {
@@ -21,14 +21,14 @@ export class QuestCondition extends Schema {
 
   pass(entity: Entity): boolean {
     const lvl = entity.get<Level>('level');
-    const log = entity.get<QuestLog>('quest-log');
+    const log = entity.get<QuestBook>('quest-book');
 
     if (this.level) {
       return this.level <= lvl.level;
     }
 
     if (this.quest) {
-      return log.finished.includes(this.quest);
+      return log.finished.some(({ id }) => id === this.quest);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { System } from '@shared/ecs/system';
 import { Client } from '@colyseus/core';
-import { Animation, Directions, TransportEventTypes } from '@shared/types';
+import { Animation, TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Move } from '../../components/game/move';
@@ -9,6 +9,7 @@ import { Speed } from '../../components/physics/speed';
 import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { Appearance } from '@server/ecs/components/game/appearance';
 import { DEFAULT_SPEED } from '@server/utils/game/const';
+import { Death } from '@server/ecs/components/game/mechanics/death';
 
 export class MoveSystem extends System {
   constructor() {
@@ -23,8 +24,9 @@ export class MoveSystem extends System {
       const velocity = entity.get<Velocity>('velocity');
       const speed = entity.get<Speed>('speed');
       const appearance = entity.get<Appearance>('appearance');
+      const death = entity.get<Death>('death');
 
-      if (velocity && move && speed) {
+      if (velocity && move && speed && !death?.dead) {
         velocity.x = 0;
         velocity.y = 0;
         const vector = {
@@ -63,15 +65,15 @@ export class MoveSystem extends System {
       const velocity = entity.get<Velocity>('velocity');
       const speed = entity.get<Speed>('speed');
       const appearance = entity.get<Appearance>('appearance');
+      const death = entity.get<Death>('death');
 
       velocity.x = 0;
       velocity.y = 0;
-
       if (appearance) {
         appearance.animation = Animation.Idle;
       }
 
-      if (patrol.active && patrol.vector) {
+      if (patrol.active && patrol.vector && !death?.dead) {
         velocity.x = patrol.vector.x * (speed.speed * DEFAULT_SPEED) * delta;
         velocity.y = patrol.vector.y * (speed.speed * DEFAULT_SPEED) * delta;
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import css from './controlls.module.css';
+import css from './inventory.module.css';
 import { PlayerContext } from '@client/ui/context/player.context';
 import type { Item } from '@shared/schemas/game/item/item';
 import { Inventory } from '@client/ecs/components/game/item/inventory';
@@ -31,7 +31,7 @@ export const InventoryUI: React.FC = () => {
   }, [ic]);
 
   return (
-    <div className={css.inventory}>
+    <div className={css.root}>
       <h3>Inventory</h3>
       <div className={css.list}>
         {inventory.map((item) => {

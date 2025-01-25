@@ -13,6 +13,21 @@ export class Entity extends Schema {
     return this.components.find(({ name: n }) => n === name) as T | undefined;
   }
 
+  /**
+   * Retrives all instanses of components with given name or undefined
+   * @param name string
+   * @returns Component[] | undefined
+   */
+  getAll<T extends Component>(name: string): T[] | undefined {
+    const r = this.components.filter(({ name: n }) => n === name);
+
+    if (r.length) {
+      return r as T[];
+    }
+
+    return undefined;
+  }
+
   has(name: string): boolean {
     return this.components.some(({ name: n }) => n === name);
   }

@@ -1,15 +1,16 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
-import type { QuestLog as QuestLogSchema } from '@server/ecs/components/game/quest/quest-log';
+import type { QuestBook as QuestBookSchema } from '@server/ecs/components/game/quest/quest-book';
+import { Quest } from '@shared/schemas/game/quest/quest';
 
-export class QuestLog extends NetworkComponent {
+export class QuestBook extends NetworkComponent {
   constructor() {
-    super('quest-log');
+    super('quest-book');
   }
 
-  public finished: string[] = [];
-  public ongoing: string[] = [];
+  public finished: Quest[] = [];
+  public ongoing: Quest[] = [];
 
-  observe(schema: QuestLogSchema): void {
+  observe(schema: QuestBookSchema): void {
     schema.finished.onAdd((item) => {
       this.finished.push(item);
     }, false);

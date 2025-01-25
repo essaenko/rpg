@@ -2,10 +2,10 @@ import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { Target } from '@client/ecs/components/game/combat/target';
-import { TargetHighlight } from '@client/ecs/components/game/target-highlight';
+import { TargetHighlight } from '@client/ecs/components/game/visual/target-highlight';
 import { Position } from '@client/ecs/components/physics/position';
 import { Body } from '@client/ecs/components/physics/body';
-import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
+import { HealthFrame } from '@client/ecs/components/game/visual/health-frame';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class TargetSystem extends System {

@@ -19,6 +19,9 @@ export class Quest extends Schema {
   @type([QuestCondition]) conditions = new ArraySchema<QuestCondition>();
 
   init(state: Record<string, any>) {
+    if (state.id) {
+      this.id = state.id;
+    }
     if (state.name) {
       this.name = state.name;
     }

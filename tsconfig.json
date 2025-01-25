@@ -19,7 +19,8 @@
       "@server/*": ["./src/server/*"],
       "@shared/*": ["./src/shared/*"]
     },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

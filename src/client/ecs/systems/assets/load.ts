@@ -1,7 +1,6 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { isAssetKey, map } from '@client/assets/sprites/map';
 import { QuestGiverState } from '@client/ecs/components/game/quest/quest-giver-state';
 
@@ -52,22 +51,6 @@ export class LoadSystem extends System {
       if (!qgs.asset.loaded && !qgs.asset.loading) {
         scene.load.spritesheet(qgs.asset.key, qgs.asset.url, qgs.asset.config);
         qgs.asset.loading = true;
-      }
-    });
-
-    container.query(['health-frame']).forEach((entity) => {
-      const hfc = entity.get<HealthFrame>('health-frame');
-
-      if (scene.textures.exists(hfc.asset.key)) {
-        hfc.asset.loading = false;
-        hfc.asset.loaded = true;
-
-        return;
-      }
-
-      if (!hfc.asset.loaded && !hfc.asset.loading) {
-        scene.load.spritesheet(hfc.asset.key, hfc.asset.url, hfc.asset.config);
-        hfc.asset.loading = true;
       }
     });
 

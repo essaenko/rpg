@@ -10,6 +10,8 @@ import { WarriorSpells } from '@shared/utils/spells';
 export class Hit extends Spell {
   constructor() {
     super(WarriorSpells.Hit, 0, 1, 2, [Relation.Hostile, Relation.Neutral]);
+    this.name = 'Удар';
+    this.description = 'Совершает удар оружием в правой руке.';
   }
 
   cast(caster: Entity, target: Entity) {

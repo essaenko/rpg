@@ -16,6 +16,9 @@ import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
 import { InteractableObject } from '@server/ecs/components/game/mechanics/interactable-object';
 import { InteractionTypes } from '@shared/types';
+import { Death } from '@server/ecs/components/game/mechanics/death';
+import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
+import { ClientsService } from '@shared/ecs/service/clients';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -45,10 +48,28 @@ export class DynamicallyLoadableScene extends Scene {
     if (!client.userData) client.userData = {};
     client.userData.id = 'usqPuANKq';
 
+    let clients = this.ecs.getService<ClientsService>('clients');
+
+    if (!clients) {
+      clients = this.ecs.addService(new ClientsService());
+    }
+
+    clients.register(client);
+
     const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
       const entity = new Entity();
       entity.init(save, client.sessionId);
+      entity.addComponent(new Death());
+      const spawn = new Spawn();
+      const mapSpawn = this.map.layers
+        .find(({ name }) => name === 'locations')
+        ?.objects?.find(({ name }) => name === 'spawn');
+
+      if (mapSpawn) {
+        spawn.point = { x: mapSpawn.x, y: mapSpawn.y };
+      }
+      entity.addComponent(spawn);
       this.addEntity(entity);
     } else {
       client.error(1024, `Can't load player`);
@@ -82,13 +103,19 @@ export class DynamicallyLoadableScene extends Scene {
                 x: spawn.x,
                 y: spawn.y,
               });
+              config.components.push({
+                name: 'spawn',
+                point: { ...spawn },
+              });
               const entity = new Entity();
               entity.init(config, config.id);
+              entity.addComponent(new Death());
+
               const route = l.objects.find((o) => o.name === 'route');
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
                 const patrol = new Patrol();
-                patrol.active = false;
+                // patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
 

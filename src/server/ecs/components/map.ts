@@ -28,9 +28,9 @@ import { Velocity } from '@server/ecs/components/physics/velocity';
 import { Appearance } from '@server/ecs/components/game/appearance';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
-import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 import { Inventory } from './game/item/inventory';
+import { Spawn } from './game/mechanics/spawn';
 
 export const map = {
   // Game components
@@ -59,7 +59,6 @@ export const map = {
   'tag-player': Player,
 
   'quest-giver': QuestGiver,
-  'quest-log': QuestLog,
   'quest-book': QuestBook,
   inventory: Inventory,
 
@@ -73,6 +72,7 @@ export const map = {
   body: Body,
   collider: Collider,
   position: Position,
+  spawn: Spawn,
   speed: Speed,
   velocity: Velocity,
 } as const;

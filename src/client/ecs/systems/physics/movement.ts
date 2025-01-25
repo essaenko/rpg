@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { Position } from '@client/ecs/components/physics/position';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { Pointer } from '@client/ecs/components/physics/pointer';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { isInTheSamePosition } from '@shared/utils/physics';
@@ -35,7 +35,7 @@ export class MovementSystem extends System {
       const pointer = entity.get<Pointer>('pointer');
       const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
 
-      if (isInTheSamePosition(position, pointer, 3)) {
+      if (isInTheSamePosition(position, pointer, 5)) {
         scene.room.send(TransportEventTypes.Move, [null]);
         entity.removeComponent(pointer);
 

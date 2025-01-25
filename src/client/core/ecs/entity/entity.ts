@@ -61,10 +61,6 @@ export class Entity {
     return this.components.some(({ name: n }) => n === name);
   }
 
-  get componentsCount() {
-    return this.components.length;
-  }
-
   destroy() {
     this.emit('entity:destroy');
     this.components.forEach((component) => {

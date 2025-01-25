@@ -8,16 +8,4 @@
   button {
     cursor: inherit;
   }
-
-  .inventory {
-    position: fixed;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    background: gray;
-    padding: 20px;
-
-    .list {
-    }
-  }
 }
