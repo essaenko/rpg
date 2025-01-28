@@ -12,7 +12,7 @@ import { getDistance } from '@shared/utils/physics';
 import { Position } from '@client/ecs/components/physics/position';
 import { QUEST_GIVER_ACTION_DISTANCE } from '@shared/utils/const';
 import { Appearance } from '@client/ecs/components/game/visual/appearance';
-import { QuestRequest } from '@client/ecs/components/game/ui/quest-request';
+import { QuestDialog } from '@client/ecs/components/game/ui/quest-dialog';
 
 export class QuestGiverSystem extends System {
   constructor() {
@@ -20,6 +20,16 @@ export class QuestGiverSystem extends System {
   }
 
   onUpdate(scene: WorldScene, container: ECSContainer): void {
+    container.query(['quest-dialog']).forEach((entity) => {
+      const dialog = entity.get<QuestDialog>('quest-dialog');
+
+      if (
+        getDistance(dialog.giver.get<Position>('position'), entity.get<Position>('position')) >
+        QUEST_GIVER_ACTION_DISTANCE
+      ) {
+        entity.removeComponent('quest-dialog');
+      }
+    });
     container.query(['quest-giver']).forEach((entity) => {
       let state = entity.get<QuestGiverState>('quest-giver-state');
       const giver = entity.get<QuestGiver>('quest-giver');
@@ -34,18 +44,22 @@ export class QuestGiverSystem extends System {
           passConditions(quest.conditions, player)
         );
       });
-      const ongoingQuests = giver?.quests.filter((quest) => log?.ongoing.some(({ id }) => quest.id === id));
-      const finishedQuests = giver?.quests.filter((quest) => log?.finished.some(({ id }) => id === quest.id));
+      const ongoingQuests = log?.ongoing
+        .filter(({ id }) => giver.quests.some(({ id: qid }) => qid === id))
+        .filter(({ requirements }) => requirements.some((req) => req.amount !== req.progress));
+      const finishedQuests = log?.ongoing
+        .filter((quest) => giver.quests.some(({ id }) => quest.id === id))
+        .filter(({ requirements }) => requirements.every((req) => req.amount === req.progress));
+
+      if (!state) {
+        state = new QuestGiverState();
+        entity.addComponent(state);
+      }
+
+      state.state = null;
 
       if (availableQuests.length || ongoingQuests.length || finishedQuests.length) {
-        if (!state) {
-          state = new QuestGiverState();
-          entity.addComponent(state);
-        }
-
-        if (state.state !== QuestGiverStates.QuestAvailable && availableQuests.length) {
-          state.state = QuestGiverStates.QuestAvailable;
-
+        if (!entity.getAll<Action>('action').some(({ tag }) => tag === 'quest-giver-action')) {
           const action = new Action();
           action.action = () => {
             const player = container.getEntity(scene.room.sessionId);
@@ -54,29 +68,35 @@ export class QuestGiverSystem extends System {
               getDistance(entity.get<Position>('position'), player.get<Position>('position')) <=
               QUEST_GIVER_ACTION_DISTANCE
             ) {
-              player.removeComponent('quest-request');
-              const qr = new QuestRequest();
-              qr.quest = availableQuests[0];
-              qr.giver = entity.id;
+              const availableQuests = giver?.quests.filter((quest) => {
+                return (
+                  !log?.finished.some(({ id }) => id === quest.id) &&
+                  !log?.ongoing.some(({ id }) => id === quest.id) &&
+                  passConditions(quest.conditions, player)
+                );
+              });
+              const finishedQuests = log?.ongoing
+                .filter((quest) => giver.quests.some(({ id }) => quest.id === id))
+                .filter(({ requirements }) => requirements.every((req) => req.amount === req.progress));
+              player.removeComponent('quest-dialog');
+              const qd = new QuestDialog();
+              qd.giver = entity;
+              qd.list = availableQuests;
+              qd.finished = finishedQuests;
 
-              player.addComponent(qr);
-              entity.removeComponent(action);
+              player.addComponent(qd);
             }
           };
           action.tag = 'quest-giver-action';
           entity.addComponent(action);
         }
 
+        if (state.state !== QuestGiverStates.QuestAvailable && availableQuests.length) {
+          state.state = QuestGiverStates.QuestAvailable;
+        }
+
         if (state.state !== QuestGiverStates.QuestInProgress && ongoingQuests.length) {
           state.state = QuestGiverStates.QuestInProgress;
-
-          const action = new Action();
-          action.action = () => {
-            scene.room.send(TransportEventTypes.RejectQuest, [ongoingQuests[0].id]);
-            entity.removeComponent(action);
-          };
-          action.tag = 'quest-giver-action';
-          entity.addComponent(action);
         }
 
         if (state.state !== QuestGiverStates.QuestFinished && finishedQuests.length) {
@@ -107,7 +127,7 @@ export class QuestGiverSystem extends System {
       [
         TransportEventTypes.QuestAccepted,
         TransportEventTypes.QuestRejected,
-        TransportEventTypes.QuestFinished,
+        TransportEventTypes.QuestCompleted,
       ].includes(type)
     ) {
       container.query(['quest-giver']).forEach((entity) => {

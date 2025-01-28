@@ -14,7 +14,7 @@ export const isItemFactoryName = (type: unknown): type is keyof typeof map => {
 };
 
 export class ItemFactory {
-  static instantiate(save: ItemSave): Item {
+  static instantiate(save: ItemSave): Item | undefined {
     if (isItemFactoryName(save.factory)) {
       const factory = map[save.factory];
       const item = new factory();

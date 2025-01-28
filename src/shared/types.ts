@@ -4,9 +4,10 @@ export enum TransportEventTypes {
   //Quest events
   QuestAccepted,
   QuestRejected,
-  QuestFinished,
+  QuestCompleted,
   AcceptQuest,
   RejectQuest,
+  CompleteQuest,
   Interaction,
   Loot,
   PickItem,

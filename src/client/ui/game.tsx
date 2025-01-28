@@ -17,7 +17,7 @@ import { StatusBar } from './hood/status-bar/status-bar';
 import { SpellBar } from './hood/spell-bar/spell-bar';
 import { LootUI } from './hood/loot/loot';
 import { Controlls } from './hood/controlls/controlls';
-import { QuestRequestUI } from './hood/quest/quest-request';
+import { QuestRequestUI } from './hood/quest/quest-dialog';
 
 export const GameComponent: React.FC = () => {
   const client = useMemo(() => {

@@ -24,12 +24,8 @@ export class LootSystem extends System {
       const itemID = message[0];
 
       if (player && loot && itemID && loot.items.some(({ id }) => id === itemID) && inventory) {
-        if (inventory.items.length === inventory.slots) {
-          //TODO handle overload
-          return;
-        }
         const item = loot.items.find(({ id }) => id === itemID);
-        inventory.items.push(item);
+        inventory.addItem(item);
         loot.items.splice(loot.items.indexOf(item), 1);
 
         if (loot.items.length === 0) {

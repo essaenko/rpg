@@ -14,6 +14,7 @@ export class AppearanceSystem extends System {
   constructor() {
     super('appearance');
   }
+
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     container.query(['appearance']).forEach((entity) => {
       const appearance = entity.get<Appearance>('appearance');
@@ -53,7 +54,7 @@ export class AppearanceSystem extends System {
       const appearance = entity.get<Appearance>('appearance');
       const state = entity.get<QuestGiverState>('quest-giver-state');
 
-      if (state.state && appearance.sprites) {
+      if (state && appearance.sprites) {
         let sprite = appearance.sprites.getByName('quest-giver-state') as ArcadeSprite;
         let y = -state.asset.config.frameHeight * 1.5;
         if (sprite && sprite instanceof ArcadeSprite && sprite.state !== state.state) {
@@ -62,7 +63,7 @@ export class AppearanceSystem extends System {
           sprite = null;
         }
 
-        if (!sprite && state.asset.loaded) {
+        if (!sprite && state.asset.loaded && state.state) {
           if (appearance.sprites.getByName('health_frame')) {
             y -= 15;
           }

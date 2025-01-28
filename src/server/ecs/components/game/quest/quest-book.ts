@@ -59,8 +59,8 @@ export class QuestBook extends Component {
   serialize(): Record<string, any> {
     return {
       name: this.name,
-      finished: this.finished.toArray(),
-      ongoing: this.ongoing.toArray(),
+      finished: this.finished.map(({ id }) => id),
+      ongoing: this.ongoing.map(({ id }) => id),
     };
   }
 }

@@ -28,7 +28,6 @@ export abstract class Spell extends Schema {
   @type('string') description: string;
   @type('number') cost: number;
   @type('number') cooldown: number;
-  @type('string') class: string;
   @type('number') range: number;
   @type('number') cooldownTime: number;
   @type(['number']) relation = new ArraySchema<Relation>();

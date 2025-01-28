@@ -39,8 +39,24 @@ export class QuestSystem extends System {
       const player = container.getEntity(client.sessionId);
       const log = player.get<QuestBook>('quest-book');
 
-      if (log && log.ongoing.includes(message?.[0])) {
-        log.ongoing.splice(log.ongoing.indexOf(message?.[0]), 1);
+      if (log) {
+        const quest = log.ongoing.find(({ id }) => id === message?.[0]);
+
+        if (quest) {
+          log.ongoing.splice(log.ongoing.indexOf(quest), 1);
+        }
+      }
+    }
+    if (type === TransportEventTypes.CompleteQuest) {
+      const player = container.getEntity(client.sessionId);
+      const log = player.get<QuestBook>('quest-book');
+
+      if (log) {
+        const quest = log.ongoing.find(({ id }) => id === message?.[1]);
+
+        if (quest) {
+          quest.complete(player);
+        }
       }
     }
   }
