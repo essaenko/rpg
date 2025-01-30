@@ -46,7 +46,7 @@ export const QuestRequestUI: React.FC = () => {
 
   const onComplete = useCallback(() => {
     if (room) {
-      room.send(TransportEventTypes.CompleteQuest, [dialog.giver.id, selectedQuest.id]);
+      room.send(TransportEventTypes.CompleteQuest, [selectedQuest.id]);
       player.removeComponent('quest-dialog');
     }
     setSelectedQuest(null);
@@ -103,8 +103,13 @@ export const QuestRequestUI: React.FC = () => {
 
   return dialog ? (
     <div className={css['quest-dialog']}>
-      <h3>{npc?.get<Name>('name')?.value ?? 'Unknown'}</h3>
-      {selectedQuest ? QuestUI : QuestsUI}
+      <header>
+        <h3>{npc?.get<Name>('name')?.value ?? 'Unknown'}</h3>
+      </header>
+      <section>{selectedQuest ? QuestUI : QuestsUI}</section>
+      <footer>
+        <button onClick={onClose}>Закрыть</button>
+      </footer>
     </div>
   ) : null;
 };

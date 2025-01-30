@@ -15,7 +15,6 @@ export class QuestSystem extends System {
   }
 
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
-    const patch = [];
     if (type === TransportEventTypes.AcceptQuest) {
       const giver = container.getEntity(message?.[0]);
       const player = container.getEntity(client.sessionId);
@@ -31,7 +30,7 @@ export class QuestSystem extends System {
         const quest = quests?.find((q) => q.id === message?.[1]);
 
         if (log && quest && quest.passConditions(player)) {
-          log.ongoing.push(quest);
+          log.ongoing.push(quest.clone());
         }
       }
     }
@@ -52,7 +51,7 @@ export class QuestSystem extends System {
       const log = player.get<QuestBook>('quest-book');
 
       if (log) {
-        const quest = log.ongoing.find(({ id }) => id === message?.[1]);
+        const quest = log.ongoing.find(({ id }) => id === message?.[0]);
 
         if (quest) {
           quest.complete(player);

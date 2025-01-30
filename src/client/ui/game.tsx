@@ -18,6 +18,7 @@ import { SpellBar } from './hood/spell-bar/spell-bar';
 import { LootUI } from './hood/loot/loot';
 import { Controlls } from './hood/controlls/controlls';
 import { QuestRequestUI } from './hood/quest/quest-dialog';
+import { MainMenu } from './menu/main';
 
 export const GameComponent: React.FC = () => {
   const client = useMemo(() => {
@@ -89,6 +90,7 @@ export const GameComponent: React.FC = () => {
           <LootUI />
           <Controlls />
           <QuestRequestUI />
+          <MainMenu />
         </PlayerContext.Provider>
       </RoomContext.Provider>
     </ClientContext.Provider>
