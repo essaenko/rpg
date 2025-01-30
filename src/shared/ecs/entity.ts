@@ -1,5 +1,8 @@
 import { Schema, type, ArraySchema } from '@colyseus/schema';
 import { Component } from './component';
+import { EntitySave } from '@server/mongodb/types';
+import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
+import { nanoid } from 'nanoid';
 
 export class Entity extends Schema {
   @type('string') id: string;
@@ -8,6 +11,21 @@ export class Entity extends Schema {
 
   get<T extends Component>(name: string): T | undefined {
     return this.components.find(({ name: n }) => n === name) as T | undefined;
+  }
+
+  /**
+   * Retrives all instanses of components with given name or undefined
+   * @param name string
+   * @returns Component[] | undefined
+   */
+  getAll<T extends Component>(name: string): T[] | undefined {
+    const r = this.components.filter(({ name: n }) => n === name);
+
+    if (r.length) {
+      return r as T[];
+    }
+
+    return undefined;
   }
 
   has(name: string): boolean {
@@ -31,6 +49,20 @@ export class Entity extends Schema {
     if (component) {
       this.components.splice(this.components.indexOf(component), 1);
     }
+  }
+
+  init(save: EntitySave, id?: string) {
+    this.id = id ?? nanoid(9);
+
+    save.components.forEach((cState) => {
+      if (isComponentName(cState.name)) {
+        const Factory = ComponentMap[cState.name];
+        const component = new Factory();
+        component.init(cState);
+
+        this.addComponent(component);
+      }
+    });
   }
 
   onDestroy(): void {}

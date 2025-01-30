@@ -1,3 +1,3 @@
-export abstract class Service {
-  abstract name: string;
+export class Service {
+  constructor(public name: string) {}
 }

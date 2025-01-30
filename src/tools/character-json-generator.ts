@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { Class } from '@server/ecs/components/game/class';
+import { Class } from '@server/ecs/components/game/mechanics/class';
 import {
   Animation,
   Class as Classes,
@@ -22,10 +22,10 @@ import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stat
 import { Equip } from '@server/ecs/components/game/item/equip';
 import { Weapon } from '@shared/schemas/game/item/weapon';
 import { NPC } from '@server/ecs/components/game/tag/npc';
-import { Name } from '@server/ecs/components/game/name';
+import { Name } from '@server/ecs/components/game/ui/name';
 import { Entity } from '@shared/ecs/entity';
 import { WarriorSpells } from '@shared/utils/spells';
-import { Fraction } from '@server/ecs/components/game/fraction';
+import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Appearance } from '@server/ecs/components/game/appearance';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { Player } from '@server/ecs/components/game/tag/player';

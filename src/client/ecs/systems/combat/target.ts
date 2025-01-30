@@ -2,10 +2,10 @@ import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { Target } from '@client/ecs/components/game/combat/target';
-import { TargetHighlight } from '@client/ecs/components/game/target-highlight';
+import { TargetHighlight } from '@client/ecs/components/game/visual/target-highlight';
 import { Position } from '@client/ecs/components/physics/position';
 import { Body } from '@client/ecs/components/physics/body';
-import { HealthFrame } from '@client/ecs/components/game/asset/health-frame';
+import { HealthFrame } from '@client/ecs/components/game/visual/health-frame';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class TargetSystem extends System {
@@ -18,39 +18,13 @@ export class TargetSystem extends System {
       const tComponent = entity.get<Target>('target');
       const target = container.getEntity(tComponent.target);
 
-      if (target && !target.has('target-highlight')) {
-        target.addComponent(new TargetHighlight());
-        target.addComponent(new HealthFrame());
-      }
-    });
-
-    container.query(['target-highlight']).forEach((entity) => {
-      const highlight = entity.get<TargetHighlight>('target-highlight');
-      const position = entity.get<Position>('position');
-      const body = entity.get<Body>('body');
-
-      const originX = position.x;
-      const originY = position.y + body.height * 0.45;
-
-      if (body && position) {
-        if (!highlight.rect) {
-          const g = scene.add.graphics({
-            x: 0,
-            y: 0,
-            lineStyle: {
-              width: 1,
-              color: 0xffd600,
-              alpha: 1,
-            },
-          });
-          g.x = originX;
-          g.y = originY;
-          g.strokeEllipse(0, 0, body.width * 0.7, body.height * 0.35);
-          highlight.rect = g;
+      if (target) {
+        if (!target.has('health-frame')) {
+          target.addComponent(new HealthFrame());
         }
-
-        highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, DEFAULT_LERP_VALUE);
-        highlight.rect.y = Phaser.Math.Linear(highlight.rect.y, originY, DEFAULT_LERP_VALUE);
+        if (!target.has('target-highlight')) {
+          target.addComponent(new TargetHighlight());
+        }
       }
     });
   }

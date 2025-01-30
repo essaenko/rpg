@@ -1,0 +1,68 @@
+.root {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 300px;
+  height: 100px;
+  padding: 10px;
+  background: gray;
+  border-radius: 10px;
+  display: flex;
+  box-sizing: border-box;
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: #e7e7e7;
+    flex-shrink: 0;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 100%;
+  }
+
+  .health,
+  .resource {
+    height: 20px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+
+    .fill {
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+  }
+
+  .health {
+    .fill {
+      background: #8b0000;
+    }
+  }
+
+  .resource {
+    .fill {
+      &.rage {
+        background: #ff4500;
+      }
+      &.energy {
+        background: #ffa500;
+      }
+      &.mana {
+        background: #4682b4;
+      }
+    }
+  }
+}

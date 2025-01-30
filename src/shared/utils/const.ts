@@ -1,0 +1,2 @@
+export const QUEST_GIVER_ACTION_DISTANCE = 128;
+export const INTERACTION_DISTANCE = 64;

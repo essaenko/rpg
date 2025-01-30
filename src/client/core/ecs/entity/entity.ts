@@ -1,15 +1,34 @@
 import { Component } from '../component/component';
+import EventBus, { EventCallback } from 'js-event-bus';
 
-export abstract class Entity {
+export class Entity {
   public id: string;
   private components: Component[] = [];
+  private bus: EventBus = new EventBus();
 
-  protected constructor(id: string) {
+  constructor(id: string) {
     this.id = id;
+  }
+
+  public on(name: string, callback: EventCallback) {
+    this.bus.on(name, callback);
+  }
+
+  public detach(name: string, callback: EventCallback) {
+    this.bus.detach(name, callback);
+  }
+
+  public emit(name: string) {
+    this.bus.emit(name);
+  }
+
+  public detachAll() {
+    this.bus.detachAll();
   }
 
   public addComponent(component: Component): void {
     this.components.push(component);
+    this.emit('entity:components:add');
   }
 
   public removeComponent(signature: Component): void;
@@ -26,6 +45,8 @@ export abstract class Entity {
       component.destroy();
       this.components.splice(this.components.indexOf(component), 1);
     }
+
+    this.emit('entity:components:remove');
   }
 
   get<T extends Component>(name: string): T | undefined {
@@ -41,8 +62,10 @@ export abstract class Entity {
   }
 
   destroy() {
+    this.emit('entity:destroy');
     this.components.forEach((component) => {
       component.destroy();
     });
+    this.detachAll();
   }
 }

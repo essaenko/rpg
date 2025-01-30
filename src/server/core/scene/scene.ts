@@ -20,6 +20,9 @@ import { DotSystem } from '@server/ecs/systems/spells/dot';
 import { PatrolSystem } from '@server/ecs/systems/behaviour/patrol';
 import { QuestSystem } from '@server/ecs/systems/quest/quest';
 import { QuestRequirementSystem } from '@server/ecs/systems/quest/quest-requirement';
+import { InteractionSystem } from '@server/ecs/systems/mechanics/interaction';
+import { LootSystem } from '@server/ecs/systems/mechanics/loot';
+import { ResurrectionSystem } from '@server/ecs/systems/mechanics/resurrection';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -32,6 +35,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new MoveSystem());
     this.ecs.addSystem(new CollisionSystem());
     this.ecs.addSystem(new MovementSystem());
+    this.ecs.addSystem(new ResurrectionSystem());
 
     //Behaviour systems
     this.ecs.addSystem(new PatrolSystem());
@@ -39,6 +43,8 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new LevelSystem());
     this.ecs.addSystem(new QuestSystem());
     this.ecs.addSystem(new QuestRequirementSystem());
+    this.ecs.addSystem(new InteractionSystem());
+    this.ecs.addSystem(new LootSystem());
 
     this.ecs.addSystem(new CastRequestSystem());
     this.ecs.addSystem(new CastSystem());
@@ -69,7 +75,7 @@ export abstract class Scene extends Room<SceneState> {
 
     this.setSimulationInterval((delta: number) => {
       this.ecs.update(delta / 1000, this);
-    });
+    }, 1000 / 20);
   }
 
   addEntity(entity: Entity) {

@@ -12,9 +12,13 @@ import { MovementSystem } from '@client/ecs/systems/physics/movement';
 import { AnimationSystem } from '@client/ecs/systems/assets/animation';
 import { CameraSystem } from '@client/ecs/systems/camera';
 import { TargetSystem } from '@client/ecs/systems/combat/target';
-import { HealthSystem } from '@client/ecs/systems/assets/health';
+import { GraphicsSystem } from '@client/ecs/systems/assets/graphics';
 import { AppearanceSystem } from '@client/ecs/systems/assets/appearance';
 import { QuestGiverSystem } from '@client/ecs/systems/quest/quest-giver';
+import { InteractionSystem } from '@client/ecs/systems/mechanics/interaction';
+import { LootSystem } from '@client/ecs/systems/mechanics/loot';
+import { ActionSystem } from '@client/ecs/systems/mechanics/action';
+import { LightSystem } from '@client/ecs/systems/mechanics/light';
 
 export class NetworkScene extends Scene {
   public room: Room<SceneState>;
@@ -25,17 +29,28 @@ export class NetworkScene extends Scene {
   }
 
   preload() {
+    this.ecs.addSystem(new LoadSystem());
+
+    this.ecs.addSystem(new NetworkSystem());
     this.ecs.addSystem(new InputSystem());
     this.ecs.addSystem(new MovementSystem());
+
     this.ecs.addSystem(new AnimationSystem());
-    this.ecs.addSystem(new NetworkSystem());
-    this.ecs.addSystem(new LoadSystem());
     this.ecs.addSystem(new SpriteSystem());
+
     this.ecs.addSystem(new TargetSystem());
-    this.ecs.addSystem(new HealthSystem());
+    this.ecs.addSystem(new GraphicsSystem());
     this.ecs.addSystem(new AppearanceSystem());
+
     this.ecs.addSystem(new QuestGiverSystem());
+    this.ecs.addSystem(new InteractionSystem());
+    this.ecs.addSystem(new ActionSystem());
+    this.ecs.addSystem(new LootSystem());
+
+    this.ecs.addSystem(new LightSystem());
     (window as any).ecs = this.ecs;
+
+    this.registry.set('ecs', this.ecs);
 
     this.joinServerRoom();
   }
@@ -52,9 +67,12 @@ export class NetworkScene extends Scene {
     if (client && client instanceof Client) {
       try {
         this.room = await client.joinOrCreate(this.name);
+        this.registry.set('room', this.room);
 
         (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
         this.ecs.addSystem(new CameraSystem(this.room));
+
+        this.scene.get('ui-scene').events.emit('network-inited', { room: this.room, ecs: this.ecs });
 
         this.room.onMessage('*', (type, message) => {
           if (typeof type === 'number') {

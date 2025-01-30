@@ -1,6 +1,7 @@
 module.exports = {
-    map: false,
-    plugins: {
-        'postcss-plugin': {}
-    }
-}
+  map: false,
+  plugins: {
+    'postcss-import': {},
+    'postcss-plugin': {},
+  },
+};

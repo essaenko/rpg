@@ -16,20 +16,21 @@ import { MainStats } from '@server/ecs/components/game/stats/main-stats';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
 import { NPC } from '@server/ecs/components/game/tag/npc';
 import { Player } from '@server/ecs/components/game/tag/player';
-import { Class } from '@server/ecs/components/game/class';
-import { Level } from '@server/ecs/components/game/level';
+import { Class } from '@server/ecs/components/game/mechanics/class';
+import { Level } from '@server/ecs/components/game/progression/level';
 import { Move } from '@server/ecs/components/game/move';
-import { Name } from '@server/ecs/components/game/name';
+import { Name } from '@server/ecs/components/game/ui/name';
 import { Body } from '@server/ecs/components/physics/body';
 import { Collider } from '@server/ecs/components/physics/collider';
 import { Position } from '@server/ecs/components/physics/position';
 import { Speed } from '@server/ecs/components/physics/speed';
 import { Velocity } from '@server/ecs/components/physics/velocity';
 import { Appearance } from '@server/ecs/components/game/appearance';
-import { Fraction } from '@server/ecs/components/game/fraction';
+import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
-import { QuestLog } from '@server/ecs/components/game/quest/quest-log';
 import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
+import { Inventory } from './game/item/inventory';
+import { Spawn } from './game/mechanics/spawn';
 
 export const map = {
   // Game components
@@ -58,8 +59,8 @@ export const map = {
   'tag-player': Player,
 
   'quest-giver': QuestGiver,
-  'quest-log': QuestLog,
   'quest-book': QuestBook,
+  inventory: Inventory,
 
   class: Class,
   fraction: Fraction,
@@ -71,6 +72,7 @@ export const map = {
   body: Body,
   collider: Collider,
   position: Position,
+  spawn: Spawn,
   speed: Speed,
   velocity: Velocity,
 } as const;

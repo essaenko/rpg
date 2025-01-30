@@ -16,7 +16,7 @@ export class CastRequestSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
     if (type === TransportEventTypes.CastRequest) {
       const entity = container.getEntity(client.sessionId);
-      const spell = message[0] as string;
+      const spell = message[0];
       const target = container.getEntity(message?.[1]);
 
       if (entity && target && spell) {

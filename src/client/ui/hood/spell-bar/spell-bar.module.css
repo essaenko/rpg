@@ -1,0 +1,49 @@
+.root {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .speel-list {
+    display: flex;
+    background: gray;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+
+    .spell {
+      width: 65px;
+      height: 65px;
+      background: #e7e7e7;
+      border-radius: 5px;
+
+      img {
+        border-radius: 5px;
+      }
+
+      .spell_tooltip {
+        width: 100%;
+        height: 100%;
+
+        .spell_name {
+          margin: 0;
+          padding: 0;
+          margin-bottom: 10px;
+        }
+
+        .spell_description {
+          margin-bottom: 10px;
+        }
+      }
+
+      .cooldown_hover {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 100%;
+        transform: translate(0, -100%);
+        border-radius: 5px;
+      }
+    }
+  }
+}

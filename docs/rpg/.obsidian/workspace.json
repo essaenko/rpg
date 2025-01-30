@@ -1,0 +1,205 @@
+{
+  "main": {
+    "id": "8bd18bb12271acda",
+    "type": "split",
+    "children": [
+      {
+        "id": "ffd9b413a80d1ee1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fe7b9cc45c9ecc18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DisDock.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "DisDock"
+            }
+          },
+          {
+            "id": "0c0951c9c8bd53c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mechanics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mechanics"
+            }
+          },
+          {
+            "id": "af92644387d01173",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Graphics/CastSystem.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "CastSystem.excalidraw"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dc7732137d6d9e0e",
+    "type": "split",
+    "children": [
+      {
+        "id": "b35c10a9a376ce7c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "81cfc5136397feae",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "059f41566de22feb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b7a0a1e0767fd2f6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "388132fd6ee5d128",
+    "type": "split",
+    "children": [
+      {
+        "id": "a93e289df6f18567",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9c275fc43d066bd4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "DisDock.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for DisDock"
+            }
+          },
+          {
+            "id": "0abd3fbf9f2657c6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "DisDock.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from DisDock"
+            }
+          },
+          {
+            "id": "b856432cbec5d829",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e5618c472a80a320",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "DisDock.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of DisDock"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "obsidian-excalidraw-plugin:Создать новый чертеж": false
+    }
+  },
+  "active": "af92644387d01173",
+  "lastOpenFiles": [
+    "Без названия.md",
+    "Graphics/CastSystem.excalidraw.md",
+    "Excalidraw",
+    "Mechanics.md",
+    "Graphics",
+    "DisDock.md",
+    "Welcome.md",
+    "Untitled"
+  ]
+}

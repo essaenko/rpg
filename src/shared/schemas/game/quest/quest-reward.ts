@@ -9,8 +9,8 @@ export enum QuestRewardTypes {
 export class QuestReward extends Schema {
   @type('number') type: QuestRewardTypes;
   @type('number') amount: number;
-  @type('string') id: string;
-  @type('boolean') optional: boolean;
+  @type('string') rew_id?: string;
+  @type('boolean') optional?: boolean;
 
   init(state: Record<string, any>) {
     if (state.type != null && typeof state.type === 'number') {
@@ -20,7 +20,7 @@ export class QuestReward extends Schema {
       this.amount = state.amount;
     }
     if (state.id != null) {
-      this.id = state.id;
+      this.rew_id = state.rew_id;
     }
     if (state.optional != null) {
       this.optional = state.optional;

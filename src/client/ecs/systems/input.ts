@@ -1,7 +1,6 @@
 import { TransportEventTypes } from '@shared/types';
 import { System } from '@client/core/ecs/system';
-import { clientKeyToServerValue, Keys, ServerKeyValues } from '@client/utils/types';
-import { equal } from '@client/utils/array';
+import { Keys, Spells } from '@client/utils/types';
 
 import { InputService } from '@client/services/input';
 import { Target } from '@client/ecs/components/game/combat/target';
@@ -19,18 +18,7 @@ export class InputSystem extends System {
     if (!scene.room) return;
 
     const castKey: Keys =
-      [
-        Keys.Spell1,
-        Keys.Spell2,
-        Keys.Spell3,
-        Keys.Spell4,
-        Keys.Spell5,
-        Keys.Spell6,
-        Keys.Spell7,
-        Keys.Spell8,
-        Keys.Spell9,
-        Keys.Spell10,
-      ].find((key) => InputService.instance().isPressed(key)) ?? null;
+      (Object.keys(Keys).find((key) => InputService.instance().isPressed(key as Keys)) as Keys) ?? null;
     if (castKey !== this.prevCastUpdate) {
       const spell = InputService.instance().getSpellBinding(castKey);
       const target = container.getEntity(scene.room.sessionId).get<Target>('target');

@@ -20,7 +20,7 @@ export class Dot extends Spell {
     dot.duration = this.duration;
     dot.interval = this.interval;
     dot.nextTick = 0;
-    dot.spell = this.name;
+    dot.spell = this.id;
     dot.caster = caster.id;
 
     target.addComponent(dot);

@@ -1,1 +1,0 @@
-export const QUEST_GIVER_ACTION_DISTANCE = 128;

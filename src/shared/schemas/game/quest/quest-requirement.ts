@@ -7,7 +7,7 @@ export class QuestRequirement extends Schema {
   }
 
   @type('number') type: QuestRequirementType;
-  @type('number') count: number = 0;
+  @type('number') amount: number = 0;
   @type('string') req_id: string;
   @type('number') progress: number = 0;
 
@@ -16,7 +16,7 @@ export class QuestRequirement extends Schema {
       this.type = state.type;
     }
     if (state.count != null) {
-      this.count = state.count;
+      this.amount = state.count;
     }
     if (state.progress != null) {
       this.progress = state.progress;

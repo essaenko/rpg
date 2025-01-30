@@ -1,0 +1,11 @@
+.root {
+  position: fixed;
+  right: 50px;
+  bottom: 0;
+  padding: 10px;
+  background: 10px;
+
+  button {
+    cursor: inherit;
+  }
+}

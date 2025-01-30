@@ -10,4 +10,10 @@ export class Pointer extends Component {
 
   public lastX: number = null;
   public lastY: number = null;
+
+  public frame: Phaser.GameObjects.Graphics = null;
+
+  public destroy(): void {
+    this.frame?.destroy();
+  }
 }

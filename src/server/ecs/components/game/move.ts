@@ -7,7 +7,7 @@ export class Move extends Component {
 
   serializable = true;
 
-  public vector: [number, number] = [0, 0];
+  public angle: number = null;
 
   init(state: Record<string, any>): void {}
 

@@ -5,11 +5,13 @@ import { Equip } from '@server/ecs/components/game/item/equip';
 import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
 import { Damage } from '@server/ecs/components/game/spell/damage';
-import { WarriorSpells } from '@shared/utils/spells';
+import { Spells } from '@shared/utils/spells';
 
 export class Hit extends Spell {
   constructor() {
-    super(WarriorSpells.Hit, 0, 1, 2, [Relation.Hostile, Relation.Neutral]);
+    super(Spells.Hit, 0, 1, 2, [Relation.Hostile, Relation.Neutral]);
+    this.name = 'Удар';
+    this.description = 'Совершает удар оружием в правой руке.';
   }
 
   cast(caster: Entity, target: Entity) {

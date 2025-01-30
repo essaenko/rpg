@@ -2,7 +2,7 @@ import { type } from '@colyseus/schema';
 import { EquipItem } from '@shared/schemas/game/item/equip-item';
 import { Component } from '@shared/ecs/component';
 import { Weapon } from '@shared/schemas/game/item/weapon';
-import { isItemType, map } from '@shared/schemas/game/item/map';
+import { ItemFactory } from '@shared/schemas/game/item/map';
 import { MDBClient } from '@server/mongodb';
 
 export class Equip extends Component {
@@ -38,18 +38,10 @@ export class Equip extends Component {
           return;
         }
 
-        const factory = data.factory;
-
-        if (isItemType(factory)) {
-          const Factory = map[factory];
-
-          const item = new Factory();
-          item.init(state[key]);
-
-          if (key in this) {
-            // @ts-ignore
-            this[key] = item;
-          }
+        if (key in this) {
+          const item = ItemFactory.instantiate(data);
+          // @ts-ignore
+          this[key] = item;
         }
       }
     });

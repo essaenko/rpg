@@ -6,11 +6,9 @@ export class Boot extends Scene {
     super('boot');
   }
 
-  init(): void {
-    this.registry.set('scene', 'boot');
-  }
   preload(): void {}
   async create(): Promise<void> {
+    // await this.game.canvas.requestFullscreen();
     const client = this.registry.get('client');
 
     if (client && client instanceof Client) {

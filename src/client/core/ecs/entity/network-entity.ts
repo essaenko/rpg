@@ -10,11 +10,17 @@ export class NetworkEntity extends Entity {
     super(id);
   }
 
+  private _schema: EntitySchema;
+
   destroy(): void {
     super.destroy();
   }
 
   observe(eSchema: EntitySchema) {
+    eSchema.onChange(() => {
+      this.id = eSchema.id;
+    });
+
     eSchema.components.onAdd((cSchema) => {
       this.onAddComponent(cSchema);
     }, false);
@@ -22,6 +28,12 @@ export class NetworkEntity extends Entity {
     eSchema.components.onRemove((cSchema) => {
       this.removeComponent(cSchema.name);
     });
+
+    this._schema = eSchema;
+  }
+
+  get schema() {
+    return this._schema;
   }
 
   onAddComponent(cSchema: Component) {

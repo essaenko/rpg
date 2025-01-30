@@ -6,11 +6,10 @@ import { Service } from '@shared/ecs/service/service';
 export type Path = Position[];
 
 export class AStarService extends Service {
-  public name = 'a-star';
   private readonly grid: number[][] = [];
   private readonly eStar = new Easystar.js();
   constructor(layer: TiledMapLayer) {
-    super();
+    super('a-star');
     for (let i = 0; i < layer.data.length; i += layer.width) {
       this.grid.push(layer.data.slice(i, i + layer.width));
     }

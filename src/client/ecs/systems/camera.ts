@@ -3,7 +3,7 @@ import { ECSContainer } from '@client/core/ecs';
 import { Room } from 'colyseus.js';
 import type { SceneState } from '@shared/schemas/scene';
 import { Camera } from '@client/ecs/components/game/camera';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
 export class CameraSystem extends System {

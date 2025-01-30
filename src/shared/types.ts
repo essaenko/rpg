@@ -4,9 +4,13 @@ export enum TransportEventTypes {
   //Quest events
   QuestAccepted,
   QuestRejected,
-  QuestFinished,
+  QuestCompleted,
   AcceptQuest,
   RejectQuest,
+  CompleteQuest,
+  Interaction,
+  Loot,
+  PickItem,
 }
 
 export enum InteractionTypes {
@@ -30,19 +34,6 @@ export enum Animation {
   Cast,
   Rest,
   Dying,
-}
-
-export enum SpellBinding {
-  Spell1 = 1,
-  Spell2,
-  Spell3,
-  Spell4,
-  Spell5,
-  Spell6,
-  Spell7,
-  Spell8,
-  Spell9,
-  Spell10,
 }
 
 export type Position = {
@@ -101,8 +92,8 @@ export enum WeaponType {
 }
 
 export enum Fraction {
-  Khazmodar = 1,
-  Varta,
+  Ancient = 1,
+  BrotherHood,
   Neutral,
 }
 
@@ -113,19 +104,19 @@ export enum Relation {
 }
 
 export const Relations: Record<Fraction, Record<Fraction, Relation>> = {
-  [Fraction.Varta]: {
-    [Fraction.Khazmodar]: Relation.Hostile,
-    [Fraction.Varta]: Relation.Friendly,
+  [Fraction.BrotherHood]: {
+    [Fraction.Ancient]: Relation.Hostile,
+    [Fraction.BrotherHood]: Relation.Friendly,
     [Fraction.Neutral]: Relation.Neutral,
   },
-  [Fraction.Khazmodar]: {
-    [Fraction.Khazmodar]: Relation.Friendly,
-    [Fraction.Varta]: Relation.Hostile,
+  [Fraction.Ancient]: {
+    [Fraction.Ancient]: Relation.Friendly,
+    [Fraction.BrotherHood]: Relation.Hostile,
     [Fraction.Neutral]: Relation.Neutral,
   },
   [Fraction.Neutral]: {
-    [Fraction.Khazmodar]: Relation.Neutral,
-    [Fraction.Varta]: Relation.Neutral,
+    [Fraction.Ancient]: Relation.Neutral,
+    [Fraction.BrotherHood]: Relation.Neutral,
     [Fraction.Neutral]: Relation.Neutral,
   },
 };

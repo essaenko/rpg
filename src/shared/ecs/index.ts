@@ -12,8 +12,10 @@ export class ECSContainer {
 
   constructor(public scene: Scene) {}
 
-  addService(service: Service): void {
+  addService<T extends Service = Service>(service: T): T {
     this.services.set(service.name, service);
+
+    return service;
   }
 
   getService<T extends Service>(name: string): T | undefined {

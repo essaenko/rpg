@@ -1,22 +1,12 @@
 import { SettingsService } from '@client/services/settings';
-import { Keys } from '@client/utils/types';
+import { DEFAULT_KEY_BINDING } from '@client/utils/const';
+import { Keys, Spells } from '@client/utils/types';
 
 let instance: InputService;
 
 export class InputService {
-  private readonly bindings: Record<string, Keys> = {
-    KeyQ: Keys.Spell1,
-    KeyE: Keys.Spell2,
-    KeyR: Keys.Spell3,
-    KeyT: Keys.Spell4,
-    KeyF: Keys.Spell5,
-    Digit1: Keys.Spell6,
-    Digit2: Keys.Spell7,
-    Digit3: Keys.Spell8,
-    Digit4: Keys.Spell9,
-    Digit5: Keys.Spell10,
-  };
-  private spellBinding: Record<string, string> = {};
+  private readonly bindings: Record<Spells, Keys> = DEFAULT_KEY_BINDING;
+  private spellBinding: Partial<Record<Spells, string>> = {};
   private readonly pressed = new Set<Keys>();
   private constructor() {
     const binding = SettingsService.instance().getSetting('binding');
@@ -30,13 +20,13 @@ export class InputService {
     }
 
     document.addEventListener('keypress', ({ code }) => {
-      if (code in this.bindings) {
-        this.pressed.add(this.bindings[code]);
+      if (Object.values(this.bindings).includes(code as Keys)) {
+        this.pressed.add(code as Keys);
       }
     });
     document.addEventListener('keyup', ({ code }) => {
-      if (code in this.bindings) {
-        this.pressed.delete(this.bindings[code]);
+      if (Object.values(this.bindings).includes(code as Keys)) {
+        this.pressed.delete(code as Keys);
       }
     });
   }
@@ -46,7 +36,13 @@ export class InputService {
   }
 
   getSpellBinding(key: Keys): string | null {
-    return this.spellBinding[key] ?? null;
+    const bind = Object.entries(this.bindings).find(([_, k]) => k === key);
+
+    if (bind) {
+      return this.spellBinding[+bind[0] as Spells] ?? null;
+    }
+
+    return null;
   }
 
   static instance() {

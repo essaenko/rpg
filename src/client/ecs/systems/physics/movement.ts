@@ -3,10 +3,10 @@ import Phaser from 'phaser';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import { Position } from '@client/ecs/components/physics/position';
-import { Appearance } from '@client/ecs/components/game/asset/appearance';
+import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { Pointer } from '@client/ecs/components/physics/pointer';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { getVelocityByVector, isInTheSamePosition } from '@shared/utils/physics';
+import { isInTheSamePosition } from '@shared/utils/physics';
 import { TransportEventTypes } from '@shared/types';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
 
@@ -33,10 +33,10 @@ export class MovementSystem extends System {
     container.query(['tag-player', 'pointer', 'position']).forEach((entity) => {
       const position = entity.get<Position>('position');
       const pointer = entity.get<Pointer>('pointer');
-      const vector = getVelocityByVector(position, pointer);
+      const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
 
-      if (isInTheSamePosition(position, pointer, 3)) {
-        scene.room.send(TransportEventTypes.Move, [0, 0]);
+      if (isInTheSamePosition(position, pointer, 5)) {
+        scene.room.send(TransportEventTypes.Move, [null]);
         entity.removeComponent(pointer);
 
         return;
@@ -46,7 +46,7 @@ export class MovementSystem extends System {
         pointer.lastX = position.x;
         pointer.lastY = position.y;
 
-        scene.room.send(TransportEventTypes.Move, [vector.x, vector.y]);
+        scene.room.send(TransportEventTypes.Move, [angle]);
       }
     });
   }

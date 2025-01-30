@@ -23,7 +23,7 @@ quest.rewards.push(exprev, goldrev);
 
 const req = new QuestRequirement();
 req.type = QuestRequirementType.ToKill;
-req.count = 3;
+req.amount = 3;
 quest.requirements = new ArraySchema();
 quest.requirements.push(req);
 
