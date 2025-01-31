@@ -8,11 +8,4 @@ export class Position extends NetworkComponent {
   ) {
     super('position');
   }
-
-  observe(schema: PositionSchema): void {
-    schema.onChange(() => {
-      this.x = schema.x;
-      this.y = schema.y;
-    });
-  }
 }

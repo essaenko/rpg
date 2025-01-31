@@ -8,25 +8,29 @@ import { SpellBook } from '@client/ecs/components/game/spells/spell-book';
 import { Tooltip } from '@client/ui/utils/tooltip';
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { SpellIcons } from '@client/assets/images/icons/map';
+import { RoomContext } from '@client/ui/context/room.context';
+import { getStateCallbacks } from 'colyseus.js';
 
 export const SpellBar: React.FC = () => {
   const player = useContext(PlayerContext);
+  const room = useContext(RoomContext);
+  const $ = useMemo(() => {
+    if (room) {
+      return getStateCallbacks(room);
+    }
+
+    return null;
+  }, [room]);
   const binds = useMemo(() => SettingsService.instance().getSetting('bindings') ?? DEFAULT_KEY_BINDING, []);
   const spellBind = useMemo(() => SettingsService.instance().getSetting('spell-binding'), []);
   const book = useMemo(() => player?.get<SpellBook>('spell-book'), [player]);
-  const [update, setUpdate] = useState<number>(0);
+  const [spells, setSpells] = useState<Spell[]>([]);
 
   useEffect(() => {
-    book?.spells.forEach((spell) => {
-      const callback = () => {
-        setUpdate(update + 1);
-      };
-
-      spell.onChange(callback);
-
-      return callback;
-    });
-  }, [book, update]);
+    if (book) {
+      setSpells(Array.from(book.spells.values()));
+    }
+  }, [book]);
 
   const SpellTooltip = ({ spell }: { spell: Spell }) => {
     return (
@@ -43,26 +47,21 @@ export const SpellBar: React.FC = () => {
   return (
     <div className={css.root}>
       <div className={css['speel-list']}>
-        <div className={css.spell}>
-          {book?.spells.at(0) && (
-            <Tooltip className={css.spell_tooltip} tooltip={<SpellTooltip spell={book.spells.at(0)} />}>
-              <div
-                className={css.cooldown_hover}
-                style={{ height: `${(book.spells.at(0).cooldownTime ?? 0 / book.spells.at(0).cooldown) * 100}%` }}
-              />
-              <img src={SpellIcons[book.spells.at(0).id]} alt="" />
-            </Tooltip>
-          )}
-        </div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
-        <div className={css.spell}></div>
+        {spells
+          .map((spell) => {
+            return spell ? (
+              <div className={css.spell}>
+                <Tooltip className={css.spell_tooltip} tooltip={<SpellTooltip spell={spell} />}>
+                  <div
+                    className={css.cooldown_hover}
+                    style={{ height: `${(spell.cooldownTime ?? 0 / spell.cooldown) * 100}%` }}
+                  />
+                  <img src={SpellIcons[spell.id]} alt="" />
+                </Tooltip>
+              </div>
+            ) : null;
+          })
+          .slice(0, 10)}
       </div>
     </div>
   );

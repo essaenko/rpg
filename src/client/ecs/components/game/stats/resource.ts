@@ -10,16 +10,4 @@ export class Resource extends NetworkComponent {
   constructor() {
     super('resource');
   }
-
-  observe(schema: ResourceSchema): void {
-    this.max = schema.max;
-    this.type = schema.type;
-    this.current = schema.current;
-
-    schema.onChange(() => {
-      this.max = schema.max;
-      this.type = schema.type;
-      this.current = schema.current;
-    });
-  }
 }

@@ -4,9 +4,13 @@ import type { Component } from '@shared/ecs/component';
 import { isKeyOf } from '@client/utils/types';
 import { Components } from '@client/ecs/components/map';
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
+import { GetCallbackProxy } from '@colyseus/schema';
 
 export class NetworkEntity extends Entity {
-  constructor(id: string) {
+  constructor(
+    id: string,
+    private $: GetCallbackProxy,
+  ) {
     super(id);
   }
 
@@ -17,15 +21,15 @@ export class NetworkEntity extends Entity {
   }
 
   observe(eSchema: EntitySchema) {
-    eSchema.onChange(() => {
-      this.id = eSchema.id;
+    this.$(eSchema).listen('id', (value) => {
+      this.id = value;
     });
 
-    eSchema.components.onAdd((cSchema) => {
+    this.$(eSchema).components.onAdd((cSchema) => {
       this.onAddComponent(cSchema);
     }, false);
 
-    eSchema.components.onRemove((cSchema) => {
+    this.$(eSchema).components.onRemove((cSchema) => {
       this.removeComponent(cSchema.name);
     });
 
@@ -44,7 +48,10 @@ export class NetworkEntity extends Entity {
       this.addComponent(component);
 
       if (component instanceof NetworkComponent) {
-        component.observe(cSchema as any);
+        this.$(cSchema).bindTo(component);
+        this.$(cSchema).onChange(() => {
+          component.emit('component:change');
+        });
       }
     }
   }

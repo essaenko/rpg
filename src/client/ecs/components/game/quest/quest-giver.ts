@@ -9,14 +9,4 @@ export class QuestGiver extends NetworkComponent {
   }
 
   quests: Quest[] = [];
-
-  observe(schema: QuestGiverSchema): void {
-    schema.quests.onAdd((item) => {
-      this.quests.push(item);
-    }, false);
-
-    schema.quests.onRemove((item) => {
-      this.quests.splice(this.quests.indexOf(item), 1);
-    });
-  }
 }

@@ -8,13 +8,6 @@ export class Health extends NetworkComponent {
     super('health');
   }
 
-  observe(cSchema: HealthSchema) {
-    cSchema.onChange(() => {
-      this.max = cSchema.max;
-      this.current = cSchema.current;
-    });
-  }
-
   destroy() {
     super.destroy();
   }

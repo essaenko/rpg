@@ -11,17 +11,4 @@ export class Inventory extends NetworkComponent {
   constructor() {
     super('inventory');
   }
-
-  observe(schema: InventorySchema): void {
-    schema.items.onAdd((item) => {
-      this.items.push(item);
-    });
-    schema.items.onRemove((item) => {
-      this.items.splice(this.items.indexOf(item, 1));
-    });
-
-    schema.onChange(() => {
-      this.slots = schema.slots;
-    });
-  }
 }

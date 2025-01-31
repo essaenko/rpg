@@ -8,10 +8,4 @@ export class Fraction extends NetworkComponent {
   constructor() {
     super('fraction');
   }
-
-  observe(schema: FractionSchema): void {
-    schema.onChange(() => {
-      this.fraction = schema.fraction;
-    });
-  }
 }

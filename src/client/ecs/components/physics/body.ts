@@ -11,13 +11,4 @@ export class Body extends NetworkComponent {
   constructor() {
     super('body');
   }
-
-  observe(schema: BodySchema) {
-    schema.onChange(() => {
-      this.width = schema.width;
-      this.height = schema.height;
-      this.pivotX = schema.pivotX;
-      this.pivotY = schema.pivotY;
-    });
-  }
 }

@@ -8,11 +8,4 @@ export class Level extends NetworkComponent {
 
   public level: number = 1;
   public exp: number = 0;
-
-  observe(schema: LevelSchema) {
-    schema.onChange(() => {
-      this.exp = schema.exp;
-      this.level = schema.level;
-    });
-  }
 }

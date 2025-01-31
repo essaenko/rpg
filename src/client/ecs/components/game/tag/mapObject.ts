@@ -7,11 +7,4 @@ export class MapObject extends NetworkComponent {
   constructor() {
     super('tag-object');
   }
-
-  observe(schema: ObjectComponentSchema): void {
-    schema.onChange(() => {
-      this.type = schema.type;
-      this.gid = schema.gid;
-    });
-  }
 }
