@@ -7,14 +7,6 @@ export class InteractableObject extends NetworkComponent {
   public loot: string = null;
   public locked: boolean = false;
 
-  observe(schema: InteractableObjectSchema): void {
-    schema.onChange(() => {
-      this.action = schema.action;
-      this.loot = schema.loot;
-      this.locked = schema.locked;
-    });
-  }
-
   constructor() {
     super('interactable-object');
   }

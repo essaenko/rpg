@@ -7,10 +7,4 @@ export class Name extends NetworkComponent {
   }
 
   value: string = '';
-
-  observe(schema: NameScheme): void {
-    schema.onChange(() => {
-      this.value = schema.value;
-    });
-  }
 }

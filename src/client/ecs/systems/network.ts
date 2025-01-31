@@ -1,4 +1,4 @@
-import { Room } from 'colyseus.js';
+import { Room, getStateCallbacks } from 'colyseus.js';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import type { SceneState } from '@shared/schemas/scene';
@@ -16,6 +16,9 @@ export class NetworkSystem extends System {
   constructor() {
     super('network');
   }
+
+  private _room: Room<SceneState>;
+
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     container.query(['tag-player']).forEach((player) => {
       if (player.id === scene.room.sessionId && !player.has('camera')) {
@@ -33,16 +36,20 @@ export class NetworkSystem extends System {
   }
 
   observe(room: Room<SceneState>, container: ECSContainer) {
-    room.state.entities.onAdd((entity) => {
+    this._room = room;
+    const $ = getStateCallbacks(room);
+    $(room.state).entities.onAdd((entity) => {
       this.onAddEntity(entity, container);
     });
-    room.state.entities.onRemove((entity) => {
+    $(room.state).entities.onRemove((entity) => {
       container.removeEntity(container.getEntity(entity.id));
     });
   }
 
   onAddEntity(eSchema: Entity, container: ECSContainer) {
-    const entity = new NetworkEntity(eSchema.id);
+    const $ = getStateCallbacks(this._room);
+    const entity = new NetworkEntity(eSchema.id, $);
+
     entity.observe(eSchema);
 
     container.addEntity(entity);

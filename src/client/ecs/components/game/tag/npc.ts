@@ -5,6 +5,4 @@ export class NPC extends NetworkComponent {
   constructor() {
     super('tag-npc');
   }
-
-  observe(schema: Schema) {}
 }

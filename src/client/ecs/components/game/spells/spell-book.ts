@@ -7,14 +7,5 @@ export class SpellBook extends NetworkComponent {
     super('spell-book');
   }
 
-  public spells: Spell[] = [];
-
-  observe(schema: SpellBookSchema): void {
-    schema.spells.onAdd((spell) => {
-      this.spells.push(spell);
-    }, false);
-    schema.spells.onRemove((spell) => {
-      this.spells.splice(this.spells.indexOf(spell), 1);
-    });
-  }
+  public spells: Map<string, Spell> = new Map();
 }

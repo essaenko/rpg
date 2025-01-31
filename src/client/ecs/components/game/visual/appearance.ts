@@ -13,13 +13,6 @@ export class Appearance extends NetworkComponent {
     super('appearance');
   }
 
-  observe(schema: AppearanceSchema): void {
-    schema.onChange(() => {
-      this.key = schema.key;
-      this.animation = schema.animation;
-    });
-  }
-
   destroy() {
     super.destroy();
 

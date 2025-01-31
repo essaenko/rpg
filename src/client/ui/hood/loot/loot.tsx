@@ -48,6 +48,7 @@ export const LootUI: React.FC = () => {
         setLoot([...lc.items]);
       };
       lc.on('component:change', onComponentChange);
+      onComponentChange();
 
       return () => {
         lc.detach('component:change', onComponentChange);
