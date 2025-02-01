@@ -7,8 +7,9 @@ export class SettingsService {
   private readonly settings: Record<string, any> = {};
 
   private constructor() {
-    this.settings = LocalStorageService.instance().readValue('settings') ?? {
-      binding: DEFAULT_KEY_BINDING,
+    this.settings = {
+      bindings: DEFAULT_KEY_BINDING,
+      ...(LocalStorageService.instance().readValue('settings') ?? {}),
     };
   }
 
