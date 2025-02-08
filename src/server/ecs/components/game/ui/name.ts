@@ -1,5 +1,5 @@
 import { Component } from '@shared/ecs/component';
-import { type } from '@colyseus/schema';
+import { type, view } from '@colyseus/schema';
 
 export class Name extends Component {
   constructor() {

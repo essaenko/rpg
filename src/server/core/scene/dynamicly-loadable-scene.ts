@@ -19,6 +19,7 @@ import { InteractionTypes } from '@shared/types';
 import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { ClientsService } from '@shared/ecs/service/clients';
+import { StateView } from '@colyseus/schema';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -28,7 +29,7 @@ export class DynamicallyLoadableScene extends Scene {
   async onCreate(options: any) {
     super.onCreate(options);
 
-    this.setState(new SceneState());
+    this.state = new SceneState();
     if (isMapKey(this.roomName)) {
       this.map = maps[this.roomName];
 
@@ -46,14 +47,10 @@ export class DynamicallyLoadableScene extends Scene {
   async onJoin(client: Client) {
     //TODO Change this to a proper login system
     if (!client.userData) client.userData = {};
-    client.userData.id = 'usqPuANKq';
-
     let clients = this.ecs.getService<ClientsService>('clients');
 
-    if (!clients) {
-      clients = this.ecs.addService(new ClientsService());
-    }
-
+    client.userData.id = 'usqPuANKq';
+    client.view = new StateView();
     clients.register(client);
 
     const save = await MDBClient.instance().readPlayer(client.userData.id);

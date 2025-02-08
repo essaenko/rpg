@@ -26,8 +26,6 @@ export class CollisionSystem extends System {
         const collayer = scene.map.layers.find((layer) => layer.name === 'collision');
         const colTiles = scene.map.tilesets.find((tileset) => tileset.name === 'dummy-tile');
         collider.collides = false;
-        collider.collidesX = false;
-        collider.collidesY = false;
 
         collayer.data.forEach((tile, index) => {
           if (tile !== 0) {

@@ -1,9 +1,11 @@
+import { type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
 
 export class Speed extends Component {
   constructor() {
     super('speed');
   }
+  @type('boolean') empty = true;
   serializable = true;
 
   public speed: number = 0; // 1
