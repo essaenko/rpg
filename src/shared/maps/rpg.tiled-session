@@ -10,7 +10,7 @@
     ],
     "fileStates": {
         "": {
-            "scaleInDock": 0.5,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/fl_grass_land.tsx": {
@@ -115,11 +115,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 1,
-            "selectedLayer": 6,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 655,
-                "y": 829
+                "x": 48.49999999999997,
+                "y": 362.66666666666663
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -227,10 +227,10 @@
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "dummy/dummy.tmx",
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "rules/rules.tmx",
         "rules/tree_decoration_rules.tmx",
-        "dummy/dummy.tmx",
         "dummy/dummy.json",
         "dummy/dummy-house.tmx",
         "interborder/interborder.tmx",

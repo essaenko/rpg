@@ -46,9 +46,21 @@
               "icon": "excalidraw-icon",
               "title": "CastSystem.excalidraw"
             }
+          },
+          {
+            "id": "ebf3168c8355ee69",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-02-10 14.27.05.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-02-10 14.27.05.excalidraw"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -191,11 +203,12 @@
       "obsidian-excalidraw-plugin:Создать новый чертеж": false
     }
   },
-  "active": "af92644387d01173",
+  "active": "ebf3168c8355ee69",
   "lastOpenFiles": [
-    "Без названия.md",
     "Graphics/CastSystem.excalidraw.md",
+    "Excalidraw/Drawing 2025-02-10 14.27.05.excalidraw.md",
     "Excalidraw",
+    "Без названия.md",
     "Mechanics.md",
     "Graphics",
     "DisDock.md",

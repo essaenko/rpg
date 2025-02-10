@@ -1,7 +1,7 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class MapObject extends Component {
+export class MapObject extends NetworkComponent {
   constructor() {
     super('tag-object');
   }

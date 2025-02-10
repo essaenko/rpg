@@ -2,6 +2,7 @@ import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
 import { IN_GAME_DAY_TIME } from '@client/utils/const';
+import { Entity } from '../ecs/entity/entity';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -39,7 +40,6 @@ export class WorldScene extends NetworkScene {
   create() {
     const name = this.name;
     this.adjustCamera();
-    this.addLight();
 
     if (isMapBundleKey(name)) {
       const bundle = map[name];
@@ -70,6 +70,9 @@ export class WorldScene extends NetworkScene {
       if (phaserMap.tilesets.some((set) => set.tileData)) {
         this.initTilesetAnimations(phaserMap);
       }
+
+      this.initMapObjects(phaserMap);
+      this.addLight();
     }
   }
 
@@ -134,12 +137,27 @@ export class WorldScene extends NetworkScene {
             const frames = tile.animation.map(({ duration, tileid }) => ({ key: 'tree', frame: tileid, duration }));
 
             this.anims.create({
-              key: `${tileset.name}-animation-${tileId}`,
+              key: `${tileset.name}-animation-${+tileId + +tileset.firstgid}`,
               frames: frames,
               repeat: -1,
             });
           }
         }
       });
+  }
+
+  initMapObjects(map: Tilemap) {
+    const objLayer = map.getObjectLayer('objects');
+
+    if (objLayer) {
+      objLayer.objects.forEach((obj) => {
+        const sprite = this.add.sprite(obj.x, obj.y, obj.type).setOrigin(0, 0);
+        sprite.setPipeline('Light2D');
+
+        if (this.anims.exists(`${obj.type}-animation-${obj.gid}`)) {
+          sprite.play(`${obj.type}-animation-${obj.gid}`);
+        }
+      });
+    }
   }
 }

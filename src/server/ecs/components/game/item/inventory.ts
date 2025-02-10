@@ -1,11 +1,11 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { ArraySchema, type, view } from '@colyseus/schema';
 import { Item, Stack } from '@shared/schemas/game/item/item';
 import { MDBClient } from '@server/mongodb';
 import { isItem } from '@server/mongodb/types';
 import { ItemFactory } from '@shared/schemas/game/item/map';
 
-export class Inventory extends Component {
+export class Inventory extends NetworkComponent {
   constructor() {
     super('inventory');
   }

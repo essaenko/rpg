@@ -1,9 +1,9 @@
-import { Component } from '@shared/ecs/component';
-import { ArraySchema, type, filter } from '@colyseus/schema';
+import { Component, NetworkComponent } from '@shared/ecs/component';
+import { ArraySchema, type } from '@colyseus/schema';
 import { Quest } from '@shared/schemas/game/quest/quest';
 import { MDBClient } from '@server/mongodb';
 
-export class QuestGiver extends Component {
+export class QuestGiver extends NetworkComponent {
   constructor() {
     super('quest-giver');
   }

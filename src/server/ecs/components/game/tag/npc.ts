@@ -1,7 +1,7 @@
 import { type } from '@colyseus/schema';
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 
-export class NPC extends Component {
+export class NPC extends NetworkComponent {
   constructor() {
     super('tag-npc');
   }

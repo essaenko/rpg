@@ -1,8 +1,8 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 import { Fraction as Fractions } from '@shared/types';
 
-export class Fraction extends Component {
+export class Fraction extends NetworkComponent {
   constructor() {
     super('fraction');
   }

@@ -37,7 +37,7 @@ export class Hit extends Spell {
   canCast(caster: Entity, target: Entity): boolean {
     const equip = caster.get<Equip>('equip');
 
-    return super.canCast(caster, target) && !!equip.mainHand;
+    return super.canCast(caster, target) && equip && !!equip.mainHand;
   }
 
   proc(caster: Entity, target: Entity): void {

@@ -1,8 +1,8 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 import { Animation } from '@shared/types';
 
-export class Appearance extends Component {
+export class Appearance extends NetworkComponent {
   constructor() {
     super('appearance');
   }

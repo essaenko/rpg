@@ -13,7 +13,8 @@
     "loadtest": "tsx loadtest/example.ts --room my_room --numClients 2",
     "build-server": "npm run clean && tsc",
     "clean": "rimraf build",
-    "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000"
+    "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
+    "migrate": "npx tsx ./src/server/mongodb/migrations/index.ts"
   },
   "author": "",
   "license": "MIT",
@@ -44,7 +45,7 @@
     "@colyseus/monitor": "^0.16.0-preview.4",
     "@colyseus/playground": "^0.16.0-preview.14",
     "@colyseus/tools": "^0.16.0-preview.6",
-    "@colyseus/schema": "^3.0.0-alpha.45",
+    "@colyseus/schema": "^3.0.0-alpha.48",
     "classnames": "^2.5.1",
     "colyseus": "^0.16.0-preview.1",
     "colyseus.js": "^0.16.0-preview.25",

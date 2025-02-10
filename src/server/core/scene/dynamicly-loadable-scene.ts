@@ -3,7 +3,7 @@ import { SceneState } from '@shared/schemas/scene';
 import { isMapKey, maps } from '@shared/maps/mapping';
 import { MDBClient } from '@server/mongodb';
 import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
-import { Entity } from '@shared/ecs/entity';
+import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { Client } from '@colyseus/core';
 import { nanoid } from 'nanoid';
 import { EntitySave } from '@server/mongodb/types';
@@ -55,7 +55,7 @@ export class DynamicallyLoadableScene extends Scene {
 
     const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
-      const entity = new Entity();
+      const entity = new NetworkEntity();
       entity.init(save, client.sessionId);
       entity.addComponent(new Death());
       const spawn = new Spawn();
@@ -74,12 +74,14 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onLeave(client: Client) {
-    const entity = this.ecs.getEntity(client.sessionId);
-    this.ecs.removeEntity(client.sessionId);
-    this.state.entities.delete(client.sessionId);
+    const entity = this.ecs.getEntity(client.userData?.id);
+    if (entity) {
+      this.ecs.removeEntity(entity.id);
+      this.state.entities.delete(entity.id);
 
-    entity.id = client.userData?.id as string;
-    await MDBClient.instance().writePlayer(entity);
+      entity.id = client.userData?.id as string;
+      await MDBClient.instance().writePlayer(entity);
+    }
   }
 
   async processMapNPC() {
@@ -104,7 +106,7 @@ export class DynamicallyLoadableScene extends Scene {
                 name: 'spawn',
                 point: { ...spawn },
               });
-              const entity = new Entity();
+              const entity = new NetworkEntity();
               entity.init(config, config.id);
               entity.addComponent(new Death());
 

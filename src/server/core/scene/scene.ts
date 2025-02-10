@@ -25,6 +25,7 @@ import { LootSystem } from '@server/ecs/systems/mechanics/loot';
 import { ResurrectionSystem } from '@server/ecs/systems/mechanics/resurrection';
 import { AreaOfInterestsSystem } from '@server/ecs/systems/area-of-interests';
 import { ClientsService } from '@shared/ecs/service/clients';
+import { NetworkEntity } from '@shared/ecs/entity';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -86,9 +87,11 @@ export abstract class Scene extends Room<SceneState> {
 
   addEntity(entity: Entity) {
     this.ecs.addEntity(entity);
-    this.state.entities.set(entity.id, entity);
-    this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
-      client.view?.add(entity);
-    });
+    if (entity instanceof NetworkEntity) {
+      this.state.entities.set(entity._schema.id, entity._schema);
+      this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
+        client.view?.add(entity._schema);
+      });
+    }
   }
 }

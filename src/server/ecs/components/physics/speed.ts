@@ -1,14 +1,14 @@
 import { type } from '@colyseus/schema';
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 
-export class Speed extends Component {
+export class Speed extends NetworkComponent {
   constructor() {
     super('speed');
   }
   @type('boolean') empty = true;
   serializable = true;
 
-  public speed: number = 0; // 1
+  @type('number') speed: number = 0; // 1
 
   init(state: Record<string, any>): void {
     if ('speed' in state) {

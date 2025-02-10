@@ -44,12 +44,14 @@ export class QuestGiverSystem extends System {
           passConditions(quest.conditions, player)
         );
       });
-      const ongoingQuests = log?.ongoing
-        .filter(({ id }) => giver.quests.some(({ id: qid }) => qid === id))
-        .filter(({ requirements }) => requirements.some((req) => req.amount !== req.progress));
-      const finishedQuests = log?.ongoing
-        .filter((quest) => giver.quests.some(({ id }) => quest.id === id))
-        .filter(({ requirements }) => requirements.every((req) => req.amount === req.progress));
+      const ongoingQuests =
+        log?.ongoing
+          .filter(({ id }) => giver.quests.some(({ id: qid }) => qid === id))
+          .filter(({ requirements }) => requirements.some((req) => req.amount !== req.progress)) ?? [];
+      const finishedQuests =
+        log?.ongoing
+          .filter((quest) => giver.quests.some(({ id }) => quest.id === id))
+          .filter(({ requirements }) => !requirements.some((req) => req.amount !== req.progress)) ?? [];
 
       if (!state) {
         state = new QuestGiverState();

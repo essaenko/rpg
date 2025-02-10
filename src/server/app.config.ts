@@ -13,6 +13,8 @@ export default config({
      * Define your room handlers:
      */
     gameServer.define('dummy', DynamicallyLoadableScene);
+
+    gameServer.simulateLatency(40);
   },
 
   initializeExpress: (app) => {

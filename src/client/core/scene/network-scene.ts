@@ -58,7 +58,7 @@ export class NetworkScene extends Scene {
   update(time: number, delta: number) {
     super.update(time, delta);
 
-    this.ecs.onUpdate(this);
+    this.ecs.onUpdate(this, delta / 1000);
   }
 
   async joinServerRoom(): Promise<boolean> {

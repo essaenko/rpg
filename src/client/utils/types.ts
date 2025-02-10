@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { Directions } from '@shared/types';
 
 import CursorDefault from '@client/assets/cursor/Cursor Default.png';
@@ -48,3 +49,5 @@ export enum Cursors {
   AwailableQiest = CursorQuestAwailable,
   CompletedQuest = CursorQuestComplete,
 }
+
+export type WithArcadeBody<G extends Phaser.GameObjects.GameObject> = G & Phaser.Physics.Arcade.Body;

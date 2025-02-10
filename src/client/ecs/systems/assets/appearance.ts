@@ -6,9 +6,12 @@ import { Position } from '@client/ecs/components/physics/position';
 import { Target } from '@client/ecs/components/game/combat/target';
 import { Body } from '@client/ecs/components/physics/body';
 import { QuestGiverState } from '@client/ecs/components/game/quest/quest-giver-state';
-import ArcadeSprite = Phaser.Physics.Arcade.Sprite;
 import { Action } from '@client/ecs/components/game/mechanics/action';
+import { WithArcadeBody } from '@client/utils/types';
+
 import Sprite = Phaser.Physics.Arcade.Sprite;
+import ArcadeSprite = Phaser.Physics.Arcade.Sprite;
+import Container = Phaser.GameObjects.Container;
 
 export class AppearanceSystem extends System {
   constructor() {
@@ -22,7 +25,8 @@ export class AppearanceSystem extends System {
       const body = entity.get<Body>('body');
 
       if (appearance.loaded && !appearance.sprites) {
-        appearance.sprites = scene.add.container(position.x, position.y);
+        const wrapper = scene.add.container(position.x, position.y);
+        appearance.sprites = scene.physics.add.existing(wrapper) as WithArcadeBody<Container>;
 
         const sprite = scene.physics.add.sprite(0, 0, undefined);
         sprite.anims.createFromAseprite(appearance.key);

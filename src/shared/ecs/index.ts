@@ -37,7 +37,6 @@ export class ECSContainer {
   removeEntity(id: string): void {
     this.getEntity(id).onDestroy();
     this.entities.delete(id);
-    this.scene.state.entities.delete(id);
   }
 
   getEntity(id: string): Entity {

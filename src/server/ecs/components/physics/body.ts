@@ -1,7 +1,7 @@
-import { Component } from '@shared/ecs/component';
+import { NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class Body extends Component {
+export class Body extends NetworkComponent {
   constructor() {
     super('body');
   }

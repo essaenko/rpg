@@ -1,8 +1,8 @@
 import { type } from '@colyseus/schema';
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { InteractionTypes } from '@shared/types';
 
-export class InteractableObject extends Component {
+export class InteractableObject extends NetworkComponent {
   @type('number') action: InteractionTypes = null;
   @type('string') loot: string = null;
   @type('boolean') locked: boolean = false;
