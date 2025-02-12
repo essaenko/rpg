@@ -3,7 +3,7 @@ import { SceneState } from '@shared/schemas/scene';
 import { isMapKey, maps } from '@shared/maps/mapping';
 import { MDBClient } from '@server/mongodb';
 import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
-import { Entity } from '@shared/ecs/entity';
+import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { Client } from '@colyseus/core';
 import { nanoid } from 'nanoid';
 import { EntitySave } from '@server/mongodb/types';
@@ -19,6 +19,7 @@ import { InteractionTypes } from '@shared/types';
 import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { ClientsService } from '@shared/ecs/service/clients';
+import { StateView } from '@colyseus/schema';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -28,7 +29,7 @@ export class DynamicallyLoadableScene extends Scene {
   async onCreate(options: any) {
     super.onCreate(options);
 
-    this.setState(new SceneState());
+    this.state = new SceneState();
     if (isMapKey(this.roomName)) {
       this.map = maps[this.roomName];
 
@@ -46,19 +47,15 @@ export class DynamicallyLoadableScene extends Scene {
   async onJoin(client: Client) {
     //TODO Change this to a proper login system
     if (!client.userData) client.userData = {};
-    client.userData.id = 'usqPuANKq';
-
     let clients = this.ecs.getService<ClientsService>('clients');
 
-    if (!clients) {
-      clients = this.ecs.addService(new ClientsService());
-    }
-
+    client.userData.id = 'usqPuANKq';
+    client.view = new StateView();
     clients.register(client);
 
     const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
-      const entity = new Entity();
+      const entity = new NetworkEntity();
       entity.init(save, client.sessionId);
       entity.addComponent(new Death());
       const spawn = new Spawn();
@@ -78,11 +75,13 @@ export class DynamicallyLoadableScene extends Scene {
 
   async onLeave(client: Client) {
     const entity = this.ecs.getEntity(client.sessionId);
-    this.ecs.removeEntity(client.sessionId);
-    this.state.entities.delete(client.sessionId);
+    if (entity) {
+      this.ecs.removeEntity(entity.id);
+      this.state.entities.delete(entity.id);
 
-    entity.id = client.userData?.id as string;
-    await MDBClient.instance().writePlayer(entity);
+      entity.id = client.userData?.id as string;
+      await MDBClient.instance().writePlayer(entity);
+    }
   }
 
   async processMapNPC() {
@@ -107,7 +106,7 @@ export class DynamicallyLoadableScene extends Scene {
                 name: 'spawn',
                 point: { ...spawn },
               });
-              const entity = new Entity();
+              const entity = new NetworkEntity();
               entity.init(config, config.id);
               entity.addComponent(new Death());
 
@@ -115,7 +114,7 @@ export class DynamicallyLoadableScene extends Scene {
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
                 const patrol = new Patrol();
-                // patrol.active = false;
+                patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
 

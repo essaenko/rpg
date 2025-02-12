@@ -19,8 +19,10 @@ import { InteractionSystem } from '@client/ecs/systems/mechanics/interaction';
 import { LootSystem } from '@client/ecs/systems/mechanics/loot';
 import { ActionSystem } from '@client/ecs/systems/mechanics/action';
 import { LightSystem } from '@client/ecs/systems/mechanics/light';
+import { GameObjectsSystem } from '@client/ecs/systems/game-objects';
 
 export class NetworkScene extends Scene {
+  onJoin?: () => void;
   public room: Room<SceneState>;
   public ecs: ECSContainer = new ECSContainer();
 
@@ -30,6 +32,7 @@ export class NetworkScene extends Scene {
 
   preload() {
     this.ecs.addSystem(new LoadSystem());
+    this.ecs.addSystem(new GameObjectsSystem());
 
     this.ecs.addSystem(new NetworkSystem());
     this.ecs.addSystem(new InputSystem());
@@ -58,7 +61,7 @@ export class NetworkScene extends Scene {
   update(time: number, delta: number) {
     super.update(time, delta);
 
-    this.ecs.onUpdate(this);
+    this.ecs.onUpdate(this, delta / 1000);
   }
 
   async joinServerRoom(): Promise<boolean> {
@@ -72,7 +75,7 @@ export class NetworkScene extends Scene {
         (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
         this.ecs.addSystem(new CameraSystem(this.room));
 
-        this.scene.get('ui-scene').events.emit('network-inited', { room: this.room, ecs: this.ecs });
+        // this.scene.get('ui-scene').events.emit('network-inited', { room: this.room, ecs: this.ecs });
 
         this.room.onMessage('*', (type, message) => {
           if (typeof type === 'number') {
@@ -80,12 +83,17 @@ export class NetworkScene extends Scene {
           }
         });
 
+        if (this.onJoin) {
+          this.onJoin();
+        }
+
         return true;
       } catch (err) {
         this.add.text(10, 10, `Can't connect to server room`, {
           fontSize: 14,
           color: 'white',
         });
+        console.warn(err);
 
         return false;
       }

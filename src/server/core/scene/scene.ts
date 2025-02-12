@@ -23,6 +23,10 @@ import { QuestRequirementSystem } from '@server/ecs/systems/quest/quest-requirem
 import { InteractionSystem } from '@server/ecs/systems/mechanics/interaction';
 import { LootSystem } from '@server/ecs/systems/mechanics/loot';
 import { ResurrectionSystem } from '@server/ecs/systems/mechanics/resurrection';
+import { AreaOfInterestsSystem } from '@server/ecs/systems/area-of-interests';
+import { ClientsService } from '@shared/ecs/service/clients';
+import { NetworkEntity } from '@shared/ecs/entity';
+import { GameObjectsSystem } from '@server/ecs/systems/game-objects';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -31,6 +35,9 @@ export abstract class Scene extends Room<SceneState> {
   protected constructor() {
     super();
     this.ecs = new ECSContainer(this);
+
+    this.ecs.addSystem(new AreaOfInterestsSystem());
+    this.ecs.addSystem(new GameObjectsSystem());
 
     this.ecs.addSystem(new MoveSystem());
     this.ecs.addSystem(new CollisionSystem());
@@ -55,6 +62,8 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new DamageSystem());
     this.ecs.addSystem(new HotSystem());
     this.ecs.addSystem(new DotSystem());
+
+    this.ecs.addService(new ClientsService());
   }
 
   onCreate(options: any) {
@@ -66,6 +75,9 @@ export abstract class Scene extends Room<SceneState> {
     });
     this.onMessage(TransportEventTypes.AcceptQuest, (client: Client, message: any) => {
       this.ecs.processMessage(client, TransportEventTypes.AcceptQuest, message);
+    });
+    this.onMessage(TransportEventTypes.GetObjects, (client: Client, message: any) => {
+      this.ecs.processMessage(client, TransportEventTypes.GetObjects, message);
     });
     this.onMessage('*', (client: Client, type: string | number, message: any) => {
       if (isTransportEventType(type)) {
@@ -80,6 +92,11 @@ export abstract class Scene extends Room<SceneState> {
 
   addEntity(entity: Entity) {
     this.ecs.addEntity(entity);
-    this.state.entities.set(entity.id, entity);
+    if (entity instanceof NetworkEntity) {
+      this.state.entities.set(entity._schema.id, entity._schema);
+      this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
+        client.view?.add(entity._schema);
+      });
+    }
   }
 }

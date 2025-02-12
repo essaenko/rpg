@@ -75,7 +75,7 @@ export class Quest extends Schema {
   }
 
   public get completed(): boolean {
-    return this.requirements.every((req) => req.amount === req.progress);
+    return !this.requirements.some((req: QuestRequirement): boolean => req.amount !== req.progress);
   }
 
   async complete(entity: Entity) {

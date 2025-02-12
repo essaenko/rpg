@@ -6,6 +6,7 @@ import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
 import { Damage } from '@server/ecs/components/game/spell/damage';
 import { Spells } from '@shared/utils/spells';
+import { type } from '@colyseus/schema';
 
 export class Hit extends Spell {
   constructor() {
@@ -13,6 +14,8 @@ export class Hit extends Spell {
     this.name = 'Удар';
     this.description = 'Совершает удар оружием в правой руке.';
   }
+
+  @type('boolean') empty = true;
 
   cast(caster: Entity, target: Entity) {
     const damage = new Damage();
@@ -34,7 +37,7 @@ export class Hit extends Spell {
   canCast(caster: Entity, target: Entity): boolean {
     const equip = caster.get<Equip>('equip');
 
-    return super.canCast(caster, target) && !!equip.mainHand;
+    return super.canCast(caster, target) && equip && !!equip.mainHand;
   }
 
   proc(caster: Entity, target: Entity): void {

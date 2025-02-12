@@ -8,12 +8,15 @@ import { Inventory } from '@client/ecs/components/game/item/inventory';
 export const InventoryUI: React.FC = () => {
   const player = useContext(PlayerContext);
   const [inventory, setInventory] = useState<Stack[]>([]);
+  const [gold, setGold] = useState<number>(0);
   const [ic, setIc] = useState<Inventory>(null);
 
   useEffect(() => {
     if (player?.has('inventory')) {
-      setIc(player.get<Inventory>('inventory'));
-      setInventory([...player.get<Inventory>('inventory').items]);
+      const ic = player.get<Inventory>('inventory');
+      setIc(ic);
+      setInventory([...ic.items]);
+      setGold(ic.gold);
     }
   }, [player]);
 
@@ -42,6 +45,7 @@ export const InventoryUI: React.FC = () => {
           );
         })}
       </div>
+      <div>Gold: {gold}</div>
     </div>
   );
 };

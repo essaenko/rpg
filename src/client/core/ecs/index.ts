@@ -32,8 +32,8 @@ export class ECSContainer {
     return this.entities.get(id);
   }
 
-  onUpdate(scene: Scene) {
-    this.systems.forEach((system) => system.onUpdate(scene, this));
+  onUpdate(scene: Scene, delta: number) {
+    this.systems.forEach((system) => system.onUpdate(scene, this, delta));
   }
 
   query(components: string[]) {

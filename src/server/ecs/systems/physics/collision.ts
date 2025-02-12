@@ -26,8 +26,6 @@ export class CollisionSystem extends System {
         const collayer = scene.map.layers.find((layer) => layer.name === 'collision');
         const colTiles = scene.map.tilesets.find((tileset) => tileset.name === 'dummy-tile');
         collider.collides = false;
-        collider.collidesX = false;
-        collider.collidesY = false;
 
         collayer.data.forEach((tile, index) => {
           if (tile !== 0) {
@@ -39,8 +37,8 @@ export class CollisionSystem extends System {
               height: 32,
             };
             const b2 = {
-              x: position.x + velocity.x + collider.x - body.pivotX,
-              y: position.y + velocity.y + collider.y - body.pivotY,
+              x: position.x + velocity.x - body.width / 2 + collider.x,
+              y: position.y + velocity.y - body.height / 2 + collider.y,
               width: collider.width,
               height: collider.height,
             };
@@ -95,6 +93,38 @@ export class CollisionSystem extends System {
                   case 8:
                     collision = collide({ ...b1, height: b1.height / 2 }, b2);
                     break;
+                  case 9:
+                    collision = collide({ ...b1, width: b1.width / 2, height: b1.height / 2 }, b2);
+                    break;
+                  case 10:
+                    collision = collide(
+                      { ...b1, x: b1.x + b1.width / 2, width: b1.width / 2, height: b1.height / 2 },
+                      b2,
+                    );
+                    break;
+                  case 11:
+                    collision = collide(
+                      {
+                        ...b1,
+                        x: b1.x + b1.width / 2,
+                        y: b1.y + b1.height / 2,
+                        width: b1.width / 2,
+                        height: b1.height / 2,
+                      },
+                      b2,
+                    );
+                    break;
+                  case 12:
+                    collision = collide(
+                      {
+                        ...b1,
+                        y: b1.y + b1.height / 2,
+                        width: b1.width / 2,
+                        height: b1.height / 2,
+                      },
+                      b2,
+                    );
+                    break;
                 }
               }
             } else {
@@ -114,14 +144,14 @@ export class CollisionSystem extends System {
           if (
             collide(
               {
-                x: objPosition.x + objCollider.x - objBody.pivotX,
-                y: objPosition.y + objCollider.y - objBody.pivotY,
+                x: objPosition.x + objCollider.x - objBody.width / 2, // SetOrigin(0.5, 0.5)
+                y: objPosition.y + objCollider.y - objBody.height / 2, // SetOrigin(0.5, 0.5)
                 width: objCollider.width,
                 height: objCollider.height,
               },
               {
-                x: position.x + velocity.x + collider.x - body.pivotX,
-                y: position.y + velocity.y + collider.y - body.pivotY,
+                x: position.x + velocity.x + collider.x - body.width / 2,
+                y: position.y + velocity.y + collider.y - body.height / 2,
                 width: collider.width,
                 height: collider.height,
               },

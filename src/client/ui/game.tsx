@@ -1,7 +1,6 @@
 import { Boot } from '@client/scenes/boot/boot';
 import { Dummy } from '@client/scenes/dummy/dummy';
 import { LoginScreen } from '@client/scenes/login-screen/login-screen';
-import { UIScene } from '@client/scenes/ui/ui';
 import { Client } from 'colyseus.js';
 import { Scale, Game } from 'phaser';
 import React, { useEffect, useMemo, useState } from 'react';

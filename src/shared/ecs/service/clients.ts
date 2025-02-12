@@ -12,4 +12,16 @@ export class ClientsService extends Service {
 
     return client;
   }
+
+  unregister(client: Client): void {
+    this._list.delete(client.sessionId);
+  }
+
+  get(sessionId: string): Client {
+    return this._list.get(sessionId);
+  }
+
+  get list(): Map<string, Client> {
+    return this._list;
+  }
 }

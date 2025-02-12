@@ -12,16 +12,16 @@ export class Equip extends Component {
 
   serializable = true;
 
-  @type(EquipItem) head: EquipItem;
-  @type(EquipItem) chest: EquipItem;
-  @type(EquipItem) shoulder: EquipItem;
-  @type(EquipItem) hand: EquipItem;
-  @type(EquipItem) pants: EquipItem;
-  @type(EquipItem) boots: EquipItem;
-  @type(EquipItem) mainHand: Weapon;
-  @type(EquipItem) offHand: Weapon;
-  @type(EquipItem) ring: EquipItem;
-  @type(EquipItem) trinket: EquipItem;
+  /* @type(EquipItem) */ public head: EquipItem = null;
+  /* @type(EquipItem) */ public chest: EquipItem = null;
+  /* @type(EquipItem) */ public shoulder: EquipItem = null;
+  /* @type(EquipItem) */ public hand: EquipItem = null;
+  /* @type(EquipItem) */ public pants: EquipItem = null;
+  /* @type(EquipItem) */ public boots: EquipItem = null;
+  /* @type(EquipItem) */ public mainHand: Weapon = null;
+  /* @type(EquipItem) */ public offHand: Weapon = null;
+  /* @type(EquipItem) */ public ring: EquipItem = null;
+  /* @type(EquipItem) */ public trinket: EquipItem = null;
 
   init(state: any): void {
     Object.keys(this).forEach(async (key) => {

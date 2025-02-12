@@ -1,8 +1,8 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 import { LVL_CAPS } from '@shared/utils/level';
 
-export class Level extends Component {
+export class Level extends NetworkComponent {
   constructor() {
     super('level');
   }

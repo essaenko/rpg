@@ -1,9 +1,12 @@
+import { type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
 
 export class Move extends Component {
   constructor() {
     super('move');
   }
+
+  @type('boolean') empty = true;
 
   serializable = true;
 

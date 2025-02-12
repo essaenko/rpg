@@ -1,5 +1,4 @@
 import { Component } from '@shared/ecs/component';
-import { type } from '@colyseus/schema';
 
 export class MapObject extends Component {
   constructor() {
@@ -8,8 +7,8 @@ export class MapObject extends Component {
 
   serializable = true;
 
-  @type('string') type: string;
-  @type('number') gid: number;
+  public type: string;
+  public gid: number;
 
   init(state: Record<string, any>): void {}
 }

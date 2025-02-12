@@ -1,4 +1,4 @@
-import { LocalStorageService } from '@client/services/localstorage';
+import { LocalStorageService } from '@client/services/local-storage';
 import { DEFAULT_KEY_BINDING } from '@client/utils/const';
 
 let instance: SettingsService;

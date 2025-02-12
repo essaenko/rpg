@@ -15,12 +15,13 @@ import { Loot } from './game/item/loot';
 import { Name } from './game/ui/name';
 import { Inventory } from './game/item/inventory';
 import { SpellBook } from './game/spells/spell-book';
+import { Speed } from './physics/speed';
 
 export const Components = {
   body: Body,
   position: Position,
+  speed: Speed,
   'tag-player': Player,
-  'tag-object': MapObject,
   'tag-npc': NPC,
   health: Health,
   resource: Resource,
@@ -29,7 +30,6 @@ export const Components = {
   'quest-giver': QuestGiver,
   'quest-book': QuestBook,
   level: Level,
-  'interactable-object': InteractableObject,
   loot: Loot,
   name: Name,
   inventory: Inventory,

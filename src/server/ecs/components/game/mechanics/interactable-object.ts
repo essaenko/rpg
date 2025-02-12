@@ -1,11 +1,10 @@
-import { type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
 import { InteractionTypes } from '@shared/types';
 
 export class InteractableObject extends Component {
-  @type('number') action: InteractionTypes = null;
-  @type('string') loot: string = null;
-  @type('boolean') locked: boolean = false;
+  public action: InteractionTypes = null;
+  public loot: string = null;
+  public locked: boolean = false;
 
   constructor() {
     super('interactable-object');

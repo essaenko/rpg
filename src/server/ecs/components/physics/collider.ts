@@ -1,10 +1,10 @@
 import { Component } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
-
 export class Collider extends Component {
   constructor() {
     super('collider');
   }
+  @type('boolean') empty = true;
   serializable = true;
 
   // @type('number') x: number = 0; // 22
@@ -18,8 +18,6 @@ export class Collider extends Component {
   public width: number = 0; // 24
   public height: number = 0; // 20
   public collides: boolean = false; // false
-  public collidesX: boolean = false; // false
-  public collidesY: boolean = false; // false
 
   init(state: Record<string, any>): void {
     if ('x' in state) {

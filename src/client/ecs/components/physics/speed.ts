@@ -1,7 +1,9 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
 
-export class NPC extends NetworkComponent {
+export class Speed extends NetworkComponent {
   constructor() {
-    super('tag-npc');
+    super('speed');
   }
+
+  public speed: number = 0;
 }
