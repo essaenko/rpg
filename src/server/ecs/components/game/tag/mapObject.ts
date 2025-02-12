@@ -1,15 +1,14 @@
-import { Component, NetworkComponent } from '@shared/ecs/component';
-import { type } from '@colyseus/schema';
+import { Component } from '@shared/ecs/component';
 
-export class MapObject extends NetworkComponent {
+export class MapObject extends Component {
   constructor() {
     super('tag-object');
   }
 
   serializable = true;
 
-  @type('string') type: string;
-  @type('number') gid: number;
+  public type: string;
+  public gid: number;
 
   init(state: Record<string, any>): void {}
 }

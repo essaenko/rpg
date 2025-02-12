@@ -1,4 +1,4 @@
-import { Component, NetworkComponent } from '@shared/ecs/component';
+import { NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 import { Animation } from '@shared/types';
 

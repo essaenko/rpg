@@ -18,9 +18,7 @@ export class MDBClient {
   private _db: Db;
 
   private constructor() {
-    this._client = new MongoClient(process.env['MONGO_DB_LOCATION_URI'], {
-      serverApi: ServerApiVersion.v1,
-    });
+    this._client = new MongoClient(process.env['MONGO_DB_LOCATION_URI']);
     this._db = this._client.db('rpg');
 
     this.initializeDB();

@@ -1,6 +1,6 @@
 import { Entity } from './entity';
-import type { Entity as EntitySchema } from '@shared/ecs/entity';
-import type { Component } from '@shared/ecs/component';
+import type { EntitySchema } from '@shared/ecs/entity';
+import type { NetworkComponent as Component} from '@shared/ecs/component';
 import { isKeyOf } from '@client/utils/types';
 import { Components } from '@client/ecs/components/map';
 import { NetworkComponent } from '@client/core/ecs/component/network-component';

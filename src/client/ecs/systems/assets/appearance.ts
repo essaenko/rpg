@@ -50,7 +50,7 @@ export class AppearanceSystem extends System {
       }
 
       if (appearance.sprites) {
-        appearance.sprites.depth = position.y + body.height / 2;
+        appearance.sprites.depth = position.y + appearance.sprites.height * appearance.sprites.originY;
       }
     });
 

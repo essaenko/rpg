@@ -26,6 +26,7 @@ import { ResurrectionSystem } from '@server/ecs/systems/mechanics/resurrection';
 import { AreaOfInterestsSystem } from '@server/ecs/systems/area-of-interests';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { NetworkEntity } from '@shared/ecs/entity';
+import { GameObjectsSystem } from '@server/ecs/systems/game-objects';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -36,6 +37,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs = new ECSContainer(this);
 
     this.ecs.addSystem(new AreaOfInterestsSystem());
+    this.ecs.addSystem(new GameObjectsSystem());
 
     this.ecs.addSystem(new MoveSystem());
     this.ecs.addSystem(new CollisionSystem());
@@ -73,6 +75,9 @@ export abstract class Scene extends Room<SceneState> {
     });
     this.onMessage(TransportEventTypes.AcceptQuest, (client: Client, message: any) => {
       this.ecs.processMessage(client, TransportEventTypes.AcceptQuest, message);
+    });
+    this.onMessage(TransportEventTypes.GetObjects, (client: Client, message: any) => {
+      this.ecs.processMessage(client, TransportEventTypes.GetObjects, message);
     });
     this.onMessage('*', (client: Client, type: string | number, message: any) => {
       if (isTransportEventType(type)) {

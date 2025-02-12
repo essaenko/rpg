@@ -80,11 +80,11 @@
             "scaleInDock": 1
         },
         "dummy/dummy.json": {
-            "scale": 0.66240234375,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 768.4151555358987,
-                "y": 768.4151555358987
+                "x": 127.66666666666669,
+                "y": 1118
             }
         },
         "dummy/dummy.json#decorations_medium": {
@@ -109,21 +109,19 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx": {
-            "expandedGroupLayers": [
-                12
-            ],
             "expandedObjectLayers": [
                 5
             ],
             "scale": 3,
-            "selectedLayer": 1,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 48.49999999999997,
-                "y": 362.66666666666663
+                "x": 894.9999999999999,
+                "y": 932.3333333333333
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "dummy/dummy.tmx#dummy-tile": {
             "scaleInDock": 1,
@@ -141,10 +139,16 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx#small-buildings": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "dummy/dummy.tmx#tree": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "dummy/dummy.tmx#water_env": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
         },
         "interborder/interborder.tmx": {
             "scale": 1.5,
@@ -225,13 +229,13 @@
         "dummy/dummy.tmx"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
         "dummy/dummy.tmx",
+        "dummy/dummy.json",
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "rules/rules.tmx",
         "rules/tree_decoration_rules.tmx",
-        "dummy/dummy.json",
         "dummy/dummy-house.tmx",
         "interborder/interborder.tmx",
         "dummy/dummy-house.json"

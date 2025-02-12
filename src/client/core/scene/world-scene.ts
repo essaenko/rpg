@@ -2,7 +2,11 @@ import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
 import { IN_GAME_DAY_TIME } from '@client/utils/const';
+import { TransportEventTypes } from '@shared/types';
+import { nanoid } from 'nanoid';
 import { Entity } from '../ecs/entity/entity';
+import { Position } from '@client/ecs/components/physics/position';
+import { MapObject } from '@client/ecs/components/game/tag/mapObject';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -11,6 +15,8 @@ export class WorldScene extends NetworkScene {
   ) {
     super(name);
   }
+
+  private map: Tilemap;
 
   preload() {
     super.preload();
@@ -43,15 +49,16 @@ export class WorldScene extends NetworkScene {
 
     if (isMapBundleKey(name)) {
       const bundle = map[name];
-      const phaserMap = this.make.tilemap({ key: bundle.map.key });
+      this.map = this.make.tilemap({ key: bundle.map.key });
+
       bundle.assets.forEach((asset) => {
-        phaserMap.addTilesetImage(asset.key, asset.key);
+        this.map.addTilesetImage(asset.key, asset.key);
       });
 
-      phaserMap.layers
+      this.map.layers
         .filter((layer) => layer.visible)
         .forEach((layer) => {
-          phaserMap
+          this.map
             .createLayer(
               layer.name,
               bundle.assets.map(({ key }) => key),
@@ -60,19 +67,29 @@ export class WorldScene extends NetworkScene {
         });
 
       if (this.debugCollider) {
-        phaserMap.createLayer('collision', ['dummy-tile']);
+        this.map.createLayer('collision', ['dummy-tile']);
 
         const g = this.add.graphics();
 
         g.lineStyle(2, 0xff00ff, 1);
-        g.strokeRect(0, 0, phaserMap.width * phaserMap.tileWidth, phaserMap.height * phaserMap.tileHeight);
+        g.strokeRect(0, 0, this.map.width * this.map.tileWidth, this.map.height * this.map.tileHeight);
       }
-      if (phaserMap.tilesets.some((set) => set.tileData)) {
-        this.initTilesetAnimations(phaserMap);
+      if (this.map.tilesets.some((set) => set.tileData)) {
+        this.initTilesetAnimations();
       }
 
-      this.initMapObjects(phaserMap);
       this.addLight();
+
+      if (!this.room) {
+        this.onJoin = () => {
+          this.room.send(TransportEventTypes.GetObjects);
+        };
+      } else {
+        this.room.send(TransportEventTypes.GetObjects);
+      }
+
+      this.initStaticObjects();
+      this.handleTileMapAnimations();
     }
   }
 
@@ -91,6 +108,7 @@ export class WorldScene extends NetworkScene {
 
     const now = new Date();
     const fn = (tween: { getValue: () => number }) => {
+      console.log(tween.getValue());
       const value = tween.getValue();
       const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, value);
       this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
@@ -100,15 +118,15 @@ export class WorldScene extends NetworkScene {
     };
 
     this.tweens.addCounter({
-      from: (now.getMinutes() / 60) * 100,
-      to: 100,
+      from: (100 / 30) * Math.min(now.getMinutes(), 60 - now.getMinutes()),
+      to: now.getMinutes() >= 30 ? 0 : 100,
       ease: Phaser.Math.Easing.Sine.InOut,
-      duration: (60 - now.getMinutes()) * 60 * 1000,
+      duration: (30 - (now.getMinutes() % 30)) * 60 * 1000,
       repeat: 1,
       onComplete: () => {
         this.tweens.addCounter({
-          from: 0,
-          to: 100,
+          from: now.getMinutes() == 30 ? 100 : 0,
+          to: now.getMinutes() == 30 ? 0 : 100,
           ease: Phaser.Math.Easing.Sine.InOut,
           duration: IN_GAME_DAY_TIME,
           repeat: -1,
@@ -124,8 +142,30 @@ export class WorldScene extends NetworkScene {
     super.update(now, delta);
   }
 
-  initTilesetAnimations(m: Tilemap) {
-    m.tilesets
+  handleTileMapAnimations() {
+    const cache = [];
+    for (const layer of this.map.layers.filter(({ visible }) => visible)) {
+      const tilesets = layer.tilemapLayer.tileset;
+
+      for (const tileset of tilesets) {
+        const animationKeys = Object.entries(tileset.tileData)
+          .filter(([_, data]) => data.animation && !data.objectgroup)
+          .map(([key]) => +key);
+        for (const key of animationKeys) {
+          const sprites = layer.tilemapLayer.createFromTiles(+key + tileset.firstgid, -1);
+
+          for (const sprite of sprites) {
+            sprite.setTexture(tileset.name, key);
+            sprite.setPipeline('Light2D');
+            sprite.play(`${tileset.name}-animation-${key + +tileset.firstgid}`);
+          }
+        }
+      }
+    }
+  }
+
+  initTilesetAnimations() {
+    this.map.tilesets
       .filter((set) => Object.keys(set.tileData).length)
       .forEach((tileset) => {
         const data = tileset.tileData as Record<string, { animation?: { duration: number; tileid: number }[] }>;
@@ -134,7 +174,11 @@ export class WorldScene extends NetworkScene {
           const tile = data[tileId];
 
           if (tile.animation) {
-            const frames = tile.animation.map(({ duration, tileid }) => ({ key: 'tree', frame: tileid, duration }));
+            const frames = tile.animation.map(({ duration, tileid }) => ({
+              key: tileset.name,
+              frame: tileid,
+              duration,
+            }));
 
             this.anims.create({
               key: `${tileset.name}-animation-${+tileId + +tileset.firstgid}`,
@@ -146,16 +190,26 @@ export class WorldScene extends NetworkScene {
       });
   }
 
-  initMapObjects(map: Tilemap) {
-    const objLayer = map.getObjectLayer('objects');
+  initStaticObjects() {
+    const objLayer = this.map.getObjectLayer('objects');
 
     if (objLayer) {
       objLayer.objects.forEach((obj) => {
-        const sprite = this.add.sprite(obj.x, obj.y, obj.type).setOrigin(0, 0);
-        sprite.setPipeline('Light2D');
+        if (
+          !obj.properties?.find(({ name, value }: { name?: string; value?: boolean }) => name === 'dynamic' && !!value)
+        ) {
+          const entity = new Entity(nanoid(9));
+          const position = new Position();
+          position.x = obj.x;
+          position.y = obj.y;
+          entity.addComponent(position);
 
-        if (this.anims.exists(`${obj.type}-animation-${obj.gid}`)) {
-          sprite.play(`${obj.type}-animation-${obj.gid}`);
+          const objCom = new MapObject();
+          objCom.type = obj.type;
+          objCom.gid = obj.gid;
+          entity.addComponent(objCom);
+
+          this.ecs.addEntity(entity);
         }
       });
     }

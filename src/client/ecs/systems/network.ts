@@ -2,7 +2,7 @@ import { Room, getStateCallbacks } from 'colyseus.js';
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
 import type { SceneState } from '@shared/schemas/scene';
-import type { Entity } from '@shared/ecs/entity';
+import type { EntitySchema } from '@shared/ecs/entity';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { Camera } from '@client/ecs/components/game/camera';
 import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
@@ -11,6 +11,7 @@ import { MapObject } from '@client/ecs/components/game/tag/mapObject';
 import { isMapKey, maps } from '@shared/maps/mapping';
 import { Position } from '@client/ecs/components/physics/position';
 import { Animation } from '@client/ecs/components/game/visual/animation';
+import { Entity } from '@client/core/ecs/entity/entity';
 
 export class NetworkSystem extends System {
   constructor() {
@@ -29,7 +30,7 @@ export class NetworkSystem extends System {
     });
 
     container.query(['tag-object']).forEach((entity) => {
-      if (!entity.has('sprite') && entity instanceof NetworkEntity) {
+      if (!entity.has('sprite') && entity instanceof Entity) {
         this.initObject(entity, scene);
       }
     });
@@ -46,7 +47,7 @@ export class NetworkSystem extends System {
     });
   }
 
-  onAddEntity(eSchema: Entity, container: ECSContainer) {
+  onAddEntity(eSchema: EntitySchema, container: ECSContainer) {
     const $ = getStateCallbacks(this._room);
     const entity = new NetworkEntity(eSchema.id, $);
 
@@ -55,7 +56,7 @@ export class NetworkSystem extends System {
     container.addEntity(entity);
   }
 
-  initObject(entity: NetworkEntity, scene: WorldScene) {
+  initObject(entity: Entity, scene: WorldScene) {
     const location = scene.name;
     const object = entity.get<MapObject>('tag-object');
     const position = entity.get<Position>('position');
@@ -66,9 +67,9 @@ export class NetworkSystem extends System {
       if (set) {
         const sprite = scene.physics.add.sprite(position.x, position.y, object.type, object.gid - set.firstgid);
         sprite.setPipeline('Light2D');
-        sprite.setOrigin(0, 0);
+        sprite.setOrigin(0.5, 0.5);
         sprite.depth = sprite.y + sprite.height;
-        const animKey = `${object.type}-animation-${object.gid - set.firstgid}`;
+        const animKey = `${object.type}-animation-${object.gid}`;
 
         if (scene.anims.exists(animKey)) {
           const animComponent = new Animation();

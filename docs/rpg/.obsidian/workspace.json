@@ -58,9 +58,21 @@
               "icon": "excalidraw-icon",
               "title": "Drawing 2025-02-10 14.27.05.excalidraw"
             }
+          },
+          {
+            "id": "4ac6ccbee5e4d611",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Graphics/Drawing 2025-02-12 19.55.54.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-02-12 19.55.54.excalidraw"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -203,10 +215,11 @@
       "obsidian-excalidraw-plugin:Создать новый чертеж": false
     }
   },
-  "active": "ebf3168c8355ee69",
+  "active": "4ac6ccbee5e4d611",
   "lastOpenFiles": [
-    "Graphics/CastSystem.excalidraw.md",
     "Excalidraw/Drawing 2025-02-10 14.27.05.excalidraw.md",
+    "Graphics/Drawing 2025-02-12 19.55.54.excalidraw.md",
+    "Graphics/CastSystem.excalidraw.md",
     "Excalidraw",
     "Без названия.md",
     "Mechanics.md",

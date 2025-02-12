@@ -10,8 +10,6 @@ export class Body extends NetworkComponent {
 
   @type('number') width: number = 0;
   @type('number') height: number = 0;
-  @type('number') pivotX: number = 0;
-  @type('number') pivotY: number = 0;
 
   init(state: Record<string, any>): void {
     if ('width' in state) {
@@ -19,12 +17,6 @@ export class Body extends NetworkComponent {
     }
     if ('height' in state) {
       this.height = state.height;
-    }
-    if ('pivotX' in state) {
-      this.pivotX = state.pivotX;
-    }
-    if ('pivotY' in state) {
-      this.pivotY = state.pivotY;
     }
   }
 }

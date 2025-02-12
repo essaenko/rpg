@@ -24,7 +24,7 @@ export class SpriteSystem extends System {
         sprite.sprite.input.cursor = `url(${Cursors.Loot}), pointer`;
       }
 
-      sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height - 16;
+      sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height * 0.3;
 
       if (
         players.some((player) => {
@@ -36,13 +36,13 @@ export class SpriteSystem extends System {
             collide(
               {
                 x: pSprite.sprites.x - (pSprite.sprites.width * pSprite.sprites.originX) / 2,
-                y: pSprite.sprites.y - pSprite.sprites.height * pSprite.sprites.originY,
+                y: pSprite.sprites.y - (pSprite.sprites.height * pSprite.sprites.originY) / 2,
                 width: pSprite.sprites.width / 2,
                 height: pSprite.sprites.height,
               },
               {
-                x: sprite.sprite.x,
-                y: sprite.sprite.y,
+                x: sprite.sprite.x - sprite.sprite.width * sprite.sprite.originX,
+                y: sprite.sprite.y - sprite.sprite.height * sprite.sprite.originY,
                 width: sprite.sprite.width,
                 height: sprite.sprite.height,
               },

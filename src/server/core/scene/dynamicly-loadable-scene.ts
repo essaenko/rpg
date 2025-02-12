@@ -74,7 +74,7 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onLeave(client: Client) {
-    const entity = this.ecs.getEntity(client.userData?.id);
+    const entity = this.ecs.getEntity(client.sessionId);
     if (entity) {
       this.ecs.removeEntity(entity.id);
       this.state.entities.delete(entity.id);
@@ -114,7 +114,7 @@ export class DynamicallyLoadableScene extends Scene {
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
                 const patrol = new Patrol();
-                // patrol.active = false;
+                patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
 

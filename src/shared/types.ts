@@ -11,7 +11,22 @@ export enum TransportEventTypes {
   Interaction,
   Loot,
   PickItem,
+
+  GetObjects,
+  ObjectsState,
 }
+
+export type ObjectStateType = Position & {
+  id: string;
+  type: string;
+  gid: number;
+};
+
+export type ObjectsStateType = ObjectStateType[];
+
+export const isObjectsState = (data: unknown): data is ObjectsStateType => {
+  return Array.isArray(data) && data.every((it) => 'x' in it && 'y' in it);
+};
 
 export enum InteractionTypes {
   Loot = 1,

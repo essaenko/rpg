@@ -14,7 +14,7 @@ export default config({
      */
     gameServer.define('dummy', DynamicallyLoadableScene);
 
-    gameServer.simulateLatency(40);
+    // gameServer.simulateLatency(100);
   },
 
   initializeExpress: (app) => {

@@ -1,11 +1,12 @@
 
-import groundAsset from '@client/assets/tilesets/fantasy-lands/ground.png';
 import hillsAsset from '@client/assets/tilesets/fantasy-lands/hills.png';
 import dummy_tileAsset from '@client/assets/tilesets/dummy-tile.png';
 import ground_dec_propsAsset from '@client/assets/tilesets/fantasy-lands/ground_dec_props.png';
 import decorations_mediumAsset from '@client/assets/tilesets/fantasy-lands/decorations_medium.png';
 import treeAsset from '@client/assets/tilesets/fantasy-lands/Tree_A_v1.png';
 import small_buildingsAsset from '@client/assets/tilesets/fantasy-lands/small_buildings.png';
+import groundAsset from '@client/assets/tilesets/fantasy-lands/ground.png';
+import water_envAsset from '@client/assets/tilesets/fantasy-lands/water_env.png';
 import dummy_json_map from '@shared/maps/dummy/dummy.json?url';
 import wooden_wallsAsset from '@client/assets/tilesets/fantasy-lands/interrior/Walls/FL_Houses_int_WallsD.png';
 import floorsAsset from '@client/assets/tilesets/fantasy-lands/interrior/Floors/FL_Houses_int_Floors.png';
@@ -17,7 +18,6 @@ import kitchenAsset from '@client/assets/tilesets/fantasy-lands/interrior/Furnit
 import dummy_house_json_map from '@shared/maps/dummy/dummy-house.json?url';
 import tree_aAsset from '@client/assets/tilesets/fantasy-lands/Tree_A_v1.png';
 import tree_bAsset from '@client/assets/tilesets/fantasy-lands/Tree_B_v1.png';
-import water_envAsset from '@client/assets/tilesets/fantasy-lands/water_env.png';
 import interborder_json_map from '@shared/maps/interborder/interborder.json?url';
 
 export const map = {
@@ -27,11 +27,6 @@ export const map = {
         asset: dummy_json_map
       },
       assets: [{
-        key: 'ground',
-        type: 'sprite',
-        asset: groundAsset,
-        config: {"frameWidth":32,"frameHeight":32}
-        },{
         key: 'hills',
         type: 'sprite',
         asset: hillsAsset,
@@ -61,6 +56,16 @@ export const map = {
         type: 'sprite',
         asset: small_buildingsAsset,
         config: {"frameWidth":160,"frameHeight":192}
+        },{
+        key: 'ground',
+        type: 'sprite',
+        asset: groundAsset,
+        config: {"frameWidth":32,"frameHeight":32}
+        },{
+        key: 'water_env',
+        type: 'sprite',
+        asset: water_envAsset,
+        config: {"frameWidth":32,"frameHeight":32}
         }]
     },
 'dummy-house': {

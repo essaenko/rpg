@@ -1,5 +1,5 @@
-import { Component, NetworkComponent } from '@shared/ecs/component';
-import { ArraySchema, type, view } from '@colyseus/schema';
+import { NetworkComponent } from '@shared/ecs/component';
+import { ArraySchema, type } from '@colyseus/schema';
 import { Item, Stack } from '@shared/schemas/game/item/item';
 import { MDBClient } from '@server/mongodb';
 import { isItem } from '@server/mongodb/types';
@@ -29,6 +29,7 @@ export class Inventory extends NetworkComponent {
         }
       }
     }
+    this.gold = state.gold;
   }
 
   addItem(item: Item, amount: number = 1): void {
@@ -77,8 +78,9 @@ export class Inventory extends NetworkComponent {
   serialize(): Record<string, any> {
     return {
       name: this.name,
-      items: this.items.map(({ item, amount }) => ({ item: item.id, amount })),
+      items: this.items.map(({ item, amount }) => ({ item: item.id, amount: amount })),
       slots: this.slots,
+      gold: this.gold ?? 0,
     };
   }
 }
