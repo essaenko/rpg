@@ -40,13 +40,13 @@ export class Entity {
     return this.components.some(({ name: n }) => n === name);
   }
 
-  addComponent(component: ComponentType): void {
-    this.components.push(component);
+  add(...components: ComponentType[]): void {
+    this.components.push(...components);
   }
 
-  removeComponent(name: string): void;
-  removeComponent(instance: ComponentType): void;
-  removeComponent(signature: string | ComponentType): void {
+  remove(name: string): void;
+  remove(instance: ComponentType): void;
+  remove(signature: string | ComponentType): void {
     let component;
     if (typeof signature === 'string') {
       component = this.get(signature);
@@ -55,6 +55,7 @@ export class Entity {
     }
 
     if (component) {
+      component.onDestroy();
       this.components.splice(this.components.indexOf(component), 1);
     }
   }
@@ -68,12 +69,16 @@ export class Entity {
         const component = new Factory();
         component.init(cState);
 
-        this.addComponent(component);
+        this.add(component);
       }
     });
   }
 
-  onDestroy(): void {}
+  onDestroy(): void {
+    this.components.forEach((c) => {
+      c.onDestroy();
+    });
+  }
 }
 
 export class EntitySchema extends Schema {
@@ -88,7 +93,7 @@ export class NetworkEntity extends Entity {
   }
   public _schema: EntitySchema = new EntitySchema();
 
-  public components: (Component | NetworkComponent)[] = new Array();
+  public components: ComponentType[] = new Array();
 
   public set id(value: string) {
     super.id = value;
@@ -99,23 +104,25 @@ export class NetworkEntity extends Entity {
     return this._id;
   }
 
-  addComponent(component: Component | NetworkComponent): void {
-    super.addComponent(component);
+  add(...components: ComponentType[]): void {
+    super.add(...components);
 
-    if (component instanceof NetworkComponent) {
-      this._schema.components.push(component);
+    for (const c of components) {
+      if (c instanceof NetworkComponent) {
+        this._schema.components.push(c);
+      }
     }
   }
 
-  removeComponent(name: string): void;
-  removeComponent(instance: ComponentType): void;
-  removeComponent(signature: string | ComponentType): void {
+  remove(name: string): void;
+  remove(instance: ComponentType): void;
+  remove(signature: string | ComponentType): void {
     let component;
     if (typeof signature === 'string') {
-      super.removeComponent(signature);
+      super.remove(signature);
       component = this.get(signature);
     } else {
-      super.removeComponent(signature);
+      super.remove(signature);
       component = signature;
     }
 

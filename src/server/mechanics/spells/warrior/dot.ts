@@ -2,12 +2,12 @@ import { Spell } from '@shared/schemas/game/spell/spell';
 import { Entity } from '@shared/ecs/entity';
 import { type } from '@colyseus/schema';
 import { Dot as DotSpell } from '@server/ecs/components/game/spell/dot';
-import { WarriorSpells } from '@shared/utils/spells';
+import { Spells } from '@shared/utils/spells';
 import { Relation } from '@shared/types';
 
 export class Dot extends Spell {
   constructor() {
-    super(WarriorSpells.Dot, 0, 2, 2, [Relation.Hostile, Relation.Neutral]);
+    super(Spells.Dot, 0, 2, 2, 0, [Relation.Hostile, Relation.Neutral]);
   }
 
   @type('number') amount: number = 15;
@@ -23,7 +23,7 @@ export class Dot extends Spell {
     dot.spell = this.id;
     dot.caster = caster.id;
 
-    target.addComponent(dot);
+    target.add(dot);
   }
 
   proc(caster: Entity, target: Entity): void {}

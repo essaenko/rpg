@@ -1,5 +1,7 @@
 import { TiledMap } from '@shared/utils/types';
 import { Position, Body, Triangle } from '@shared/types';
+import { Entity } from '@shared/ecs/entity';
+import { Collider } from '@server/ecs/components/physics/collider';
 
 export const getTileXY = (tile: number, map: TiledMap): Position => {
   return {
@@ -105,6 +107,19 @@ export const collide = (b1: Position & Body, b2: Position & Body): boolean => {
     collideSide({ c: b1.x, p: b1.width }, { c: b2.x, p: b2.width }) &&
     collideSide({ c: b1.y, p: b1.height }, { c: b2.y, p: b2.height })
   );
+};
+
+export const getCollider = (entity: Entity): Position & Body => {
+  const pos = entity.get('position') as unknown as Position;
+  const body = entity.get('body') as unknown as Body;
+  const collider = entity.get<Collider>('collider');
+
+  return {
+    x: pos.x - body.width / 2 + (collider?.x ?? 0),
+    y: pos.y - body.height / 2 + (collider?.y ?? 0),
+    width: (collider?.width || null) ?? body.width,
+    height: (collider?.height || null) ?? body.height,
+  };
 };
 
 export const collideSide = (s1: { c: number; p: number }, s2: { c: number; p: number }): boolean => {

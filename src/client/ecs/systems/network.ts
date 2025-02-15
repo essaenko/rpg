@@ -24,7 +24,7 @@ export class NetworkSystem extends System {
     container.query(['tag-player']).forEach((player) => {
       if (player.id === scene.room.sessionId && !player.has('camera')) {
         const camera = new Camera();
-        player.addComponent(camera);
+        player.add(camera);
         scene.registry.set('player', player);
       }
     });
@@ -75,12 +75,12 @@ export class NetworkSystem extends System {
           const animComponent = new Animation();
           animComponent.key = animKey;
 
-          entity.addComponent(animComponent);
+          entity.add(animComponent);
         }
         const sComponent = new Sprite();
         sComponent.sprite = sprite;
 
-        entity.addComponent(sComponent);
+        entity.add(sComponent);
       }
     }
   }

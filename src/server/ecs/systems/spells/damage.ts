@@ -18,11 +18,11 @@ export class DamageSystem extends System {
 
       if (!health) {
         health = new ChangeHealth();
-        entity.addComponent(health);
+        entity.add(health);
       }
 
       health.value -= entity.get<Damage>('damage').value ?? 0;
-      entity.removeComponent('damage');
+      entity.remove('damage');
     });
   }
 }

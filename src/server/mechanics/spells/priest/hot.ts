@@ -2,7 +2,7 @@ import { Spell } from '@shared/schemas/game/spell/spell';
 import { Entity } from '@shared/ecs/entity';
 import { Hot as HotComponent } from '@server/ecs/components/game/spell/hot';
 import { type } from '@colyseus/schema';
-import { WarriorSpells } from '@shared/utils/spells';
+import { Spells } from '@shared/utils/spells';
 import { Relation } from '@shared/types';
 
 export class Hot extends Spell {
@@ -11,7 +11,7 @@ export class Hot extends Spell {
   @type('number') interval: number = 2;
 
   constructor() {
-    super(WarriorSpells.Hot, 0, 1, 5, [Relation.Friendly, Relation.Neutral]);
+    super(Spells.Hot, 0, 1, 5, 0, [Relation.Friendly, Relation.Neutral]);
   }
 
   cast(caster: Entity, target: Entity): void {
@@ -23,7 +23,7 @@ export class Hot extends Spell {
     hot.spell = this.id;
     hot.caster = caster.id;
 
-    target.addComponent(hot);
+    target.add(hot);
   }
 
   proc(caster: Entity, target: Entity): void {}

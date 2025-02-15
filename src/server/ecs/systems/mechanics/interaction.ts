@@ -44,7 +44,7 @@ export class InteractionSystem extends System {
                 .filter((v) => !!v),
             )),
           );
-          player.addComponent(loot);
+          player.add(loot);
         }
       }
     }

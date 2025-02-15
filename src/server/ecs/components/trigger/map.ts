@@ -1,5 +1,9 @@
-import { ChangeSceneTrigger } from '@server/ecs/components/trigger/change-scene';
+import { MoveTarget } from './move-target';
 
 export const map = {
-  'change-scene': ChangeSceneTrigger,
+  'move-target': MoveTarget,
+} as const;
+
+export const isTriggerFactoryKey = (key: unknown): key is keyof typeof map => {
+  return typeof key === 'string' && key in map;
 };

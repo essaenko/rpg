@@ -15,17 +15,17 @@ export class GameObjectsSystem extends System {
       if (isObjectsState(message)) {
         for (const obj of message) {
           const entity = new Entity(obj.id);
-          entity.addComponent(new InteractableObject());
+          entity.add(new InteractableObject());
 
           const position = new Position();
           position.x = obj.x;
           position.y = obj.y;
-          entity.addComponent(position);
+          entity.add(position);
 
           const objComp = new MapObject();
           objComp.gid = obj.gid;
           objComp.type = obj.type;
-          entity.addComponent(objComp);
+          entity.add(objComp);
 
           container.addEntity(entity);
         }

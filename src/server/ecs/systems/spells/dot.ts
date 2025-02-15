@@ -24,12 +24,12 @@ export class DotSystem extends System {
         const damage = new Damage();
         damage.value = dot.amount;
 
-        entity.addComponent(damage);
+        entity.add(damage);
       }
 
       dot.duration = Math.max(0, dot.duration - delta);
       if (dot.duration === 0) {
-        entity.removeComponent(dot);
+        entity.remove(dot);
       }
     });
   }

@@ -15,8 +15,8 @@ export class Collider extends Component {
 
   public x: number = 0; // 22
   public y: number = 0; // 40
-  public width: number = 0; // 24
-  public height: number = 0; // 20
+  public width: number = 0; // 20
+  public height: number = 0; // 24
   public collides: boolean = false; // false
 
   init(state: Record<string, any>): void {

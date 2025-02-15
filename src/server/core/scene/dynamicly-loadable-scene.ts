@@ -20,6 +20,8 @@ import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { StateView } from '@colyseus/schema';
+import { Trigger } from '@server/ecs/components/trigger/trigger';
+import { isTriggerFactoryKey, map } from '@server/ecs/components/trigger/map';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -40,6 +42,7 @@ export class DynamicallyLoadableScene extends Scene {
         }
         this.processMapObjects();
         this.processMapNPC();
+        this.processMapTriggers();
       }
     }
   }
@@ -57,7 +60,7 @@ export class DynamicallyLoadableScene extends Scene {
     if (save) {
       const entity = new NetworkEntity();
       entity.init(save, client.sessionId);
-      entity.addComponent(new Death());
+      entity.add(new Death());
       const spawn = new Spawn();
       const mapSpawn = this.map.layers
         .find(({ name }) => name === 'locations')
@@ -66,7 +69,7 @@ export class DynamicallyLoadableScene extends Scene {
       if (mapSpawn) {
         spawn.point = { x: mapSpawn.x, y: mapSpawn.y };
       }
-      entity.addComponent(spawn);
+      entity.add(spawn);
       this.addEntity(entity);
     } else {
       client.error(1024, `Can't load player`);
@@ -108,7 +111,7 @@ export class DynamicallyLoadableScene extends Scene {
               });
               const entity = new NetworkEntity();
               entity.init(config, config.id);
-              entity.addComponent(new Death());
+              entity.add(new Death());
 
               const route = l.objects.find((o) => o.name === 'route');
               if (route && isRoutePathObject(route)) {
@@ -118,7 +121,7 @@ export class DynamicallyLoadableScene extends Scene {
                 patrol.path = path;
                 patrol.current = path[0];
 
-                entity.addComponent(patrol);
+                entity.add(patrol);
               }
 
               this.addEntity(entity);
@@ -141,14 +144,14 @@ export class DynamicallyLoadableScene extends Scene {
         oComp.type = object.type;
         oComp.gid = object.gid;
 
-        entity.addComponent(oComp);
+        entity.add(oComp);
 
         if (object.width && object.height) {
           const body = new Body();
           body.width = object.width;
           body.height = object.height;
 
-          entity.addComponent(body);
+          entity.add(body);
         }
 
         if (object.x && object.y) {
@@ -156,7 +159,7 @@ export class DynamicallyLoadableScene extends Scene {
           position.x = object.x;
           position.y = object.y;
 
-          entity.addComponent(position);
+          entity.add(position);
         }
 
         if (set && set.tiles) {
@@ -172,7 +175,7 @@ export class DynamicallyLoadableScene extends Scene {
               component.width = collider.width;
               component.height = collider.height;
 
-              entity.addComponent(component);
+              entity.add(component);
             }
           }
         }
@@ -189,7 +192,7 @@ export class DynamicallyLoadableScene extends Scene {
                   const comp = new InteractableObject();
                   comp.action = InteractionTypes.Loot;
                   comp.loot = loot.value as string;
-                  entity.addComponent(comp);
+                  entity.add(comp);
                 }
                 break;
               }
@@ -199,6 +202,41 @@ export class DynamicallyLoadableScene extends Scene {
 
         this.addEntity(entity);
       });
+    }
+  }
+  processMapTriggers() {
+    const layer = this.map.layers.find((layer) => layer.name === 'triggers');
+
+    if (layer && layer.objects) {
+      for (const trigger of layer.objects) {
+        const key = trigger.type;
+        if (isTriggerFactoryKey(key)) {
+          const e = new Entity();
+          const factory = map[key];
+          const t = new factory();
+          const p = new Position();
+          const c = new Collider();
+          const b = new Body();
+          p.init({
+            x: trigger.x,
+            y: trigger.y,
+          });
+          c.init({
+            x: 0,
+            y: 0,
+            width: trigger.width,
+            height: trigger.width,
+          });
+          b.init({
+            width: trigger.width,
+            height: trigger.height,
+          });
+
+          e.add(t, p, c, b);
+
+          this.addEntity(e);
+        }
+      }
     }
   }
 }

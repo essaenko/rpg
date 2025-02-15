@@ -26,14 +26,14 @@ export class Entity {
     this.bus.detachAll();
   }
 
-  public addComponent(component: Component): void {
-    this.components.push(component);
+  public add(...component: Component[]): void {
+    this.components.push(...component);
     this.emit('entity:components:add');
   }
 
-  public removeComponent(signature: Component): void;
-  public removeComponent(signature: string): void;
-  public removeComponent(signature: string | Component): void {
+  public remove(signature: Component): void;
+  public remove(signature: string): void;
+  public remove(signature: string | Component): void {
     let component;
     if (typeof signature === 'string') {
       component = this.components.find((component) => component.name === signature);

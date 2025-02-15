@@ -1,0 +1,37 @@
+{
+  "frames": [
+    {
+      "filename": "0",
+      "frame": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 },
+      "duration": 100
+    },
+    {
+      "filename": "1",
+      "frame": { "x": 32, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 },
+      "duration": 100
+    }
+  ],
+  "meta": {
+    "app": "http://www.aseprite.org/",
+    "version": "1.x-dev",
+    "image": "base-sprite.png",
+    "format": "RGBA8888",
+    "size": { "w": 64, "h": 32 },
+    "scale": "1",
+    "frameTags": [
+      { "name": "idle_left", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
+      { "name": "idle_right", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
+      { "name": "idle_backward", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
+      { "name": "idle_forward", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" }
+    ],
+    "layers": [{ "name": "Layer", "opacity": 255, "blendMode": "normal" }]
+  }
+}

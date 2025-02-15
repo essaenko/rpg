@@ -19,11 +19,11 @@ export class HealSystem extends System {
 
       if (!health) {
         health = new ChangeHealth();
-        entity.addComponent(health);
+        entity.add(health);
       }
 
       health.value += entity.get<Heal>('heal').value ?? 0;
-      entity.removeComponent('heal');
+      entity.remove('heal');
     });
   }
 }

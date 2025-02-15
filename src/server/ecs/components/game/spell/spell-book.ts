@@ -1,5 +1,5 @@
-import { MapSchema, type, view } from '@colyseus/schema';
-import { Component, NetworkComponent } from '@shared/ecs/component';
+import { MapSchema, type } from '@colyseus/schema';
+import { NetworkComponent } from '@shared/ecs/component';
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { isSpellName, map } from '@server/mechanics/spells/map';
 

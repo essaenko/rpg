@@ -19,7 +19,7 @@ export class CooldownSystem extends System {
           if (spell.cooldownTime - delta <= 0) {
             spell.cooldownTime = null;
           } else {
-            spell.cooldownTime = spell.cooldownTime - delta;
+            spell.cooldownTime = spell.cooldownTime - delta * 1000;
           }
         }
       });

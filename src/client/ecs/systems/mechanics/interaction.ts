@@ -34,7 +34,7 @@ export class InteractionSystem extends System {
             object.locked = true;
           }
         };
-        entity.addComponent(action);
+        entity.add(action);
       }
     });
   }

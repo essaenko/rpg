@@ -64,7 +64,7 @@ export class MovementSystem extends System {
 
       if (isInTheSamePosition(position, pointer, SERVER_POSITION_TOLERANCE)) {
         scene.room.send(TransportEventTypes.Move, [null]);
-        entity.removeComponent(pointer);
+        entity.remove(pointer);
 
         return;
       }

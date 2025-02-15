@@ -38,7 +38,7 @@ export class InputSystem extends System {
 
       if (!pointer) {
         pointer = new Pointer();
-        player.addComponent(pointer);
+        player.add(pointer);
       }
       pointer.x = cursor.worldX;
       pointer.y = cursor.worldY - 24;

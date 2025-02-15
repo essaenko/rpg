@@ -2,12 +2,12 @@ import { Client, Room } from '@colyseus/core';
 import { SceneState } from '@shared/schemas/scene';
 import { ECSContainer } from '@shared/ecs';
 import { isTransportEventType } from '../utils';
-import { CollisionSystem } from '../../ecs/systems/physics/collision';
+import { CollisionSystem } from '@server/ecs/systems/physics/collision';
 import { TiledMap } from '@shared/utils/types';
 import { Entity } from '@shared/ecs/entity';
-import { MovementSystem } from '../../ecs/systems/physics/movement';
-import { MoveSystem } from '../../ecs/systems/physics/move';
-import { LevelSystem } from '../../ecs/systems/level';
+import { MovementSystem } from '@server/ecs/systems/physics/movement';
+import { MoveSystem } from '@server/ecs/systems/physics/move';
+import { LevelSystem } from '@server/ecs/systems/mechanics/level';
 import { TransportEventTypes } from '@shared/types';
 import { CastRequestSystem } from '@server/ecs/systems/spells/cast-request';
 import { CastSystem } from '@server/ecs/systems/spells/cast';
@@ -23,10 +23,12 @@ import { QuestRequirementSystem } from '@server/ecs/systems/quest/quest-requirem
 import { InteractionSystem } from '@server/ecs/systems/mechanics/interaction';
 import { LootSystem } from '@server/ecs/systems/mechanics/loot';
 import { ResurrectionSystem } from '@server/ecs/systems/mechanics/resurrection';
-import { AreaOfInterestsSystem } from '@server/ecs/systems/area-of-interests';
+import { AreaOfInterestsSystem } from '@server/ecs/systems/core/area-of-interests';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { NetworkEntity } from '@shared/ecs/entity';
-import { GameObjectsSystem } from '@server/ecs/systems/game-objects';
+import { GameObjectsSystem } from '@server/ecs/systems/core/game-objects';
+import { TriggerSystem } from '@server/ecs/systems/core/trigger';
+import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -42,11 +44,14 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new MoveSystem());
     this.ecs.addSystem(new CollisionSystem());
     this.ecs.addSystem(new MovementSystem());
+    this.ecs.addSystem(new TriggerSystem());
+    this.ecs.addSystem(new ProjectileSystem());
+
     this.ecs.addSystem(new ResurrectionSystem());
 
     //Behaviour systems
     this.ecs.addSystem(new PatrolSystem());
-
+    //Mechanics
     this.ecs.addSystem(new LevelSystem());
     this.ecs.addSystem(new QuestSystem());
     this.ecs.addSystem(new QuestRequirementSystem());
@@ -96,6 +101,17 @@ export abstract class Scene extends Room<SceneState> {
       this.state.entities.set(entity._schema.id, entity._schema);
       this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
         client.view?.add(entity._schema);
+      });
+    }
+  }
+
+  removeEntity(entity: Entity) {
+    this.ecs.removeEntity(entity.id);
+
+    if (entity instanceof NetworkEntity) {
+      this.state.entities.delete(entity._schema.id);
+      this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
+        client.view?.remove(entity._schema);
       });
     }
   }

@@ -29,7 +29,7 @@ export class LootSystem extends System {
         loot.items.splice(loot.items.indexOf(item), 1);
 
         if (loot.items.length === 0) {
-          player.removeComponent(loot);
+          player.remove(loot);
         }
       }
     }

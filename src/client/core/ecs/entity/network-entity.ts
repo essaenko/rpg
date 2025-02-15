@@ -1,6 +1,6 @@
 import { Entity } from './entity';
 import type { EntitySchema } from '@shared/ecs/entity';
-import type { NetworkComponent as Component} from '@shared/ecs/component';
+import type { NetworkComponent as Component } from '@shared/ecs/component';
 import { isKeyOf } from '@client/utils/types';
 import { Components } from '@client/ecs/components/map';
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
@@ -30,7 +30,7 @@ export class NetworkEntity extends Entity {
     }, false);
 
     this.$(eSchema).components.onRemove((cSchema) => {
-      this.removeComponent(cSchema.name);
+      this.remove(cSchema.name);
     });
 
     this._schema = eSchema;
@@ -45,7 +45,7 @@ export class NetworkEntity extends Entity {
     if (isKeyOf(name, Components)) {
       const Factory = Components[name as keyof typeof Components];
       const component = new Factory();
-      this.addComponent(component);
+      this.add(component);
 
       if (component instanceof NetworkComponent) {
         this.$(cSchema).bindTo(component);

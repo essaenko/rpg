@@ -13,7 +13,8 @@ const SpellTooltip = ({ spell }: { spell: Spell }) => {
       <div>
         <h2 className={css.spell_name}>{spell.name}</h2>
         <p className={css.spell_description}>{spell.description}</p>
-        <span>Перезарядка: {spell.cooldown} сек.</span>
+        {(spell.castTime || null) && <p>Время произнесения: {spell.castTime / 1000} сек.</p>}
+        <span>Перезарядка: {spell.cooldown / 1000} сек.</span>
       </div>
     </div>
   );
@@ -50,7 +51,7 @@ export const SpellCell = ({ schema, keyBind }: { schema: Spell | null; keyBind: 
         <Tooltip className={css.spell_tooltip} tooltip={<SpellTooltip spell={spell} />}>
           <div
             className={css.cooldown_hover}
-            style={{ height: `${(spell.cooldownTime ?? 0 / spell.cooldown) * 100}%` }}
+            style={{ height: `${((spell.cooldownTime ?? 0) / spell.cooldown) * 100}%` }}
           />
           <img src={SpellIcons[spell.id]} alt="" />
         </Tooltip>

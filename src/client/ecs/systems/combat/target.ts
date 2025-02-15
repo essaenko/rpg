@@ -20,10 +20,10 @@ export class TargetSystem extends System {
 
       if (target) {
         if (!target.has('health-frame')) {
-          target.addComponent(new HealthFrame());
+          target.add(new HealthFrame());
         }
         if (!target.has('target-highlight')) {
-          target.addComponent(new TargetHighlight());
+          target.add(new TargetHighlight());
         }
       }
     });
