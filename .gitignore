@@ -6,3 +6,4 @@ package-lock.json
 .env
 loadtest/
 .vscode/
+*.tiled-session

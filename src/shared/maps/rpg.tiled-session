@@ -10,7 +10,7 @@
     ],
     "fileStates": {
         "": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/fl_grass_land.tsx": {
