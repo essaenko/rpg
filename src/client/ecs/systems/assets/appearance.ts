@@ -38,15 +38,15 @@ export class AppearanceSystem extends System {
         const highlightAction = new Action();
         highlightAction.action = () => {
           const player = container.getEntity(scene.room.sessionId);
-          player?.removeComponent('target');
+          player?.remove('target');
           container.query(['target-highlight']).forEach((entity) => {
-            entity.removeComponent('target-highlight');
+            entity.remove('target-highlight');
           });
           const target = new Target();
           target.target = entity.id;
-          player?.addComponent(target);
+          player?.add(target);
         };
-        entity.addComponent(highlightAction);
+        entity.add(highlightAction);
       }
 
       if (appearance.sprites) {

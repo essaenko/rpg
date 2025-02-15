@@ -10,7 +10,7 @@ export const migration = async (): Promise<void> => {
       $push: {
         components: {
           name: 'spell-book',
-          spells: ['1'],
+          spells: ['1', '5'],
         },
       } as any,
     },

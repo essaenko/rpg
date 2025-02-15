@@ -10,7 +10,7 @@ import { type } from '@colyseus/schema';
 
 export class Hit extends Spell {
   constructor() {
-    super(Spells.Hit, 0, 1, 2, [Relation.Hostile, Relation.Neutral]);
+    super(Spells.Hit, 0, 1, 2, 0, [Relation.Hostile, Relation.Neutral]);
     this.name = 'Удар';
     this.description = 'Совершает удар оружием в правой руке.';
   }
@@ -20,7 +20,7 @@ export class Hit extends Spell {
   cast(caster: Entity, target: Entity) {
     const damage = new Damage();
     damage.value = this.damage(caster);
-    target.addComponent(damage);
+    target.add(damage);
   }
 
   damage(caster: Entity): number {

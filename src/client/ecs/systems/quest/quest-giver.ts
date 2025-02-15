@@ -27,7 +27,7 @@ export class QuestGiverSystem extends System {
         getDistance(dialog.giver.get<Position>('position'), entity.get<Position>('position')) >
         QUEST_GIVER_ACTION_DISTANCE
       ) {
-        entity.removeComponent('quest-dialog');
+        entity.remove('quest-dialog');
       }
     });
     container.query(['quest-giver']).forEach((entity) => {
@@ -55,7 +55,7 @@ export class QuestGiverSystem extends System {
 
       if (!state) {
         state = new QuestGiverState();
-        entity.addComponent(state);
+        entity.add(state);
       }
 
       state.state = null;
@@ -80,17 +80,17 @@ export class QuestGiverSystem extends System {
               const finishedQuests = log?.ongoing
                 .filter((quest) => giver.quests.some(({ id }) => quest.id === id))
                 .filter(({ requirements }) => requirements.every((req) => req.amount === req.progress));
-              player.removeComponent('quest-dialog');
+              player.remove('quest-dialog');
               const qd = new QuestDialog();
               qd.giver = entity;
               qd.list = availableQuests;
               qd.finished = finishedQuests;
 
-              player.addComponent(qd);
+              player.add(qd);
             }
           };
           action.tag = 'quest-giver-action';
-          entity.addComponent(action);
+          entity.add(action);
         }
 
         if (state.state !== QuestGiverStates.QuestAvailable && availableQuests.length) {
@@ -133,7 +133,7 @@ export class QuestGiverSystem extends System {
       ].includes(type)
     ) {
       container.query(['quest-giver']).forEach((entity) => {
-        entity.removeComponent('quest-giver-state');
+        entity.remove('quest-giver-state');
       });
     }
   }

@@ -1,12 +1,20 @@
-import DummyAsset from './dummy/dummy-sprite.png';
-import DummyJson from './dummy/dummy-sprite.json?url';
+import base_spriteAsset from './aseprite/base-sprite.png';
+import base_spriteJson from './aseprite/base-sprite.json?url';
+import dummy_spriteAsset from './aseprite/dummy-sprite.png';
+import dummy_spriteJson from './aseprite/dummy-sprite.json?url'
 
 export const map = {
-  dummy: {
-    asset: DummyAsset,
-    json: DummyJson,
+  base: {
+    asset: base_spriteAsset,
+    json: base_spriteJson,
     type: 'aseprite',
   },
+  dummy: {
+    asset: dummy_spriteAsset,
+    json: dummy_spriteJson,
+    type: 'aseprite',
+  },
+
 } as const;
 
 export const isAssetKey = (key: unknown): key is keyof typeof map => {

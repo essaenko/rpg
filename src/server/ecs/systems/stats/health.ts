@@ -20,7 +20,7 @@ export class HealthSystem extends System {
 
       health.current = Math.min(health.max, Math.max(0, health.current + change.value));
 
-      entity.removeComponent('change-health');
+      entity.remove('change-health');
     });
   }
 }

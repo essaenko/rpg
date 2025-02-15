@@ -24,12 +24,12 @@ export class HotSystem extends System {
         const heal = new Heal();
         heal.value = hot.amount;
 
-        entity.addComponent(heal);
+        entity.add(heal);
       }
 
       hot.duration = Math.max(0, hot.duration - delta);
       if (hot.duration === 0) {
-        entity.removeComponent(hot);
+        entity.remove(hot);
       }
     });
   }

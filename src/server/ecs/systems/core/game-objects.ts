@@ -3,8 +3,8 @@ import { ECSContainer } from '@shared/ecs';
 import { System } from '@shared/ecs/system';
 import { TransportEventTypes } from '@shared/types';
 import { Client } from 'colyseus';
-import { Position } from '../components/physics/position';
-import { MapObject } from '../components/game/tag/mapObject';
+import { Position } from '../../components/physics/position';
+import { MapObject } from '../../components/game/tag/mapObject';
 
 export class GameObjectsSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {

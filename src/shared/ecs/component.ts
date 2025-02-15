@@ -5,6 +5,8 @@ export interface ComponentType {
 
   init(state: Record<string, any>): void;
   serialize(): Record<string, any>;
+
+  onDestroy(): void;
 }
 
 export abstract class Component implements ComponentType {
@@ -20,6 +22,8 @@ export abstract class Component implements ComponentType {
   public serialize(): Record<string, any> {
     return { ...this };
   }
+
+  public onDestroy(): void {}
 }
 
 export abstract class NetworkComponent extends Schema implements ComponentType {
@@ -38,4 +42,6 @@ export abstract class NetworkComponent extends Schema implements ComponentType {
   public serialize(): Record<string, any> {
     return { ...this };
   }
+
+  public onDestroy(): void {}
 }

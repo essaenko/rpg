@@ -1,10 +1,14 @@
-import { Component } from '@shared/ecs/component';
+import { Entity } from '@shared/ecs/entity';
+import { Trigger } from './trigger';
 
-export class ChangeSceneTrigger extends Component {
-  public scene: string;
-  constructor() {
-    super('change-scene-trigger');
+export class ChangeScene extends Trigger {
+  validate(entity: Entity): boolean {
+    return entity.has('tag-player');
   }
-
-  init(state: Record<string, any>): void {}
+  activate(entity: Entity): void {
+    console.log('Moving player to another scene');
+  }
+  constructor() {
+    super('change-scene');
+  }
 }

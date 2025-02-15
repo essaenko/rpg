@@ -43,8 +43,10 @@ export class ECSContainer {
     return this.entities.get(id);
   }
 
-  query(components: string[]) {
-    return this.entities.values().filter((entity) => components.every((name) => entity.has(name)));
+  query(components: string[], exclude: string[] = []) {
+    return this.entities
+      .values()
+      .filter((entity) => components.every((name) => entity.has(name)) && exclude.every((name) => !entity.has(name)));
   }
 
   update(delta: number, scene: Scene) {

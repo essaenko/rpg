@@ -39,7 +39,7 @@ export const QuestRequestUI: React.FC = () => {
   const onAccept = useCallback(() => {
     if (room) {
       room.send(TransportEventTypes.AcceptQuest, [dialog.giver.id, selectedQuest?.id]);
-      player.removeComponent('quest-dialog');
+      player.remove('quest-dialog');
     }
     setSelectedQuest(null);
   }, [room, dialog, selectedQuest]);
@@ -47,14 +47,14 @@ export const QuestRequestUI: React.FC = () => {
   const onComplete = useCallback(() => {
     if (room) {
       room.send(TransportEventTypes.CompleteQuest, [selectedQuest.id]);
-      player.removeComponent('quest-dialog');
+      player.remove('quest-dialog');
     }
     setSelectedQuest(null);
   }, [room, dialog, selectedQuest]);
 
   const onClose = useCallback(() => {
     if (player) {
-      player.removeComponent('quest-dialog');
+      player.remove('quest-dialog');
     }
     setSelectedQuest(null);
   }, [player]);

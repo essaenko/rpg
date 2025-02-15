@@ -3,4 +3,5 @@ export enum Spells {
   Heal,
   Hot,
   Dot,
+  Shot,
 }

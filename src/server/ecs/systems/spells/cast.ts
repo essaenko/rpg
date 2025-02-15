@@ -5,6 +5,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Cast } from '@server/ecs/components/game/spell/cast';
 import { Combat } from '@server/ecs/components/game/mechanics/combat';
+import { Channelling } from '@server/ecs/components/game/spell/channeling';
 
 export class CastSystem extends System {
   constructor() {
@@ -22,19 +23,27 @@ export class CastSystem extends System {
       if (!entityCombats?.some(({ enemy }) => enemy === cast.target)) {
         const eCombat = new Combat();
         eCombat.enemy = cast.target;
-        entity.addComponent(eCombat);
+        entity.add(eCombat);
       }
 
       if (!targetCombats?.some(({ enemy }) => enemy === entity)) {
         const tCombat = new Combat();
         tCombat.enemy = entity;
-        cast.target.addComponent(tCombat);
+        cast.target.add(tCombat);
       }
+      if (cast.finished) {
+        cast.spell.cast(entity, cast.target, scene);
+        cast.spell.proc(entity, cast.target, scene);
+        cast.spell.cooldownTime = cast.spell.cooldown;
+        entity.remove('cast');
+      } else {
+        cast.remaining = Math.max(cast.remaining - delta * 1000, 0);
 
-      cast.spell.cast(entity, cast.target);
-      cast.spell.proc(entity, cast.target);
-      cast.spell.cooldownTime = cast.spell.cooldown;
-      entity.removeComponent('cast');
+        if (cast.remaining === 0) {
+          cast.finished = true;
+          entity.remove('channelling');
+        }
+      }
     });
   }
 }

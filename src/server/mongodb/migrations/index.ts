@@ -2,9 +2,15 @@ import { migration as bag } from './bag.migration';
 import { migration as quests } from './quests.migration';
 import { migration as spellBook } from './spell-book.migration';
 import { migration as equip } from './equip.migration';
+import { migration as appearance } from './appearance.migration';
+import { migration as physics } from './physics.migration';
+import { migration as tag } from './tag.migration';
+import { migration as classes } from './class.migration';
+import { migration as resources } from './resources.migration';
+import { migration as stats } from './stats.migration';
 
 (async () => {
-  for (let migration of [bag, quests, spellBook, equip]) {
+  for (let migration of [bag, quests, spellBook, equip, appearance, physics, tag, classes, resources, stats]) {
     try {
       await migration();
     } catch (e) {

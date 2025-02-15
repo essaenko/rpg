@@ -3,7 +3,7 @@ import { ECSContainer } from '@shared/ecs';
 import { System } from '@shared/ecs/system';
 import { TransportEventTypes } from '@shared/types';
 import { Client } from 'colyseus';
-import { Position } from '../components/physics/position';
+import { Position } from '../../components/physics/position';
 import { getDistance } from '@shared/utils/physics';
 import { AREA_OF_INTEREST_DISTANCE } from '@shared/utils/const';
 import { ClientsService } from '@shared/ecs/service/clients';

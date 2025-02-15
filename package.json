@@ -55,8 +55,7 @@
     "js-event-bus": "^1.1.1",
     "mongodb": "6.10",
     "nanoid": "^5.0.8",
-    "phaser": "^3.86.0",
-    "phaser-tilemap-plus": "^0.10.2",
+    "phaser": "^3.88.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

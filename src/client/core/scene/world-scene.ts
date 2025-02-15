@@ -108,7 +108,6 @@ export class WorldScene extends NetworkScene {
 
     const now = new Date();
     const fn = (tween: { getValue: () => number }) => {
-      console.log(tween.getValue());
       const value = tween.getValue();
       const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, value);
       this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
@@ -124,6 +123,7 @@ export class WorldScene extends NetworkScene {
       duration: (30 - (now.getMinutes() % 30)) * 60 * 1000,
       repeat: 1,
       onComplete: () => {
+        const now = new Date();
         this.tweens.addCounter({
           from: now.getMinutes() == 30 ? 100 : 0,
           to: now.getMinutes() == 30 ? 0 : 100,
@@ -184,6 +184,7 @@ export class WorldScene extends NetworkScene {
               key: `${tileset.name}-animation-${+tileId + +tileset.firstgid}`,
               frames: frames,
               repeat: -1,
+              frameRate: 10,
             });
           }
         }
@@ -202,12 +203,12 @@ export class WorldScene extends NetworkScene {
           const position = new Position();
           position.x = obj.x;
           position.y = obj.y;
-          entity.addComponent(position);
+          entity.add(position);
 
           const objCom = new MapObject();
           objCom.type = obj.type;
           objCom.gid = obj.gid;
-          entity.addComponent(objCom);
+          entity.add(objCom);
 
           this.ecs.addEntity(entity);
         }

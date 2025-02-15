@@ -23,10 +23,10 @@ export class ResurrectionSystem extends System {
           const combat = enemy.getAll<Combat>('combat').find(({ enemy }) => enemy === entity);
 
           if (combat) {
-            enemy.removeComponent(combat);
+            enemy.remove(combat);
           }
         });
-        entity.removeComponent('combat');
+        entity.remove('combat');
 
         if (entity.has('tag-npc')) {
           scene.clock.setTimeout(() => {

@@ -14,8 +14,11 @@ export class LightSystem extends System {
       if (!light) {
         light = new LightSource();
         light.source = scene.lights.addLight(0, 0, 300, DEFAULT_LIGHT_HEX_COLOR, 1.5);
+        light.destroy = () => {
+          scene.lights.removeLight(light.source);
+        };
 
-        entity.addComponent(light);
+        entity.add(light);
       }
 
       light.source.x = Phaser.Math.Linear(light.source.x, entity.get<Position>('position').x, DEFAULT_LERP_VALUE);
