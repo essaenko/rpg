@@ -3,5 +3,5 @@ import { EntitySchema } from '../ecs/entity';
 
 export class SceneState extends Schema {
   @type('string') roomName: string = '';
-  @type({ map: EntitySchema }) entities = new MapSchema<EntitySchema>();
+  @view() @type({ map: EntitySchema }) entities = new MapSchema<EntitySchema>();
 }

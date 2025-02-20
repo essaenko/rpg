@@ -16,7 +16,6 @@ export class CollisionSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
-    const objects = container.query(['position', 'body', 'collider', 'tag-object']).toArray();
     container.query(['body', 'collider', 'velocity', 'position']).forEach((entity) => {
       const velocity = entity.get<Velocity>('velocity');
       if (velocity.x || velocity.y) {
@@ -137,7 +136,7 @@ export class CollisionSystem extends System {
           }
         });
 
-        objects.forEach((object) => {
+        for (const object of container.query(entity, 100, ['position', 'body', 'collider', 'tag-object'])) {
           const objCollider = object.get<Collider>('collider');
           const objPosition = object.get<Position>('position');
           const objBody = object.get<Body>('body');
@@ -159,7 +158,7 @@ export class CollisionSystem extends System {
           ) {
             collider.collides = true;
           }
-        });
+        }
       }
     });
   }

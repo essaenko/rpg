@@ -960,7 +960,24 @@
          "draworder":"topdown",
          "id":16,
          "name":"triggers",
-         "objects":[],
+         "objects":[
+                {
+                 "height":224,
+                 "id":85,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"location",
+                         "type":"string",
+                         "value":"dummy_wood"
+                        }],
+                 "rotation":0,
+                 "type":"location-visited",
+                 "visible":true,
+                 "width":416,
+                 "x":1184,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -968,7 +985,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":85,
+ "nextobjectid":87,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.1",

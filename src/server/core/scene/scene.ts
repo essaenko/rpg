@@ -29,10 +29,21 @@ import { NetworkEntity } from '@shared/ecs/entity';
 import { GameObjectsSystem } from '@server/ecs/systems/core/game-objects';
 import { TriggerSystem } from '@server/ecs/systems/core/trigger';
 import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
+import { EventSystem } from '@server/ecs/systems/core/events';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
-  public map: TiledMap;
+  public _map: TiledMap;
+
+  get map(): TiledMap {
+    return this._map;
+  }
+
+  set map(map: TiledMap) {
+    this._map = map;
+
+    this.ecs.createTree(0, 0, map.width * map.tilewidth, map.height * map.tileheight);
+  }
 
   protected constructor() {
     super();
@@ -44,6 +55,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new MoveSystem());
     this.ecs.addSystem(new CollisionSystem());
     this.ecs.addSystem(new MovementSystem());
+    this.ecs.addSystem(new EventSystem());
     this.ecs.addSystem(new TriggerSystem());
     this.ecs.addSystem(new ProjectileSystem());
 

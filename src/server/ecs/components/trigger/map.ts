@@ -1,7 +1,9 @@
+import { LocationVisited } from './location-visited';
 import { MoveTarget } from './move-target';
 
 export const map = {
   'move-target': MoveTarget,
+  'location-visited': LocationVisited,
 } as const;
 
 export const isTriggerFactoryKey = (key: unknown): key is keyof typeof map => {

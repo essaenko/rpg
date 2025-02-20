@@ -4,7 +4,7 @@ import { isMapKey, maps } from '@shared/maps/mapping';
 import { MDBClient } from '@server/mongodb';
 import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
 import { Entity, NetworkEntity } from '@shared/ecs/entity';
-import { Client } from '@colyseus/core';
+import { Client, RoomException } from '@colyseus/core';
 import { nanoid } from 'nanoid';
 import { EntitySave } from '@server/mongodb/types';
 import { Body } from '@server/ecs/components/physics/body';
@@ -20,8 +20,8 @@ import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { StateView } from '@colyseus/schema';
-import { Trigger } from '@server/ecs/components/trigger/trigger';
 import { isTriggerFactoryKey, map } from '@server/ecs/components/trigger/map';
+import { LocationVisited } from '@server/ecs/components/trigger/location-visited';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -45,6 +45,22 @@ export class DynamicallyLoadableScene extends Scene {
         this.processMapTriggers();
       }
     }
+  }
+
+  async onUncaughtException(  
+    error: RoomException<this>,
+    methodName:
+      | 'onCreate'
+      | 'onAuth'
+      | 'onJoin'
+      | 'onLeave'
+      | 'onDispose'
+      | 'onMessage'
+      | 'setSimulationInterval'
+      | 'setInterval'
+      | 'setTimeout',
+  ) {
+    console.error(error, `\nin ${methodName}`);
   }
 
   async onJoin(client: Client) {
@@ -218,14 +234,14 @@ export class DynamicallyLoadableScene extends Scene {
           const c = new Collider();
           const b = new Body();
           p.init({
-            x: trigger.x,
-            y: trigger.y,
+            x: trigger.x + trigger.width / 2,
+            y: trigger.y + trigger.height / 2,
           });
           c.init({
             x: 0,
             y: 0,
             width: trigger.width,
-            height: trigger.width,
+            height: trigger.height,
           });
           b.init({
             width: trigger.width,
@@ -233,6 +249,14 @@ export class DynamicallyLoadableScene extends Scene {
           });
 
           e.add(t, p, c, b);
+
+          if (t instanceof LocationVisited) {
+            const location = trigger.properties?.find(({ name }) => name === 'location');
+
+            if (location && typeof location.value === 'string') {
+              t.location = location.value;
+            }
+          }
 
           this.addEntity(e);
         }
