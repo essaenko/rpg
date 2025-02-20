@@ -10,7 +10,7 @@
     ],
     "fileStates": {
         "": {
-            "scaleInDock": 0.5,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/fl_grass_land.tsx": {
@@ -229,7 +229,7 @@
         "dummy/dummy.tmx"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "bool",
+    "property.type": "string",
     "recentFiles": [
         "dummy/dummy.tmx",
         "dummy/dummy.json",

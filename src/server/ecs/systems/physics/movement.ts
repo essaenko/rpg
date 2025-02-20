@@ -34,6 +34,8 @@ export class MovementSystem extends System {
         if (!collider?.collides) {
           position.x += velocity.x;
           position.y += velocity.y;
+
+          container.queueTreeUpdate(entity);
         }
       }
     });

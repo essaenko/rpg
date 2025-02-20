@@ -15,8 +15,8 @@ export class QuestRequirement extends Schema {
     if (state.type != null && typeof state.type === 'number') {
       this.type = state.type;
     }
-    if (state.count != null) {
-      this.amount = state.count;
+    if (state.amount != null) {
+      this.amount = state.amount;
     }
     if (state.progress != null) {
       this.progress = state.progress;

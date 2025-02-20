@@ -6,6 +6,8 @@ import { Scene } from '@server/core/scene/scene';
 import { QuestRequirementType } from '@shared/schemas/game/quest/types';
 import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 import { Inventory } from '@server/ecs/components/game/item/inventory';
+import { EventComponent } from '@server/ecs/components/trigger/events/event';
+import { isLocationVisitedEvent } from '@server/ecs/components/trigger/events/location-visited';
 
 export class QuestRequirementSystem extends System {
   constructor() {
@@ -15,7 +17,7 @@ export class QuestRequirementSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
-    container.query(['quest-book', 'inventory']).forEach((entity) => {
+    for (const entity of container.query(['quest-book', 'inventory'])) {
       const book = entity.get<QuestBook>('quest-book');
       const inventory = entity.get<Inventory>('inventory');
 
@@ -46,6 +48,27 @@ export class QuestRequirementSystem extends System {
           });
         });
       }
-    });
+    }
+    for (const entity of container.query(['event'])) {
+      const event = entity.get<EventComponent>('event');
+      const book = entity.get<QuestBook>('quest-book');
+
+      if (
+        isLocationVisitedEvent(event) &&
+        book.ongoing.some(({ requirements }) => requirements.some(({ type }) => type === QuestRequirementType.ToVisit))
+      ) {
+        const visitQuests = book.ongoing.filter(({ requirements }) =>
+          requirements.some(({ type }) => type === QuestRequirementType.ToVisit),
+        );
+
+        for (const quest of visitQuests) {
+          for (const req of quest.requirements) {
+            if (req.type === QuestRequirementType.ToVisit && req.req_id === event.location) {
+              req.progress = Math.min(req.progress + 1, req.amount);
+            }
+          }
+        }
+      }
+    }
   }
 }

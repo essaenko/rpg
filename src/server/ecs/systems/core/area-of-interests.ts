@@ -18,7 +18,10 @@ export class AreaOfInterestsSystem extends System {
     return;
   }
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
-    const entitiesWithBody = Array.from(container.query(['body']).filter((it) => it instanceof NetworkEntity));
+    const entitiesWithBody = container
+      .query(['body'])
+      .filter((it) => it instanceof NetworkEntity)
+      .toArray();
     const clients = container.getService<ClientsService>('clients');
     container.query(['tag-player']).forEach((player) => {
       const client = clients.get(player.id);

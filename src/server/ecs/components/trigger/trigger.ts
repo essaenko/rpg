@@ -11,6 +11,7 @@ export class Trigger extends Component implements TriggerInterface {
     throw new Error('Method not implemented.');
   }
 
+  public cache: Set<Entity> = new Set();
   public type: string = 'trigger';
 
   constructor(type: string) {

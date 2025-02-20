@@ -8,9 +8,10 @@ import { migration as tag } from './tag.migration';
 import { migration as classes } from './class.migration';
 import { migration as resources } from './resources.migration';
 import { migration as stats } from './stats.migration';
+import { migration as level } from './level.migration';
 
 (async () => {
-  for (let migration of [bag, quests, spellBook, equip, appearance, physics, tag, classes, resources, stats]) {
+  for (let migration of [bag, quests, spellBook, equip, appearance, physics, tag, classes, resources, stats, level]) {
     try {
       await migration();
     } catch (e) {
