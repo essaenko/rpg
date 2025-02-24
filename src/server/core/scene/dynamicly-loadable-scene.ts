@@ -22,6 +22,7 @@ import { ClientsService } from '@shared/ecs/service/clients';
 import { StateView } from '@colyseus/schema';
 import { isTriggerFactoryKey, map } from '@server/ecs/components/trigger/map';
 import { LocationVisited } from '@server/ecs/components/trigger/location-visited';
+import { ChangeScene } from '@server/ecs/components/trigger/change-scene';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -47,7 +48,7 @@ export class DynamicallyLoadableScene extends Scene {
     }
   }
 
-  async onUncaughtException(  
+  async onUncaughtException(
     error: RoomException<this>,
     methodName:
       | 'onCreate'
@@ -75,12 +76,13 @@ export class DynamicallyLoadableScene extends Scene {
     const save = await MDBClient.instance().readPlayer(client.userData.id);
     if (save) {
       const entity = new NetworkEntity();
+      entity._client = client;
       entity.init(save, client.sessionId);
       entity.add(new Death());
       const spawn = new Spawn();
       const mapSpawn = this.map.layers
         .find(({ name }) => name === 'locations')
-        ?.objects?.find(({ name }) => name === 'spawn');
+        ?.objects?.find(({ type }) => type === 'spawn');
 
       if (mapSpawn) {
         spawn.point = { x: mapSpawn.x, y: mapSpawn.y };
@@ -110,7 +112,7 @@ export class DynamicallyLoadableScene extends Scene {
       for (const l of layer.layers) {
         const id = l.name;
         if (l.objects) {
-          const spawn = l.objects.find((o) => o.name === 'spawn');
+          const spawn = l.objects.find((o) => o.type === 'spawn');
 
           if (spawn) {
             const config = await MDBClient.instance().readNPC(id);
@@ -129,7 +131,7 @@ export class DynamicallyLoadableScene extends Scene {
               entity.init(config, config.id);
               entity.add(new Death());
 
-              const route = l.objects.find((o) => o.name === 'route');
+              const route = l.objects.find((o) => o.type === 'route');
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
                 const patrol = new Patrol();
@@ -221,10 +223,10 @@ export class DynamicallyLoadableScene extends Scene {
     }
   }
   processMapTriggers() {
-    const layer = this.map.layers.find((layer) => layer.name === 'triggers');
+    const triggers = this.map.layers.find((layer) => layer.name === 'triggers');
 
-    if (layer && layer.objects) {
-      for (const trigger of layer.objects) {
+    if (triggers && triggers.objects) {
+      for (const trigger of triggers.objects) {
         const key = trigger.type;
         if (isTriggerFactoryKey(key)) {
           const e = new Entity();
@@ -255,6 +257,13 @@ export class DynamicallyLoadableScene extends Scene {
 
             if (location && typeof location.value === 'string') {
               t.location = location.value;
+            }
+          }
+
+          if (t instanceof ChangeScene) {
+            const scene = trigger.properties?.find(({ name }) => name === 'scene');
+            if (scene && typeof scene.value === 'string') {
+              t.scene = scene.value;
             }
           }
 

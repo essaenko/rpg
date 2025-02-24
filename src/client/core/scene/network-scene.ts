@@ -1,4 +1,4 @@
-import { Scene } from 'phaser';
+import Phaser from 'phaser';
 import { Client, Room } from 'colyseus.js';
 
 import type { SceneState } from '@shared/schemas/scene';
@@ -20,8 +20,9 @@ import { LootSystem } from '@client/ecs/systems/mechanics/loot';
 import { ActionSystem } from '@client/ecs/systems/mechanics/action';
 import { LightSystem } from '@client/ecs/systems/mechanics/light';
 import { GameObjectsSystem } from '@client/ecs/systems/game-objects';
+import { SceneSystem } from '@client/ecs/systems/scene';
 
-export class NetworkScene extends Scene {
+export class NetworkScene extends Phaser.Scene {
   onJoin?: () => void;
   public room: Room<SceneState>;
   public ecs: ECSContainer = new ECSContainer();
@@ -32,6 +33,7 @@ export class NetworkScene extends Scene {
 
   preload() {
     this.ecs.addSystem(new LoadSystem());
+    this.ecs.addSystem(new SceneSystem());
     this.ecs.addSystem(new GameObjectsSystem());
 
     this.ecs.addSystem(new NetworkSystem());
@@ -52,6 +54,7 @@ export class NetworkScene extends Scene {
 
     this.ecs.addSystem(new LightSystem());
     (window as any).ecs = this.ecs;
+    this.ecs.start();
 
     this.registry.set('ecs', this.ecs);
 
@@ -74,8 +77,6 @@ export class NetworkScene extends Scene {
 
         (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
         this.ecs.addSystem(new CameraSystem(this.room));
-
-        // this.scene.get('ui-scene').events.emit('network-inited', { room: this.room, ecs: this.ecs });
 
         this.room.onMessage('*', (type, message) => {
           if (typeof type === 'number') {

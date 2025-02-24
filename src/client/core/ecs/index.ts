@@ -6,9 +6,18 @@ import { NetworkScene } from '@client/core/scene/network-scene';
 import { WorldScene } from '@client/core/scene/world-scene';
 
 export class ECSContainer {
+  public active: boolean = true;
   public systems: Map<string, System> = new Map();
   public entities: Map<string, Entity> = new Map();
   constructor() {}
+
+  stop() {
+    this.active = false;
+  }
+
+  start() {
+    this.active = true;
+  }
 
   addSystem(system: System): void {
     this.systems.set(system.name, system);
@@ -23,9 +32,9 @@ export class ECSContainer {
   }
 
   removeEntity(entity: Entity): void {
-    entity.destroy();
+    entity?.destroy();
 
-    this.entities.delete(entity.id);
+    this.entities.delete(entity?.id);
   }
 
   getEntity(id: string): Entity {
@@ -33,7 +42,9 @@ export class ECSContainer {
   }
 
   onUpdate(scene: Scene, delta: number) {
-    this.systems.forEach((system) => system.onUpdate(scene, this, delta));
+    if (this.active) {
+      this.systems.forEach((system) => system.onUpdate(scene, this, delta));
+    }
   }
 
   query(components: string[]) {
@@ -43,8 +54,20 @@ export class ECSContainer {
   }
 
   handleMessage(type: TransportEventTypes, message: any, scene: NetworkScene) {
-    this.systems.forEach((system) => {
-      system.handleMessage(type, message, this, scene);
-    });
+    if (this.active) {
+      this.systems.forEach((system) => {
+        system.handleMessage(type, message, this, scene);
+      });
+    }
+  }
+
+  destroy() {
+    this.stop();
+    for (const e of this.entities.values()) {
+      this.removeEntity(e);
+    }
+    for (const s of this.systems.values()) {
+      this.removeSystem(s.name);
+    }
   }
 }

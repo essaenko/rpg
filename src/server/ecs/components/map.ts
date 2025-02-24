@@ -31,6 +31,7 @@ import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 import { Inventory } from './game/item/inventory';
 import { Spawn } from './game/mechanics/spawn';
+import { Location } from './game/ui/location';
 
 export const map = {
   // Game components
@@ -67,6 +68,7 @@ export const map = {
   level: Level,
   move: Move,
   name: Name,
+  location: Location,
 
   // Physics components
   body: Body,

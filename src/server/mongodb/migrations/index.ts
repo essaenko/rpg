@@ -9,9 +9,23 @@ import { migration as classes } from './class.migration';
 import { migration as resources } from './resources.migration';
 import { migration as stats } from './stats.migration';
 import { migration as level } from './level.migration';
+import { migration as location } from './location.migration';
 
 (async () => {
-  for (let migration of [bag, quests, spellBook, equip, appearance, physics, tag, classes, resources, stats, level]) {
+  for (let migration of [
+    bag,
+    quests,
+    spellBook,
+    equip,
+    appearance,
+    physics,
+    tag,
+    classes,
+    resources,
+    stats,
+    level,
+    location,
+  ]) {
     try {
       await migration();
     } catch (e) {

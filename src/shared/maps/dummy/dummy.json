@@ -74,10 +74,10 @@
                         {
                          "height":0,
                          "id":80,
-                         "name":"spawn",
+                         "name":"",
                          "point":true,
                          "rotation":0,
-                         "type":"",
+                         "type":"spawn",
                          "visible":true,
                          "width":0,
                          "x":1468,
@@ -97,10 +97,10 @@
                         {
                          "height":0,
                          "id":60,
-                         "name":"spawn",
+                         "name":"",
                          "point":true,
                          "rotation":0,
-                         "type":"",
+                         "type":"spawn",
                          "visible":true,
                          "width":0,
                          "x":336,
@@ -109,7 +109,7 @@
                         {
                          "height":0,
                          "id":61,
-                         "name":"route",
+                         "name":"",
                          "polygon":[
                                 {
                                  "x":-16,
@@ -152,7 +152,7 @@
                                  "y":45
                                 }],
                          "rotation":0,
-                         "type":"",
+                         "type":"route",
                          "visible":true,
                          "width":0,
                          "x":336,
@@ -172,10 +172,10 @@
                         {
                          "height":0,
                          "id":65,
-                         "name":"spawn",
+                         "name":"",
                          "point":true,
                          "rotation":0,
-                         "type":"",
+                         "type":"spawn",
                          "visible":true,
                          "width":0,
                          "x":783.273,
@@ -935,7 +935,7 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"spawn",
+                 "name":"",
                  "point":true,
                  "properties":[
                         {
@@ -944,7 +944,7 @@
                          "value":"953SBx26R"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"spawn",
                  "visible":true,
                  "width":0,
                  "x":768.5,
@@ -977,6 +977,23 @@
                  "width":416,
                  "x":1184,
                  "y":0
+                }, 
+                {
+                 "height":10.6666666666667,
+                 "id":87,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"scene",
+                         "type":"string",
+                         "value":"dummy-house"
+                        }],
+                 "rotation":0,
+                 "type":"change-scene",
+                 "visible":true,
+                 "width":30.3333333333333,
+                 "x":897,
+                 "y":1021.33333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -985,7 +1002,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":87,
+ "nextobjectid":89,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.1",

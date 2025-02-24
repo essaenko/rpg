@@ -3,6 +3,7 @@ import { Component, ComponentType, NetworkComponent } from './component';
 import { EntitySave } from '@server/mongodb/types';
 import { isComponentName, map as ComponentMap } from '@server/ecs/components/map';
 import { nanoid } from 'nanoid';
+import { Client } from 'colyseus';
 
 export class Entity {
   public _id: string;
@@ -91,6 +92,7 @@ export class NetworkEntity extends Entity {
   constructor() {
     super();
   }
+  public _client: Client;
   public _schema: EntitySchema = new EntitySchema();
 
   public components: ComponentType[] = new Array();

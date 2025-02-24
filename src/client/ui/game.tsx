@@ -18,6 +18,7 @@ import { LootUI } from './hood/loot/loot';
 import { Controlls } from './hood/controlls/controlls';
 import { QuestRequestUI } from './hood/quest/quest-dialog';
 import { MainMenu } from './menu/main';
+import { DummyHouse } from '@client/scenes/dummy/house';
 
 export const GameComponent: React.FC = () => {
   const client = useMemo(() => {
@@ -29,7 +30,7 @@ export const GameComponent: React.FC = () => {
   const config = useMemo(
     () => ({
       type: Phaser.WEBGL,
-      scene: [Boot, LoginScreen, Dummy],
+      scene: [Boot, LoginScreen, Dummy, DummyHouse],
       parent: '#game-root',
       physics: {
         default: 'arcade',
@@ -72,6 +73,7 @@ export const GameComponent: React.FC = () => {
     };
 
     game.registry.events.on('setdata', onDataSet);
+    game.registry.events.on('changedata', onDataSet);
 
     document.body.style.cursor = `url(${Cursor}), auto`;
 

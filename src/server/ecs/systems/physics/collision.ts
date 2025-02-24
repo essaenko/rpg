@@ -28,7 +28,7 @@ export class CollisionSystem extends System {
 
         collayer.data.forEach((tile, index) => {
           if (tile !== 0) {
-            const tileInfo = colTiles.tiles.find((t) => t.id === tile - colTiles.firstgid);
+            const tileInfo =  colTiles.tiles.find((t) => t.id === tile - colTiles.firstgid);
             const tilePosition = getTileXY(index, scene.map);
             const b1 = {
               ...tilePosition,

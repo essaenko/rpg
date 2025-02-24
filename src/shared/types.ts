@@ -14,6 +14,8 @@ export enum TransportEventTypes {
 
   GetObjects,
   ObjectsState,
+
+  ChangeScene,
 }
 
 export type ObjectStateType = Position & {

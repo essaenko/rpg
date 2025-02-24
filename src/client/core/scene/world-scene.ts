@@ -173,7 +173,7 @@ export class WorldScene extends NetworkScene {
         for (const tileId in data) {
           const tile = data[tileId];
 
-          if (tile.animation) {
+          if (tile.animation && !this.anims.exists(`${tileset.name}-animation-${+tileId + +tileset.firstgid}`)) {
             const frames = tile.animation.map(({ duration, tileid }) => ({
               key: tileset.name,
               frame: tileid,

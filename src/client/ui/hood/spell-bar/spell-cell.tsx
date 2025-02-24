@@ -33,15 +33,11 @@ export const SpellCell = ({ schema, keyBind }: { schema: Spell | null; keyBind: 
 
   useEffect(() => {
     if ($ && schema) {
-      const detach = $(schema).onChange(() => {
+      $(schema).onChange(() => {
         setSpell({ ...schema } as Spell);
       });
 
       setSpell({ ...schema } as Spell);
-
-      return () => {
-        detach();
-      };
     }
   }, [schema, $]);
 

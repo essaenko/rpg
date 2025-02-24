@@ -25,7 +25,7 @@ export class TriggerSystem extends System {
             const result = collide(getCollider(obj), getCollider(entity));
 
             if (!trigger.cache.has(entity)) {
-              trigger.activate(entity);
+              trigger.activate(entity, container, scene);
               trigger.cache.add(entity);
             }
           } else if (trigger.cache.has(entity)) {
