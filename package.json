@@ -44,7 +44,7 @@
   "dependencies": {
     "@colyseus/monitor": "^0.16.0",
     "@colyseus/playground": "^0.16.2",
-    "@colyseus/schema": "^3.0.2",
+    "@colyseus/schema": "^3.0.23",
     "@colyseus/tools": "^0.16.1",
     "classnames": "^2.5.1",
     "colyseus": "^0.16.2",

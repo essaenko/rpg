@@ -40,9 +40,11 @@ export class NetworkSystem extends System {
     this._room = room;
     const $ = getStateCallbacks(room);
     $(room.state).entities.onAdd((entity) => {
+      console.log(`Entity added: ${entity.id}`, entity);
       this.onAddEntity(entity, container);
     });
     $(room.state).entities.onRemove((entity) => {
+      console.log(`Entity removed: ${entity.id}`);
       container.removeEntity(container.getEntity(entity.id));
     });
   }

@@ -12,7 +12,11 @@ export class ECSContainer {
   private services: Map<string, Service> = new Map();
   private tree: QuadTree;
 
-  constructor(public scene: Scene) {}
+  constructor(public scene: Scene) {
+    scene.clock.setInterval(() => {
+      this.tree.update();
+    }, 200);
+  }
 
   createTree(x: number, y: number, width: number, height: number) {
     this.tree = new QuadTree(x, y, width, height);

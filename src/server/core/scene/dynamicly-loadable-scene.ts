@@ -70,7 +70,7 @@ export class DynamicallyLoadableScene extends Scene {
     let clients = this.ecs.getService<ClientsService>('clients');
 
     client.userData.id = 'usqPuANKq';
-    client.view = new StateView();
+    client.view = new StateView(true);
     clients.register(client);
 
     const save = await MDBClient.instance().readPlayer(client.userData.id);
