@@ -39,6 +39,7 @@ export class NetworkScene extends Phaser.Scene {
     this.ecs.addSystem(new NetworkSystem());
     this.ecs.addSystem(new InputSystem());
     this.ecs.addSystem(new MovementSystem());
+    this.ecs.addSystem(new CameraSystem());
 
     this.ecs.addSystem(new AnimationSystem());
     this.ecs.addSystem(new SpriteSystem());
@@ -76,7 +77,6 @@ export class NetworkScene extends Phaser.Scene {
         this.registry.set('room', this.room);
 
         (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
-        this.ecs.addSystem(new CameraSystem(this.room));
 
         this.room.onMessage('*', (type, message) => {
           if (typeof type === 'number') {

@@ -21,14 +21,6 @@ export class NetworkSystem extends System {
   private _room: Room<SceneState>;
 
   onUpdate(scene: WorldScene, container: ECSContainer): void {
-    container.query(['tag-player']).forEach((player) => {
-      if (player.id === scene.room.sessionId && !player.has('camera')) {
-        const camera = new Camera();
-        player.add(camera);
-        scene.registry.set('player', player);
-      }
-    });
-
     container.query(['tag-object']).forEach((entity) => {
       if (!entity.has('sprite') && entity instanceof Entity) {
         this.initObject(entity, scene);
@@ -39,10 +31,11 @@ export class NetworkSystem extends System {
   observe(room: Room<SceneState>, container: ECSContainer) {
     this._room = room;
     const $ = getStateCallbacks(room);
-    $(room.state).entities.onAdd((entity) => {
+    $(room.state).entities.onAdd((entity: EntitySchema) => {
+      console.log(entity);
       this.onAddEntity(entity, container);
     });
-    $(room.state).entities.onRemove((entity) => {
+    $(room.state).entities.onRemove((entity: EntitySchema) => {
       container.removeEntity(container.getEntity(entity.id));
     });
   }

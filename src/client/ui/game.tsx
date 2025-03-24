@@ -19,6 +19,7 @@ import { Controlls } from './hood/controlls/controlls';
 import { QuestRequestUI } from './hood/quest/quest-dialog';
 import { MainMenu } from './menu/main';
 import { DummyHouse } from '@client/scenes/dummy/house';
+import { QuestBookUI } from '@client/ui/hood/quest/quest-book';
 
 export const GameComponent: React.FC = () => {
   const client = useMemo(() => {
@@ -91,6 +92,7 @@ export const GameComponent: React.FC = () => {
           <LootUI />
           <Controlls />
           <QuestRequestUI />
+          <QuestBookUI />
           <MainMenu />
         </PlayerContext.Provider>
       </RoomContext.Provider>

@@ -16,7 +16,7 @@
   .body {
     display: none;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--gray);
     border-radius: 5px;
     color: white;
     min-width: max-content;

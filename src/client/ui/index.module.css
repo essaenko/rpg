@@ -1,3 +1,18 @@
 .root {
   position: relative;
+
+  font-family: var(--ui-font), serif;
+}
+
+/* FONTS */
+:root {
+  --ui-font: "El Messiri", sans-serif;
+  --fantasy-font: "Marck Script", cursive;
+}
+
+/* COLORS */
+
+:root {
+  --light-gray: #e7e7e7;
+  --gray: rgba(0, 0, 0, .5);
 }

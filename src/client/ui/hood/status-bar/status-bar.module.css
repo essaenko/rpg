@@ -14,7 +14,7 @@
     width: 80px;
     height: 80px;
     border-radius: 40px;
-    background: #e7e7e7;
+    background: var(--light-gray);
     flex-shrink: 0;
   }
   .info {
