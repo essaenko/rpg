@@ -10,7 +10,6 @@ export class SceneSystem extends System {
 
   handleMessage(type: TransportEventTypes, message: any, container: ECSContainer, scene: NetworkScene): void {
     if (type === TransportEventTypes.ChangeScene) {
-      console.log('Change scene event received: ', message);
       container.destroy();
       scene.scene.stop();
       scene.scene.launch(message);
