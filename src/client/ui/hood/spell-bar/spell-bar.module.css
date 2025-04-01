@@ -14,8 +14,17 @@
     .spell {
       width: 65px;
       height: 65px;
-      background: var(--light-gray);
+      background: var(--gray);
       border-radius: 5px;
+      position: relative;
+      color: white;
+
+      .key {
+        position: absolute;
+        z-index: 2;
+        left: 5px;
+        top: 2px;
+      }
 
       img {
         border-radius: 5px;

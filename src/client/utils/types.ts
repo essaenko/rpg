@@ -6,7 +6,7 @@ import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
 import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
 import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';
 
-export enum Spells {
+export enum SpellPanel {
   Spell1 = 1,
   Spell2,
   Spell3,

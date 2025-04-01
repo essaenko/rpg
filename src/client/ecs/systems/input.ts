@@ -1,6 +1,6 @@
 import { TransportEventTypes } from '@shared/types';
 import { System } from '@client/core/ecs/system';
-import { Keys, Spells } from '@client/utils/types';
+import { Keys, SpellPanel } from '@client/utils/types';
 
 import { InputService } from '@client/services/input';
 import { Target } from '@client/ecs/components/game/combat/target';

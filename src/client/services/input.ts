@@ -1,12 +1,13 @@
 import { SettingsService } from '@client/services/settings';
 import { DEFAULT_KEY_BINDING } from '@client/utils/const';
-import { Keys, Spells } from '@client/utils/types';
+import { Keys, SpellPanel } from '@client/utils/types';
+import type { Spells } from '@shared/utils/spells';
 
 let instance: InputService;
 
 export class InputService {
-  private readonly bindings: Record<Spells, Keys> = DEFAULT_KEY_BINDING;
-  private spellBinding: Partial<Record<Spells, string>> = {};
+  private readonly bindings: Record<SpellPanel, Keys> = DEFAULT_KEY_BINDING;
+  private readonly spellBinding: Partial<Record<SpellPanel, Spells>> = {};
   private readonly pressed = new Set<Keys>();
   private constructor() {
     const binding = SettingsService.instance().getSetting('binding');
@@ -35,11 +36,11 @@ export class InputService {
     return this.pressed.has(key);
   }
 
-  getSpellBinding(key: Keys): string | null {
+  getSpellBinding(key: Keys): Spells | null {
     const bind = Object.entries(this.bindings).find(([_, k]) => k === key);
 
     if (bind) {
-      return this.spellBinding[+bind[0] as Spells] ?? null;
+      return this.spellBinding[+bind[0] as SpellPanel] ?? null;
     }
 
     return null;
