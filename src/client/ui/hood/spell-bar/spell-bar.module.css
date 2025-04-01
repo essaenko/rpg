@@ -14,7 +14,7 @@
     .spell {
       width: 65px;
       height: 65px;
-      background: #e7e7e7;
+      background: var(--light-gray);
       border-radius: 5px;
 
       img {
@@ -38,7 +38,7 @@
 
       .cooldown_hover {
         width: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background: var(--gray);
         position: absolute;
         top: 100%;
         transform: translate(0, -100%);

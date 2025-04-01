@@ -5,20 +5,28 @@ import type { SceneState } from '@shared/schemas/scene';
 import { Camera } from '@client/ecs/components/game/camera';
 import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
+import { WorldScene } from '@client/core/scene/world-scene';
 
 export class CameraSystem extends System {
   private debugGraphics: Phaser.GameObjects.Graphics;
-  constructor(public room: Room<SceneState>) {
+  constructor() {
     super('camera');
   }
-  onUpdate(scene: Phaser.Scene, container: ECSContainer): void {
-    if (this.room) {
+  onUpdate(scene: WorldScene, container: ECSContainer): void {
+    if (scene.room) {
+      container.query(['tag-player']).forEach((player) => {
+        if (player.id === scene.room.sessionId && !player.has('camera')) {
+          const camera = new Camera();
+          player.add(camera);
+          scene.registry.set('player', player);
+        }
+      });
       if (!this.debugGraphics) {
         // this.debugGraphics = scene.add.graphics({ lineStyle: { width: 2, color: 0xff0000 } });
       }
       const player = container
         .query(['tag-player', 'camera', 'appearance'])
-        .find((entity) => entity.id === this.room.sessionId);
+        .find((entity) => entity.id === scene.room.sessionId);
 
       if (player) {
         const camera = player.get<Camera>('camera');

@@ -11,7 +11,7 @@ export class QuadTree<T extends Entity = Entity> {
     public y: number = 0,
     public width: number = 100,
     public height: number = 100,
-    public trashold: number = 4,
+    public threshold: number = 4,
 
     public minWidth: number = 100,
     public minHeight: number = 100,
@@ -28,28 +28,28 @@ export class QuadTree<T extends Entity = Entity> {
         this.y,
         Math.max(this.width / 2, this.minWidth),
         Math.max(this.height / 2, this.minHeight),
-        this.trashold,
+        this.threshold,
       ),
       new QuadTree<T>(
         this.x + this.width / 2,
         this.y,
         Math.max(this.width / 2, this.minWidth),
         Math.max(this.height / 2, this.minHeight),
-        this.trashold,
+        this.threshold,
       ),
       new QuadTree<T>(
         this.x + this.width / 2,
         this.y + this.height / 2,
         Math.max(this.width / 2, this.minWidth),
         Math.max(this.height / 2, this.minHeight),
-        this.trashold,
+        this.threshold,
       ),
       new QuadTree<T>(
         this.x,
         this.y + this.height / 2,
         Math.max(this.width / 2, this.minWidth),
         Math.max(this.height / 2, this.minHeight),
-        this.trashold,
+        this.threshold,
       ),
     ];
 
@@ -68,7 +68,7 @@ export class QuadTree<T extends Entity = Entity> {
   }
 
   public add(obj: T) {
-    if (this.objects.size >= this.trashold) {
+    if (this.objects.size >= this.threshold) {
       this.divide();
     }
 
@@ -128,10 +128,10 @@ export class QuadTree<T extends Entity = Entity> {
    */
   public intersects(x: number, y: number, width: number, height: number) {
     return (
-      x - width / 2 < this.x + this.width &&
-      x + width / 2 > this.x &&
-      y - height / 2 < this.y + this.height &&
-      y + height / 2 > this.y
+      x - width / 2 <= this.x + this.width &&
+      x + width / 2 >= this.x &&
+      y - height / 2 <= this.y + this.height &&
+      y + height / 2 >= this.y
     );
   }
 

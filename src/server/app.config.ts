@@ -13,6 +13,7 @@ export default config({
      * Define your room handlers:
      */
     gameServer.define('dummy', DynamicallyLoadableScene);
+    gameServer.define('dummy-house', DynamicallyLoadableScene);
 
     // gameServer.simulateLatency(100);
   },

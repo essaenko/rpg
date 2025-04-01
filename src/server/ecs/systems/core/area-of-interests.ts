@@ -8,6 +8,7 @@ import { getDistance } from '@shared/utils/physics';
 import { AREA_OF_INTEREST_DISTANCE } from '@shared/utils/const';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { NetworkEntity } from '@shared/ecs/entity';
+import { StateView } from '@colyseus/schema';
 
 export class AreaOfInterestsSystem extends System {
   constructor() {
@@ -18,22 +19,24 @@ export class AreaOfInterestsSystem extends System {
     return;
   }
   onUpdate(delta: number, container: ECSContainer, scene: Scene): void {
-    const entitiesWithBody = container
-      .query(['body'])
-      .filter((it) => it instanceof NetworkEntity)
-      .toArray();
     const clients = container.getService<ClientsService>('clients');
     container.query(['tag-player']).forEach((player) => {
-      const client = clients.get(player.id);
-      const playerPos = player.get<Position>('position');
-      entitiesWithBody.forEach((it) => {
-        const pos = it.get<Position>('position');
-        if (getDistance(playerPos, pos) > AREA_OF_INTEREST_DISTANCE) {
-          client.view.remove(it._schema);
-        } else {
-          client.view.add(it._schema);
+      if (player instanceof NetworkEntity) {
+        const client = clients.get(player.id);
+        const entities = container.query(player, AREA_OF_INTEREST_DISTANCE, ['position', 'body']).filter((it) => it instanceof NetworkEntity).toArray();
+
+        for (const schema of client.view.items) {
+          if (!entities.some(({ _schema }) => _schema === schema)) {
+            client.view.remove(schema);
+          }
         }
-      });
+
+        for (const it of entities) {
+         if (!client.view.has(it._schema)) {
+           client.view.add(it._schema);
+         }
+        }
+      }
     });
   }
 }

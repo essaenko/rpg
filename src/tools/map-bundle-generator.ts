@@ -98,5 +98,3 @@ fs.writeFile(path.resolve(clientPath, './assets/tilesets/map.ts'), template, (er
 
   console.log('Package file was successfully written');
 });
-
-// console.log(template);

@@ -19,15 +19,13 @@ export class QuestBook extends NetworkComponent {
         ...(
           await Promise.all(
             state.finished.map(async (id: string) => {
-              {
-                const save = await MDBClient.instance().readQuest(id);
+              const save = await MDBClient.instance().readQuest(id);
 
-                if (save) {
-                  const quest = new Quest();
-                  quest.init(save);
+              if (save) {
+                const quest = new Quest();
+                quest.init(save);
 
-                  return quest;
-                }
+                return quest;
               }
             }),
           )
@@ -39,15 +37,13 @@ export class QuestBook extends NetworkComponent {
         ...(
           await Promise.all(
             state.ongoing.map(async (id: string) => {
-              {
-                const save = await MDBClient.instance().readQuest(id);
+              const save = await MDBClient.instance().readQuest(id);
 
-                if (save) {
-                  const quest = new Quest();
-                  quest.init(save);
+              if (save) {
+                const quest = new Quest();
+                quest.init(save);
 
-                  return quest;
-                }
+                return quest;
               }
             }),
           )

@@ -111,9 +111,6 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addEntity(entity);
     if (entity instanceof NetworkEntity) {
       this.state.entities.set(entity._schema.id, entity._schema);
-      this.ecs.getService<ClientsService>('clients')?.list.forEach((client) => {
-        client.view?.add(entity._schema);
-      });
     }
   }
 

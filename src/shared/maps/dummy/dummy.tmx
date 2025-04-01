@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="left-up" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="87">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="89">
  <editorsettings>
   <export target="dummy.json" format="json"/>
  </editorsettings>
@@ -418,20 +418,20 @@
  </layer>
  <group id="12" name="npc">
   <objectgroup id="14" name="GUgR50t1x">
-   <object id="80" name="spawn" x="1468" y="1488">
+   <object id="80" type="spawn" x="1468" y="1488">
     <point/>
    </object>
   </objectgroup>
   <objectgroup id="11" name="QHp67chim">
-   <object id="60" name="spawn" x="336" y="1203.33">
+   <object id="60" type="spawn" x="336" y="1203.33">
     <point/>
    </object>
-   <object id="61" name="route" x="336" y="1203">
+   <object id="61" type="route" x="336" y="1203">
     <polygon points="-16,13 48,13 80,77 144,109 144,237 48,269 -144,301 -240,237 -240,45 -80,45"/>
    </object>
   </objectgroup>
   <objectgroup id="13" name="MtyJP39W3">
-   <object id="65" name="spawn" x="783.273" y="1040.6">
+   <object id="65" type="spawn" x="783.273" y="1040.6">
     <point/>
    </object>
   </objectgroup>
@@ -646,17 +646,22 @@
   <object id="79" gid="686" x="32.5" y="346.5" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="locations">
-  <object id="1" name="spawn" x="768.5" y="896">
+  <object id="1" type="spawn" x="768.5" y="896">
    <properties>
     <property name="id" value="953SBx26R"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="16" name="triggers">
+ <objectgroup id="16" name="triggers" class="location-visited">
   <object id="85" type="location-visited" x="1184" y="0" width="416" height="224">
    <properties>
     <property name="location" value="dummy_wood"/>
+   </properties>
+  </object>
+  <object id="87" type="change-scene" x="897" y="1021.33" width="30.3333" height="10.6667">
+   <properties>
+    <property name="scene" value="dummy-house"/>
    </properties>
   </object>
  </objectgroup>

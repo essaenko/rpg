@@ -34,16 +34,18 @@ export class InputSystem extends System {
     if (cursor.isDown && cursor.buttons === 2) {
       cursor.updateWorldPoint(scene.cameras.main);
       const player = container.getEntity(scene.room.sessionId);
-      let pointer = player.get<Pointer>('pointer');
+      if (player) {
+        let pointer = player.get<Pointer>('pointer');
 
-      if (!pointer) {
-        pointer = new Pointer();
-        player.add(pointer);
+        if (!pointer) {
+          pointer = new Pointer();
+          player.add(pointer);
+        }
+        pointer.x = cursor.worldX;
+        pointer.y = cursor.worldY - 24;
+        pointer.lastX = null;
+        pointer.lastY = null;
       }
-      pointer.x = cursor.worldX;
-      pointer.y = cursor.worldY - 24;
-      pointer.lastX = null;
-      pointer.lastY = null;
     }
   }
 }

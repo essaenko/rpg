@@ -14,3 +14,32 @@
     text-align: center;
   }
 }
+
+.book {
+  display: flex;
+  position: fixed;
+  right: 50px;
+  top: 20vh;
+  width: 300px;
+  flex-direction: column;
+  background: var(--gray);
+  color: white;
+  padding: 10px;
+
+  h3 {
+    font-family: var(--ui-font), serif;
+    font-size: 24px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      padding: 5px;
+    }
+  }
+}

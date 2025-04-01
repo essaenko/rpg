@@ -6,6 +6,7 @@ import { Tooltip } from '@client/ui/utils/tooltip';
 import { SpellIcons } from '@client/assets/images/icons/map';
 import { RoomContext } from '@client/ui/context/room.context';
 import { getStateCallbacks } from 'colyseus.js';
+import { useSchemaState } from '@client/ui/hooks/schema';
 
 const SpellTooltip = ({ spell }: { spell: Spell }) => {
   return (
@@ -21,29 +22,7 @@ const SpellTooltip = ({ spell }: { spell: Spell }) => {
 };
 
 export const SpellCell = ({ schema, keyBind }: { schema: Spell | null; keyBind: string }) => {
-  const room = useContext(RoomContext);
-  const [spell, setSpell] = useState<Spell | null>(null);
-  const $ = useMemo(() => {
-    if (room) {
-      return getStateCallbacks(room);
-    }
-
-    return null;
-  }, [room]);
-
-  useEffect(() => {
-    if ($ && schema) {
-      const detach = $(schema).onChange(() => {
-        setSpell({ ...schema } as Spell);
-      });
-
-      setSpell({ ...schema } as Spell);
-
-      return () => {
-        detach();
-      };
-    }
-  }, [schema, $]);
+  const spell = useSchemaState(schema);
 
   return (
     <div className={css.spell}>

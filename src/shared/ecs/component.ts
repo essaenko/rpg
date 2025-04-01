@@ -2,6 +2,7 @@ import { Schema, type } from '@colyseus/schema';
 
 export interface ComponentType {
   name: string;
+  serializable: boolean;
 
   init(state: Record<string, any>): void;
   serialize(): Record<string, any>;

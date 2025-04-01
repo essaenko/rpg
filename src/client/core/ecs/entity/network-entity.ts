@@ -21,17 +21,17 @@ export class NetworkEntity extends Entity {
   }
 
   observe(eSchema: EntitySchema) {
-    this.$(eSchema).listen('id', (value) => {
+    this.$(eSchema).listen('id', (value: string) => {
       this.id = value;
     });
 
-    this.$(eSchema).components.onAdd((cSchema) => {
+    this.on('entity:destroy', this.$(eSchema).components.onAdd((cSchema: Component) => {
       this.onAddComponent(cSchema);
-    }, false);
+    }, false));
 
-    this.$(eSchema).components.onRemove((cSchema) => {
+    this.on('entity:destroy', this.$(eSchema).components.onRemove((cSchema: Component) => {
       this.remove(cSchema.name);
-    });
+    }));
 
     this._schema = eSchema;
   }
@@ -48,10 +48,16 @@ export class NetworkEntity extends Entity {
       this.add(component);
 
       if (component instanceof NetworkComponent) {
+
         this.$(cSchema).bindTo(component);
-        this.$(cSchema).onChange(() => {
+        component.on('component:destroy', this.$(cSchema).onChange(() => {
           component.emit('component:change');
-        });
+        }));
+        for (const key in cSchema) {
+          component.on('component:destroy', this.$(cSchema).listen(key, () => {
+            component.emit('component:change');
+          }));
+        }
       }
     }
   }

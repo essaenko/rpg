@@ -36,7 +36,7 @@ export class QuestGiverSystem extends System {
       const appearance = entity.get<Appearance>('appearance');
       const body = appearance?.sprites?.getByName('body') as Phaser.Physics.Arcade.Sprite;
       const player = container.getEntity(scene.room.sessionId);
-      const log = player.get<QuestBook>('quest-book');
+      const log = player?.get<QuestBook>('quest-book');
       const availableQuests = giver?.quests.filter((quest) => {
         return (
           !log?.finished.some(({ id }) => id === quest.id) &&

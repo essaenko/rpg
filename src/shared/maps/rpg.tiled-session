@@ -51,14 +51,21 @@
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx": {
-            "scale": 0.9936035156249999,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                9,
+                8
+            ],
+            "scale": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": -0.5032188313922461,
-                "y": 0
+                "x": 305.75,
+                "y": 563.5
             }
         },
         "dummy/dummy-house.tmx#beds_and_drobes": {
+            "scaleInDock": 1
+        },
+        "dummy/dummy-house.tmx#dummy-tile": {
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx#elements": {
@@ -109,14 +116,23 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx": {
-            "expandedObjectLayers": [
-                5
+            "expandedGroupLayers": [
+                12
             ],
-            "scale": 3,
-            "selectedLayer": 8,
+            "expandedObjectLayers": [
+                14,
+                16,
+                6,
+                11,
+                12,
+                5,
+                13
+            ],
+            "scale": 8,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 894.9999999999999,
-                "y": 932.3333333333333
+                "x": 912.1875,
+                "y": 1026.625
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -217,9 +233,9 @@
             "scaleInDock": 1
         }
     },
-    "last.exportedFilePath": "/home/evgeniy/Projects/rpg/src/shared/maps/dummy",
+    "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/dummy",
     "last.externalTilesetPath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands",
-    "last.imagePath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands",
+    "last.imagePath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets",
     "map.fixedSize": true,
     "map.height": 5,
     "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
@@ -229,7 +245,7 @@
         "dummy/dummy.tmx"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
         "dummy/dummy.tmx",
         "dummy/dummy.json",
