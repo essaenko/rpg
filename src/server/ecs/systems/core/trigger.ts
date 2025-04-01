@@ -20,10 +20,6 @@ export class TriggerSystem extends System {
       for (const entity of container.query(['body', 'position'], ['tag-object', 'trigger'])) {
         if (trigger.validate(entity)) {
           if (collide(getCollider(obj), getCollider(entity))) {
-            const col1 = getCollider(obj);
-            const col2 = getCollider(entity);
-            const result = collide(getCollider(obj), getCollider(entity));
-
             if (!trigger.cache.has(entity)) {
               trigger.activate(entity, container, scene);
               trigger.cache.add(entity);

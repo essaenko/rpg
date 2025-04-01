@@ -230,6 +230,7 @@ export class DynamicallyLoadableScene extends Scene {
         const key = trigger.type;
         if (isTriggerFactoryKey(key)) {
           const e = new Entity();
+          e.id = nanoid(9);
           const factory = map[key];
           const t = new factory();
           const p = new Position();

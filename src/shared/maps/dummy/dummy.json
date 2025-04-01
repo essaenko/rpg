@@ -957,6 +957,7 @@
          "y":0
         }, 
         {
+         "class":"location-visited",
          "draworder":"topdown",
          "id":16,
          "name":"triggers",
@@ -979,7 +980,7 @@
                  "y":0
                 }, 
                 {
-                 "height":10.6666666666667,
+                 "height":10.6667,
                  "id":87,
                  "name":"",
                  "properties":[
@@ -991,9 +992,9 @@
                  "rotation":0,
                  "type":"change-scene",
                  "visible":true,
-                 "width":30.3333333333333,
+                 "width":30.3333,
                  "x":897,
-                 "y":1021.33333333333
+                 "y":1021.33
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1005,7 +1006,7 @@
  "nextobjectid":89,
  "orientation":"orthogonal",
  "renderorder":"left-up",
- "tiledversion":"1.11.1",
+ "tiledversion":"1.11.1-99-gec89c545",
  "tileheight":32,
  "tilesets":[
         {
