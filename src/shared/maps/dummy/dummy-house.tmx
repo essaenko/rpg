@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="left-up" width="18" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="4">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="18" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="4">
  <editorsettings>
   <export target="dummy-house.json" format="json"/>
  </editorsettings>
@@ -237,7 +237,7 @@
    <point/>
   </object>
  </objectgroup>
- <layer id="7" name="collision" width="18" height="22" opacity="0.44">
+ <layer id="7" name="collision" width="18" height="22" visible="0" opacity="0.44">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

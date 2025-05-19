@@ -1,5 +1,8 @@
 import { Scene } from 'phaser';
 import { Client } from 'colyseus.js';
+import { World } from '@client/scenes/world/world';
+import { Networking } from '@client/services/networking';
+import { WorldScene } from '@client/core/scene/world-scene';
 
 export class Boot extends Scene {
   constructor() {
@@ -8,25 +11,13 @@ export class Boot extends Scene {
 
   preload(): void {}
 
-  async create(): Promise<void> {
+  create() {
     // await this.game.canvas.requestFullscreen();
-    const client = this.registry.get('client');
-
-    if (client && client instanceof Client) {
-      const response = await client.http.get('/scene');
-
-      if (response.statusCode === 200 && response.data) {
-        try {
-          const data = JSON.parse(response.data);
-
-          if ('scene' in data && data.scene) {
-            this.scene.start(data.scene);
-          }
-        } catch (e) {
-          console.log(e);
-          alert('Error');
-        }
-      }
-    }
+    /*
+      TODO: Add proper session/auth check and navigate to LoginScene
+     */
+    Networking.instance.joinRoom().then(({ scene }) => {
+      this.scene.add('world', new WorldScene(scene), true);
+    });
   }
 }

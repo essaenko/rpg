@@ -13,6 +13,10 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/fl_grass_land.tsx": {
             "dynamicWrapping": true
         },
@@ -120,19 +124,19 @@
                 12
             ],
             "expandedObjectLayers": [
-                14,
-                16,
-                6,
-                11,
-                12,
                 5,
-                13
+                11,
+                14,
+                12,
+                13,
+                16,
+                6
             ],
-            "scale": 8,
+            "scale": 1,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 912.1875,
-                "y": 1026.625
+                "x": 978,
+                "y": 842.5
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -247,6 +251,7 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "dummy/dummy.tmx",
         "dummy/dummy.json",
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",

@@ -44,6 +44,7 @@ export const useComponent = <T extends Component>(entity: Entity, name: string):
     }
 
     return () => {
+      setState(null);
       entity?.detach('entity:components:add', onAdd);
       entity?.detach('entity:components:remove', onRemove);
     }

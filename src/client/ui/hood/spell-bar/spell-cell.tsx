@@ -1,17 +1,14 @@
 import { Spell } from '@shared/schemas/game/spell/spell';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import css from './spell-bar.module.css';
 import { Tooltip } from '@client/ui/utils/tooltip';
 import { SpellIcons } from '@client/assets/images/icons/map';
-import { RoomContext } from '@client/ui/context/room.context';
-import { getStateCallbacks } from 'colyseus.js';
 import { useSchemaState } from '@client/ui/hooks/schema';
 import { Keys, SpellPanel } from '@client/utils/types';
 import { InputService } from '@client/services/input';
 import { usePlayerComponent } from '@client/ui/hooks/component';
 import { SpellBook } from '@client/ecs/components/game/spells/spell-book';
-import K = Phaser.Input.Keyboard.KeyCodes.K;
 
 const SpellTooltip = ({ spell }: { spell: Spell }) => {
   return (
@@ -26,7 +23,7 @@ const SpellTooltip = ({ spell }: { spell: Spell }) => {
   );
 };
 
-export const SpellCell = ({ cell, keyBind }: { cell: SpellPanel | null; keyBind: Keys }) => {
+export const SpellCell = ({ keyBind }: { cell: SpellPanel | null; keyBind: Keys }) => {
   const bind = useMemo(() => InputService.instance().getSpellBinding(keyBind), [keyBind]);
   const book = usePlayerComponent<SpellBook>('spell-book');
   const spell = useSchemaState(book?.spells.get(bind?.toString()));

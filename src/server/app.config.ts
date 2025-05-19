@@ -6,14 +6,18 @@ import { playground } from '@colyseus/playground';
  * Import your Room files
  */
 import { DynamicallyLoadableScene } from '@server/core/scene/dynamicly-loadable-scene';
+import { matchMaker } from 'colyseus';
+import { MDBClient } from '@server/mongodb';
+import { Entity } from '@shared/ecs/entity';
+import { Location } from '@server/ecs/components/game/ui/location';
 
 export default config({
   initializeGameServer: (gameServer) => {
+    matchMaker.controller.exposedMethods = ['reconnect'];
     /**
      * Define your room handlers:
      */
-    gameServer.define('dummy', DynamicallyLoadableScene);
-    gameServer.define('dummy-house', DynamicallyLoadableScene);
+    gameServer.define('world', DynamicallyLoadableScene);
 
     // gameServer.simulateLatency(100);
   },
@@ -29,6 +33,41 @@ export default config({
     app.get('/scene', (req, res) => {
       res.send(JSON.stringify({ scene: 'dummy' }));
     });
+    app.get('/join/:charID', async (req, res) => {
+      if (req.params.charID) {
+        const save = await MDBClient.instance().readPlayer(req.params.charID);
+
+        if (save) {
+          const entity = new Entity();
+          entity.init(save);
+
+          const location = entity.get<Location>('location');
+
+          if (location && location.value) {
+            const seat = await matchMaker.joinOrCreate('world', {
+              scene: location.value,
+            });
+
+            // if (seat.room.maxClients == null) {
+            //   seat.room.maxClients = 50;
+            // }
+
+            res.json({
+              ...seat,
+              scene: location.value
+            });
+
+            return;
+          }
+        }
+      }
+
+      res.status(400);
+      res.json({
+        status: 'error',
+        error: 'Cant join the game',
+      })
+    })
 
     /**
      * Use @colyseus/playground

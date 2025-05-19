@@ -10,12 +10,12 @@ export type TiledMapObject = {
   width?: number;
   x: number;
   y: number;
-  properties?: [
-    {
-      name: string;
-      type: string;
-      value: string | number | boolean;
-    },
+  properties?: {
+    name: string;
+    type: string;
+    value: string | number | boolean;
+  }[
+
   ];
 };
 

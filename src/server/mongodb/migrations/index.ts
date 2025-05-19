@@ -11,6 +11,9 @@ import { migration as stats } from './stats.migration';
 import { migration as level } from './level.migration';
 import { migration as location } from './location.migration';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 (async () => {
   for (let migration of [
     bag,

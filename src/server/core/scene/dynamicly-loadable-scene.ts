@@ -29,12 +29,12 @@ export class DynamicallyLoadableScene extends Scene {
     super();
   }
 
-  async onCreate(options: any) {
+  async onCreate(options: { scene?: string }) {
     super.onCreate(options);
 
     this.state = new SceneState();
-    if (isMapKey(this.roomName)) {
-      this.map = maps[this.roomName];
+    if (isMapKey(options.scene)) {
+      this.map = maps[options.scene];
 
       if (this.map) {
         const colLayer = this.map.layers.find(({ name }) => name === 'collision');

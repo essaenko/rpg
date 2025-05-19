@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-const table = { id: nanoid(9), items: [] };
+const table: { id: string, items: ({ item: string, chance: 1 })[] } = { id: nanoid(9), items: [] };
 
 table.items.push({
   item: nanoid(9),

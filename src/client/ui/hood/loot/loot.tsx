@@ -1,14 +1,14 @@
 import React, { useCallback, useContext } from 'react';
 
 import { Loot } from '@client/ecs/components/game/item/loot';
-import { RoomContext } from '@client/ui/context/room.context';
 import { TransportEventTypes } from '@shared/types';
 import { usePlayerComponent } from '@client/ui/hooks/component';
 
 import css from './loot.module.css';
+import { Networking } from '@client/services/networking';
 export const LootUI: React.FC = () => {
-  const room = useContext(RoomContext);
   const loot = usePlayerComponent<Loot>('loot');
+  const room = Networking.instance.room;
 
   const collectItem = useCallback(
     (id: string) => () => {
