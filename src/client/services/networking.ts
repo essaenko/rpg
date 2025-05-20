@@ -42,7 +42,6 @@ export class Networking {
         return null;
       }
     }
-
   }
 
   public async leave() {
