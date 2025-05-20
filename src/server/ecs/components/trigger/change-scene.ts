@@ -25,7 +25,7 @@ export class ChangeScene extends Trigger {
       location.value = this.scene;
       position.x = spawn.x;
       position.y = spawn.y;
-      const seat = await matchMaker.joinOrCreate('world', { scene: this.scene });
+      const seat = await matchMaker.joinOrCreate(this.scene, { scene: this.scene });
 
       entity._client.send(TransportEventTypes.ChangeScene, [this.scene, seat]);
 

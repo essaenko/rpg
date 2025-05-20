@@ -3,13 +3,26 @@ import { Component } from '@client/core/ecs/component/component';
 import { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '@client/ui/context/player.context';
 
-export const useComponentState = <T extends Component>(component: Component): T => {
+export const useComponentState = <T extends Component>(component?: Component): T => {
   const [state, setState] = useState(null);
-  component.on('component:change', () => {
-    setState({ ...component });
-  });
+
+  useEffect(() => {
+    if (!state && component) {
+      component.on('component:change', () => {
+        setState({ ...component } as T);
+      });
+
+      setState({ ...component } as T);
+    }
+  }, [component]);
 
   return state;
+}
+
+export const usePlayerComponentState = <T extends Component>(name: string): T | null => {
+  const component = usePlayerComponent<T>(name);
+
+  return useComponentState<T>(component);
 }
 
 export const usePlayerComponent = <T extends Component>(name: string): T | null => {

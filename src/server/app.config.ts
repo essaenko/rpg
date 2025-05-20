@@ -2,6 +2,8 @@ import config from '@colyseus/tools';
 import { monitor } from '@colyseus/monitor';
 import { playground } from '@colyseus/playground';
 
+import { assets } from '@shared/maps/mapping';
+
 /**
  * Import your Room files
  */
@@ -17,7 +19,9 @@ export default config({
     /**
      * Define your room handlers:
      */
-    gameServer.define('world', DynamicallyLoadableScene);
+    Object.keys(assets).forEach((location) => {
+      gameServer.define(location, DynamicallyLoadableScene);
+    })
 
     // gameServer.simulateLatency(100);
   },
@@ -44,7 +48,7 @@ export default config({
           const location = entity.get<Location>('location');
 
           if (location && location.value) {
-            const seat = await matchMaker.joinOrCreate('world', {
+            const seat = await matchMaker.joinOrCreate(location.value, {
               scene: location.value,
             });
 

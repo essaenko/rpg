@@ -1,5 +1,4 @@
-import React, { useContext, useMemo } from 'react';
-import { PlayerContext } from '../../context/player.context';
+import React from 'react';
 import { Health } from '@client/ecs/components/game/stats/health';
 import { Name } from '@client/ecs/components/game/ui/name';
 import classNames from 'classnames';
@@ -7,14 +6,14 @@ import { Resource } from '@client/ecs/components/game/stats/resource';
 import { ResourceType } from '@shared/types';
 
 import css from './status-bar.module.css';
-import { usePlayerComponent } from '@client/ui/hooks/component';
+import { usePlayerComponent, usePlayerComponentState } from '@client/ui/hooks/component';
 import { Level } from '@client/ecs/components/game/mechanics/level';
 
 export const StatusBar: React.FC = () => {
   const name = usePlayerComponent<Name>('name');
-  const resource = usePlayerComponent<Resource>('resource');
-  const health = usePlayerComponent<Health>('health');
-  const level = usePlayerComponent<Level>('level');
+  const resource = usePlayerComponentState<Resource>('resource');
+  const health = usePlayerComponentState<Health>('health');
+  const level = usePlayerComponentState<Level>('level');
 
   return (name && health && resource && level) && (
     <div className={css.root}>

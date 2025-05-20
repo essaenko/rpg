@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getStateCallbacks } from 'colyseus.js';
-import { $changes, $encoder, ArraySchema, MapSchema, Schema } from '@colyseus/schema';
+import { $changes, $decoder, $encoder, ArraySchema, MapSchema, Schema } from '@colyseus/schema';
 import { isNonFunctionProperty } from '@client/utils/types';
 import { NonFunctionPropNames } from '@colyseus/schema/lib/types/HelperTypes';
 import { Networking } from '@client/services/networking';
@@ -15,7 +15,6 @@ export function useSchemaState<T extends unknown, K extends keyof T>(schema: T, 
 
 export function useSchemaState<T extends unknown, K extends keyof T>(schema: T | null, key?: K): T | T[K] | null {
   const room = Networking.instance.room;
-  const $ = useMemo(() => (room ? getStateCallbacks(room) : null), [room]);
   const [state, setState] = useState(null);
 
   const onChange = useCallback(
@@ -39,19 +38,24 @@ export function useSchemaState<T extends unknown, K extends keyof T>(schema: T |
 
   useEffect(() => {
     const toDispose: (() => void)[] = [];
-    if (room && $ && schema && isColyseusSchema(schema)) {
-      if (key && schema instanceof Schema && isNonFunctionProperty<typeof schema>(key, schema)) {
-        // @ts-ignore
-        $(schema).listen(key as NonFunctionPropNames<T & Schema>, onChange);
-      } else {
-        if (!(schema instanceof Schema)) {
+    if (room && schema && isColyseusSchema(schema)) {
+      const $ = getStateCallbacks(room);
+
+      //@ts-ignore
+      if ($ && room.serializer['decoder'].root.refIds.has(schema)) {
+        if (key && schema instanceof Schema && isNonFunctionProperty<typeof schema>(key, schema)) {
           // @ts-ignore
-          toDispose.push($(schema).onAdd(onChange));
-          // @ts-ignore
-          toDispose.push($(schema).onRemove(onChange));
+          $(schema).listen(key as NonFunctionPropNames<T & Schema>, onChange);
         } else {
-          toDispose.push($(schema).onChange(onChange));
-          setState({ ...schema });
+          if (!(schema instanceof Schema)) {
+            // @ts-ignore
+            toDispose.push($(schema).onAdd(onChange));
+            // @ts-ignore
+            toDispose.push($(schema).onRemove(onChange));
+          } else {
+            toDispose.push($(schema).onChange(onChange));
+            setState({ ...schema });
+          }
         }
       }
     }
@@ -61,7 +65,7 @@ export function useSchemaState<T extends unknown, K extends keyof T>(schema: T |
         dispose();
       }
     };
-  }, [$, schema, key, onChange, room]);
+  }, [schema, key, onChange, room]);
 
   return state;
 }

@@ -2,16 +2,14 @@ import React, { useMemo } from 'react';
 
 import css from './spell-bar.module.css';
 import { SettingsService } from '@client/services/settings';
-import { SpellBook } from '@client/ecs/components/game/spells/spell-book';
 import { SpellCell } from './spell-cell';
-import { usePlayerComponent } from '@client/ui/hooks/component';
+import { usePlayerComponentState } from '@client/ui/hooks/component';
 import { Level } from '@client/ecs/components/game/mechanics/level';
-import { useSchemaState } from '@client/ui/hooks/schema';
 import { LVL_CAPS } from '@shared/utils/level';
 
 export const SpellBar: React.FC = () => {
   const binds = useMemo(() => SettingsService.instance().getSetting('bindings'), []);
-  const level = usePlayerComponent<Level>('level');
+  const level = usePlayerComponentState<Level>('level');
 
   return (
     <div className={css.root}>
