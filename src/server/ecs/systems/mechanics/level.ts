@@ -2,7 +2,7 @@ import { System } from '@shared/ecs/system';
 import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
-import { Scene } from '../../core/scene/scene';
+import { Scene } from '@server/core/scene/scene';
 
 export class LevelSystem extends System {
   constructor() {

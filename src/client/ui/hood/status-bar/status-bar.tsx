@@ -1,5 +1,4 @@
-import React, { useContext, useMemo } from 'react';
-import { PlayerContext } from '../../context/player.context';
+import React from 'react';
 import { Health } from '@client/ecs/components/game/stats/health';
 import { Name } from '@client/ecs/components/game/ui/name';
 import classNames from 'classnames';
@@ -7,28 +6,20 @@ import { Resource } from '@client/ecs/components/game/stats/resource';
 import { ResourceType } from '@shared/types';
 
 import css from './status-bar.module.css';
+import { usePlayerComponent, usePlayerComponentState } from '@client/ui/hooks/component';
+import { Level } from '@client/ecs/components/game/mechanics/level';
 
 export const StatusBar: React.FC = () => {
-  const player = useContext(PlayerContext);
-  const nc = useMemo(() => player?.get<Name>('name') ?? { value: 'CharacterName' }, [player]);
-  const hc = useMemo(() => player?.get<Health>('health') ?? { current: 0, max: 0 }, [player]);
-  const rc = useMemo(
-    () => player?.get<Resource>('resource') ?? { current: 0, max: 0, type: ResourceType.Mana },
-    [player],
-  );
-  const health = useMemo(
-    () => ({
-      current: hc.current,
-      max: hc.max,
-    }),
-    [hc.current, hc.max],
-  );
+  const name = usePlayerComponent<Name>('name');
+  const resource = usePlayerComponentState<Resource>('resource');
+  const health = usePlayerComponentState<Health>('health');
+  const level = usePlayerComponentState<Level>('level');
 
-  return (
+  return (name && health && resource && level) && (
     <div className={css.root}>
       <div className={css.avatar}></div>
       <div className={css.info}>
-        <div className={css.name}>{nc.value}</div>
+        <div className={css.name}>{name.value} - {level.level} уровень</div>
         <div className={css.health}>
           <div className={css.fill} style={{ width: `${(health.current / health.max) * 100}%` }}></div>
           <span>
@@ -38,9 +29,9 @@ export const StatusBar: React.FC = () => {
         <div className={css.resource}>
           <div
             className={classNames(css.fill, {
-              [css.rage]: rc.type === ResourceType.Rage,
-              [css.mana]: rc.type === ResourceType.Mana,
-              [css.energy]: rc.type === ResourceType.Energy,
+              [css.rage]: resource.type === ResourceType.Rage,
+              [css.mana]: resource.type === ResourceType.Mana,
+              [css.energy]: resource.type === ResourceType.Energy,
             })}
             style={{ width: `${(health.current / health.max) * 100}%` }}
           ></div>

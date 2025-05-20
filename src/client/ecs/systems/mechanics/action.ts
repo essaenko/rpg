@@ -3,6 +3,7 @@ import { System } from '@client/core/ecs/system';
 import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { Sprite } from '@client/ecs/components/game/visual/sprite';
 import { Action } from '@client/ecs/components/game/mechanics/action';
+import Pointer = Phaser.Input.Pointer;
 
 export class ActionSystem extends System {
   constructor() {
@@ -41,7 +42,7 @@ export class ActionSystem extends System {
           pixelPerfect: true,
           alphaTolerance: 1,
         });
-        sprite.on('pointerdown', (pointer) => {
+        sprite.on('pointerdown', (pointer: Pointer) => {
           if (pointer.leftButtonDown()) {
             entity.getAll<Action>('action').forEach((action) => {
               action.action();

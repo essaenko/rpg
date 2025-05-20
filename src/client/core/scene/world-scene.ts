@@ -67,7 +67,7 @@ export class WorldScene extends NetworkScene {
         });
 
       if (this.debugCollider) {
-        this.map.createLayer('collision', ['dummy-tile']);
+        this.map.createLayer('collision', ['world-tile']);
 
         const g = this.add.graphics();
 

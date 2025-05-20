@@ -1,17 +1,19 @@
-import { QuestDialog } from '@client/ecs/components/game/ui/quest-dialog';
-import { PlayerContext } from '@client/ui/context/player.context';
-import { QuestRewardTypes } from '@shared/schemas/game/quest/quest-reward';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-import css from './quest.module.css';
-import { RoomContext } from '@client/ui/context/room.context';
 import { TransportEventTypes } from '@shared/types';
 import { Name } from '@client/ecs/components/game/ui/name';
 import { Quest } from '@shared/schemas/game/quest/quest';
+import { Networking } from '@client/services/networking';
+import { QuestDialog } from '@client/ecs/components/game/ui/quest-dialog';
+import { PlayerContext } from '@client/ui/context/player.context';
+import { QuestRewardTypes } from '@shared/schemas/game/quest/quest-reward';
+
+import css from './quest.module.css';
+
 
 export const QuestRequestUI: React.FC = () => {
   const player = useContext(PlayerContext);
-  const room = useContext(RoomContext);
+  const room = Networking.instance.room;
   const [dialog, setDialog] = useState<QuestDialog>(null);
   const [selectedQuest, setSelectedQuest] = useState<Quest>(null);
   const npc = useMemo(() => dialog?.giver, [dialog]);

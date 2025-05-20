@@ -1,5 +1,5 @@
-import { Weapon } from "../shared/schemas/game/item/weapon";
-import { EquipSlot, WeaponHand, WeaponType } from "../shared/types";
+import { Weapon } from "@shared/schemas/game/item/weapon";
+import { EquipSlot, WeaponHand, WeaponType } from "@shared/types";
 import { nanoid } from "nanoid";
 
 const weapon = new Weapon();

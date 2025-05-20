@@ -3,6 +3,8 @@ import { Client, Room } from 'colyseus.js';
 
 import type { SceneState } from '@shared/schemas/scene';
 
+import { Networking } from '@client/services/networking';
+
 import { ECSContainer } from '@client/core/ecs';
 import { InputSystem } from '@client/ecs/systems/input';
 import { NetworkSystem } from '@client/ecs/systems/network';
@@ -54,12 +56,12 @@ export class NetworkScene extends Phaser.Scene {
     this.ecs.addSystem(new LootSystem());
 
     this.ecs.addSystem(new LightSystem());
-    (window as any).ecs = this.ecs;
-    this.ecs.start();
 
+    (window as any).ecs = this.ecs;
     this.registry.set('ecs', this.ecs);
 
-    this.joinServerRoom();
+    this.ecs.start();
+    this.initialize();
   }
 
   update(time: number, delta: number) {
@@ -68,36 +70,18 @@ export class NetworkScene extends Phaser.Scene {
     this.ecs.onUpdate(this, delta / 1000);
   }
 
-  async joinServerRoom(): Promise<boolean> {
-    const client = this.registry.get('client');
+  async initialize() {
+    (this.ecs.systems.get('network') as NetworkSystem).observe(Networking.instance.room, this.ecs);
+    this.room = Networking.instance.room;
 
-    if (client && client instanceof Client) {
-      try {
-        this.room = await client.joinOrCreate(this.name);
-        this.registry.set('room', this.room);
-
-        (this.ecs.systems.get('network') as NetworkSystem).observe(this.room, this.ecs);
-
-        this.room.onMessage('*', (type, message) => {
-          if (typeof type === 'number') {
-            this.ecs.handleMessage(type, message, this);
-          }
-        });
-
-        if (this.onJoin) {
-          this.onJoin();
-        }
-
-        return true;
-      } catch (err) {
-        this.add.text(10, 10, `Can't connect to server room`, {
-          fontSize: 14,
-          color: 'white',
-        });
-        console.warn(err);
-
-        return false;
+    this.room.onMessage('*', (type, message) => {
+      if (typeof type === 'number') {
+        this.ecs.handleMessage(type, message, this);
       }
+    });
+
+    if (this.onJoin) {
+      this.onJoin();
     }
   }
 }

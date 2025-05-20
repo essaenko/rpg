@@ -8,6 +8,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 
 import { maps } from '@shared/maps/mapping';
+import { matchMaker } from 'colyseus';
 
 export class ChangeScene extends Trigger {
   public scene: string;
@@ -24,8 +25,9 @@ export class ChangeScene extends Trigger {
       location.value = this.scene;
       position.x = spawn.x;
       position.y = spawn.y;
+      const seat = await matchMaker.joinOrCreate(this.scene, { scene: this.scene });
 
-      entity._client.send(TransportEventTypes.ChangeScene, this.scene);
+      entity._client.send(TransportEventTypes.ChangeScene, [this.scene, seat]);
 
       container.removeEntity(entity.id);
       scene.state.entities.delete(entity._schema.id);

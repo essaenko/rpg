@@ -1,5 +1,4 @@
 import { Boot } from '@client/scenes/boot/boot';
-import { Dummy } from '@client/scenes/dummy/dummy';
 import { LoginScreen } from '@client/scenes/login-screen/login-screen';
 import { Client } from 'colyseus.js';
 import { Scale, Game } from 'phaser';
@@ -7,10 +6,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Cursor from '@client/assets/cursor/Cursor Default.png';
 
 import Center = Phaser.Scale.Center;
-import { ClientContext } from './context/client.context';
-import { RoomContext } from './context/room.context';
 import { PlayerContext } from './context/player.context';
-import { Room } from 'colyseus.js';
 import { Entity } from '@client/core/ecs/entity/entity';
 import { StatusBar } from './hood/status-bar/status-bar';
 import { SpellBar } from './hood/spell-bar/spell-bar';
@@ -18,20 +14,17 @@ import { LootUI } from './hood/loot/loot';
 import { Controlls } from './hood/controlls/controlls';
 import { QuestRequestUI } from './hood/quest/quest-dialog';
 import { MainMenu } from './menu/main';
-import { DummyHouse } from '@client/scenes/dummy/house';
 import { QuestBookUI } from '@client/ui/hood/quest/quest-book';
+import { Networking } from '@client/services/networking';
 
 export const GameComponent: React.FC = () => {
-  const client = useMemo(() => {
-    return new Client(`ws://${location.hostname}:2567`);
-  }, [location.hostname]);
-  const [room, setRoom] = useState<Room>(null);
   const [player, setPlayer] = useState<Entity>(null);
+  const [connected, setConnected] = useState(false);
 
   const config = useMemo(
     () => ({
       type: Phaser.WEBGL,
-      scene: [Boot, LoginScreen, Dummy, DummyHouse],
+      scene: [Boot],
       parent: '#game-root',
       physics: {
         default: 'arcade',
@@ -47,16 +40,13 @@ export const GameComponent: React.FC = () => {
       fps: {
         min: 30,
       },
-      callbacks: {
-        preBoot: (game: Game) => {
-          game.registry.set('client', client);
-        },
-      },
     }),
-    [client],
+    [],
   );
 
   useEffect(() => {
+    Networking.instance.connect();
+    setConnected(true);
     const game = new Game(config);
     game.input.mouse.disableContextMenu();
     if (process.env.NODE_ENV === 'development') {
@@ -67,35 +57,30 @@ export const GameComponent: React.FC = () => {
       if (key === 'player') {
         setPlayer(value);
       }
-
-      if (key === 'room') {
-        setRoom(value);
-      }
     };
 
     game.registry.events.on('setdata', onDataSet);
     game.registry.events.on('changedata', onDataSet);
 
+
     document.body.style.cursor = `url(${Cursor}), auto`;
 
     return () => {
+      setConnected(false);
+      Networking.instance.disconnect();
       game.destroy(true);
     };
   }, []);
 
-  return (
-    <ClientContext.Provider value={client}>
-      <RoomContext.Provider value={room}>
-        <PlayerContext.Provider value={player}>
-          <StatusBar />
-          <SpellBar />
-          <LootUI />
-          <Controlls />
-          <QuestRequestUI />
-          <QuestBookUI />
-          <MainMenu />
-        </PlayerContext.Provider>
-      </RoomContext.Provider>
-    </ClientContext.Provider>
+  return connected && (
+    <PlayerContext.Provider value={player}>
+      <StatusBar />
+      <SpellBar />
+      <LootUI />
+      <Controlls />
+      <QuestRequestUI />
+      <QuestBookUI />
+      <MainMenu />
+    </PlayerContext.Provider>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import css from './main.module.css';
-import { RoomContext } from '../context/room.context';
+import { Networking } from '@client/services/networking';
 
 export const MainMenu: React.FC = () => {
-  const room = useContext(RoomContext);
+  const room = Networking.instance.room;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

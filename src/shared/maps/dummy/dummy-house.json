@@ -246,7 +246,7 @@
          "name":"collision",
          "opacity":0.44,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":18,
          "x":0,
          "y":0
@@ -255,7 +255,7 @@
  "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"left-up",
- "tiledversion":"1.11.1",
+ "tiledversion":"1.11.1-99-gec89c545",
  "tileheight":32,
  "tilesets":[
         {

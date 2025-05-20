@@ -34,6 +34,7 @@ import { EventSystem } from '@server/ecs/systems/core/events';
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
   public _map: TiledMap;
+  public maxClients: number = 50;
 
   get map(): TiledMap {
     return this._map;
@@ -111,6 +112,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addEntity(entity);
     if (entity instanceof NetworkEntity) {
       this.state.entities.set(entity._schema.id, entity._schema);
+      this.ecs.getService<ClientsService>('clients')?.get(entity.id)?.view.add(entity._schema);
     }
   }
 

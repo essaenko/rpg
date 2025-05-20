@@ -1,7 +1,9 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { RoomContext } from '@client/ui/context/room.context';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getStateCallbacks } from 'colyseus.js';
-import { ArraySchema, MapSchema, Schema } from '@colyseus/schema';
+import { $changes, $decoder, $encoder, ArraySchema, MapSchema, Schema } from '@colyseus/schema';
+import { isNonFunctionProperty } from '@client/utils/types';
+import { NonFunctionPropNames } from '@colyseus/schema/lib/types/HelperTypes';
+import { Networking } from '@client/services/networking';
 
 type ColyseusSchemaType = ArraySchema | MapSchema | Schema;
 
@@ -9,40 +11,61 @@ export const isColyseusSchema = (schema: unknown): schema is ColyseusSchemaType 
   schema instanceof Schema || schema instanceof ArraySchema || schema instanceof MapSchema;
 
 export function useSchemaState<T extends unknown>(schema: T): T | null;
-export function useSchemaState<T extends unknown>(schema: T, key: keyof T): T[typeof key] | null;
-export function useSchemaState<T extends unknown>(schema: T | null, key?: keyof T) {
-  const room = useContext(RoomContext);
-  const $ = useMemo(() => (room ? getStateCallbacks(room) : null), [room]);
+export function useSchemaState<T extends unknown, K extends keyof T>(schema: T, key: K): T[K] | null;
+
+export function useSchemaState<T extends unknown, K extends keyof T>(schema: T | null, key?: K): T | T[K] | null {
+  const room = Networking.instance.room;
   const [state, setState] = useState(null);
 
-  const onChange = useCallback(() => {
-    if (schema instanceof ArraySchema) {
-      setState([...schema]);
-    }
-    if (schema instanceof MapSchema) {
-      setState({ ...schema });
-    }
-  }, [schema]);
+  const onChange = useCallback(
+    (value?: T[K]) => {
+      if (schema instanceof Schema) {
+        if (key) {
+          setState(value);
+        } else {
+          setState({ ...schema });
+        }
+      }
+      if (schema instanceof ArraySchema) {
+        setState([...schema]);
+      }
+      if (schema instanceof MapSchema) {
+        setState({ ...schema });
+      }
+    },
+    [schema, key],
+  );
 
   useEffect(() => {
-    if ($ && schema && isColyseusSchema(schema)) {
-      if (key) {
-        $(schema).listen(key, (value: T[typeof key]) => {
-          setState(value);
-        });
-      } else {
-        if (!(schema instanceof Schema)) {
-          $(schema).onAdd(onChange);
-          $(schema).onRemove(onChange);
+    const toDispose: (() => void)[] = [];
+    if (room && schema && isColyseusSchema(schema)) {
+      const $ = getStateCallbacks(room);
+
+      //@ts-ignore
+      if ($ && room.serializer['decoder'].root.refIds.has(schema)) {
+        if (key && schema instanceof Schema && isNonFunctionProperty<typeof schema>(key, schema)) {
+          // @ts-ignore
+          $(schema).listen(key as NonFunctionPropNames<T & Schema>, onChange);
         } else {
-          $(schema).onChange(() => {
-            setState({ ...(schema as any) });
-          });
-          setState({ ...(schema as any) });
+          if (!(schema instanceof Schema)) {
+            // @ts-ignore
+            toDispose.push($(schema).onAdd(onChange));
+            // @ts-ignore
+            toDispose.push($(schema).onRemove(onChange));
+          } else {
+            toDispose.push($(schema).onChange(onChange));
+            setState({ ...schema });
+          }
         }
       }
     }
-  }, [$, schema, key, onChange]);
+
+    return () => {
+      for (const dispose of toDispose) {
+        dispose();
+      }
+    };
+  }, [schema, key, onChange, room]);
 
   return state;
 }

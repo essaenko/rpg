@@ -20,6 +20,6 @@ export const passCondition = (condition: QuestCondition, entity: Entity): boolea
   }
 
   if (condition.quest) {
-    return log?.finished.includes(condition.quest) ?? false;
+    return log?.finished.some(({ id }) => id === condition.quest) ?? false;
   }
 };

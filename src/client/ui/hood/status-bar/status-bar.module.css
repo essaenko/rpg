@@ -10,6 +10,10 @@
   display: flex;
   box-sizing: border-box;
 
+  .name {
+
+  }
+
   .avatar {
     width: 80px;
     height: 80px;

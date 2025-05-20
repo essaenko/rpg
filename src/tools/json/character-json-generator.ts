@@ -16,18 +16,13 @@ import { Health } from '@server/ecs/components/game/stats/health/health';
 import { Speed } from '@server/ecs/components/physics/speed';
 import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
-import { Hit } from '@server/mechanics/spells/warrior/hit';
 import { MainStats } from '@server/ecs/components/game/stats/main-stats';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
 import { Equip } from '@server/ecs/components/game/item/equip';
-import { Weapon } from '@shared/schemas/game/item/weapon';
-import { NPC } from '@server/ecs/components/game/tag/npc';
 import { Name } from '@server/ecs/components/game/ui/name';
 import { Entity } from '@shared/ecs/entity';
-import { WarriorSpells } from '@shared/utils/spells';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Appearance } from '@server/ecs/components/game/appearance';
-import { QuestGiver } from '@server/ecs/components/game/quest/quest-giver';
 import { Player } from '@server/ecs/components/game/tag/player';
 import { Move } from '@server/ecs/components/game/move';
 
@@ -47,8 +42,6 @@ character.add(new Body());
 const body = character.get<Body>('body');
 body.width = 64;
 body.height = 64;
-body.pivotY = 32;
-body.pivotX = 32;
 
 character.add(new Position());
 const position = character.get<Position>('position');

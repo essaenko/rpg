@@ -14,7 +14,9 @@
     "build-server": "npm run clean && tsc",
     "clean": "rimraf build",
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
-    "migrate": "npx tsx ./src/server/mongodb/migrations/index.ts"
+    "migrate": "npx tsx ./src/server/mongodb/migrations/index.ts",
+    "codegen-aseprite": "npx tsx ./src/tools/aseprite-map-codegen.ts",
+    "codegen-bundle": "npx tsx ./src/tools/map-bundle-codegen.ts"
   },
   "author": "",
   "license": "MIT",
@@ -38,17 +40,18 @@
     "tsx": "^4.10.2",
     "typescript": "^5.0.4",
     "typescript-plugin-css-modules": "^5.1.0",
-    "vite": "^5.4.10",
+    "vite": "6.3.4",
     "vite-plugin-mkcert": "^1.17.6"
   },
   "dependencies": {
-    "@colyseus/monitor": "^0.16.0",
-    "@colyseus/playground": "^0.16.2",
-    "@colyseus/schema": "^3.0.23",
-    "@colyseus/tools": "^0.16.1",
+    "@colyseus/monitor": "^0.16.7",
+    "@colyseus/playground": "^0.16.4",
+    "@colyseus/schema": "^3.0.36",
+    "@colyseus/tools": "^0.16.8",
     "classnames": "^2.5.1",
-    "colyseus": "^0.16.2",
-    "colyseus.js": "^0.16.3",
+    "colyseus": "^0.16.4",
+    "colyseus.js": "^0.16.16",
+    "dotenv": "^16.4.7",
     "easystarjs": "^0.4.4",
     "express": "^4.18.2",
     "install": "^0.13.0",
@@ -56,7 +59,7 @@
     "mongodb": "6.10",
     "nanoid": "^5.0.8",
     "phaser": "^3.88.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

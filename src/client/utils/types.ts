@@ -5,8 +5,9 @@ import CursorDefault from '@client/assets/cursor/Cursor Default.png';
 import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
 import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
 import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';
+import { NonFunctionPropNames } from '@colyseus/schema/lib/types/HelperTypes';
 
-export enum Spells {
+export enum SpellPanel {
   Spell1 = 1,
   Spell2,
   Spell3,
@@ -32,8 +33,8 @@ export enum Keys {
   Digit5 = 'Digit5',
 }
 
-export const isKeyOf = (key: string | number | symbol, target: any): key is keyof typeof target => {
-  return key in target;
+export const isKeyOf = (key: unknown, target: any): key is keyof typeof target => {
+  return (typeof key === 'string' || typeof key === 'number' || typeof key === 'symbol') && key in target;
 };
 
 export enum QuestGiverStates {
@@ -51,3 +52,7 @@ export enum Cursors {
 }
 
 export type WithArcadeBody<G extends Phaser.GameObjects.GameObject> = G & Phaser.Physics.Arcade.Body;
+
+export const isNonFunctionProperty = <T extends unknown>(key: unknown, el: T): key is NonFunctionPropNames<T> => {
+  return typeof key != null && typeof el === 'object' && isKeyOf(key, el) && (typeof el[key as keyof T]) !== 'function';
+}
