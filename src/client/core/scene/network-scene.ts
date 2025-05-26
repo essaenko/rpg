@@ -20,7 +20,7 @@ import { QuestGiverSystem } from '@client/ecs/systems/quest/quest-giver';
 import { InteractionSystem } from '@client/ecs/systems/mechanics/interaction';
 import { LootSystem } from '@client/ecs/systems/mechanics/loot';
 import { ActionSystem } from '@client/ecs/systems/mechanics/action';
-import { LightSystem } from '@client/ecs/systems/mechanics/light';
+import { LightSystem } from '@client/ecs/systems/physics/light';
 import { GameObjectsSystem } from '@client/ecs/systems/game-objects';
 import { SceneSystem } from '@client/ecs/systems/scene';
 

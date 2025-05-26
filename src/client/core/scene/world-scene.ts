@@ -100,42 +100,47 @@ export class WorldScene extends NetworkScene {
 
   addLight() {
     this.lights.enable();
-    this.lights.setAmbientColor(0xfbf3d5);
+
     const color = {
-      day: Phaser.Display.Color.ValueToColor(0x2a2a55),
-      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),
+      day: Phaser.Display.Color.ValueToColor(0x2a2a55),    // ночь
+      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),  // день
     };
 
-    const now = new Date();
-    const fn = (tween: { getValue: () => number }) => {
-      const value = tween.getValue();
-      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, value);
-      this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
+    const fn = () => {
+      const now = new Date();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      const total = minute * 60 + second;
+      const inCycle = total % 3600;
+      const isDay = inCycle < 1800;
+      const cyclePos = isDay
+        ? 100 - (inCycle / 1800) * 100
+        : ((inCycle - 1800) / 1800) * 100;
+      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(
+        color.day,
+        color.night,
+        100,
+        cyclePos
+      );
       this.lights.lights.forEach((light) => {
-        light.setIntensity(1.5 * (1 - value / 100));
+        light.setIntensity(1.5 * (1 - cyclePos / 100));
       });
+
+      this.lights.setAmbientColor(
+        Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b)
+      );
+
+
     };
 
-    this.tweens.addCounter({
-      from: (100 / 30) * Math.min(now.getMinutes(), 60 - now.getMinutes()),
-      to: now.getMinutes() >= 30 ? 0 : 100,
-      ease: Phaser.Math.Easing.Sine.InOut,
-      duration: (30 - (now.getMinutes() % 30)) * 60 * 1000,
-      repeat: 1,
-      onComplete: () => {
-        const now = new Date();
-        this.tweens.addCounter({
-          from: now.getMinutes() == 30 ? 100 : 0,
-          to: now.getMinutes() == 30 ? 0 : 100,
-          ease: Phaser.Math.Easing.Sine.InOut,
-          duration: IN_GAME_DAY_TIME,
-          repeat: -1,
-          yoyo: true,
-          onUpdate: fn,
-        });
-      },
-      onUpdate: fn,
+    // обновляем освещение раз в секунду
+    this.time.addEvent({
+      delay: 1000,
+      loop: true,
+      callback: fn,
     });
+
+    fn(); // сразу отобразить актуальное состояние
   }
 
   update(now: number, delta: number) {
@@ -143,7 +148,6 @@ export class WorldScene extends NetworkScene {
   }
 
   handleTileMapAnimations() {
-    const cache = [];
     for (const layer of this.map.layers.filter(({ visible }) => visible)) {
       const tilesets = layer.tilemapLayer.tileset;
 

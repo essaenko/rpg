@@ -13,7 +13,7 @@ export class LightSystem extends System {
       let light = entity.get<LightSource>('light-source');
       if (!light) {
         light = new LightSource();
-        light.source = scene.lights.addLight(0, 0, 300, DEFAULT_LIGHT_HEX_COLOR, 1.5);
+        light.source = scene.lights.addLight(0, 0, 300, DEFAULT_LIGHT_HEX_COLOR, 1);
         light.destroy = () => {
           scene.lights.removeLight(light.source);
         };
