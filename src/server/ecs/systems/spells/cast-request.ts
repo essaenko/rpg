@@ -7,7 +7,7 @@ import { CastRequest } from '@server/ecs/components/game/spell/cast-request';
 import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { Cast } from '@server/ecs/components/game/spell/cast';
-import { Channelling } from '@server/ecs/components/game/spell/channeling';
+import { Channeling } from '@server/ecs/components/game/spell/channeling';
 
 export class CastRequestSystem extends System {
   constructor() {
@@ -43,15 +43,17 @@ export class CastRequestSystem extends System {
             const cast = new Cast();
             cast.target = castRequest.target;
             cast.spell = spell;
-            cast.remaining = spell.castTime;
+            if (spell.castTime > 0) {
+              const channeling = new Channeling();
+              channeling.spell = spell;
+              channeling.remains = spell.castTime;
+              channeling.cast = cast;
 
-            if (cast.remaining > 0) {
-              const channelling = new Channelling();
-
-              entity.add(channelling);
+              entity.add(channeling);
+            } else {
+              entity.add(cast);
             }
 
-            if (spell) entity.add(cast);
           }
         }
 

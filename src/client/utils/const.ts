@@ -18,3 +18,9 @@ export const DEFAULT_KEY_BINDING: Record<SpellPanel, Keys> = {
   [SpellPanel.Spell9]: Keys.Digit4,
   [SpellPanel.Spell10]: Keys.Digit5,
 };
+
+export const COLORS = {
+  Rage: 0xff4500,
+  Energy: 0xffa500,
+  Mana: 0x4682b4,
+} as const;

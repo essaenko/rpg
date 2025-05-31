@@ -20,6 +20,7 @@ export class MovementSystem extends System {
   onUpdate(scene: WorldScene, container: ECSContainer, delta: number): void {
     const players = Array.from(container.query(['tag-player', 'pointer', 'position']));
     const localPlayer = container.getEntity(scene.room?.sessionId);
+
     container.query(['position']).forEach((entity) => {
       const position = entity.get<Position>('position');
       const { sprites } = entity.get<Appearance>('appearance') ?? {};
@@ -31,11 +32,9 @@ export class MovementSystem extends System {
 
         if (sprites.x !== position.x) {
           sprites.x = Phaser.Math.Linear(sprites.x, position.x, DEFAULT_LERP_VALUE);
-          // sprites.x = position.x;
         }
         if (sprites.y !== position.y) {
           sprites.y = Phaser.Math.Linear(sprites.y, position.y, DEFAULT_LERP_VALUE);
-          // sprites.y = position.y;
         }
       }
     });

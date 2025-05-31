@@ -17,7 +17,7 @@ export abstract class Spell extends Schema {
    * @param cooldown Cooldown time in seconds
    * @param range Range in units (unit is eq a single block which is now 32 px)
    * @param castTime Channelling time to cast spell in seconds
-   * @param relation Target relation that spell can be casted onto
+   * @param relation Target relation that spell can be cast onto
    */
   constructor(
     name: number,

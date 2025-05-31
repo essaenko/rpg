@@ -41,6 +41,12 @@ export class MoveSystem extends System {
         velocity.x = vector.x * (speed.speed * DEFAULT_SPEED) * delta;
         velocity.y = vector.y * (speed.speed * DEFAULT_SPEED) * delta;
 
+        if (velocity.x !== 0 || velocity.y !== 0) {
+          if (entity.has('channeling')) {
+            entity.remove('channeling');
+          }
+        }
+
         if (appearance) {
           if (vector.y > 0) {
             appearance.animation = Animation.MovingBackward;
@@ -76,6 +82,10 @@ export class MoveSystem extends System {
       if (patrol.active && patrol.vector && !death?.dead) {
         velocity.x = patrol.vector.x * (speed.speed * DEFAULT_SPEED) * delta;
         velocity.y = patrol.vector.y * (speed.speed * DEFAULT_SPEED) * delta;
+
+        if (velocity.x !== 0 || velocity.y !== 0) {
+          entity.remove('channeling');
+        }
 
         if (appearance) {
           if (patrol.vector.y > 0) {

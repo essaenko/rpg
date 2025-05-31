@@ -121,8 +121,8 @@ export class NetworkEntity extends Entity {
   remove(signature: string | ComponentType): void {
     let component;
     if (typeof signature === 'string') {
-      super.remove(signature);
       component = this.get(signature);
+      super.remove(signature);
     } else {
       super.remove(signature);
       component = signature;

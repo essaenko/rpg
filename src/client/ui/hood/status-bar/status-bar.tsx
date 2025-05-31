@@ -33,10 +33,10 @@ export const StatusBar: React.FC = () => {
               [css.mana]: resource.type === ResourceType.Mana,
               [css.energy]: resource.type === ResourceType.Energy,
             })}
-            style={{ width: `${(health.current / health.max) * 100}%` }}
+            style={{ width: `${(resource.current / resource.max) * 100}%` }}
           ></div>
           <span>
-            {health.current}/{health.max}
+            {resource.current}/{resource.max}
           </span>
         </div>
       </div>

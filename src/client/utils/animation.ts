@@ -28,6 +28,6 @@ export const getAnimationKey = (animation: Animation) => {
     case Animation.MovingBackward:
       return 'walk_backward';
     case Animation.Cast:
-      return 'cast';
+      return 'cast_forward';
   }
 };

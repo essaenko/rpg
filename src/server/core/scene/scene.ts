@@ -30,6 +30,7 @@ import { GameObjectsSystem } from '@server/ecs/systems/core/game-objects';
 import { TriggerSystem } from '@server/ecs/systems/core/trigger';
 import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
 import { EventSystem } from '@server/ecs/systems/core/events';
+import { ChannelingSystem } from '@server/ecs/systems/spells/channeling';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -71,6 +72,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new InteractionSystem());
     this.ecs.addSystem(new LootSystem());
 
+    this.ecs.addSystem(new ChannelingSystem());
     this.ecs.addSystem(new CastRequestSystem());
     this.ecs.addSystem(new CastSystem());
     this.ecs.addSystem(new CooldownSystem());

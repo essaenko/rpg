@@ -14,6 +14,9 @@ export const useComponentState = <T extends Component>(component?: Component): T
 
       setState({ ...component } as T);
     }
+    if (!component) {
+      setState(null);
+    }
   }, [component]);
 
   return state;

@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import { Entity } from '../ecs/entity/entity';
 import { Position } from '@client/ecs/components/physics/position';
 import { MapObject } from '@client/ecs/components/game/tag/mapObject';
+import { isMultipleSpriteAsset, isSingleSpriteAsset } from '@client/utils/types';
+import { Transparent } from '@client/ecs/components/game/visual/transparent';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -33,11 +35,17 @@ export class WorldScene extends NetworkScene {
       } = map[name];
       this.load.tilemapTiledJSON(key, asset);
 
-      assets.forEach(({ key, asset, type, config }) => {
-        if (type === 'sprite' && config) {
+      assets.forEach((a) => {
+        if (isSingleSpriteAsset(a)) {
+          const { key, asset, config } = a;
           this.load.spritesheet(key, asset, config);
-        } else {
-          this.load.image(key, asset);
+        }
+        if (isMultipleSpriteAsset(a)) {
+          const { key, type, frames } = a;
+
+          frames.forEach(frame => {
+            this.load.image(`${key}_fr${frame.id}`, frame.asset);
+          });
         }
       });
     }
@@ -52,7 +60,25 @@ export class WorldScene extends NetworkScene {
       this.map = this.make.tilemap({ key: bundle.map.key });
 
       bundle.assets.forEach((asset) => {
-        this.map.addTilesetImage(asset.key, asset.key);
+        if (isSingleSpriteAsset(asset)) {
+          this.map.addTilesetImage(asset.key, asset.key);
+        }
+        if (!this.textures.exists(asset.key)) {
+          if (isMultipleSpriteAsset(asset)) {
+            const source = this.textures.createCanvas(
+              asset.key,
+              asset.frames.reduce((acc, fr) => acc + fr.config.frameWidth, 0),
+              Math.max(...asset.frames.map(({ config: { frameHeight }}) => frameHeight))
+            );
+            let padding = 0;
+
+            asset.frames.forEach((frame, index) => {
+              source.drawFrame(`${asset.key}_fr${frame.id}`, 0, padding, 0);
+              source.add(frame.id, 0, padding, 0, frame.config.frameWidth, frame.config.frameHeight);
+              padding += frame.config.frameWidth;
+            });
+          }
+        }
       });
 
       this.map.layers
@@ -170,7 +196,7 @@ export class WorldScene extends NetworkScene {
 
   initTilesetAnimations() {
     this.map.tilesets
-      .filter((set) => Object.keys(set.tileData).length)
+      .filter((set) => Object.keys(set.tileData ?? {}).length)
       .forEach((tileset) => {
         const data = tileset.tileData as Record<string, { animation?: { duration: number; tileid: number }[] }>;
 
@@ -208,6 +234,12 @@ export class WorldScene extends NetworkScene {
           position.x = obj.x;
           position.y = obj.y;
           entity.add(position);
+
+          if (obj.properties?.find(({ name, value }: { name?: string; value?: boolean }) => name === 'transparent' && !!value)) {
+            const transparent = new Transparent();
+
+            entity.add(transparent);
+          }
 
           const objCom = new MapObject();
           objCom.type = obj.type;

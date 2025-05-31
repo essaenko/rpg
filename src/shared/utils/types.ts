@@ -32,6 +32,9 @@ export type TiledMapTilesetTile = {
     type: string;
     objects: TiledMapObject[];
   };
+  image?: string;
+  imagewidth?: number;
+  imageheight?: number;
 };
 
 export type TiledMapLayer = {

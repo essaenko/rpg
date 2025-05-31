@@ -14,6 +14,7 @@ import { Name } from './game/ui/name';
 import { Inventory } from './game/item/inventory';
 import { SpellBook } from './game/spells/spell-book';
 import { Speed } from './physics/speed';
+import { Channeling } from './game/spells/channeling';
 
 export const Components = {
   body: Body,
@@ -32,4 +33,5 @@ export const Components = {
   name: Name,
   inventory: Inventory,
   'spell-book': SpellBook,
+  channeling: Channeling,
 } as const;

@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "dummy/dummy.tmx",
+    "activeFile": "dummy/dummy-house.tmx",
     "expandedProjectPaths": [
-        ".",
-        "dummy"
+        "dummy",
+        "."
     ],
     "fileStates": {
         "": {
@@ -56,23 +56,41 @@
         },
         "dummy/dummy-house.tmx": {
             "expandedObjectLayers": [
-                9,
-                8
+                10,
+                8,
+                9
             ],
-            "scale": 2,
-            "selectedLayer": 7,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 305.75,
-                "y": 563.5
+                "x": 282.3333333333333,
+                "y": 476.5
             }
         },
+        "dummy/dummy-house.tmx#beds": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
         "dummy/dummy-house.tmx#beds_and_drobes": {
-            "scaleInDock": 1
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 8
+        },
+        "dummy/dummy-house.tmx#chairs": {
+            "dynamicWrapping": true
+        },
+        "dummy/dummy-house.tmx#drobes": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "dummy/dummy-house.tmx#dummy-tile": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx#elements": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx#fire_place": {
@@ -82,12 +100,17 @@
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx#internals": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dummy/dummy-house.tmx#kitchen": {
             "scaleInDock": 1
         },
+        "dummy/dummy-house.tmx#tables": {
+            "dynamicWrapping": true
+        },
         "dummy/dummy-house.tmx#wooden_walls": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "dummy/dummy.json": {
@@ -124,22 +147,23 @@
                 12
             ],
             "expandedObjectLayers": [
-                5,
                 11,
+                6,
+                5,
+                16,
                 14,
                 12,
-                13,
-                16,
-                6
+                13
             ],
-            "scale": 1,
-            "selectedLayer": 9,
+            "scale": 0.75,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 978,
-                "y": 842.5
+                "x": 800,
+                "y": 799.3333333333333
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -239,30 +263,32 @@
     },
     "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/dummy",
     "last.externalTilesetPath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands",
-    "last.imagePath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets",
+    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables",
+    "lastUsedTilesetExportFilter": "Все файлы (*)",
     "map.fixedSize": true,
     "map.height": 5,
     "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.width": 5,
     "openFiles": [
-        "dummy/dummy.tmx"
+        "dummy/dummy.tmx",
+        "dummy/dummy-house.tmx"
     ],
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "dummy/dummy.tmx",
+        "dummy/dummy-house.tmx",
+        "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "dummy/dummy.json",
         "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
         "rules/rules.tmx",
         "rules/tree_decoration_rules.tmx",
-        "dummy/dummy-house.tmx",
         "interborder/interborder.tmx",
         "dummy/dummy-house.json"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Файлы набора тайлов Tiled (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
-    "tileset.type": 0
+    "tileset.type": 1
 }

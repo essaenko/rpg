@@ -16,6 +16,7 @@ import { QuestRequestUI } from './hood/quest/quest-dialog';
 import { MainMenu } from './menu/main';
 import { QuestBookUI } from '@client/ui/hood/quest/quest-book';
 import { Networking } from '@client/services/networking';
+import { CastBar } from '@client/ui/hood/cast/cast-bar';
 
 export const GameComponent: React.FC = () => {
   const [player, setPlayer] = useState<Entity>(null);
@@ -81,6 +82,7 @@ export const GameComponent: React.FC = () => {
       <QuestRequestUI />
       <QuestBookUI />
       <MainMenu />
+      <CastBar />
     </PlayerContext.Provider>
   );
 };

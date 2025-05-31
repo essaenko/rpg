@@ -1,4 +1,5 @@
 import { Component } from '@client/core/ecs/component/component';
+import Image = Phaser.GameObjects.Image;
 
 export class Pointer extends Component {
   constructor() {
@@ -11,7 +12,7 @@ export class Pointer extends Component {
   public lastX: number = null;
   public lastY: number = null;
 
-  public frame: Phaser.GameObjects.Graphics = null;
+  public frame: Image = null;
 
   public destroy(): void {
     this.frame?.destroy();

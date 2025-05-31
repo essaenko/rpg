@@ -23,6 +23,7 @@ import { ActionSystem } from '@client/ecs/systems/mechanics/action';
 import { LightSystem } from '@client/ecs/systems/physics/light';
 import { GameObjectsSystem } from '@client/ecs/systems/game-objects';
 import { SceneSystem } from '@client/ecs/systems/scene';
+import { Cast } from '@client/ecs/systems/cast';
 
 export class NetworkScene extends Phaser.Scene {
   onJoin?: () => void;
@@ -54,6 +55,7 @@ export class NetworkScene extends Phaser.Scene {
     this.ecs.addSystem(new InteractionSystem());
     this.ecs.addSystem(new ActionSystem());
     this.ecs.addSystem(new LootSystem());
+    this.ecs.addSystem(new Cast());
 
     this.ecs.addSystem(new LightSystem());
 

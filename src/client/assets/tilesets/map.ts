@@ -14,14 +14,46 @@ import floorsAsset from '@client/assets/tilesets/fantasy-lands/interrior/Floors/
 import internalsAsset from '@client/assets/tilesets/fantasy-lands/interrior/FL_Houses_int_sidesOfTheHouses.png';
 import elementsAsset from '@client/assets/tilesets/fantasy-lands/interrior/FL_Houses_int_building elements.png';
 import fire_placeAsset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresC.png';
-import beds_and_drobesAsset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresA.png';
-import kitchenAsset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresB.png';
+import bedsTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (1).png';
+import bedsTile1Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (2).png';
+import bedsTile2Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (3).png';
+import bedsTile3Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (4).png';
+import bedsTile4Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (5).png';
+import bedsTile5Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (6).png';
+import bedsTile6Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (7).png';
+import bedsTile7Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (8).png';
+import bedsTile8Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (9).png';
+import bedsTile9Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (10).png';
+import bedsTile10Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (11).png';
+import bedsTile11Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (12).png';
+import bedsTile12Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (13).png';
+import bedsTile13Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (14).png';
+import bedsTile14Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (15).png';
+import bedsTile15Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object.png';
+import drobesTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (1).png';
+import drobesTile1Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (2).png';
+import drobesTile2Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (3).png';
+import drobesTile3Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (4).png';
+import drobesTile4Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (5).png';
+import drobesTile5Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (6).png';
+import drobesTile6Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (7).png';
+import drobesTile7Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (8).png';
+import drobesTile8Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (9).png';
+import drobesTile9Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (25).png';
+import drobesTile10Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object.png';
+import chairsTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (5).png';
+import chairsTile1Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (6).png';
+import chairsTile2Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (7).png';
+import chairsTile3Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (8).png';
+import tablesTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables/object.png';
 import dummy_house_json_map from '@shared/maps/dummy/dummy-house.json?url';
 import tree_aAsset from '@client/assets/tilesets/fantasy-lands/Tree_A_v1.png';
 import tree_bAsset from '@client/assets/tilesets/fantasy-lands/Tree_B_v1.png';
 import interborder_json_map from '@shared/maps/interborder/interborder.json?url';
 
-export const map = {
+import { MapPackage } from '@client/utils/types';
+
+export const map: Record<string, MapPackage> = {
   'dummy': {
       map: {
         key: 'dummy-tiled-map',
@@ -100,20 +132,158 @@ export const map = {
         asset: fire_placeAsset,
         config: {"frameWidth":32,"frameHeight":32}
         },{
-        key: 'beds_and_drobes',
-        type: 'sprite',
-        asset: beds_and_drobesAsset,
-        config: {"frameWidth":32,"frameHeight":32}
-        },{
-        key: 'kitchen',
-        type: 'sprite',
-        asset: kitchenAsset,
-        config: {"frameWidth":32,"frameHeight":32}
-        },{
         key: 'dummy-tile',
         type: 'sprite',
         asset: dummy_tileAsset,
         config: {"frameWidth":32,"frameHeight":32}
+        },{
+        key: 'beds',
+        type: 'multiple',
+        frames: [{
+          id: 2,
+          asset: bedsTile0Asset,
+          config: {"frameWidth":64,"frameHeight":64}
+          },{
+          id: 3,
+          asset: bedsTile1Asset,
+          config: {"frameWidth":64,"frameHeight":64}
+          },{
+          id: 4,
+          asset: bedsTile2Asset,
+          config: {"frameWidth":64,"frameHeight":64}
+          },{
+          id: 5,
+          asset: bedsTile3Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 6,
+          asset: bedsTile4Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 7,
+          asset: bedsTile5Asset,
+          config: {"frameWidth":64,"frameHeight":96}
+          },{
+          id: 8,
+          asset: bedsTile6Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 9,
+          asset: bedsTile7Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 10,
+          asset: bedsTile8Asset,
+          config: {"frameWidth":64,"frameHeight":96}
+          },{
+          id: 11,
+          asset: bedsTile9Asset,
+          config: {"frameWidth":64,"frameHeight":96}
+          },{
+          id: 12,
+          asset: bedsTile10Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 13,
+          asset: bedsTile11Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 14,
+          asset: bedsTile12Asset,
+          config: {"frameWidth":64,"frameHeight":96}
+          },{
+          id: 15,
+          asset: bedsTile13Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 16,
+          asset: bedsTile14Asset,
+          config: {"frameWidth":32,"frameHeight":96}
+          },{
+          id: 17,
+          asset: bedsTile15Asset,
+          config: {"frameWidth":64,"frameHeight":64}
+          }
+        ]
+        },{
+        key: 'drobes',
+        type: 'multiple',
+        frames: [{
+          id: 12,
+          asset: drobesTile0Asset,
+          config: {"frameWidth":42,"frameHeight":70}
+          },{
+          id: 13,
+          asset: drobesTile1Asset,
+          config: {"frameWidth":32,"frameHeight":32}
+          },{
+          id: 14,
+          asset: drobesTile2Asset,
+          config: {"frameWidth":32,"frameHeight":47}
+          },{
+          id: 15,
+          asset: drobesTile3Asset,
+          config: {"frameWidth":32,"frameHeight":30}
+          },{
+          id: 16,
+          asset: drobesTile4Asset,
+          config: {"frameWidth":24,"frameHeight":30}
+          },{
+          id: 17,
+          asset: drobesTile5Asset,
+          config: {"frameWidth":24,"frameHeight":30}
+          },{
+          id: 18,
+          asset: drobesTile6Asset,
+          config: {"frameWidth":50,"frameHeight":60}
+          },{
+          id: 19,
+          asset: drobesTile7Asset,
+          config: {"frameWidth":32,"frameHeight":67}
+          },{
+          id: 20,
+          asset: drobesTile8Asset,
+          config: {"frameWidth":32,"frameHeight":52}
+          },{
+          id: 36,
+          asset: drobesTile9Asset,
+          config: {"frameWidth":32,"frameHeight":67}
+          },{
+          id: 37,
+          asset: drobesTile10Asset,
+          config: {"frameWidth":32,"frameHeight":67}
+          }
+        ]
+        },{
+        key: 'chairs',
+        type: 'multiple',
+        frames: [{
+          id: 5,
+          asset: chairsTile0Asset,
+          config: {"frameWidth":18,"frameHeight":34}
+          },{
+          id: 6,
+          asset: chairsTile1Asset,
+          config: {"frameWidth":18,"frameHeight":34}
+          },{
+          id: 7,
+          asset: chairsTile2Asset,
+          config: {"frameWidth":18,"frameHeight":33}
+          },{
+          id: 8,
+          asset: chairsTile3Asset,
+          config: {"frameWidth":18,"frameHeight":25}
+          }
+        ]
+        },{
+        key: 'tables',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: tablesTile0Asset,
+          config: {"frameWidth":42,"frameHeight":34}
+          }
+        ]
         }]
     },
 'interborder': {

@@ -5,7 +5,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Cast } from '@server/ecs/components/game/spell/cast';
 import { Combat } from '@server/ecs/components/game/mechanics/combat';
-import { Channelling } from '@server/ecs/components/game/spell/channeling';
+import { Channeling } from '@server/ecs/components/game/spell/channeling';
 
 export class CastSystem extends System {
   constructor() {
@@ -31,19 +31,10 @@ export class CastSystem extends System {
         tCombat.enemy = entity;
         cast.target.add(tCombat);
       }
-      if (cast.finished) {
-        cast.spell.cast(entity, cast.target, scene);
-        cast.spell.proc(entity, cast.target, scene);
-        cast.spell.cooldownTime = cast.spell.cooldown;
-        entity.remove('cast');
-      } else {
-        cast.remaining = Math.max(cast.remaining - delta * 1000, 0);
-
-        if (cast.remaining === 0) {
-          cast.finished = true;
-          entity.remove('channelling');
-        }
-      }
+      cast.spell.cast(entity, cast.target, scene);
+      cast.spell.proc(entity, cast.target, scene);
+      cast.spell.cooldownTime = cast.spell.cooldown;
+      entity.remove('cast');
     });
   }
 }
