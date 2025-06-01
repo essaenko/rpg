@@ -33,6 +33,7 @@ export const GameComponent: React.FC = () => {
       width: window.innerWidth,
       height: window.innerHeight,
       antialias: true,
+      autoRound: false,
       pixelArt: true,
       scale: {
         mode: Scale.FIT,

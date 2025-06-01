@@ -1,7 +1,5 @@
 import { System } from '@client/core/ecs/system';
 import { ECSContainer } from '@client/core/ecs';
-import { Room } from 'colyseus.js';
-import type { SceneState } from '@shared/schemas/scene';
 import { Camera } from '@client/ecs/components/game/camera';
 import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import { DEFAULT_LERP_VALUE } from '@client/utils/const';
@@ -33,7 +31,10 @@ export class CameraSystem extends System {
         const sprite = player.get<Appearance>('appearance');
 
         if (!camera.following && sprite.sprites) {
-          scene.cameras.main.startFollow(sprite.sprites, true, DEFAULT_LERP_VALUE, DEFAULT_LERP_VALUE, 50, 50);
+          const mainCam = scene.cameras.main;
+          console.log(mainCam.width, mainCam.height);
+          mainCam.startFollow(sprite.sprites, false, DEFAULT_LERP_VALUE, DEFAULT_LERP_VALUE, 0, 0);
+          mainCam.setDeadzone(mainCam.width / 5, mainCam.height / 5);
           camera.following = true;
         }
       }
