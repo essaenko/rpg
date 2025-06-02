@@ -4,4 +4,5 @@ export enum Spells {
   Hot,
   Dot,
   Shot,
+  SplitFire
 }

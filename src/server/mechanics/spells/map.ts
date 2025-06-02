@@ -4,6 +4,7 @@ import { Heal } from '@server/mechanics/spells/priest/heal';
 import { Dot } from '@server/mechanics/spells/warrior/dot';
 import { Hot } from '@server/mechanics/spells/priest/hot';
 import { Shot } from './warrior/shot';
+import { SplitFire } from '@server/mechanics/spells/rogue/split-fire';
 
 export const map = {
   [Spells.Hit]: Hit,
@@ -11,6 +12,7 @@ export const map = {
   [Spells.Dot]: Dot,
   [Spells.Hot]: Hot,
   [Spells.Shot]: Shot,
+  [Spells.SplitFire]: SplitFire,
 } as const;
 
 export const isSpellName = (name: number): name is keyof typeof map => {

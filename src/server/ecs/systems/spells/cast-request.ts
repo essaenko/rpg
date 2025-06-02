@@ -48,6 +48,7 @@ export class CastRequestSystem extends System {
               channeling.spell = spell;
               channeling.remains = spell.castTime;
               channeling.cast = cast;
+              channeling.tick = spell.tick ?? null;
 
               entity.add(channeling);
             } else {

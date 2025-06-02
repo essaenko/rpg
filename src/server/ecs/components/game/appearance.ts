@@ -11,6 +11,7 @@ export class Appearance extends NetworkComponent {
 
   @type('string') key: string;
   @type('number') animation: Animation = Animation.Idle;
+  @type('number') rotation: number = null;
 
   init(state: Record<string, any>): void {
     if (state.key) {

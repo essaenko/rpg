@@ -48,6 +48,7 @@
     "@colyseus/playground": "^0.16.4",
     "@colyseus/schema": "^3.0.36",
     "@colyseus/tools": "^0.16.8",
+    "blueshell": "^5.3.0-addStateDecorateEvent.1",
     "classnames": "^2.5.1",
     "colyseus": "^0.16.4",
     "colyseus.js": "^0.16.16",

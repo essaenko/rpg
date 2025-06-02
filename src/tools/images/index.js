@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = container.querySelector('#render');
   const canvas = container.querySelector('canvas');
   const ctx = canvas.getContext('2d');
+  const imgContainer = container.querySelector('#img-container');
   let image = null;
 
   button.addEventListener('click', (event) => {
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         image.src = reader.result;
-        document.body.appendChild(image);
+        imgContainer.appendChild(image);
       });
       reader.readAsDataURL(file);
     }
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initCanvasInput(canvas, tWidth, tHeight) {
     let selectedSquares = [];
+    const saveBtn = container.querySelector('#save');
     canvas.onclick = (event) => {
       const cpos = canvas.getBoundingClientRect();
       const pointer = {
@@ -57,9 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       renderSquares(selectedSquares, tWidth, tHeight);
+
+      saveBtn.disabled = selectedSquares.length === 0;
     }
 
-    const saveBtn = container.querySelector('#save');
     saveBtn.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const copy = trimCanvas(canvas);
       document.body.appendChild(copy);
+      copy.classList.add('canvas-download-item');
 
       copy.onclick = (event) => {
         const link = document.createElement('a');

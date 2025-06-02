@@ -22,7 +22,11 @@ export class ChannelingSystem extends System {
           appearance.animation = Animation.Cast;
         }
         if (channeling.remains) {
-          channeling.process(delta * 1000);
+          const tickCast = channeling.process(delta * 1000);
+
+          if (tickCast) {
+            entity.add(tickCast);
+          }
         }
 
         if (!channeling.remains) {
