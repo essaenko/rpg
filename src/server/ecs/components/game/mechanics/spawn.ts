@@ -1,13 +1,15 @@
 import { type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
-import { Position } from '@shared/types';
+import { Pointer2D } from '@shared/types';
 
 export class Spawn extends Component {
   @type('boolean') empty = true;
-  init(state: Record<string, any>): void {}
+  init(state: { point: Pointer2D }): void {
+    this.point = { ...state.point };
+  }
   constructor() {
     super('spawn');
   }
 
-  public point: Position = { x: 0, y: 0 };
+  public point: Pointer2D = { x: 0, y: 0 };
 }

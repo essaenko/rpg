@@ -28,6 +28,8 @@ import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 import { Inventory } from './game/item/inventory';
 import { Spawn } from './game/mechanics/spawn';
 import { Location } from './game/ui/location';
+import { Aggro } from '@server/ecs/components/game/behaviour/aggro/aggro';
+import { Behavior } from '@server/ecs/components/game/behaviour/behavior';
 
 export const map = {
   // Game components
@@ -45,6 +47,10 @@ export const map = {
 
   'change-health': ChangeHealth,
   health: Health,
+
+  //Behaviors components
+  behavior: Behavior,
+  aggro: Aggro,
 
   'change-resource': ChangeResource,
   resource: Resource,

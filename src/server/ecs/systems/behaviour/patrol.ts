@@ -3,7 +3,7 @@ import { Client } from '@colyseus/core';
 import { TransportEventTypes } from '@shared/types';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
-import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
+import { Patrol } from '@server/ecs/components/game/behaviour/patrol/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
 import { Position } from '@server/ecs/components/physics/position';
 import { positionToTile, tileToPosition } from '@server/utils/map/tiled';

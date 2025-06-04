@@ -1,4 +1,4 @@
-import { Position } from '@shared/types';
+import { Pointer2D } from '@shared/types';
 import { Entity } from './entity';
 
 export class QuadTree<T extends Entity = Entity> {
@@ -136,7 +136,7 @@ export class QuadTree<T extends Entity = Entity> {
   }
 
   public contains(obj: T): boolean {
-    const pos = obj.get('position') as unknown as Position;
+    const pos = obj.get('position') as unknown as Pointer2D;
     return pos.x >= this.x && pos.x <= this.x + this.width && pos.y >= this.y && pos.y <= this.y + this.height;
   }
 

@@ -56,15 +56,15 @@
         },
         "dummy/dummy-house.tmx": {
             "expandedObjectLayers": [
-                9,
+                10,
                 8,
-                10
+                9
             ],
-            "scale": 3,
+            "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 224.66666666666669,
-                "y": 223.33333333333331
+                "x": 297,
+                "y": 174.5
             }
         },
         "dummy/dummy-house.tmx#beds": {
@@ -150,10 +150,10 @@
             ],
             "expandedObjectLayers": [
                 13,
-                11,
+                16,
                 6,
                 5,
-                16,
+                11,
                 14,
                 12
             ],

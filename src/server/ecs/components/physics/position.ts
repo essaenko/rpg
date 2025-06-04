@@ -1,7 +1,7 @@
 import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-import { Position as PositionType } from '@shared/types';
+import { Pointer2D as PositionType } from '@shared/types';
 
 export class Position extends NetworkComponent {
   constructor() {

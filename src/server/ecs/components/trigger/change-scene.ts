@@ -2,7 +2,7 @@ import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { Trigger } from './trigger';
 import { Location } from '../game/ui/location';
 import { Position } from '../physics/position';
-import { TransportEventTypes, type Position as PositionType } from '@shared/types';
+import { TransportEventTypes, type Pointer2D as PositionType } from '@shared/types';
 import { MDBClient } from '@server/mongodb';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';

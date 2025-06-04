@@ -1,5 +1,5 @@
 import { System } from './system';
-import { Position, TransportEventTypes } from '../types';
+import { Pointer2D, TransportEventTypes } from '../types';
 import { Client } from '@colyseus/core';
 import { Entity } from './entity';
 import { Scene } from '../../server/core/scene/scene';
@@ -42,7 +42,7 @@ export class ECSContainer {
 
   addEntity(entity: Entity) {
     this.entities.set(entity.id, entity);
-    const position = entity.get('position') as unknown as Position;
+    const position = entity.get('position') as unknown as Pointer2D;
     if (position) {
       this.tree.add(entity);
     }
@@ -80,7 +80,7 @@ export class ECSContainer {
         const components = args[2];
         const exclude = args[3] ?? [];
 
-        const pos = entity.get('position') as unknown as Position;
+        const pos = entity.get('position') as unknown as Pointer2D;
 
         if (pos) {
           return Iterator.from(this.tree.query(pos.x, pos.y, range, range)).filter(
@@ -94,7 +94,7 @@ export class ECSContainer {
   }
 
   queueTreeUpdate(entity: Entity) {
-    const pos = entity.get('position') as unknown as Position;
+    const pos = entity.get('position') as unknown as Pointer2D;
 
     if (pos) {
       this.tree.queue(entity);
