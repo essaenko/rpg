@@ -11,6 +11,7 @@ import { TransportEventTypes } from '@shared/types';
 import { DEFAULT_LERP_VALUE, SERVER_POSITION_TOLERANCE } from '@client/utils/const';
 import { Speed } from '@client/ecs/components/physics/speed';
 import { DEFAULT_SPEED } from '@server/utils/game/const';
+import { Death } from '@client/ecs/components/game/mechanics/death';
 
 export class MovementSystem extends System {
   constructor() {
@@ -43,10 +44,11 @@ export class MovementSystem extends System {
       const position = localPlayer.get<Position>('position');
       const pointer = localPlayer.get<Pointer>('pointer');
       const speed = localPlayer.get<Speed>('speed');
+      const death = localPlayer.get<Death>('death');
       const { sprites } = localPlayer.get<Appearance>('appearance') ?? {};
       const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
 
-      if (sprites && angle && speed) {
+      if (sprites && angle && speed && !death.dead) {
         const vector = {
           x: angle ? Math.cos(angle) : 0,
           y: angle ? Math.sin(angle) : 0,

@@ -76,8 +76,8 @@
             0, 0, 0, 0, 1880, 1881, 0, 0, 0, 0, 1880, 1881, 2475, 2476, 0, 0, 0, 0,
             0, 0, 0, 0, 1906, 1907, 0, 0, 0, 0, 1906, 1907, 2495, 2496, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2515, 2516, 0, 0, 0, 0,
-            0, 0, 0, 2491, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 2511, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 133, 135, 2186, 133, 1210, 133, 134, 262, 0, 0, 260, 250, 0, 0, 0,
@@ -239,7 +239,7 @@
                  "y":401
                 }, 
                 {
-                 "gid":2851,
+                 "gid":2852,
                  "height":34,
                  "id":16,
                  "name":"",
@@ -247,11 +247,11 @@
                  "type":"tables",
                  "visible":true,
                  "width":42,
-                 "x":353.333333333333,
+                 "x":353.333,
                  "y":274
                 }, 
                 {
-                 "gid":2848,
+                 "gid":2849,
                  "height":34,
                  "id":17,
                  "name":"",
@@ -259,11 +259,11 @@
                  "type":"chairs",
                  "visible":true,
                  "width":18,
-                 "x":381.666666666667,
-                 "y":272.333333333333
+                 "x":381.667,
+                 "y":272.333
                 }, 
                 {
-                 "gid":2847,
+                 "gid":2848,
                  "height":34,
                  "id":18,
                  "name":"",
@@ -272,10 +272,10 @@
                  "visible":true,
                  "width":18,
                  "x":332,
-                 "y":269.666666666667
+                 "y":269.667
                 }, 
                 {
-                 "gid":2849,
+                 "gid":2850,
                  "height":33,
                  "id":19,
                  "name":"",
@@ -283,8 +283,20 @@
                  "type":"chairs",
                  "visible":true,
                  "width":18,
-                 "x":353.333333333333,
-                 "y":257.166666666667
+                 "x":353.333,
+                 "y":257.167
+                }, 
+                {
+                 "gid":2842,
+                 "height":64,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"drobes",
+                 "visible":true,
+                 "width":19,
+                 "x":112,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -326,7 +338,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":20,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.11.1-99-gec89c545",
@@ -1029,7 +1041,7 @@
          "name":"drobes",
          "objectalignment":"center",
          "spacing":0,
-         "tilecount":11,
+         "tilecount":12,
          "tileheight":70,
          "tiles":[
                 {
@@ -1039,18 +1051,20 @@
                  "imagewidth":42,
                  "objectgroup":
                     {
-                     "draworder":"topdown",
+                     "draworder":"index",
+                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":70,
+                             "height":23.5,
+                             "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":42,
-                             "x":0,
-                             "y":0
+                             "width":40.5,
+                             "x":1,
+                             "y":46.125
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1205,12 +1219,12 @@
                      "name":"",
                      "objects":[
                             {
-                             "height":67,
+                             "height":60,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":32,
+                             "width":50,
                              "x":0,
                              "y":0
                             }],
@@ -1228,18 +1242,20 @@
                  "imagewidth":32,
                  "objectgroup":
                     {
-                     "draworder":"topdown",
+                     "draworder":"index",
+                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":67,
+                             "height":22.3333333333333,
+                             "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":32,
+                             "width":30.3333333333333,
                              "x":0,
-                             "y":0
+                             "y":44.6666666666667
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1255,18 +1271,20 @@
                  "imagewidth":32,
                  "objectgroup":
                     {
-                     "draworder":"topdown",
+                     "draworder":"index",
+                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":67,
+                             "height":16.6666666666667,
+                             "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":32,
+                             "width":31.6666666666667,
                              "x":0,
-                             "y":0
+                             "y":35.3333333333333
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1282,18 +1300,20 @@
                  "imagewidth":32,
                  "objectgroup":
                     {
-                     "draworder":"topdown",
+                     "draworder":"index",
+                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":67,
+                             "height":21.6666666666667,
+                             "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":32,
+                             "width":30.6666666666667,
                              "x":0,
-                             "y":0
+                             "y":45.3333333333333
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1309,18 +1329,49 @@
                  "imagewidth":32,
                  "objectgroup":
                     {
-                     "draworder":"topdown",
+                     "draworder":"index",
+                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":67,
+                             "height":21.3333333333333,
+                             "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"collider",
                              "visible":true,
-                             "width":32,
+                             "width":31,
                              "x":0,
-                             "y":0
+                             "y":45.6666666666667
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":38,
+                 "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/interrior\/Furnitures\/drobes\/object (10).png",
+                 "imageheight":64,
+                 "imagewidth":19,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":23,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"collider",
+                             "visible":true,
+                             "width":19,
+                             "x":0,
+                             "y":41
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1333,7 +1384,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":2842,
+         "firstgid":2843,
          "grid":
             {
              "height":1,
@@ -1459,7 +1510,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":2851,
+         "firstgid":2852,
          "grid":
             {
              "height":1,

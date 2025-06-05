@@ -16,6 +16,8 @@ export enum TransportEventTypes {
   ObjectsState,
 
   ChangeScene,
+
+  Resurrect,
 }
 
 export type ObjectStateType = Pointer2D & {
@@ -137,5 +139,3 @@ export const Relations: Record<Fraction, Record<Fraction, Relation>> = {
     [Fraction.Neutral]: Relation.Neutral,
   },
 };
-
-

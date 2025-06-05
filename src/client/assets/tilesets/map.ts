@@ -41,6 +41,7 @@ import drobesTile7Asset from '@client/assets/tilesets/fantasy-lands/interrior/Fu
 import drobesTile8Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (9).png';
 import drobesTile9Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (25).png';
 import drobesTile10Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object.png';
+import drobesTile11Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (10).png';
 import chairsTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (5).png';
 import chairsTile1Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (6).png';
 import chairsTile2Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (7).png';
@@ -252,6 +253,10 @@ export const map: Record<string, MapPackage> = {
           id: 37,
           asset: drobesTile10Asset,
           config: {"frameWidth":32,"frameHeight":67}
+          },{
+          id: 38,
+          asset: drobesTile11Asset,
+          config: {"frameWidth":19,"frameHeight":64}
           }
         ]
         },{

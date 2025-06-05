@@ -1,4 +1,4 @@
-import { LatchedSelector, Predicate, Selector, Sequence, SideEffect } from 'blueshell';
+import { LatchedSelector, LatchedSequence, Predicate, rc, Selector, Sequence, SideEffect } from 'blueshell';
 import { BehaviorState } from '@server/ecs/components/game/behaviour/behavior';
 import { Aggro } from '@server/ecs/components/game/behaviour/aggro/aggro';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
@@ -6,7 +6,7 @@ import { getDistance, isInTheSamePosition } from '@shared/utils/physics';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { Position } from '@server/ecs/components/physics/position';
 import { HasRoute } from '@server/mechanics/behaviors/utils/predicates';
-import { CastSpellAtTarget } from '@server/mechanics/behaviors/utils/actions';
+import { Action, CastSpellAtTarget } from '@server/mechanics/behaviors/utils/actions';
 import { TargetPoint } from '@server/ecs/components/game/behaviour/patrol/target-point';
 import { CreateRoute, FollowRoute } from '@server/mechanics/behaviors/utils/sequences';
 import { RoutePath } from '@server/ecs/components/physics/route-path';
@@ -15,7 +15,7 @@ export const AggroTree = new Sequence('AggroSequence', [
   new Predicate<BehaviorState, void>('AggroPredicate', ({ entity, container }) => {
     return entity.has('aggro');
   }),
-  new LatchedSelector<BehaviorState, void>('AggroSequence', [
+  new LatchedSelector<BehaviorState, void>('AggroSelector', [
     new Sequence('GetBackToRest', [
       new Predicate('IfFarAwayFromSpot', ({ entity, container }) => {
         const spawn = entity.get<Spawn>('spawn');
@@ -46,16 +46,21 @@ export const AggroTree = new Sequence('AggroSequence', [
             entity.add(path);
           }
         }),
-        new Sequence('CreateRoute', [
-          new Predicate('IsCharacterNotMovingToSpawn', ({ entity }) => {
-            const aggro = entity.get<Aggro>('aggro');
+        new Selector('CreateRouteIfNeeded', [
+          new Sequence('CreateRoute', [
+            new Predicate('IsCharacterNotMovingToSpawn', ({ entity }) => {
+              const aggro = entity.get<Aggro>('aggro');
 
-            return !aggro.recovering;
-          }),
-          CreateRoute,
-          new SideEffect('SetCharacterGoingToSpawn', ({ entity }) => {
-            const aggro = entity.get<Aggro>('aggro');
-            aggro.recovering = true;
+              return !aggro.recovering;
+            }),
+            CreateRoute,
+            new SideEffect('SetCharacterGoingToSpawn', ({ entity }) => {
+              const aggro = entity.get<Aggro>('aggro');
+              aggro.recovering = true;
+            }),
+          ]),
+          new Action('RouteAlreadyExists', () => {
+            return rc.SUCCESS;
           }),
         ]),
         new Sequence('GoBackToSpawn', [HasRoute, FollowRoute]),
@@ -69,7 +74,7 @@ export const AggroTree = new Sequence('AggroSequence', [
         }
       }),
     ]),
-    new Sequence('FindATarget', [
+    new Sequence('AttackTarget', [
       new Predicate('PlayerInRange', ({ entity, container }) => {
         const aggro = entity.get<Aggro>('aggro');
         return Array.from(container.query(entity, aggro.range, ['tag-player'])).length > 0;
@@ -98,20 +103,30 @@ export const AggroTree = new Sequence('AggroSequence', [
 
             return false;
           }),
+          new SideEffect('StopChasingPlayer', ({ entity }) => {
+            entity.remove('target-point');
+          }),
           CastSpellAtTarget,
         ]),
         new Sequence<BehaviorState, void>('ChasePlayer', [
           new SideEffect('SetTargetPointToTargetPlayer', ({ entity, container }) => {
             const aggro = entity.get<Aggro>('aggro');
+            const pos = entity.get<Position>('position');
             const tpos = aggro.target.get<Position>('position');
             let target = entity.get<TargetPoint>('target-point');
+
+            if (isInTheSamePosition(pos, tpos, 5)) {
+              entity.remove('target-point');
+
+              return;
+            }
 
             if (!target) {
               target = new TargetPoint();
               entity.add(target);
             }
 
-            if (!isInTheSamePosition(target, tpos)) {
+            if (!isInTheSamePosition(target, tpos, 5)) {
               target.x = tpos.x;
               target.y = tpos.y;
             }

@@ -80,7 +80,7 @@
                          "type":"spawn",
                          "visible":true,
                          "width":0,
-                         "x":1468,
+                         "x":1456,
                          "y":1488
                         }],
                  "opacity":1,
@@ -1071,7 +1071,7 @@
                  "id":79,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"ground_dec_props",
                  "visible":true,
                  "width":32,
                  "x":32.5,

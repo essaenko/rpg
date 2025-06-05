@@ -32,7 +32,6 @@ export class CameraSystem extends System {
 
         if (!camera.following && sprite.sprites) {
           const mainCam = scene.cameras.main;
-          console.log(mainCam.width, mainCam.height);
           mainCam.startFollow(sprite.sprites, false, DEFAULT_LERP_VALUE, DEFAULT_LERP_VALUE, 0, 0);
           mainCam.setDeadzone(mainCam.width / 5, mainCam.height / 5);
           camera.following = true;

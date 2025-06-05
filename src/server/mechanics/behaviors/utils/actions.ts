@@ -16,29 +16,6 @@ export class Action<S extends BlueshellState, E> extends BSAction<S, E> {
   }
 }
 
-export class MoveToSpawnPoint extends BSAction<BehaviorState, void> {
-  constructor() {
-    super('MoveToSpawnPoint');
-  }
-
-  onEvent({ entity, container }: BehaviorState) {
-    const spawn = entity.get<Spawn>('spawn');
-    const aggro = entity.get<Aggro>('aggro');
-
-    if (!aggro.recovering) {
-      aggro.recovering = true;
-
-      const target = new TargetPoint();
-      target.x = spawn.point.x;
-      target.y = spawn.point.y;
-
-      entity.add(target);
-    }
-
-    return rc.RUNNING;
-  }
-}
-
 export const CastSpellAtTarget = new Action<BehaviorState, void>('CastSpellAtTarget', ({ entity, container }) => {
   if (entity.has('cast-request') || entity.has('cast') || entity.has('channeling')) {
     return rc.RUNNING;
@@ -49,12 +26,12 @@ export const CastSpellAtTarget = new Action<BehaviorState, void>('CastSpellAtTar
   const tpos = target.get<Position>('position');
   const pos = entity.get<Position>('position');
   const spellBook = entity.get<SpellBook>('spell-book');
-  const spell = spellBook?.spells.values().find((spell) => getDistance(tpos, pos) <= spell.range);
+  const [spellId, spell] = spellBook?.spells.entries().find(([id, spell]) => getDistance(tpos, pos) <= spell.range);
 
   if (spell) {
     const cr = new CastRequest();
     cr.target = target;
-    cr.spell = spell.id;
+    cr.spell = +spellId;
 
     entity.add(cr);
   }

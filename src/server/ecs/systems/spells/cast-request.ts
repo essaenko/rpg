@@ -54,7 +54,6 @@ export class CastRequestSystem extends System {
             } else {
               entity.add(cast);
             }
-
           }
         }
 

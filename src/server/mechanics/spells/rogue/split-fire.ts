@@ -12,7 +12,7 @@ import { Trigger } from '@server/ecs/components/trigger/trigger';
 
 export class SplitFire extends Spell {
   constructor() {
-    super(Spells.Hit, 0, 5, 10, 3, [Relation.Hostile, Relation.Neutral], 0.5);
+    super(Spells.SplitFire, 0, 5, 10, 3, [Relation.Hostile, Relation.Neutral], 0.5);
     this.name = 'Залп стрел';
     this.description = 'Совершает выстрел из оружия каждые 0.5 секунды в течении 3 секунд';
   }
@@ -47,7 +47,7 @@ export class SplitFire extends Spell {
   }
 
   canCast(caster: Entity, target: Entity): boolean {
-    return true;
+    return super.canCast(caster, target);
   }
 
   proc(caster: Entity, target: Entity): void {

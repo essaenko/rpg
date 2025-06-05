@@ -60,11 +60,11 @@
                 8,
                 9
             ],
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 297,
-                "y": 174.5
+                "x": 284.66666666666663,
+                "y": 368.66666666666663
             }
         },
         "dummy/dummy-house.tmx#beds": {
@@ -149,19 +149,19 @@
                 12
             ],
             "expandedObjectLayers": [
-                13,
-                16,
-                6,
                 5,
-                11,
+                16,
                 14,
-                12
+                12,
+                13,
+                11,
+                6
             ],
-            "scale": 0.75,
+            "scale": 4,
             "selectedLayer": 7,
             "viewCenter": {
                 "x": 800,
-                "y": 799.3333333333333
+                "y": 799.875
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -265,7 +265,7 @@
     },
     "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/dummy",
     "last.externalTilesetPath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands",
-    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables",
+    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes",
     "lastUsedTilesetExportFilter": "Все файлы (*)",
     "map.fixedSize": true,
     "map.height": 5,

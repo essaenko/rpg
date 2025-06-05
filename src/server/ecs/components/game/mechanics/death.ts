@@ -1,8 +1,9 @@
 import { type } from '@colyseus/schema';
-import { Component } from '@shared/ecs/component';
+import { NetworkComponent } from '@shared/ecs/component';
 
-export class Death extends Component {
+export class Death extends NetworkComponent {
   init(state: Record<string, any>): void {}
+
   constructor() {
     super('death');
   }
