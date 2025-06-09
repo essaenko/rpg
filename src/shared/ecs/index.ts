@@ -52,6 +52,7 @@ export class ECSContainer {
     const entity = this.getEntity(id);
     entity.onDestroy();
     this.entities.delete(id);
+    this.tree.dequeue(entity);
     this.tree.remove(entity);
   }
 
@@ -96,7 +97,7 @@ export class ECSContainer {
   queueTreeUpdate(entity: Entity) {
     const pos = entity.get('position') as unknown as Pointer2D;
 
-    if (pos) {
+    if (pos && this.entities.has(entity.id)) {
       this.tree.queue(entity);
     }
   }

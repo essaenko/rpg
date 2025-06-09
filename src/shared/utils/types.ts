@@ -1,7 +1,7 @@
 export type TiledMapObject = {
   gid?: number;
   height?: number;
-  id: number;
+  id?: number;
   name: string;
   point?: boolean;
   rotation: number;
@@ -14,9 +14,7 @@ export type TiledMapObject = {
     name: string;
     type: string;
     value: string | number | boolean;
-  }[
-
-  ];
+  }[];
 };
 
 export type TiledMapTilesetTile = {
@@ -27,7 +25,7 @@ export type TiledMapTilesetTile = {
     value: string | number | boolean;
   }[];
   objectgroup?: {
-    id: number;
+    id?: number;
     name: string;
     type: string;
     objects: TiledMapObject[];

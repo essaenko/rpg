@@ -5,6 +5,7 @@ import { ECSContainer } from '@shared/ecs';
 import { System } from '@shared/ecs/system';
 import { TransportEventTypes } from '@shared/types';
 import { Client } from 'colyseus';
+import e from 'express';
 
 export class TriggerSystem extends System {
   constructor() {

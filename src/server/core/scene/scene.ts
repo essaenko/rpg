@@ -30,7 +30,7 @@ import { TriggerSystem } from '@server/ecs/systems/core/trigger';
 import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
 import { EventSystem } from '@server/ecs/systems/core/events';
 import { ChannelingSystem } from '@server/ecs/systems/spells/channeling';
-import { BehaviourSystem } from '@server/ecs/systems/behaviour/behavior';
+import { BehaviorSystem } from '@server/ecs/systems/behaviour/behavior';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -64,7 +64,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new ResurrectionSystem());
 
     //Behaviour systems
-    this.ecs.addSystem(new BehaviourSystem());
+    this.ecs.addSystem(new BehaviorSystem());
     //Mechanics
     this.ecs.addSystem(new LevelSystem());
     this.ecs.addSystem(new QuestSystem());

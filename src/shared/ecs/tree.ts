@@ -144,6 +144,10 @@ export class QuadTree<T extends Entity = Entity> {
     this.updates.push(entity);
   }
 
+  public dequeue(entity: T) {
+    this.updates = this.updates.filter((e) => e !== entity);
+  }
+
   private allocateObjects() {
     for (const obj of this.objects) {
       for (const node of this.nodes) {
