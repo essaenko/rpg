@@ -51,6 +51,10 @@ export class AppearanceSystem extends System {
 
       if (appearance.sprites) {
         appearance.sprites.depth = position.y + appearance.sprites.height * appearance.sprites.originY;
+
+        if (appearance.rotation) {
+          appearance.sprites.setRotation(appearance.rotation - Math.PI / 2);
+        }
       }
     });
 

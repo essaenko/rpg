@@ -7,6 +7,7 @@ import { Target } from '@client/ecs/components/game/combat/target';
 import { WorldScene } from '@client/core/scene/world-scene';
 import { ECSContainer } from '@client/core/ecs';
 import { Pointer } from '@client/ecs/components/physics/pointer';
+import { Cast } from '@client/ecs/components/game/spells/cast';
 
 export class InputSystem extends System {
   private prevCastUpdate: Keys | null = null;
@@ -25,6 +26,9 @@ export class InputSystem extends System {
 
       if (spell && target) {
         scene.room.send(TransportEventTypes.CastRequest, [spell, target.target]);
+        const cast = new Cast();
+        cast.spellID = spell;
+        container.getEntity(scene.room.sessionId).add(cast);
       }
 
       this.prevCastUpdate = castKey;
@@ -42,7 +46,7 @@ export class InputSystem extends System {
           player.add(pointer);
         }
         pointer.x = cursor.worldX;
-        pointer.y = cursor.worldY - 24;
+        pointer.y = cursor.worldY;
         pointer.lastX = null;
         pointer.lastY = null;
       }

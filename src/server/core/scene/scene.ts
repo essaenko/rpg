@@ -17,7 +17,6 @@ import { HealSystem } from '@server/ecs/systems/spells/heal';
 import { DamageSystem } from '@server/ecs/systems/spells/damage';
 import { HotSystem } from '@server/ecs/systems/spells/hot';
 import { DotSystem } from '@server/ecs/systems/spells/dot';
-import { PatrolSystem } from '@server/ecs/systems/behaviour/patrol';
 import { QuestSystem } from '@server/ecs/systems/quest/quest';
 import { QuestRequirementSystem } from '@server/ecs/systems/quest/quest-requirement';
 import { InteractionSystem } from '@server/ecs/systems/mechanics/interaction';
@@ -30,6 +29,8 @@ import { GameObjectsSystem } from '@server/ecs/systems/core/game-objects';
 import { TriggerSystem } from '@server/ecs/systems/core/trigger';
 import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
 import { EventSystem } from '@server/ecs/systems/core/events';
+import { ChannelingSystem } from '@server/ecs/systems/spells/channeling';
+import { BehaviorSystem } from '@server/ecs/systems/behaviour/behavior';
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -63,7 +64,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new ResurrectionSystem());
 
     //Behaviour systems
-    this.ecs.addSystem(new PatrolSystem());
+    this.ecs.addSystem(new BehaviorSystem());
     //Mechanics
     this.ecs.addSystem(new LevelSystem());
     this.ecs.addSystem(new QuestSystem());
@@ -71,6 +72,7 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new InteractionSystem());
     this.ecs.addSystem(new LootSystem());
 
+    this.ecs.addSystem(new ChannelingSystem());
     this.ecs.addSystem(new CastRequestSystem());
     this.ecs.addSystem(new CastSystem());
     this.ecs.addSystem(new CooldownSystem());
@@ -104,7 +106,11 @@ export abstract class Scene extends Room<SceneState> {
     });
 
     this.setSimulationInterval((delta: number) => {
-      this.ecs.update(delta / 1000, this);
+      if (delta / 1000 > 100) {
+        this.ecs.update(50, this);
+      } else {
+        this.ecs.update(delta / 1000, this);
+      }
     }, 1000 / 20);
   }
 

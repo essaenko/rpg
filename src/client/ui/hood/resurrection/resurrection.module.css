@@ -1,0 +1,31 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    position: absolute;
+
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: bisque;
+        padding: 20px;
+
+        .header {
+            font-size: 25px;
+        }
+        .content {
+            margin-top: 10px;
+            display: flex;
+            button {
+                padding: 10px;
+                font-size: 14px;
+                background: #6d4b4b;
+                color: #fff;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+        }
+    }
+}

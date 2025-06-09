@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import { Entity } from '../ecs/entity/entity';
 import { Position } from '@client/ecs/components/physics/position';
 import { MapObject } from '@client/ecs/components/game/tag/mapObject';
+import { isMultipleSpriteAsset, isSingleSpriteAsset } from '@client/utils/types';
+import { Transparent } from '@client/ecs/components/game/visual/transparent';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -33,11 +35,17 @@ export class WorldScene extends NetworkScene {
       } = map[name];
       this.load.tilemapTiledJSON(key, asset);
 
-      assets.forEach(({ key, asset, type, config }) => {
-        if (type === 'sprite' && config) {
+      assets.forEach((a) => {
+        if (isSingleSpriteAsset(a)) {
+          const { key, asset, config } = a;
           this.load.spritesheet(key, asset, config);
-        } else {
-          this.load.image(key, asset);
+        }
+        if (isMultipleSpriteAsset(a)) {
+          const { key, type, frames } = a;
+
+          frames.forEach(frame => {
+            this.load.image(`${key}_fr${frame.id}`, frame.asset);
+          });
         }
       });
     }
@@ -52,7 +60,25 @@ export class WorldScene extends NetworkScene {
       this.map = this.make.tilemap({ key: bundle.map.key });
 
       bundle.assets.forEach((asset) => {
-        this.map.addTilesetImage(asset.key, asset.key);
+        if (isSingleSpriteAsset(asset)) {
+          this.map.addTilesetImage(asset.key, asset.key);
+        }
+        if (!this.textures.exists(asset.key)) {
+          if (isMultipleSpriteAsset(asset)) {
+            const source = this.textures.createCanvas(
+              asset.key,
+              asset.frames.reduce((acc, fr) => acc + fr.config.frameWidth, 0),
+              Math.max(...asset.frames.map(({ config: { frameHeight }}) => frameHeight))
+            );
+            let padding = 0;
+
+            asset.frames.forEach((frame, index) => {
+              source.drawFrame(`${asset.key}_fr${frame.id}`, 0, padding, 0);
+              source.add(frame.id, 0, padding, 0, frame.config.frameWidth, frame.config.frameHeight);
+              padding += frame.config.frameWidth;
+            });
+          }
+        }
       });
 
       this.map.layers
@@ -100,42 +126,47 @@ export class WorldScene extends NetworkScene {
 
   addLight() {
     this.lights.enable();
-    this.lights.setAmbientColor(0xfbf3d5);
+
     const color = {
-      day: Phaser.Display.Color.ValueToColor(0x2a2a55),
-      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),
+      day: Phaser.Display.Color.ValueToColor(0x2a2a55),    // ночь
+      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),  // день
     };
 
-    const now = new Date();
-    const fn = (tween: { getValue: () => number }) => {
-      const value = tween.getValue();
-      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, value);
-      this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
+    const fn = () => {
+      const now = new Date();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      const total = minute * 60 + second;
+      const inCycle = total % 3600;
+      const isDay = inCycle < 1800;
+      const cyclePos = isDay
+        ? 100 - (inCycle / 1800) * 100
+        : ((inCycle - 1800) / 1800) * 100;
+      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(
+        color.day,
+        color.night,
+        100,
+        cyclePos
+      );
       this.lights.lights.forEach((light) => {
-        light.setIntensity(1.5 * (1 - value / 100));
+        light.setIntensity(1.5 * (1 - cyclePos / 100));
       });
+
+      this.lights.setAmbientColor(
+        Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b)
+      );
+
+
     };
 
-    this.tweens.addCounter({
-      from: (100 / 30) * Math.min(now.getMinutes(), 60 - now.getMinutes()),
-      to: now.getMinutes() >= 30 ? 0 : 100,
-      ease: Phaser.Math.Easing.Sine.InOut,
-      duration: (30 - (now.getMinutes() % 30)) * 60 * 1000,
-      repeat: 1,
-      onComplete: () => {
-        const now = new Date();
-        this.tweens.addCounter({
-          from: now.getMinutes() == 30 ? 100 : 0,
-          to: now.getMinutes() == 30 ? 0 : 100,
-          ease: Phaser.Math.Easing.Sine.InOut,
-          duration: IN_GAME_DAY_TIME,
-          repeat: -1,
-          yoyo: true,
-          onUpdate: fn,
-        });
-      },
-      onUpdate: fn,
+    // обновляем освещение раз в секунду
+    this.time.addEvent({
+      delay: 1000,
+      loop: true,
+      callback: fn,
     });
+
+    fn(); // сразу отобразить актуальное состояние
   }
 
   update(now: number, delta: number) {
@@ -143,7 +174,6 @@ export class WorldScene extends NetworkScene {
   }
 
   handleTileMapAnimations() {
-    const cache = [];
     for (const layer of this.map.layers.filter(({ visible }) => visible)) {
       const tilesets = layer.tilemapLayer.tileset;
 
@@ -166,7 +196,7 @@ export class WorldScene extends NetworkScene {
 
   initTilesetAnimations() {
     this.map.tilesets
-      .filter((set) => Object.keys(set.tileData).length)
+      .filter((set) => Object.keys(set.tileData ?? {}).length)
       .forEach((tileset) => {
         const data = tileset.tileData as Record<string, { animation?: { duration: number; tileid: number }[] }>;
 
@@ -204,6 +234,12 @@ export class WorldScene extends NetworkScene {
           position.x = obj.x;
           position.y = obj.y;
           entity.add(position);
+
+          if (obj.properties?.find(({ name, value }: { name?: string; value?: boolean }) => name === 'transparent' && !!value)) {
+            const transparent = new Transparent();
+
+            entity.add(transparent);
+          }
 
           const objCom = new MapObject();
           objCom.type = obj.type;

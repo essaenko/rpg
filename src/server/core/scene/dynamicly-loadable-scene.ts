@@ -12,7 +12,7 @@ import { Collider } from '@server/ecs/components/physics/collider';
 import { Position } from '@server/ecs/components/physics/position';
 import { MapObject } from '@server/ecs/components/game/tag/mapObject';
 import { createPathFromPolygons, isRoutePathObject } from '@server/utils/tiled-object';
-import { Patrol } from '@server/ecs/components/game/behaviour/patrol';
+import { Patrol } from '@server/ecs/components/game/behaviour/patrol/patrol';
 import { AStarService } from '@shared/ecs/service/a-star';
 import { InteractableObject } from '@server/ecs/components/game/mechanics/interactable-object';
 import { InteractionTypes } from '@shared/types';
@@ -23,6 +23,9 @@ import { StateView } from '@colyseus/schema';
 import { isTriggerFactoryKey, map } from '@server/ecs/components/trigger/map';
 import { LocationVisited } from '@server/ecs/components/trigger/location-visited';
 import { ChangeScene } from '@server/ecs/components/trigger/change-scene';
+import { RoutePath } from '@server/ecs/components/physics/route-path';
+import { Behavior } from '@server/ecs/components/game/behaviour/behavior';
+import { PatrolTree } from '@server/mechanics/behaviors/patrol';
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -125,7 +128,7 @@ export class DynamicallyLoadableScene extends Scene {
               });
               config.components.push({
                 name: 'spawn',
-                point: { ...spawn },
+                point: { x: spawn.x, y: spawn.y },
               });
               const entity = new NetworkEntity();
               entity.init(config, config.id);
@@ -134,12 +137,24 @@ export class DynamicallyLoadableScene extends Scene {
               const route = l.objects.find((o) => o.type === 'route');
               if (route && isRoutePathObject(route)) {
                 const path = createPathFromPolygons(route);
+                const pPath = new RoutePath();
+                pPath.path = path;
                 const patrol = new Patrol();
                 patrol.active = false;
                 patrol.path = path;
                 patrol.current = path[0];
 
                 entity.add(patrol);
+
+                let b = entity.get<Behavior>('behavior');
+
+                if (!b) {
+                  b = new Behavior();
+                  entity.add(b);
+                }
+                b.behaviors.push(PatrolTree);
+
+                entity.add(pPath);
               }
 
               this.addEntity(entity);

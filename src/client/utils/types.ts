@@ -56,3 +56,42 @@ export type WithArcadeBody<G extends Phaser.GameObjects.GameObject> = G & Phaser
 export const isNonFunctionProperty = <T extends unknown>(key: unknown, el: T): key is NonFunctionPropNames<T> => {
   return typeof key != null && typeof el === 'object' && isKeyOf(key, el) && (typeof el[key as keyof T]) !== 'function';
 }
+
+export type SingleSpriteAsset = {
+  key: string;
+  asset: string;
+  type: 'sprite';
+  config: {
+    frameWidth: number;
+    frameHeight: number;
+  };
+};
+
+export type MultipleSpriteAsset = {
+  key: string;
+  type: 'multiple',
+  frames: {
+    id: number,
+    asset: string,
+    config: {
+      frameWidth: number;
+      frameHeight: number;
+    };
+  }[];
+}
+
+export type MapPackage = {
+  map: {
+    key: string;
+    asset: string;
+  };
+  assets: (SingleSpriteAsset | MultipleSpriteAsset)[];
+};
+
+export const isSingleSpriteAsset = (asset: unknown): asset is SingleSpriteAsset => {
+  return typeof asset === 'object' && 'type' in asset && asset.type === 'sprite';
+}
+
+export const isMultipleSpriteAsset = (asset: unknown): asset is MultipleSpriteAsset => {
+  return typeof asset === 'object' && 'type' in asset && asset.type === 'multiple';
+}

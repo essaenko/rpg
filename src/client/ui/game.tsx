@@ -16,6 +16,8 @@ import { QuestRequestUI } from './hood/quest/quest-dialog';
 import { MainMenu } from './menu/main';
 import { QuestBookUI } from '@client/ui/hood/quest/quest-book';
 import { Networking } from '@client/services/networking';
+import { CastBar } from '@client/ui/hood/cast/cast-bar';
+import { Resurrection } from '@client/ui/hood/resurrection/resurrection';
 
 export const GameComponent: React.FC = () => {
   const [player, setPlayer] = useState<Entity>(null);
@@ -32,6 +34,7 @@ export const GameComponent: React.FC = () => {
       width: window.innerWidth,
       height: window.innerHeight,
       antialias: true,
+      autoRound: false,
       pixelArt: true,
       scale: {
         mode: Scale.FIT,
@@ -62,7 +65,6 @@ export const GameComponent: React.FC = () => {
     game.registry.events.on('setdata', onDataSet);
     game.registry.events.on('changedata', onDataSet);
 
-
     document.body.style.cursor = `url(${Cursor}), auto`;
 
     return () => {
@@ -72,15 +74,19 @@ export const GameComponent: React.FC = () => {
     };
   }, []);
 
-  return connected && (
-    <PlayerContext.Provider value={player}>
-      <StatusBar />
-      <SpellBar />
-      <LootUI />
-      <Controlls />
-      <QuestRequestUI />
-      <QuestBookUI />
-      <MainMenu />
-    </PlayerContext.Provider>
+  return (
+    connected && (
+      <PlayerContext.Provider value={player}>
+        <Resurrection />
+        <StatusBar />
+        <SpellBar />
+        <LootUI />
+        <Controlls />
+        <QuestRequestUI />
+        <QuestBookUI />
+        <MainMenu />
+        <CastBar />
+      </PlayerContext.Provider>
+    )
   );
 };

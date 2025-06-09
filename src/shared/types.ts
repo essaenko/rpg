@@ -16,9 +16,11 @@ export enum TransportEventTypes {
   ObjectsState,
 
   ChangeScene,
+
+  Resurrect,
 }
 
-export type ObjectStateType = Position & {
+export type ObjectStateType = Pointer2D & {
   id: string;
   type: string;
   gid: number;
@@ -53,7 +55,7 @@ export enum Animation {
   Dying,
 }
 
-export type Position = {
+export type Pointer2D = {
   x: number;
   y: number;
 };
@@ -64,9 +66,9 @@ export type Body = {
 };
 
 export type Triangle = {
-  a: Position;
-  b: Position;
-  c: Position;
+  a: Pointer2D;
+  b: Pointer2D;
+  c: Pointer2D;
 };
 
 export enum ResourceType {

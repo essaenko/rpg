@@ -48,7 +48,6 @@ export class NetworkEntity extends Entity {
       this.add(component);
 
       if (component instanceof NetworkComponent) {
-
         this.$(cSchema).bindTo(component);
         component.on('component:destroy', this.$(cSchema).onChange(() => {
           component.emit('component:change');

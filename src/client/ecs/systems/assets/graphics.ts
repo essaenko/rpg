@@ -4,20 +4,15 @@ import { ECSContainer } from '@client/core/ecs';
 import { Health } from '@client/ecs/components/game/stats/health';
 import { Position } from '@client/ecs/components/physics/position';
 import { Body } from '@client/ecs/components/physics/body';
-import { HealthFrame } from '@client/ecs/components/game/visual/health-frame';
-import { Fraction } from '@client/ecs/components/game/mechanics/fraction';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { Fraction as Fractions, Relation } from '@shared/types';
-import { getRelation } from '@shared/utils/fractions';
-import Sprite = Phaser.Physics.Arcade.Sprite;
 import { Appearance } from '@client/ecs/components/game/visual/appearance';
 import Container = Phaser.GameObjects.Container;
 import { Target } from '@client/ecs/components/game/combat/target';
 import { Pointer } from '@client/ecs/components/physics/pointer';
 import { TargetHighlight } from '@client/ecs/components/game/visual/target-highlight';
-import { DEFAULT_LERP_VALUE } from '@client/utils/const';
+import { DEFAULT_LERP_VALUE, COLORS } from '@client/utils/const';
 import { Resource } from '@client/ecs/components/game/stats/resource';
-import { Heal } from '@server/mechanics/spells/priest/heal';
+import { getResourceColor } from '@client/utils/getters';
 
 export class GraphicsSystem extends System {
   constructor() {
@@ -28,25 +23,18 @@ export class GraphicsSystem extends System {
       const highlight = entity.get<TargetHighlight>('target-highlight');
       const position = entity.get<Position>('position');
       const body = entity.get<Body>('body');
+      const isCurrentPlayer = entity.id === scene.room.sessionId;
 
       const originX = position.x;
       const originY = position.y + body.height * 0.45;
 
-      if (body && position) {
+      if (body && position && !isCurrentPlayer) {
         if (!highlight.rect) {
-          const g = scene.add.graphics({
-            x: 0,
-            y: 0,
-            lineStyle: {
-              width: 1,
-              color: 0xffd600,
-              alpha: 1,
-            },
-          });
-          g.x = originX;
-          g.y = originY;
-          g.strokeEllipse(0, 0, body.width * 0.7, body.height * 0.35);
-          highlight.rect = g;
+          const round = scene.add.image(0, 0, 'target_round');
+          round.displayWidth = body.width * .7;
+          round.displayHeight = body.height * .35;
+          round.setPosition(position.x, position.y);
+          highlight.rect = round;
         }
 
         highlight.rect.x = Phaser.Math.Linear(highlight.rect.x, originX, DEFAULT_LERP_VALUE);
@@ -57,21 +45,14 @@ export class GraphicsSystem extends System {
       const pointer = entity.get<Pointer>('pointer');
 
       if (!pointer.frame) {
-        pointer.frame = scene.add.graphics({
-          x: pointer.x,
-          y: pointer.y,
-          lineStyle: {
-            width: 1,
-            color: 0xffd600,
-            alpha: 1,
-          },
-        });
-        pointer.frame.strokeCircle(0, 25, 15);
+        pointer.frame = scene.add.image(pointer.x, pointer.y, 'pointer_circle');
+        pointer.frame.displayHeight = 32;
+        pointer.frame.displayWidth = 32;
       }
 
       if (pointer.x !== pointer.frame.x || pointer.y !== pointer.frame.y) {
-        pointer.frame.x = pointer.x;
-        pointer.frame.y = pointer.y;
+        pointer.frame.x = Phaser.Math.Linear(pointer.frame.x, pointer.x,DEFAULT_LERP_VALUE);
+        pointer.frame.y = Phaser.Math.Linear(pointer.frame.y, pointer.y,DEFAULT_LERP_VALUE);
       }
     });
     container.query(['health', 'position', 'body', 'health-frame', 'appearance']).forEach((entity) => {
@@ -127,7 +108,7 @@ export class GraphicsSystem extends System {
     graphics.fillStyle(0x8a0303, 1);
     graphics.fillRoundedRect(1, 1, (width - 2) * (cHealth / health.max), 4, 2);
     //Resource
-    graphics.fillStyle(0x3146b0, 1);
+    graphics.fillStyle(getResourceColor(resource), 1);
     graphics.fillRoundedRect(1, 6, (width - 2) * (cResource / resource.max), 2, 2);
   }
 }

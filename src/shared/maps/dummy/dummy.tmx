@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="89">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="90">
  <editorsettings>
   <export target="dummy.json" format="json"/>
  </editorsettings>
@@ -418,7 +418,7 @@
  </layer>
  <group id="12" name="npc">
   <objectgroup id="14" name="GUgR50t1x">
-   <object id="80" type="spawn" x="1468" y="1488">
+   <object id="80" type="spawn" x="1456" y="1488">
     <point/>
    </object>
   </objectgroup>
@@ -545,32 +545,136 @@
 </data>
  </layer>
  <objectgroup id="5" name="objects">
-  <object id="8" type="decorations_medium" gid="774" x="643.666" y="806.667" width="64" height="64"/>
-  <object id="9" type="decorations_medium" gid="776" x="843.334" y="815.333" width="64" height="64"/>
-  <object id="10" type="decorations_medium" gid="775" x="651.333" y="1046.33" width="64" height="64"/>
-  <object id="17" type="tree" gid="792" x="1060.5" y="574.5" width="128" height="128"/>
-  <object id="18" type="tree" gid="804" x="1048.5" y="950" width="128" height="128"/>
-  <object id="19" type="tree" gid="804" x="72.6667" y="771.667" width="128" height="128"/>
-  <object id="20" type="tree" gid="804" x="302.667" y="545" width="128" height="128"/>
-  <object id="21" type="tree" gid="816" x="463.667" y="90.8333" width="128" height="128"/>
-  <object id="22" type="tree" gid="816" x="1052.67" y="149.5" width="128" height="128"/>
-  <object id="23" type="tree" gid="816" x="1462.67" y="277.667" width="128" height="128"/>
-  <object id="24" type="tree" gid="792" x="1517.67" y="342.667" width="128" height="128"/>
-  <object id="25" type="tree" gid="792" x="1470.67" y="415.667" width="128" height="128"/>
-  <object id="26" type="tree" gid="792" x="1524.67" y="500.167" width="128" height="128"/>
-  <object id="27" type="tree" gid="792" x="1474.67" y="584.667" width="128" height="128"/>
-  <object id="28" type="tree" gid="792" x="1534.17" y="669.167" width="128" height="128"/>
-  <object id="29" type="tree" gid="792" x="1487.67" y="743.667" width="128" height="128"/>
-  <object id="30" type="tree" gid="792" x="1488.67" y="821.667" width="128" height="128"/>
-  <object id="31" type="tree" gid="792" x="1534.17" y="897.167" width="128" height="128"/>
-  <object id="32" type="tree" gid="792" x="1541.17" y="976.667" width="128" height="128"/>
-  <object id="33" type="tree" gid="792" x="1240.33" y="987.167" width="128" height="128"/>
-  <object id="34" type="tree" gid="792" x="928" y="594" width="128" height="128"/>
-  <object id="35" type="tree" gid="792" x="1051" y="776" width="128" height="128"/>
-  <object id="36" type="tree" gid="792" x="644.5" y="638.75" width="128" height="128"/>
-  <object id="57" type="small-buildings" gid="817" x="378.667" y="1049.33" width="160" height="192"/>
-  <object id="58" type="small-buildings" gid="818" x="927.333" y="964.666" width="160" height="192"/>
-  <object id="59" type="small-buildings" gid="819" x="128" y="1103.33" width="160" height="192"/>
+  <object id="8" type="decorations_medium" gid="774" x="643.666" y="806.667" width="64" height="64">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" type="decorations_medium" gid="776" x="843.334" y="815.333" width="64" height="64">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="10" type="decorations_medium" gid="775" x="651.333" y="1046.33" width="64" height="64">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="17" type="tree" gid="792" x="1060.5" y="574.5" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="18" type="tree" gid="804" x="1048.5" y="950" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="19" type="tree" gid="804" x="72.6667" y="771.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="20" type="tree" gid="804" x="302.667" y="545" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="21" type="tree" gid="816" x="463.667" y="90.8333" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="22" type="tree" gid="816" x="1052.67" y="149.5" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="23" type="tree" gid="816" x="1462.67" y="277.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="24" type="tree" gid="792" x="1517.67" y="342.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="25" type="tree" gid="792" x="1470.67" y="415.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="26" type="tree" gid="792" x="1524.67" y="500.167" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="27" type="tree" gid="792" x="1474.67" y="584.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="28" type="tree" gid="792" x="1534.17" y="669.167" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="29" type="tree" gid="792" x="1487.67" y="743.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="30" type="tree" gid="792" x="1488.67" y="821.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="31" type="tree" gid="792" x="1534.17" y="897.167" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="32" type="tree" gid="792" x="1541.17" y="976.667" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="33" type="tree" gid="792" x="1240.33" y="987.167" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="34" type="tree" gid="792" x="928" y="594" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="35" type="tree" gid="792" x="1051" y="776" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="36" type="tree" gid="792" x="644.5" y="638.75" width="128" height="128">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="57" type="small-buildings" gid="817" x="378.667" y="1049.33" width="160" height="192">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="58" type="small-buildings" gid="818" x="927.333" y="964.666" width="160" height="192">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="59" type="small-buildings" gid="819" x="128" y="1103.33" width="160" height="192">
+   <properties>
+    <property name="transparent" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="67" type="ground_dec_props" gid="687" x="338.5" y="751.833" width="32" height="32">
    <properties>
     <property name="action" value="collect"/>
@@ -643,7 +747,7 @@
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="79" gid="686" x="32.5" y="346.5" width="32" height="32"/>
+  <object id="79" type="ground_dec_props" gid="686" x="32.5" y="346.5" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="locations">
   <object id="1" type="spawn" x="768.5" y="896">

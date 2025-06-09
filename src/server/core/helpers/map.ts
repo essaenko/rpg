@@ -1,19 +1,19 @@
 import { TiledMap } from '@shared/utils/types';
-import { Position, Body, Triangle } from '@shared/types';
+import { Pointer2D, Body, Triangle } from '@shared/types';
 import { Entity } from '@shared/ecs/entity';
 import { Collider } from '@server/ecs/components/physics/collider';
 
-export const getTileXY = (tile: number, map: TiledMap): Position => {
+export const getTileXY = (tile: number, map: TiledMap): Pointer2D => {
   return {
     x: (tile % map.width) * map.tilewidth,
     y: Math.floor(tile / map.width) * map.tileheight,
   };
 };
 
-const determinant = (p1: Position, p2: Position, p3: Position) =>
+const determinant = (p1: Pointer2D, p2: Pointer2D, p3: Pointer2D) =>
   (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
 
-const isLineIntersecting = (a: Position, b: Position, c: Position, d: Position): boolean => {
+const isLineIntersecting = (a: Pointer2D, b: Pointer2D, c: Pointer2D, d: Pointer2D): boolean => {
   const d1 = determinant(c, d, a);
   const d2 = determinant(c, d, b);
   const d3 = determinant(a, b, c);
@@ -27,12 +27,12 @@ function projectionsOverlap(aMin: number, aMax: number, bMin: number, bMax: numb
 }
 
 // SAT: Получение проекций точек на ось
-function projectPoints(points: Position[], axis: Position): [number, number] {
+function projectPoints(points: Pointer2D[], axis: Pointer2D): [number, number] {
   const projections = points.map((point) => point.x * axis.x + point.y * axis.y);
   return [Math.min(...projections), Math.max(...projections)];
 }
 
-const satCollision = (b1: Position & Body, t1: Triangle): boolean => {
+const satCollision = (b1: Pointer2D & Body, t1: Triangle): boolean => {
   const edges = [
     // Прямоугольник: горизонтальная и вертикальная оси
     { x: b1.width, y: b1.y },
@@ -43,7 +43,7 @@ const satCollision = (b1: Position & Body, t1: Triangle): boolean => {
     { x: t1.a.x - t1.c.x, y: t1.a.y - t1.c.y },
   ];
 
-  const rectPoints: Position[] = [
+  const rectPoints: Pointer2D[] = [
     { x: b1.x, y: b1.y },
     { x: b1.x + b1.width, y: b1.y },
     { x: b1.x + b1.width, y: b1.y + b1.height },
@@ -67,8 +67,8 @@ const satCollision = (b1: Position & Body, t1: Triangle): boolean => {
   return true;
 };
 
-export const collideTriangle = (b1: Position & Body, t1: Triangle): boolean => {
-  const rEdges: Position[][] = [
+export const collideTriangle = (b1: Pointer2D & Body, t1: Triangle): boolean => {
+  const rEdges: Pointer2D[][] = [
     [
       { x: b1.x, y: b1.y },
       { x: b1.x + b1.width, y: b1.y },
@@ -102,15 +102,15 @@ export const collideTriangle = (b1: Position & Body, t1: Triangle): boolean => {
 
   return satCollision(b1, t1);
 };
-export const collide = (b1: Position & Body, b2: Position & Body): boolean => {
+export const collide = (b1: Pointer2D & Body, b2: Pointer2D & Body): boolean => {
   return (
     collideSide({ c: b1.x, p: b1.width }, { c: b2.x, p: b2.width }) &&
     collideSide({ c: b1.y, p: b1.height }, { c: b2.y, p: b2.height })
   );
 };
 
-export const getCollider = (entity: Entity): Position & Body => {
-  const pos = entity.get('position') as unknown as Position;
+export const getCollider = (entity: Entity): Pointer2D & Body => {
+  const pos = entity.get('position') as unknown as Pointer2D;
   const body = entity.get('body') as unknown as Body;
   const collider = entity.get<Collider>('collider');
 

@@ -1,8 +1,8 @@
 import { ArraySchema, Schema, type } from '@colyseus/schema';
-import { Entity } from '@shared/ecs/entity';
+import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { getDistance } from '@shared/utils/physics';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
-import { Fraction as Fractions, Relation } from '@shared/types';
+import { Animation, Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Position } from '@server/ecs/components/physics/position';
@@ -17,7 +17,8 @@ export abstract class Spell extends Schema {
    * @param cooldown Cooldown time in seconds
    * @param range Range in units (unit is eq a single block which is now 32 px)
    * @param castTime Channelling time to cast spell in seconds
-   * @param relation Target relation that spell can be casted onto
+   * @param relation Target relation that spell can be cast onto
+   * @param [tick] Describes when need to process cast while channeling spell in seconds.
    */
   constructor(
     name: number,
@@ -26,6 +27,7 @@ export abstract class Spell extends Schema {
     range: number,
     castTime: number,
     relation: Relation | Relation[],
+    tick?: number,
   ) {
     super();
 
@@ -39,6 +41,10 @@ export abstract class Spell extends Schema {
     } else {
       this.relation.push(relation);
     }
+
+    if (tick) {
+      this.tick = tick * 1000;
+    }
   }
 
   @type('number') id: number;
@@ -50,6 +56,8 @@ export abstract class Spell extends Schema {
   @type('number') castTime: number;
   @type('number') cooldownTime: number;
   @type(['number']) relation = new ArraySchema<Relation>();
+
+  public tick: number = null;
 
   abstract cast(caster: Entity, target: Entity, scene: Scene): void;
 

@@ -23,18 +23,16 @@ export class AreaOfInterestsSystem extends System {
     container.query(['tag-player']).forEach((player) => {
       if (player instanceof NetworkEntity) {
         const client = clients.get(player.id);
-        const entities = container.query(player, AREA_OF_INTEREST_DISTANCE, ['position', 'body']).filter((it) => it instanceof NetworkEntity).toArray();
+        const entities = container
+          .query(player, AREA_OF_INTEREST_DISTANCE, ['position', 'body'])
+          .filter((it) => it instanceof NetworkEntity)
+          .toArray();
 
-        for (const schema of client.view.items) {
-          if (!entities.some(({ _schema }) => _schema === schema)) {
-            client.view.remove(schema);
-          }
-        }
-
+        client.view.clear();
         for (const it of entities) {
-         if (!client.view.has(it._schema)) {
-           client.view.add(it._schema);
-         }
+          if (!client.view.has(it._schema)) {
+            client.view.add(it._schema);
+          }
         }
       }
     });

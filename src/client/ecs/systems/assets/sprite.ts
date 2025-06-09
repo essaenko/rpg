@@ -26,33 +26,35 @@ export class SpriteSystem extends System {
 
       sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height * 0.3;
 
-      if (
-        players.some((player) => {
-          const pSprite = player.get<Appearance>('appearance');
+      if (entity.has('transparent')) {
+        if (
+          players.some((player) => {
+            const pSprite = player.get<Appearance>('appearance');
 
-          if (!pSprite.sprites) return false;
+            if (!pSprite.sprites) return false;
 
-          return (
-            collide(
-              {
-                x: pSprite.sprites.x - (pSprite.sprites.width * pSprite.sprites.originX) / 2,
-                y: pSprite.sprites.y - (pSprite.sprites.height * pSprite.sprites.originY) / 2,
-                width: pSprite.sprites.width / 2,
-                height: pSprite.sprites.height,
-              },
-              {
-                x: sprite.sprite.x - sprite.sprite.width * sprite.sprite.originX,
-                y: sprite.sprite.y - sprite.sprite.height * sprite.sprite.originY,
-                width: sprite.sprite.width,
-                height: sprite.sprite.height,
-              },
-            ) && pSprite.sprites.depth < sprite.sprite.depth
-          );
-        })
-      ) {
-        sprite.sprite.setAlpha(0.5, 0.5, 0.5, 0.5);
-      } else {
-        sprite.sprite.setAlpha(1, 1, 1, 1);
+            return (
+              collide(
+                {
+                  x: pSprite.sprites.x - (pSprite.sprites.width * pSprite.sprites.originX) / 2,
+                  y: pSprite.sprites.y - (pSprite.sprites.height * pSprite.sprites.originY) / 2,
+                  width: pSprite.sprites.width / 2,
+                  height: pSprite.sprites.height,
+                },
+                {
+                  x: sprite.sprite.x - sprite.sprite.width * sprite.sprite.originX,
+                  y: sprite.sprite.y - sprite.sprite.height * sprite.sprite.originY,
+                  width: sprite.sprite.width,
+                  height: sprite.sprite.height,
+                },
+              ) && pSprite.sprites.depth < sprite.sprite.depth
+            );
+          })
+        ) {
+          sprite.sprite.setAlpha(0.5, 0.5, 0.5, 0.5);
+        } else {
+          sprite.sprite.setAlpha(1, 1, 1, 1);
+        }
       }
     });
   }

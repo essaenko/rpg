@@ -11,6 +11,7 @@ import { TransportEventTypes } from '@shared/types';
 import { DEFAULT_LERP_VALUE, SERVER_POSITION_TOLERANCE } from '@client/utils/const';
 import { Speed } from '@client/ecs/components/physics/speed';
 import { DEFAULT_SPEED } from '@server/utils/game/const';
+import { Death } from '@client/ecs/components/game/mechanics/death';
 
 export class MovementSystem extends System {
   constructor() {
@@ -20,6 +21,7 @@ export class MovementSystem extends System {
   onUpdate(scene: WorldScene, container: ECSContainer, delta: number): void {
     const players = Array.from(container.query(['tag-player', 'pointer', 'position']));
     const localPlayer = container.getEntity(scene.room?.sessionId);
+
     container.query(['position']).forEach((entity) => {
       const position = entity.get<Position>('position');
       const { sprites } = entity.get<Appearance>('appearance') ?? {};
@@ -31,11 +33,9 @@ export class MovementSystem extends System {
 
         if (sprites.x !== position.x) {
           sprites.x = Phaser.Math.Linear(sprites.x, position.x, DEFAULT_LERP_VALUE);
-          // sprites.x = position.x;
         }
         if (sprites.y !== position.y) {
           sprites.y = Phaser.Math.Linear(sprites.y, position.y, DEFAULT_LERP_VALUE);
-          // sprites.y = position.y;
         }
       }
     });
@@ -44,10 +44,11 @@ export class MovementSystem extends System {
       const position = localPlayer.get<Position>('position');
       const pointer = localPlayer.get<Pointer>('pointer');
       const speed = localPlayer.get<Speed>('speed');
+      const death = localPlayer.get<Death>('death');
       const { sprites } = localPlayer.get<Appearance>('appearance') ?? {};
       const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
 
-      if (sprites && angle && speed) {
+      if (sprites && angle && speed && !death.dead) {
         const vector = {
           x: angle ? Math.cos(angle) : 0,
           y: angle ? Math.sin(angle) : 0,

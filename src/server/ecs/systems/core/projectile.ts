@@ -10,6 +10,7 @@ import { System } from '@shared/ecs/system';
 import { TransportEventTypes } from '@shared/types';
 import { getVelocityByVector } from '@shared/utils/physics';
 import { Client } from 'colyseus';
+import { Appearance } from '@server/ecs/components/game/appearance';
 
 export class ProjectileSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer): void {
@@ -20,13 +21,23 @@ export class ProjectileSystem extends System {
       const p = entity.get<Projectile>('projectile');
       const v = entity.get<Velocity>('velocity');
       if (p.target) {
+        const ePos = entity.get<Position>('position');
         const tPos = p.target instanceof Entity ? p.target.get<Position>('position') : p.target;
-        const dir = getVelocityByVector(entity.get<Position>('position'), tPos);
+        const dir = getVelocityByVector(ePos, tPos);
 
         if (dir.x !== v.x || dir.y !== v.y) {
           const s = entity.get<Speed>('speed');
           v.x = dir.x * s.speed * DEFAULT_SPEED * delta;
           v.y = dir.y * s.speed * DEFAULT_SPEED * delta;
+        }
+
+        const appearance = entity.get<Appearance>('appearance');
+        if (appearance) {
+          const rotation = Math.atan2(ePos.y - tPos.y, ePos.x - tPos.x);
+
+          if (rotation) {
+            appearance.rotation = rotation;
+          }
         }
       }
     }

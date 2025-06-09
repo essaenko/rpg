@@ -18,8 +18,8 @@ export class Entity {
     this.bus.detach(name, callback);
   }
 
-  public emit(name: string) {
-    this.bus.emit(name);
+  public emit(name: string, payload?: any) {
+    this.bus.emit(name, payload);
   }
 
   public detachAll() {
@@ -28,7 +28,7 @@ export class Entity {
 
   public add(...component: Component[]): void {
     this.components.push(...component);
-    this.emit('entity:components:add');
+    this.emit('entity:components:add', component);
   }
 
   public remove(signature: Component): void;

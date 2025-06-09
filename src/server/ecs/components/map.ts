@@ -1,9 +1,5 @@
 import { Equip } from '@server/ecs/components/game/item/equip';
-import { Cast } from '@server/ecs/components/game/spell/cast';
-import { CastRequest } from '@server/ecs/components/game/spell/cast-request';
-import { Damage } from '@server/ecs/components/game/spell/damage';
 import { Dot } from '@server/ecs/components/game/spell/dot';
-import { Heal } from '@server/ecs/components/game/spell/heal';
 import { Hot } from '@server/ecs/components/game/spell/hot';
 import { NegativeEffect } from '@server/ecs/components/game/spell/negative-effect';
 import { PositiveEffect } from '@server/ecs/components/game/spell/positive-effect';
@@ -32,6 +28,8 @@ import { QuestBook } from '@server/ecs/components/game/quest/quest-book';
 import { Inventory } from './game/item/inventory';
 import { Spawn } from './game/mechanics/spawn';
 import { Location } from './game/ui/location';
+import { Aggro } from '@server/ecs/components/game/behaviour/aggro/aggro';
+import { Behavior } from '@server/ecs/components/game/behaviour/behavior';
 
 export const map = {
   // Game components
@@ -49,6 +47,10 @@ export const map = {
 
   'change-health': ChangeHealth,
   health: Health,
+
+  //Behaviors components
+  behavior: Behavior,
+  aggro: Aggro,
 
   'change-resource': ChangeResource,
   resource: Resource,

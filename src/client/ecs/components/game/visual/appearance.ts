@@ -7,6 +7,7 @@ export class Appearance extends NetworkComponent {
   public key: string;
   public sprites: WithArcadeBody<Container>;
   public animation: Animation;
+  public rotation: number;
   public loaded: boolean;
   public loading: boolean;
   constructor() {

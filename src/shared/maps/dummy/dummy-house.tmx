@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="18" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="4">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="left-up" width="18" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="31">
  <editorsettings>
   <export target="dummy-house.json" format="json"/>
  </editorsettings>
@@ -18,13 +18,7 @@
  <tileset firstgid="2393" name="fire_place" tilewidth="32" tileheight="32" tilecount="380" columns="20">
   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresC.png" width="640" height="608"/>
  </tileset>
- <tileset firstgid="2773" name="beds_and_drobes" tilewidth="32" tileheight="32" tilecount="272" columns="17">
-  <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresA.png" width="544" height="512"/>
- </tileset>
- <tileset firstgid="3045" name="kitchen" tilewidth="32" tileheight="32" tilecount="1050" columns="35">
-  <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/FL_Houses_int_FurnituresB.png" width="1120" height="960"/>
- </tileset>
- <tileset firstgid="4095" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="13" columns="13">
+ <tileset firstgid="2773" name="dummy-tile" tilewidth="32" tileheight="32" tilecount="13" columns="13">
   <properties>
    <property name="required" type="bool" value="false"/>
   </properties>
@@ -95,6 +89,216 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="2786" name="beds" tilewidth="64" tileheight="96" tilecount="16" columns="0" objectalignment="center">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="2">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (1).png" width="64" height="64"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="10.2374" y="26.2539" width="51.517" height="24.6027"/>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (2).png" width="64" height="64"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="2.6419" y="21.1352" width="51.3519" height="29.7214"/>
+   </objectgroup>
+  </tile>
+  <tile id="4">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (3).png" width="64" height="64"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="9.90712" y="19.8142" width="52.0124" height="31.2074"/>
+   </objectgroup>
+  </tile>
+  <tile id="5">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (4).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="1.81631" y="17.3375" width="28.4004" height="52.6729"/>
+   </objectgroup>
+  </tile>
+  <tile id="6">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (5).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="1.65119" y="8.75129" width="28.7307" height="52.6729"/>
+   </objectgroup>
+  </tile>
+  <tile id="7">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (6).png" width="64" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="4.62332" y="16.3467" width="54.4892" height="54.4892"/>
+   </objectgroup>
+  </tile>
+  <tile id="8">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (7).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="1.15583" y="16.8421" width="28.5655" height="52.6729"/>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (8).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0.990712" y="8.42105" width="29.226" height="53.6636"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (9).png" width="64" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="3" y="14" width="58" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (10).png" width="64" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="3" y="14" width="58" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="12">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (11).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="7" width="32" height="56"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (12).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="15" width="32" height="56"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (13).png" width="64" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="3" y="14" width="58" height="58"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (14).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="7" width="32" height="56"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object (15).png" width="32" height="96"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="15" width="30.0186" height="56"/>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/beds/object.png" width="64" height="64"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="1" y="21.2466" width="54" height="28.937"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="2804" name="drobes" tilewidth="50" tileheight="70" tilecount="12" columns="0" objectalignment="center">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="12">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (1).png" width="42" height="70"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="1" y="46.125" width="40.5" height="23.5"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (2).png" width="32" height="32"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (3).png" width="32" height="47"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="32" height="47"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (4).png" width="32" height="30"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="32" height="30"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (5).png" width="24" height="30"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="24" height="30"/>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (6).png" width="24" height="30"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="24" height="30"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (7).png" width="50" height="60"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="50" height="60"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (8).png" width="32" height="67"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="44.6667" width="30.3333" height="22.3333"/>
+   </objectgroup>
+  </tile>
+  <tile id="20">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (9).png" width="32" height="52"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="35.3333" width="31.6667" height="16.6667"/>
+   </objectgroup>
+  </tile>
+  <tile id="36">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (25).png" width="32" height="67"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="45.3333" width="30.6667" height="21.6667"/>
+   </objectgroup>
+  </tile>
+  <tile id="37">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object.png" width="32" height="67"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="45.6667" width="31" height="21.3333"/>
+   </objectgroup>
+  </tile>
+  <tile id="38">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes/object (10).png" width="19" height="64"/>
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="collider" x="0" y="41" width="19" height="23"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="2843" name="chairs" tilewidth="18" tileheight="34" tilecount="4" columns="0" objectalignment="center">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="5">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (5).png" width="18" height="34"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="18" height="34"/>
+   </objectgroup>
+  </tile>
+  <tile id="6">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (6).png" width="18" height="34"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="18" height="34"/>
+   </objectgroup>
+  </tile>
+  <tile id="7">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (7).png" width="18" height="33"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="18" height="33"/>
+   </objectgroup>
+  </tile>
+  <tile id="8">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (8).png" width="18" height="25"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="18" height="25"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="2852" name="tables" tilewidth="42" tileheight="34" tilecount="1" columns="0" objectalignment="center">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image source="../../../client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables/object.png" width="42" height="34"/>
+   <objectgroup>
+    <object id="0" type="collider" x="0" y="0" width="42" height="34"/>
+   </objectgroup>
+  </tile>
+ </tileset>
  <layer id="1" name="ground" width="18" height="22" opacity="0.9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -156,8 +360,8 @@
 0,0,0,0,1880,1881,0,0,0,0,1880,1881,2475,2476,0,0,0,0,
 0,0,0,0,1906,1907,0,0,0,0,1906,1907,2495,2496,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,2515,2516,0,0,0,0,
-0,0,0,2491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2511,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,133,135,2186,133,1210,133,134,262,0,0,260,250,0,0,0,
@@ -167,34 +371,8 @@
 0,0,0,0,0,0,0,1270,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,1270,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,1270,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1209,1209,1209,1209,1360,1359,2289,1361,1209,1209,1209,1209,0,0,0,
+0,0,0,0,0,0,0,1360,1359,2289,1361,0,0,0,0,0,0,0,
 0,0,0,1239,1239,1239,1239,1390,1389,2315,1391,1241,1241,1241,1241,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="6" name="interrior" width="18" height="22">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,3266,3267,3264,3265,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,3301,3302,3299,3300,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,3336,3337,3334,3335,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,3258,3397,3398,3258,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,3258,3432,3433,3258,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,3258,3258,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,2777,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2865,2866,0,2794,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2882,2883,0,2811,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2899,2900,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2833,2834,0,2820,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2850,2851,0,2837,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2829,2830,0,2820,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2846,2847,0,2837,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -215,12 +393,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1790,1791,0,0,0,0,1796,1797,0,0,0,0,0,
-0,0,0,1790,1791,0,1791,1792,1793,1794,1795,1796,1797,1796,1797,0,0,0,
-0,0,0,1790,1791,1792,1821,1822,0,0,1825,1826,1795,1796,1797,0,0,0,
-0,1790,1791,1820,1821,1822,0,0,0,0,1855,1856,1825,1826,1795,1796,1797,0,
-1819,1820,1821,1822,0,0,0,0,0,0,0,0,1855,1856,1825,1826,1827,1828,
-1849,1850,1851,1852,0,0,0,0,0,0,0,0,0,0,1855,1856,1857,1858,
+0,0,0,0,0,1790,0,0,0,0,0,0,1797,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1855,1856,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1855,0,0,0,0,0,
+0,0,1851,1852,0,0,0,0,0,0,0,0,0,0,1855,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -237,6 +415,17 @@
    <point/>
   </object>
  </objectgroup>
+ <objectgroup id="10" name="objects">
+  <object id="7" type="beds" gid="2797" x="129.083" y="432.583" width="64" height="96"/>
+  <object id="11" type="beds" gid="2789" x="133.25" y="540.5" width="64" height="64"/>
+  <object id="12" type="beds" gid="2798" x="207.75" y="517" width="32" height="96"/>
+  <object id="15" type="drobes" gid="2823" x="208.5" y="401" width="32" height="67"/>
+  <object id="16" type="tables" gid="2852" x="353.333" y="274" width="42" height="34"/>
+  <object id="17" type="chairs" gid="2849" x="381.667" y="272.333" width="18" height="34"/>
+  <object id="18" type="chairs" gid="2848" x="332" y="269.667" width="18" height="34"/>
+  <object id="19" type="chairs" gid="2850" x="353.333" y="257.167" width="18" height="33"/>
+  <object id="30" type="drobes" gid="2842" x="112" y="272" width="19" height="64"/>
+ </objectgroup>
  <layer id="7" name="collision" width="18" height="22" visible="0" opacity="0.44">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -244,22 +433,22 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,4095,4101,4101,4101,4101,4101,4101,4101,4101,4101,4101,4101,4101,4095,0,0,
-0,0,4095,0,0,0,4103,4103,4103,4103,0,0,4102,4100,0,4095,0,0,
-0,0,4095,0,0,0,0,0,0,0,4095,4101,4101,4095,0,4095,0,0,
-0,0,4095,4095,0,0,0,0,0,0,4095,4103,4103,4095,0,4095,0,0,
-0,0,4095,0,0,0,0,0,0,0,0,4095,4095,0,0,4095,0,0,
-0,0,4095,0,0,0,0,0,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,0,0,0,0,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4101,4101,0,4101,4095,4101,4101,4107,0,0,4101,4101,4095,0,0,
-0,0,4095,4101,4099,0,4103,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,0,0,0,0,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,0,0,0,0,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4101,4107,0,0,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4103,4104,0,4103,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4101,4107,0,0,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4103,4104,0,4103,4095,0,0,0,0,0,0,0,4095,0,0,
-0,0,4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,4095,0,0,
+0,0,2773,2779,2779,2779,2779,2779,2779,2779,2779,2779,2779,2779,2779,2773,0,0,
+0,0,2773,0,0,0,0,0,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,0,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,0,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,0,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,0,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,2781,2774,0,2776,2773,2781,2781,2778,0,0,2780,2781,2773,0,0,
+0,0,2773,0,2777,0,2778,2773,2779,2779,2778,0,0,2780,2779,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,0,0,0,0,2773,0,0,0,0,0,0,0,2773,0,0,
+0,0,2773,2773,2773,2773,2773,2773,2773,2773,2773,2773,2773,2773,2773,2773,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>

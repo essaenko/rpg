@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="index.js"></script>
+  <style>
+    #app {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    #app label {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        margin-bottom: 5px;
+    }
+
+    #app label input {
+        padding: 2px 5px;
+    }
+
+    #app button {
+        border: 0;
+        background: #e7e7e7;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+
+    #app form {
+        display: flex;
+        width: 100vw;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 40%;
+        box-sizing: border-box;
+    }
+
+    #img-container {
+        position: relative;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    #save {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .canvas-download-item {
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <form>
+      <label for="image">
+        File
+        <input id="image" type="file" placeholder="Select an image">
+      </label>
+      <label for="width">Width <input type="number" placeholder="Tile width" id="width" value="32"></label>
+      <label for="height">Height <input type="number" placeholder="Tile height" id="height" value="32"></label>
+      <Button id="render">Render</Button>
+    </form>
+    <div id="img-container">
+      <canvas id="canvas" style="position: absolute;"></canvas>
+    </div>
+    <button id="save" disabled>Extract</button>
+  </div>
+</body>
+</html>

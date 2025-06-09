@@ -1,6 +1,6 @@
 import { type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
-import { Position } from '@shared/types';
+import { Pointer2D } from '@shared/types';
 
 export class Patrol extends Component {
   constructor() {
@@ -8,12 +8,12 @@ export class Patrol extends Component {
   }
   @type('boolean') empty = true;
 
-  public path: Position[];
-  public starPath: Position[];
-  public starCurrent: Position;
-  public current: Position;
+  public path: Pointer2D[];
+  public starPath: Pointer2D[];
+  public starCurrent: Pointer2D;
+  public current: Pointer2D;
   public active: boolean;
-  public vector: Position;
+  public vector: Pointer2D;
 
   init(state: Record<string, any>): void {}
 }
