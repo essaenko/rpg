@@ -8,6 +8,7 @@ import { TransportEventTypes } from '@shared/types';
 import { Client } from 'colyseus';
 import { Position } from '@server/ecs/components/physics/position';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
+import { DEAD_DOLL_DESPAWN_TIMEOUT } from '@server/utils/game/const';
 
 export class ResurrectionSystem extends System {
   constructor() {
@@ -25,6 +26,7 @@ export class ResurrectionSystem extends System {
 
         if (death.dead && pos && spawn && health) {
           death.dead = false;
+          death.despawn = false;
 
           health.current = health.max;
           pos.x = spawn.point.x;
@@ -40,6 +42,9 @@ export class ResurrectionSystem extends System {
 
       if (health.current === 0 && death.dead === false) {
         death.dead = true;
+        scene.clock.setTimeout(() => {
+          death.despawn = true;
+        }, DEAD_DOLL_DESPAWN_TIMEOUT);
         entity.getAll<Combat>('combat')?.forEach(({ enemy }) => {
           const combat = enemy.getAll<Combat>('combat').find(({ enemy }) => enemy === entity);
 
@@ -53,6 +58,7 @@ export class ResurrectionSystem extends System {
           scene.clock.setTimeout(() => {
             health.current = health.max;
             death.dead = false;
+            death.despawn = false;
           }, 10_000);
         }
       }

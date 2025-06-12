@@ -36,6 +36,7 @@ export class NetworkSystem extends System {
     });
     $(room.state).entities.onRemove((entity: EntitySchema) => {
       container.removeEntity(container.getEntity(entity.id));
+      console.log(`Removing entity ${entity.id}`, container.entities);
     });
   }
 

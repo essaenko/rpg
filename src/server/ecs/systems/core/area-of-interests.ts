@@ -9,6 +9,7 @@ import { AREA_OF_INTEREST_DISTANCE } from '@shared/utils/const';
 import { ClientsService } from '@shared/ecs/service/clients';
 import { NetworkEntity } from '@shared/ecs/entity';
 import { StateView } from '@colyseus/schema';
+import { Death } from '@server/ecs/components/game/mechanics/death';
 
 export class AreaOfInterestsSystem extends System {
   constructor() {
@@ -26,6 +27,11 @@ export class AreaOfInterestsSystem extends System {
         const entities = container
           .query(player, AREA_OF_INTEREST_DISTANCE, ['position', 'body'])
           .filter((it) => it instanceof NetworkEntity)
+          .filter((it) => {
+            const death = it.get<Death>('death');
+
+            return !death?.despawn || player.id === it.id;
+          })
           .toArray();
 
         client.view.clear();

@@ -9,4 +9,5 @@ export class Death extends NetworkComponent {
   }
 
   @type('boolean') dead: boolean = false;
+  public despawn: boolean = false;
 }

@@ -42,7 +42,7 @@ export class SplitFire extends Spell {
   damage(caster: Entity): number {
     const secondaryStats = caster.get<SecondaryStats>('secondary-stats');
 
-    return (secondaryStats.attackPower + 10) / 6;
+    return (secondaryStats.attackPower + 100) / 6;
   }
 
   canCast(caster: Entity, target: Entity): boolean {
