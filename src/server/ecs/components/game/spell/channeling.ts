@@ -3,21 +3,22 @@ import { type } from '@colyseus/schema';
 import { Cast } from '@server/ecs/components/game/spell/cast';
 import { Spell } from '@shared/schemas/game/spell/spell';
 
+type Action = () => void;
+
 export class Channeling extends NetworkComponent {
   @type('number') remains: number = 0;
-  @type(Spell) spell: Spell;
-  public cast: Cast = null;
+  @type(Spell) spell?: Spell;
+  public cast?: Cast = null;
+  public action?: Action;
   public tick: number = null;
 
-  init(state: Record<string, any>): void {
-
-  }
+  init(state: Record<string, any>): void {}
 
   constructor() {
     super('channeling');
   }
 
-  process(duration: number): Cast | null {
+  process(duration: number): Cast | Action | null {
     this.remains = Math.max(0, this.remains - duration);
 
     if (this.tick) {

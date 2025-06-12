@@ -1,12 +1,12 @@
-import { type } from '@colyseus/schema';
+import { entity, type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
 import { Pointer2D } from '@shared/types';
 
+@entity
 export class Patrol extends Component {
   constructor() {
     super('patrol');
   }
-  @type('boolean') empty = true;
 
   public path: Pointer2D[];
   public starPath: Pointer2D[];

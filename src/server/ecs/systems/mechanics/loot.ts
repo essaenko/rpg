@@ -23,10 +23,10 @@ export class LootSystem extends System {
       const inventory = player?.get<Inventory>('inventory');
       const itemID = message[0];
 
-      if (player && loot && itemID && loot.items.some(({ id }) => id === itemID) && inventory) {
-        const item = loot.items.find(({ id }) => id === itemID);
-        inventory.addItem(item);
-        loot.items.splice(loot.items.indexOf(item), 1);
+      if (player && loot && itemID && loot.items.some(({ item: { id } }) => id === itemID) && inventory) {
+        const stack = loot.items.find(({ item: { id } }) => id === itemID);
+        inventory.addItem(stack.item, stack.amount);
+        loot.items.splice(loot.items.indexOf(stack), 1);
 
         if (loot.items.length === 0) {
           player.remove(loot);

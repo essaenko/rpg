@@ -8,5 +8,8 @@ export class CastRequest extends Component {
     super('cast-request');
   }
 
-  init(state: Record<string, any>): void {}
+  init({ spell, target }: { spell: number; target: Entity }): void {
+    this.spell = spell;
+    this.target = target;
+  }
 }

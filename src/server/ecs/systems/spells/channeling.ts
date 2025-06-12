@@ -5,6 +5,7 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Channeling } from '@server/ecs/components/game/spell/channeling';
 import { Appearance } from '@server/ecs/components/game/appearance';
+import { Cast } from '@server/ecs/components/game/spell/cast';
 
 export class ChannelingSystem extends System {
   constructor() {
@@ -25,7 +26,11 @@ export class ChannelingSystem extends System {
           const tickCast = channeling.process(delta * 1000);
 
           if (tickCast) {
-            entity.add(tickCast);
+            if (tickCast instanceof Cast) {
+              entity.add(tickCast);
+            } else {
+              tickCast();
+            }
           }
         }
 

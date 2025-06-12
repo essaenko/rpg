@@ -20,7 +20,14 @@ export class CastRequestSystem extends System {
       const spell = message[0];
       const target = container.getEntity(message?.[1]);
 
-      if (entity && target && spell) {
+      if (
+        entity &&
+        target &&
+        spell &&
+        !entity.has('channeling') &&
+        !entity.has('cast-request') &&
+        !entity.has('cast')
+      ) {
         const castRequest = new CastRequest();
         castRequest.spell = spell;
         castRequest.target = target;

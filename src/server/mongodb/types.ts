@@ -24,6 +24,7 @@ export type ItemSave = {
   factory: string;
   stackable?: boolean;
   maxStack?: number;
+  amount?: number;
 };
 
 export type EquipItemSave = ItemSave & {

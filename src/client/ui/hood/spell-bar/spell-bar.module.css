@@ -7,7 +7,7 @@
   .exp-bar {
     width: 100%;
     height: 10px;
-    background-color: var(--gray);
+    background-color: var(--gray-transparent-transparent);
     border-radius: 5px 5px 0 0;
 
     .exp-filler {
@@ -27,7 +27,7 @@
     .spell {
       width: 65px;
       height: 65px;
-      background: var(--gray);
+      background: var(--gray-transparent);
       border-radius: 5px;
       position: relative;
       color: white;
@@ -60,7 +60,7 @@
 
       .cooldown_hover {
         width: 100%;
-        background: var(--gray);
+        background: var(--gray-transparent);
         position: absolute;
         top: 100%;
         transform: translate(0, -100%);

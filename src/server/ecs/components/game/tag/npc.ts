@@ -1,11 +1,11 @@
-import { type } from '@colyseus/schema';
+import { entity, type } from '@colyseus/schema';
 import { Component, NetworkComponent } from '@shared/ecs/component';
 
+@entity
 export class NPC extends NetworkComponent {
   constructor() {
     super('tag-npc');
   }
-  @type('boolean') empty = true;
 
   serializable = true;
 

@@ -34,6 +34,7 @@ export const isObjectsState = (data: unknown): data is ObjectsStateType => {
 
 export enum InteractionTypes {
   Loot = 1,
+  Gather,
 }
 
 export enum Directions {

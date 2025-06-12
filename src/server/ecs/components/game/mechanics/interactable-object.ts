@@ -5,6 +5,8 @@ export class InteractableObject extends Component {
   public action: InteractionTypes = null;
   public loot: string = null;
   public locked: boolean = false;
+  public releaseAt: number = 0;
+  public lockDuration: number = 0;
 
   constructor() {
     super('interactable-object');

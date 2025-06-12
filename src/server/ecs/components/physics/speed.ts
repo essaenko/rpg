@@ -5,7 +5,6 @@ export class Speed extends NetworkComponent {
   constructor() {
     super('speed');
   }
-  @type('boolean') empty = true;
   serializable = true;
 
   @type('number') speed: number = 1; // 1

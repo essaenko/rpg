@@ -6,28 +6,24 @@ import { usePlayerComponent } from '@client/ui/hooks/component';
 
 import css from './loot.module.css';
 import { Networking } from '@client/services/networking';
+import { BagUI } from '@client/ui/hood/inventory/bag/bag';
+import type { Stack } from '@shared/schemas/game/item/item';
+
 export const LootUI: React.FC = () => {
   const loot = usePlayerComponent<Loot>('loot');
   const room = Networking.instance.room;
 
   const collectItem = useCallback(
-    (id: string) => () => {
-      room.send(TransportEventTypes.PickItem, [id]);
+    (stack: Stack) => {
+      room.send(TransportEventTypes.PickItem, [stack.item.id]);
     },
     [room],
   );
 
   return loot?.items.length ? (
     <div className={css.root}>
-      <div className={css.list}>
-        {loot.items.map((item) => {
-          return (
-            <div className={css.item} key={item.id} onClick={collectItem(item.id)}>
-              {item.name}
-            </div>
-          );
-        })}
-      </div>
+      <h3>Добыча</h3>
+      <BagUI items={loot.items} onClick={collectItem} />
     </div>
   ) : null;
 };

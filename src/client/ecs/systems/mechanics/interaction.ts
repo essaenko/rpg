@@ -31,7 +31,6 @@ export class InteractionSystem extends System {
             ) <= INTERACTION_DISTANCE
           ) {
             scene.room.send(TransportEventTypes.Interaction, [entity.id]);
-            object.locked = true;
           }
         };
         entity.add(action);

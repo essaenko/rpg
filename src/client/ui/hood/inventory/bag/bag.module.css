@@ -1,0 +1,19 @@
+.root {
+    .list {
+        display: grid;
+        grid-template-columns: repeat(5, 64px);
+        grid-template-rows: 64px;
+        gap: 5px;
+
+        &.expanded {
+            grid-template-rows: repeat(5, 64px);
+        }
+
+        .item {
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
