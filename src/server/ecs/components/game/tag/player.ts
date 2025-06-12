@@ -1,8 +1,8 @@
-import { type } from '@colyseus/schema';
+import { entity, type } from '@colyseus/schema';
 import { Component, NetworkComponent } from '@shared/ecs/component';
 
+@entity
 export class Player extends NetworkComponent {
-  @type('boolean') empty = true;
   constructor() {
     super('tag-player');
   }

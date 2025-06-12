@@ -1,4 +1,4 @@
-import { type } from '@colyseus/schema';
+import { entity } from '@colyseus/schema';
 import { Scene } from '@server/core/scene/scene';
 import { Damage } from '@server/ecs/components/game/spell/damage';
 import { Resource } from '@server/ecs/components/game/stats/resource/resource';
@@ -9,14 +9,13 @@ import { Spell } from '@server/mechanics/spells/spell';
 import { Relation } from '@shared/types';
 import { Spells } from '@shared/utils/spells';
 
+@entity
 export class Shot extends Spell {
   constructor() {
-    super(Spells.Shot, 10, 5, 10, 1, [Relation.Neutral, Relation.Hostile]);
+    super(Spells.Shot, 10, 5, 5, 1, [Relation.Neutral, Relation.Hostile]);
     this.name = 'Бросок метательного ножа';
     this.description = 'Прицельный бросок метательного ножа.';
   }
-
-  @type('boolean') empty2 = true;
   cast(caster: Entity, target: Entity, scene: Scene): void {
     const projectile = this.getProjectile({
       width: 32,

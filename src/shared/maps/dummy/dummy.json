@@ -798,7 +798,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -821,7 +826,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -844,7 +854,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -867,7 +882,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -890,7 +910,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -913,7 +938,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -936,7 +966,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -959,7 +994,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -982,7 +1022,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -1005,7 +1050,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -1028,7 +1078,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -1051,7 +1106,12 @@
                         {
                          "name":"action",
                          "type":"string",
-                         "value":"collect"
+                         "value":"gather"
+                        }, 
+                        {
+                         "name":"lock-duration",
+                         "type":"int",
+                         "value":180
                         }, 
                         {
                          "name":"value",
@@ -1064,18 +1124,6 @@
                  "width":32,
                  "x":64.5,
                  "y":120.5
-                }, 
-                {
-                 "gid":686,
-                 "height":32,
-                 "id":79,
-                 "name":"",
-                 "rotation":0,
-                 "type":"ground_dec_props",
-                 "visible":true,
-                 "width":32,
-                 "x":32.5,
-                 "y":346.5
                 }],
          "opacity":1,
          "type":"objectgroup",

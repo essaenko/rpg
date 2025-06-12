@@ -8,6 +8,7 @@ import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Position } from '@server/ecs/components/physics/position';
 import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Scene } from '@server/core/scene/scene';
+import { COMMON_SPELLS } from '@shared/utils/const';
 
 export abstract class Spell extends Schema {
   /**
@@ -20,7 +21,7 @@ export abstract class Spell extends Schema {
    * @param relation Target relation that spell can be cast onto
    * @param [tick] Describes when need to process cast while channeling spell in seconds.
    */
-  constructor(
+  protected constructor(
     name: number,
     cost: number,
     cooldown: number,
@@ -68,10 +69,11 @@ export abstract class Spell extends Schema {
     const death = target.get<Death>('death');
 
     return (
-      !death.dead &&
+      !death?.dead &&
       !this.cooldownTime &&
       getDistance(caster.get<Position>('position'), target.get<Position>('position')) <= this.range &&
-      spellBook.spells.has(this.id.toString()) &&
+      // NOTE: toString call here cause MapSchema using only string keys at the time
+      (spellBook.spells.has(this.id.toString()) || COMMON_SPELLS.has(this.id)) &&
       this.relation.includes(getRelation(f1, f2))
     );
   }

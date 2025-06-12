@@ -216,19 +216,27 @@ export class DynamicallyLoadableScene extends Scene {
         if (object.properties) {
           if (object.properties.some((p) => p.name === 'action')) {
             const action = object.properties.find((p) => p.name === 'action');
+            const comp = new InteractableObject();
+            const loot = object.properties.find((p) => p.name === 'value');
+            const lockDuration = object.properties.find((p) => p.name === 'lock-duration');
 
-            switch (action.value) {
-              case 'collect': {
-                const loot = object.properties.find((p) => p.name === 'value');
-
-                if (loot) {
-                  const comp = new InteractableObject();
-                  comp.action = InteractionTypes.Loot;
-                  comp.loot = loot.value as string;
-                  entity.add(comp);
+            if (loot) {
+              switch (action.value) {
+                case 'gather': {
+                  comp.action = InteractionTypes.Gather;
+                  break;
                 }
-                break;
+                case 'loot': {
+                  comp.action = InteractionTypes.Loot;
+                  break;
+                }
               }
+              comp.loot = loot.value as string;
+
+              if (lockDuration && typeof lockDuration.value === 'number') {
+                comp.lockDuration = lockDuration.value;
+              }
+              entity.add(comp);
             }
           }
         }

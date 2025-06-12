@@ -22,7 +22,7 @@
   top: 20vh;
   width: 300px;
   flex-direction: column;
-  background: var(--gray);
+  background: var(--gray-transparent);
   color: white;
   padding: 10px;
 

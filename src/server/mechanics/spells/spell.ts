@@ -1,4 +1,4 @@
-import { Spell as SpellBase} from '@shared/schemas/game/spell/spell';
+import { Spell as SpellBase } from '@shared/schemas/game/spell/spell';
 import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { Appearance } from '@server/ecs/components/game/appearance';
 import { Body } from '@server/ecs/components/physics/body';
@@ -9,7 +9,7 @@ import { Velocity } from '@server/ecs/components/physics/velocity';
 import { Speed } from '@server/ecs/components/physics/speed';
 import { nanoid } from 'nanoid';
 import { Animation } from '@shared/types';
-import { type } from '@colyseus/schema';
+import { entity } from '@colyseus/schema';
 
 type ProjectileConfig = {
   width: number;
@@ -18,10 +18,10 @@ type ProjectileConfig = {
   y: number;
   speed: number;
   target: Entity;
-}
+};
 
+@entity
 export abstract class Spell extends SpellBase {
-  @type('boolean') empty = true;
   getProjectile({ width, height, x, y, speed, target }: ProjectileConfig) {
     const projectile = new NetworkEntity();
     const a = new Appearance();

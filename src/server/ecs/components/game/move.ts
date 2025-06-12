@@ -1,12 +1,11 @@
-import { type } from '@colyseus/schema';
+import { entity, type } from '@colyseus/schema';
 import { Component } from '@shared/ecs/component';
 
+@entity
 export class Move extends Component {
   constructor() {
     super('move');
   }
-
-  @type('boolean') empty = true;
 
   serializable = true;
 

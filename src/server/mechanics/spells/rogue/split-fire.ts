@@ -5,19 +5,18 @@ import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
 import { Damage } from '@server/ecs/components/game/spell/damage';
 import { Spells } from '@shared/utils/spells';
-import { type } from '@colyseus/schema';
+import { entity } from '@colyseus/schema';
 import { Scene } from '@server/core/scene/scene';
 import { Position } from '@server/ecs/components/physics/position';
 import { Trigger } from '@server/ecs/components/trigger/trigger';
 
+@entity
 export class SplitFire extends Spell {
   constructor() {
-    super(Spells.SplitFire, 0, 5, 10, 3, [Relation.Hostile, Relation.Neutral], 0.5);
+    super(Spells.SplitFire, 0, 5, 5, 3, [Relation.Hostile, Relation.Neutral], 0.5);
     this.name = 'Залп стрел';
     this.description = 'Совершает выстрел из оружия каждые 0.5 секунды в течении 3 секунд';
   }
-
-  @type('boolean') empty2 = true;
 
   cast(caster: Entity, target: Entity, scene: Scene): void {
     const projectile = this.getProjectile({

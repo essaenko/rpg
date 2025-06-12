@@ -677,77 +677,88 @@
   </object>
   <object id="67" type="ground_dec_props" gid="687" x="338.5" y="751.833" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="68" type="ground_dec_props" gid="687" x="694.5" y="758" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="69" type="ground_dec_props" gid="684" x="953" y="808.5" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="70" type="ground_dec_props" gid="683" x="960.333" y="699" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="71" type="ground_dec_props" gid="683" x="367.5" y="649" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="72" type="ground_dec_props" gid="683" x="78.6818" y="617.864" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="73" type="ground_dec_props" gid="684" x="385.136" y="466.409" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="74" type="ground_dec_props" gid="684" x="179.409" y="340.364" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="75" type="ground_dec_props" gid="685" x="128.5" y="222.5" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="76" type="ground_dec_props" gid="687" x="352" y="178.5" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="77" type="ground_dec_props" gid="686" x="208" y="65" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
   <object id="78" type="ground_dec_props" gid="686" x="64.5" y="120.5" width="32" height="32">
    <properties>
-    <property name="action" value="collect"/>
+    <property name="action" value="gather"/>
+    <property name="lock-duration" type="int" value="180"/>
     <property name="value" value="9VqaAzUcK"/>
    </properties>
   </object>
-  <object id="79" type="ground_dec_props" gid="686" x="32.5" y="346.5" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="locations">
   <object id="1" type="spawn" x="768.5" y="896">

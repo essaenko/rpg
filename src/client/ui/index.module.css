@@ -14,6 +14,7 @@
 
 :root {
   --light-gray: #e7e7e7;
-  --gray: rgba(0, 0, 0, .5);
+  --gray: gray;
+  --gray-transparent: rgba(0, 0, 0, .5);
   --black: rgba(0, 0, 0, .9);
 }

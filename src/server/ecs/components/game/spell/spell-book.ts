@@ -2,6 +2,7 @@ import { MapSchema, type } from '@colyseus/schema';
 import { NetworkComponent } from '@shared/ecs/component';
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { isSpellName, map } from '@server/mechanics/spells/map';
+import { COMMON_SPELLS } from '@shared/utils/const';
 
 export class SpellBook extends NetworkComponent {
   constructor() {
@@ -12,11 +13,11 @@ export class SpellBook extends NetworkComponent {
 
   @type({ map: Spell }) spells = new MapSchema<Spell>();
 
-  init(state: Record<string, any>): void {
-    const spells = state.spells;
+  init(state: { spells: number[] }): void {
+    const { spells } = state;
 
     if (spells && Array.isArray(spells)) {
-      spells.forEach((spell) => {
+      [...spells, ...COMMON_SPELLS].forEach((spell) => {
         if (isSpellName(spell)) {
           const Factory = map[spell];
           this.spells.set(spell.toString(), new Factory());

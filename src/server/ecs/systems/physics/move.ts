@@ -56,6 +56,10 @@ export class MoveSystem extends System {
           if (entity.has('channeling')) {
             entity.remove('channeling');
           }
+
+          if (entity.has('loot')) {
+            entity.remove('loot');
+          }
         }
 
         this.setAppearanceAnimationKey(vector, appearance);

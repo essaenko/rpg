@@ -4,5 +4,9 @@ export enum Spells {
   Hot,
   Dot,
   Shot,
-  SplitFire
+  SplitFire,
+
+  //Common Spells
+  Gather,
+  Loot,
 }
