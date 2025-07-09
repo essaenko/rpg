@@ -1,0 +1,29 @@
+.root {
+    background: var(--gray);
+
+    .list {
+        display: grid;
+        grid-template-columns: repeat(2, 245px);
+        grid-auto-rows: 50px;
+        gap: 10px;
+
+        .spell {
+            display: flex;
+            align-items: center;
+
+            .spell_icon {
+                width: 48px;
+                height: 48px;
+                margin: 1px 5px 1px 1px;
+                background: var(--gray-transparent);
+                border-radius: 4px;
+                overflow: hidden;
+
+                img {
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+        }
+    }
+}

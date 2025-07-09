@@ -2,7 +2,7 @@ import { System } from './system';
 import { Pointer2D, TransportEventTypes } from '../types';
 import { Client } from '@colyseus/core';
 import { Entity } from './entity';
-import { Scene } from '../../server/core/scene/scene';
+import { Scene } from '@server/core/scene/scene';
 import { Service } from '@shared/ecs/service/service';
 import { QuadTree } from './tree';
 

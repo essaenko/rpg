@@ -3,7 +3,7 @@ import path from 'path';
 import { assets as assetsURIs, maps } from '@shared/maps/mapping';
 import { MapPackage, MultipleSpriteAsset } from '@client/utils/types';
 
-const clientPath = path.resolve(__dirname, '../client');
+const clientPath = path.resolve(__dirname, '../../client');
 const imports: Map<string, string> = new Map();
 const packages: Map<string, MapPackage> = new Map();
 
@@ -13,10 +13,15 @@ for (let key in maps) {
   const assets: MapPackage['assets'] = [];
 
   for (let set of tilesets) {
+    if ('source' in set) {
+      console.warn('Process map files with "inclide-external-tilesets" script first!');
+
+      process.exit(1);
+    }
     const isSingleImageTileset = !!set.image;
 
     if (isSingleImageTileset) {
-      const asset = `@client/${path.relative(clientPath, path.resolve(__dirname, '../client', `./${set.image.split('client')[1]}`))}`;
+      const asset = `@client/${path.relative(clientPath, path.resolve(__dirname, '../../client', `./${set.image.split('client')[1]}`))}`;
       const assetImport = `import ${set.name.replaceAll('-', '_')}Asset from '${asset}';`;
       imports.set(set.name, assetImport);
 
@@ -34,11 +39,11 @@ for (let key in maps) {
         key: set.name,
         type: 'multiple',
         frames: [],
-      }
-      for(let i = 0; i < set.tiles.length; i++) {
+      };
+      for (let i = 0; i < set.tiles.length; i++) {
         const tile = set.tiles[i];
         if (tile.image) {
-          const assetPath = `@client/${path.relative(clientPath, path.resolve(__dirname, '../client', `./${tile.image.split('client')[1]}`))}`;
+          const assetPath = `@client/${path.relative(clientPath, path.resolve(__dirname, '../../client', `./${tile.image.split('client')[1]}`))}`;
           const assetImport = `import ${set.name.replaceAll('-', '_')}Tile${i}Asset from '${assetPath}';`;
           imports.set(`${set.name}Tile${i}`, assetImport);
 
@@ -49,7 +54,7 @@ for (let key in maps) {
               frameWidth: tile.imagewidth,
               frameHeight: tile.imageheight,
             },
-          })
+          });
         }
       }
       assets.push(asset);
@@ -90,13 +95,21 @@ export const map: Record<string, MapPackage> = {
           (asset) => `{
         key: '${asset.key}',
         type: '${asset.type}',
-        ${asset.type === 'sprite' ? `asset: ${asset.asset},
-        config: ${JSON.stringify(asset.config)}` : `frames: [${asset.frames.map(({ id, asset, config }) => `{
+        ${
+          asset.type === 'sprite'
+            ? `asset: ${asset.asset},
+        config: ${JSON.stringify(asset.config)}`
+            : `frames: [${asset.frames
+                .map(
+                  ({ id, asset, config }) => `{
           id: ${id},
           asset: ${asset},
           config: ${JSON.stringify(config)}
-          }`).join(',')}
-        ]`}
+          }`,
+                )
+                .join(',')}
+        ]`
+        }
         }`,
         )
         .join(',')}]

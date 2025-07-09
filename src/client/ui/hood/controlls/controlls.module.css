@@ -5,6 +5,13 @@
   padding: 10px;
   background: 10px;
 
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 56px);
+    grid-template-rows: repeat(1, 56px);
+    gap: 5px;
+  }
+
   button {
     cursor: inherit;
   }

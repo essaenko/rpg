@@ -123,4 +123,32 @@ export class Quest extends Schema {
       }
     }
   }
+
+  public addRequirement(type: QuestRequirementType, id: string, amount: number) {
+    const req = new QuestRequirement();
+    req.type = type;
+    req.amount = amount;
+    req.req_id = id;
+    req.progress = 0;
+
+    this.requirements.push(req);
+  }
+
+  public addReward(type: QuestRewardTypes, amount: number, id?: string, optional?: boolean) {
+    const reward = new QuestReward();
+    reward.type = type;
+    reward.amount = amount;
+    reward.rew_id = id;
+    reward.optional = optional;
+
+    this.rewards.push(reward);
+  }
+
+  public addCondition(level?: number, quest?: string) {
+    const condition = new QuestCondition();
+    condition.level = level;
+    condition.quest = quest;
+
+    this.conditions.push(condition);
+  }
 }

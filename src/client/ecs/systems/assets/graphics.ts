@@ -12,13 +12,18 @@ import { Pointer } from '@client/ecs/components/physics/pointer';
 import { TargetHighlight } from '@client/ecs/components/game/visual/target-highlight';
 import { DEFAULT_LERP_VALUE, COLORS } from '@client/utils/const';
 import { Resource } from '@client/ecs/components/game/stats/resource';
-import { getResourceColor } from '@client/utils/getters';
+import { getHealthColor, getResourceColor } from '@client/utils/getters';
+import { Relation } from '@shared/types';
+import { getRelation } from '@shared/utils/fractions';
+import { Fraction } from '@client/ecs/components/game/mechanics/fraction';
 
 export class GraphicsSystem extends System {
   constructor() {
     super('graphics');
   }
   onUpdate(scene: WorldScene, container: ECSContainer) {
+    const player = container.getEntity(scene.room.sessionId);
+
     container.query(['target-highlight']).forEach((entity) => {
       const highlight = entity.get<TargetHighlight>('target-highlight');
       const position = entity.get<Position>('position');
@@ -31,8 +36,8 @@ export class GraphicsSystem extends System {
       if (body && position && !isCurrentPlayer) {
         if (!highlight.rect) {
           const round = scene.add.image(0, 0, 'target_round');
-          round.displayWidth = body.width * .7;
-          round.displayHeight = body.height * .35;
+          round.displayWidth = body.width * 0.7;
+          round.displayHeight = body.height * 0.35;
           round.setPosition(position.x, position.y);
           highlight.rect = round;
         }
@@ -51,8 +56,8 @@ export class GraphicsSystem extends System {
       }
 
       if (pointer.x !== pointer.frame.x || pointer.y !== pointer.frame.y) {
-        pointer.frame.x = Phaser.Math.Linear(pointer.frame.x, pointer.x,DEFAULT_LERP_VALUE);
-        pointer.frame.y = Phaser.Math.Linear(pointer.frame.y, pointer.y,DEFAULT_LERP_VALUE);
+        pointer.frame.x = Phaser.Math.Linear(pointer.frame.x, pointer.x, DEFAULT_LERP_VALUE);
+        pointer.frame.y = Phaser.Math.Linear(pointer.frame.y, pointer.y, DEFAULT_LERP_VALUE);
       }
     });
     container.query(['health', 'position', 'body', 'health-frame', 'appearance']).forEach((entity) => {
@@ -62,7 +67,6 @@ export class GraphicsSystem extends System {
       const health = entity.get<Health>('health');
       const resource = entity.get<Resource>('resource');
       const body = entity.get<Body>('body');
-      const player = container.getEntity(scene.room.sessionId);
       const width = Math.max(body.width, 60);
 
       let hfcContainer = appearance.sprites.getByName('health_frame') as Container | null;
@@ -74,7 +78,13 @@ export class GraphicsSystem extends System {
         graphics.name = 'hfc_graphics';
         hfcContainer.add(graphics);
         graphics.setData({ health: health.current, resource: resource.current });
-        this.drawHealthFrame(graphics, health, resource, width);
+        this.drawHealthFrame(
+          graphics,
+          health,
+          resource,
+          width,
+          getRelation(entity.get<Fraction>('fraction')?.fraction, player?.get<Fraction>('fraction')?.fraction),
+        );
 
         appearance.sprites.add(hfcContainer);
       } else {
@@ -89,7 +99,13 @@ export class GraphicsSystem extends System {
               resource: Phaser.Math.Linear(lastResource, resource.current, 0.1),
             });
 
-            this.drawHealthFrame(g, health, resource, width);
+            this.drawHealthFrame(
+              g,
+              health,
+              resource,
+              width,
+              getRelation(entity.get<Fraction>('fraction')?.fraction, player?.get<Fraction>('fraction')?.fraction),
+            );
           }
         }
 
@@ -98,14 +114,20 @@ export class GraphicsSystem extends System {
     });
   }
 
-  drawHealthFrame(graphics: GameObjects.Graphics, health: Health, resource: Resource, width: number) {
+  drawHealthFrame(
+    graphics: GameObjects.Graphics,
+    health: Health,
+    resource: Resource,
+    width: number,
+    relation: Relation,
+  ) {
     const { health: cHealth, resource: cResource } = graphics.data.values;
     graphics.clear();
     //Background
     graphics.fillStyle(0x00, 1);
     graphics.fillRoundedRect(0, 0, width, 9, 2);
     //Health
-    graphics.fillStyle(0x8a0303, 1);
+    graphics.fillStyle(getHealthColor(relation), 1);
     graphics.fillRoundedRect(1, 1, (width - 2) * (cHealth / health.max), 4, 2);
     //Resource
     graphics.fillStyle(getResourceColor(resource), 1);

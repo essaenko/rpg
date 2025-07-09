@@ -59,7 +59,7 @@ export class ResurrectionSystem extends System {
             health.current = health.max;
             death.dead = false;
             death.despawn = false;
-          }, 10_000);
+          }, 30_000);
         }
       }
     });

@@ -25,6 +25,42 @@
             "scaleInDock": 1,
             "scaleInEditor": 3
         },
+        "builder/house-builder.tmx": {
+            "scale": 1,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": -71.5,
+                "y": 173.5
+            }
+        },
+        "builder/house-builder.tmx#FL_Houses_decoratives": {
+            "scaleInDock": 1
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_Walls": {
+            "scaleInDock": 1
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_building elements": {
+            "scaleInDock": 1
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_roofsA1": {
+            "scaleInDock": 0.5
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_roofsA2": {
+            "scaleInDock": 0.5
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_roofsA3": {
+            "scaleInDock": 0.5
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_roofsB": {
+            "scaleInDock": 0.75
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_side_Roofs": {
+            "scaleInDock": 0.5
+        },
+        "builder/house-builder.tmx#FL_Houses_ext_terrain_floors": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
         "dummy/dummy-house.json": {
             "scale": 0.9936035156249999,
             "selectedLayer": 0,
@@ -56,15 +92,15 @@
         },
         "dummy/dummy-house.tmx": {
             "expandedObjectLayers": [
+                10,
                 8,
-                9,
-                10
+                9
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 274,
-                "y": 392.66666666666663
+                "x": 284,
+                "y": 442.5
             }
         },
         "dummy/dummy-house.tmx#beds": {
@@ -145,23 +181,20 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx": {
-            "expandedGroupLayers": [
-                12
-            ],
             "expandedObjectLayers": [
+                5,
+                6,
                 11,
                 12,
                 13,
                 14,
-                16,
-                5,
-                6
+                16
             ],
-            "scale": 4,
+            "scale": 0.33,
             "selectedLayer": 7,
             "viewCenter": {
                 "x": 800,
-                "y": 799.875
+                "y": 798.4848484848485
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -261,13 +294,108 @@
         },
         "rules/tree_decoration_rules.tmx#ground_dec_props": {
             "scaleInDock": 1
+        },
+        "tilesets/decorations.json": {
+            "dynamicWrapping": true
+        },
+        "tilesets/dummy-tile.json": {
+            "scaleInEditor": 1
+        },
+        "tilesets/dummy-tile.tsx": {
+            "scaleInEditor": 1
+        },
+        "tilesets/ground.json": {
+            "scaleInEditor": 1
+        },
+        "tilesets/ground.tsx": {
+            "scaleInDock": 1
+        },
+        "tilesets/hills.json": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "tilesets/hills.tsx": {
+            "scaleInDock": 1
+        },
+        "tilesets/houses.json": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "tilesets/tree.json": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/tree.tsx": {
+            "scaleInEditor": 1
+        },
+        "tilesets/tree_1_2.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/tree_2.json": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 0.75
+        },
+        "tilesets/tree_2_2.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/water_env.json": {
+            "scaleInEditor": 1
+        },
+        "tilesets/water_env.tsx": {
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.json": {
+            "scale": 0.46423828124999994,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 257.4109133745635,
+                "y": -770.0786739029829
+            }
+        },
+        "zavrazye/zavrazye.json#bridges_and_fences": {
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 0.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 128,
+                "y": -1017
+            }
+        },
+        "zavrazye/zavrazye.tmx#bridges_and_fences": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.tmx#dummy-tile": {
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.tmx#ground": {
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.tmx#hills": {
+            "scaleInDock": 1
+        },
+        "zavrazye/zavrazye.tmx#houses": {
+            "dynamicWrapping": true
+        },
+        "zavrazye/zavrazye.tmx#water_env": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/dummy",
-    "last.externalTilesetPath": "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands",
-    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/interrior/Furnitures/drobes",
-    "lastUsedTilesetExportFilter": "Все файлы (*)",
-    "map.fixedSize": true,
+    "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/zavrazye",
+    "last.externalTilesetPath": "/home/essaenko/projects/rpg/src/shared/maps/tilesets",
+    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands",
+    "lastUsedTilesetExportFilter": "JSON файлы с наборами тайлов (*.tsj *.json)",
+    "map.fixedSize": false,
     "map.height": 5,
     "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
@@ -279,18 +407,25 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "dummy/dummy-house.tmx",
-        "dummy/dummy.tmx",
-        "/home/essaenko/projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
-        "dummy/dummy.json",
-        "/home/evgeniy/Projects/rpg/src/client/assets/tilesets/fantasy-lands/ground.tsx",
-        "rules/rules.tmx",
-        "rules/tree_decoration_rules.tmx",
-        "interborder/interborder.tmx",
-        "dummy/dummy-house.json"
+        "tilesets/tree_1_2.json",
+        "tilesets/tree_2.json",
+        "tilesets/tree_2_2.json",
+        "tilesets/houses.json",
+        "tilesets/hills.json",
+        "tilesets/ground.json",
+        "tilesets/dummy-tile.json",
+        "tilesets/water_env.json",
+        "zavrazye/zavrazye.tmx",
+        "zavrazye/zavrazye.json",
+        "tilesets/tree.json",
+        "tilesets/tree.tsx"
     ],
-    "tileset.embedInMap": true,
+    "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Файлы набора тайлов Tiled (*.tsx *.xml)",
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.type": 1
+    "tileset.lastUsedFormat": "json",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    },
+    "tileset.type": 0
 }

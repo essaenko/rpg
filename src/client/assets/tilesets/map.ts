@@ -48,9 +48,17 @@ import chairsTile2Asset from '@client/assets/tilesets/fantasy-lands/interrior/Fu
 import chairsTile3Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/chairs/object (8).png';
 import tablesTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables/object.png';
 import dummy_house_json_map from '@shared/maps/dummy/dummy-house.json?url';
-import tree_aAsset from '@client/assets/tilesets/fantasy-lands/Tree_A_v1.png';
-import tree_bAsset from '@client/assets/tilesets/fantasy-lands/Tree_B_v1.png';
-import interborder_json_map from '@shared/maps/interborder/interborder.json?url';
+import bridges_and_fencesAsset from '@client/assets/tilesets/fantasy-lands/bridges_and_fences.png';
+import housesTile0Asset from '@client/assets/tilesets/fantasy-lands/houses/small_house.png';
+import housesTile1Asset from '@client/assets/tilesets/fantasy-lands/houses/small_house_2.png';
+import housesTile2Asset from '@client/assets/tilesets/fantasy-lands/houses/mideum_house.png';
+import decorationsTile0Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object.png';
+import decorationsTile1Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (1).png';
+import decorationsTile2Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (2).png';
+import decorationsTile3Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (3).png';
+import decorationsTile4Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (4).png';
+import decorationsTile5Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (5).png';
+import zavrazye_json_map from '@shared/maps/zavrazye/zavrazye.json?url';
 
 import { MapPackage } from '@client/utils/types';
 
@@ -291,12 +299,17 @@ export const map: Record<string, MapPackage> = {
         ]
         }]
     },
-'interborder': {
+'zavrazye': {
       map: {
-        key: 'interborder-tiled-map',
-        asset: interborder_json_map
+        key: 'zavrazye-tiled-map',
+        asset: zavrazye_json_map
       },
       assets: [{
+        key: 'bridges_and_fences',
+        type: 'sprite',
+        asset: bridges_and_fencesAsset,
+        config: {"frameWidth":32,"frameHeight":32}
+        },{
         key: 'ground',
         type: 'sprite',
         asset: groundAsset,
@@ -307,30 +320,66 @@ export const map: Record<string, MapPackage> = {
         asset: hillsAsset,
         config: {"frameWidth":32,"frameHeight":32}
         },{
-        key: 'tree_a',
-        type: 'sprite',
-        asset: tree_aAsset,
-        config: {"frameWidth":128,"frameHeight":128}
-        },{
-        key: 'tree_b',
-        type: 'sprite',
-        asset: tree_bAsset,
-        config: {"frameWidth":160,"frameHeight":176}
-        },{
-        key: 'ground_dec_props',
-        type: 'sprite',
-        asset: ground_dec_propsAsset,
-        config: {"frameWidth":32,"frameHeight":32}
-        },{
-        key: 'decorations_medium',
-        type: 'sprite',
-        asset: decorations_mediumAsset,
-        config: {"frameWidth":64,"frameHeight":64}
-        },{
         key: 'water_env',
         type: 'sprite',
         asset: water_envAsset,
         config: {"frameWidth":32,"frameHeight":32}
+        },{
+        key: 'houses',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: housesTile0Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 1,
+          asset: housesTile1Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 2,
+          asset: housesTile2Asset,
+          config: {"frameWidth":416,"frameHeight":288}
+          }
+        ]
+        },{
+        key: 'decorations',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: decorationsTile0Asset,
+          config: {"frameWidth":62,"frameHeight":52}
+          },{
+          id: 1,
+          asset: decorationsTile1Asset,
+          config: {"frameWidth":62,"frameHeight":52}
+          },{
+          id: 2,
+          asset: decorationsTile2Asset,
+          config: {"frameWidth":52,"frameHeight":48}
+          },{
+          id: 3,
+          asset: decorationsTile3Asset,
+          config: {"frameWidth":52,"frameHeight":48}
+          },{
+          id: 4,
+          asset: decorationsTile4Asset,
+          config: {"frameWidth":55,"frameHeight":59}
+          },{
+          id: 5,
+          asset: decorationsTile5Asset,
+          config: {"frameWidth":55,"frameHeight":59}
+          }
+        ]
+        },{
+        key: 'dummy-tile',
+        type: 'sprite',
+        asset: dummy_tileAsset,
+        config: {"frameWidth":32,"frameHeight":32}
+        },{
+        key: 'tree',
+        type: 'sprite',
+        asset: treeAsset,
+        config: {"frameWidth":128,"frameHeight":128}
         }]
     }
 };

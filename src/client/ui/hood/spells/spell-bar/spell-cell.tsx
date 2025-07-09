@@ -1,4 +1,3 @@
-import { Spell } from '@shared/schemas/game/spell/spell';
 import React, { useMemo } from 'react';
 
 import css from './spell-bar.module.css';
@@ -9,19 +8,7 @@ import { Keys, SpellPanel } from '@client/utils/types';
 import { InputService } from '@client/services/input';
 import { usePlayerComponent } from '@client/ui/hooks/component';
 import { SpellBook } from '@client/ecs/components/game/spells/spell-book';
-
-const SpellTooltip = ({ spell }: { spell: Spell }) => {
-  return (
-    <div>
-      <div>
-        <h2 className={css.spell_name}>{spell.name}</h2>
-        <p className={css.spell_description}>{spell.description}</p>
-        {(spell.castTime || null) && <p>Время произнесения: {spell.castTime / 1000} сек.</p>}
-        <span>Перезарядка: {spell.cooldown / 1000} сек.</span>
-      </div>
-    </div>
-  );
-};
+import { SpellTooltip } from '@client/ui/hood/spells/spell-tooltip/spell-tooltip';
 
 export const SpellCell = ({ keyBind }: { cell: SpellPanel | null; keyBind: Keys }) => {
   const bind = useMemo(() => InputService.instance().getSpellBinding(keyBind), [keyBind]);
@@ -32,7 +19,7 @@ export const SpellCell = ({ keyBind }: { cell: SpellPanel | null; keyBind: Keys 
     <div className={css.spell}>
       <span className={css.key}>{keyBindToChar(keyBind)}</span>
       {spell && (
-        <Tooltip className={css.spell_tooltip} tooltip={<SpellTooltip spell={spell} />}>
+        <Tooltip className={css.tooltip} tooltip={<SpellTooltip spell={spell} />}>
           <div
             className={css.cooldown_hover}
             style={{ height: `${((spell.cooldownTime ?? 0) / spell.cooldown) * 100}%` }}

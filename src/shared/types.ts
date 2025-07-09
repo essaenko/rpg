@@ -80,6 +80,9 @@ export enum ResourceType {
 
 export enum Class {
   Warrior = 1,
+  Sage,
+  Mage,
+  Hunter,
 }
 
 export enum EquipSlot {

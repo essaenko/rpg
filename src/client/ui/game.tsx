@@ -9,7 +9,7 @@ import Center = Phaser.Scale.Center;
 import { PlayerContext } from './context/player.context';
 import { Entity } from '@client/core/ecs/entity/entity';
 import { StatusBar } from './hood/status-bar/status-bar';
-import { SpellBar } from './hood/spell-bar/spell-bar';
+import { SpellBar } from '@client/ui/hood/spells/spell-bar/spell-bar';
 import { LootUI } from '@client/ui/hood/inventory/loot/loot';
 import { Controlls } from './hood/controlls/controlls';
 import { QuestRequestUI } from './hood/quest/quest-dialog';
