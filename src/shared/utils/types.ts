@@ -51,17 +51,17 @@ export type TiledMapLayer = {
 };
 
 export type TiledMapTileset = {
-  columns: number;
+  columns?: number;
   firstgid: number;
   image?: string;
   imageheight?: number;
   imagewidth?: number;
-  margin: number;
-  name: string;
-  spacing: number;
-  tilecount: number;
-  tileheight: number;
-  tilewidth: number;
+  margin?: number;
+  name?: string;
+  spacing?: number;
+  tilecount?: number;
+  tileheight?: number;
+  tilewidth?: number;
   tiles?: TiledMapTilesetTile[];
 };
 

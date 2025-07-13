@@ -7,14 +7,15 @@
     },
  "margin":0,
  "name":"houses",
+ "objectalignment":"center",
  "spacing":0,
- "tilecount":3,
+ "tilecount":7,
  "tiledversion":"1.11.1-99-gec89c545",
  "tileheight":288,
  "tiles":[
         {
          "id":0,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/houses\/small_house.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/small_house.png",
          "imageheight":224,
          "imagewidth":192,
          "objectgroup":
@@ -42,7 +43,7 @@
         }, 
         {
          "id":1,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/houses\/small_house_2.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/small_house_2.png",
          "imageheight":224,
          "imagewidth":192,
          "objectgroup":
@@ -70,13 +71,12 @@
         }, 
         {
          "id":2,
-         "image":"..\/..\/..\/client\/assets\/tilesets\/fantasy-lands\/houses\/mideum_house.png",
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/mideum_house.png",
          "imageheight":288,
          "imagewidth":416,
          "objectgroup":
             {
              "draworder":"index",
-             "id":4,
              "name":"",
              "objects":[
                     {
@@ -89,6 +89,119 @@
                      "width":347.333333333333,
                      "x":17.3333333333333,
                      "y":58
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":3,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/darias_house.png",
+         "imageheight":224,
+         "imagewidth":192,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":146.5,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":155.5,
+                     "x":17,
+                     "y":76.5
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":4,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/prohors_house.png",
+         "imageheight":192,
+         "imagewidth":256,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":99,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":139.333333333333,
+                     "x":59,
+                     "y":93
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":5,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/makars_house.png",
+         "imageheight":192,
+         "imagewidth":192,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":91,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":141.333333333333,
+                     "x":25.3333333333333,
+                     "y":99.3333333333333
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":6,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/nastasyas_house.png",
+         "imageheight":224,
+         "imagewidth":256,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":115.333333333333,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":175,
+                     "x":24.6666666666667,
+                     "y":76
                     }],
              "opacity":1,
              "type":"objectgroup",

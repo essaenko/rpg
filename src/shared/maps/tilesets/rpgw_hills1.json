@@ -1,0 +1,14 @@
+{ "columns":46,
+ "image":"..\/..\/..\/client\/assets\/tilesets\/rpgw\/hills1.png",
+ "imageheight":864,
+ "imagewidth":1472,
+ "margin":0,
+ "name":"rpgw_hills1",
+ "spacing":0,
+ "tilecount":1242,
+ "tiledversion":"1.11.1-99-gec89c545",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

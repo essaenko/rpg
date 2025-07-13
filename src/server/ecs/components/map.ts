@@ -1,4 +1,4 @@
-import { Equip } from '@server/ecs/components/game/item/equip';
+import { Gear } from '@server/ecs/components/game/item/gear';
 import { Dot } from '@server/ecs/components/game/spell/dot';
 import { Hot } from '@server/ecs/components/game/spell/hot';
 import { NegativeEffect } from '@server/ecs/components/game/spell/negative-effect';
@@ -34,7 +34,7 @@ import { Behavior } from '@server/ecs/components/game/behaviour/behavior';
 export const map = {
   // Game components
   appearance: Appearance,
-  equip: Equip,
+  gear: Gear,
 
   // Should not persist on save/load character
   // damage: DamageComponent,

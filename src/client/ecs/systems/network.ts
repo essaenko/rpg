@@ -4,7 +4,6 @@ import { ECSContainer } from '@client/core/ecs';
 import type { SceneState } from '@shared/schemas/scene';
 import type { EntitySchema } from '@shared/ecs/entity';
 import { WorldScene } from '@client/core/scene/world-scene';
-import { Camera } from '@client/ecs/components/game/camera';
 import { NetworkEntity } from '@client/core/ecs/entity/network-entity';
 import { Sprite } from '@client/ecs/components/game/visual/sprite';
 import { MapObject } from '@client/ecs/components/game/tag/mapObject';
@@ -60,7 +59,7 @@ export class NetworkSystem extends System {
         const sprite = scene.physics.add.sprite(position.x, position.y, object.type, object.gid - set.firstgid);
         sprite.setPipeline('Light2D');
         sprite.setOrigin(0.5, 0.5);
-        sprite.depth = sprite.y + sprite.height;
+        sprite.depth = sprite.y + sprite.height / 2;
         const animKey = `${object.type}-animation-${object.gid}`;
 
         if (scene.anims.exists(animKey)) {

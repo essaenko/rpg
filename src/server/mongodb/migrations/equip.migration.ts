@@ -4,12 +4,12 @@ export const migration = async (): Promise<void> => {
   const collection = MDBClient.instance().db.collection('characters');
   await collection.updateMany(
     {
-      'components.name': { $ne: 'equip' },
+      'components.name': { $ne: 'gear' },
     },
     {
       $push: {
         components: {
-          name: 'equip',
+          name: 'gear',
           mainHand: 'ssfSE_2hy',
         },
       } as any,

@@ -8,6 +8,66 @@ import treeAsset from '@client/assets/tilesets/fantasy-lands/Tree_A_v1.png';
 import small_buildingsAsset from '@client/assets/tilesets/fantasy-lands/small_buildings.png';
 import groundAsset from '@client/assets/tilesets/fantasy-lands/ground.png';
 import water_envAsset from '@client/assets/tilesets/fantasy-lands/water_env.png';
+import rpgw_treesTile0Asset from '@client/assets/tilesets/rpgw/trees/object (1).png';
+import rpgw_treesTile1Asset from '@client/assets/tilesets/rpgw/trees/object (2).png';
+import rpgw_treesTile2Asset from '@client/assets/tilesets/rpgw/trees/object (3).png';
+import rpgw_treesTile3Asset from '@client/assets/tilesets/rpgw/trees/object (4).png';
+import rpgw_treesTile4Asset from '@client/assets/tilesets/rpgw/trees/object (5).png';
+import rpgw_treesTile5Asset from '@client/assets/tilesets/rpgw/trees/object (6).png';
+import rpgw_treesTile6Asset from '@client/assets/tilesets/rpgw/trees/object (7).png';
+import rpgw_treesTile7Asset from '@client/assets/tilesets/rpgw/trees/object (8).png';
+import rpgw_treesTile8Asset from '@client/assets/tilesets/rpgw/trees/object (9).png';
+import rpgw_treesTile9Asset from '@client/assets/tilesets/rpgw/trees/object (10).png';
+import rpgw_treesTile10Asset from '@client/assets/tilesets/rpgw/trees/object (11).png';
+import rpgw_treesTile11Asset from '@client/assets/tilesets/rpgw/trees/object (12).png';
+import rpgw_treesTile12Asset from '@client/assets/tilesets/rpgw/trees/object (13).png';
+import rpgw_treesTile13Asset from '@client/assets/tilesets/rpgw/trees/object (14).png';
+import rpgw_treesTile14Asset from '@client/assets/tilesets/rpgw/trees/object (15).png';
+import rpgw_treesTile15Asset from '@client/assets/tilesets/rpgw/trees/object (16).png';
+import rpgw_treesTile16Asset from '@client/assets/tilesets/rpgw/trees/object (17).png';
+import rpgw_treesTile17Asset from '@client/assets/tilesets/rpgw/trees/object (18).png';
+import rpgw_treesTile18Asset from '@client/assets/tilesets/rpgw/trees/object (19).png';
+import rpgw_treesTile19Asset from '@client/assets/tilesets/rpgw/trees/object (20).png';
+import rpgw_treesTile20Asset from '@client/assets/tilesets/rpgw/trees/object (21).png';
+import rpgw_treesTile21Asset from '@client/assets/tilesets/rpgw/trees/object (22).png';
+import rpgw_treesTile22Asset from '@client/assets/tilesets/rpgw/trees/object (23).png';
+import rpgw_treesTile23Asset from '@client/assets/tilesets/rpgw/trees/object (24).png';
+import rpgw_treesTile24Asset from '@client/assets/tilesets/rpgw/trees/object (25).png';
+import rpgw_treesTile25Asset from '@client/assets/tilesets/rpgw/trees/object (26).png';
+import rpgw_treesTile26Asset from '@client/assets/tilesets/rpgw/trees/object (27).png';
+import rpgw_treesTile27Asset from '@client/assets/tilesets/rpgw/trees/object (28).png';
+import rpgw_treesTile28Asset from '@client/assets/tilesets/rpgw/trees/object (29).png';
+import rpgw_treesTile29Asset from '@client/assets/tilesets/rpgw/trees/object (30).png';
+import rpgw_treesTile30Asset from '@client/assets/tilesets/rpgw/trees/object (31).png';
+import rpgw_treesTile31Asset from '@client/assets/tilesets/rpgw/trees/object (32).png';
+import rpgw_treesTile32Asset from '@client/assets/tilesets/rpgw/trees/object (33).png';
+import rpgw_treesTile33Asset from '@client/assets/tilesets/rpgw/trees/object (34).png';
+import rpgw_treesTile34Asset from '@client/assets/tilesets/rpgw/trees/object (35).png';
+import rpgw_treesTile35Asset from '@client/assets/tilesets/rpgw/trees/object (36).png';
+import rpgw_treesTile36Asset from '@client/assets/tilesets/rpgw/trees/object (37).png';
+import rpgw_treesTile37Asset from '@client/assets/tilesets/rpgw/trees/object (38).png';
+import rpgw_treesTile38Asset from '@client/assets/tilesets/rpgw/trees/object (39).png';
+import rpgw_treesTile39Asset from '@client/assets/tilesets/rpgw/trees/object (40).png';
+import rpgw_treesTile40Asset from '@client/assets/tilesets/rpgw/trees/object (41).png';
+import rpgw_treesTile41Asset from '@client/assets/tilesets/rpgw/trees/object (42).png';
+import rpgw_treesTile42Asset from '@client/assets/tilesets/rpgw/trees/object (43).png';
+import rpgw_treesTile43Asset from '@client/assets/tilesets/rpgw/trees/object (44).png';
+import rpgw_treesTile44Asset from '@client/assets/tilesets/rpgw/trees/object (45).png';
+import rpgw_treesTile45Asset from '@client/assets/tilesets/rpgw/trees/object (46).png';
+import rpgw_treesTile46Asset from '@client/assets/tilesets/rpgw/trees/object (47).png';
+import rpgw_treesTile47Asset from '@client/assets/tilesets/rpgw/trees/object (48).png';
+import rpgw_treesTile48Asset from '@client/assets/tilesets/rpgw/trees/object (49).png';
+import rpgw_treesTile49Asset from '@client/assets/tilesets/rpgw/trees/object (50).png';
+import rpgw_treesTile50Asset from '@client/assets/tilesets/rpgw/trees/object (51).png';
+import rpgw_treesTile51Asset from '@client/assets/tilesets/rpgw/trees/object (52).png';
+import rpgw_treesTile52Asset from '@client/assets/tilesets/rpgw/trees/object (53).png';
+import rpgw_treesTile53Asset from '@client/assets/tilesets/rpgw/trees/object (54).png';
+import rpgw_treesTile54Asset from '@client/assets/tilesets/rpgw/trees/object.png';
+import housesTile0Asset from '@client/assets/tilesets/houses/small_house.png';
+import housesTile1Asset from '@client/assets/tilesets/houses/small_house_2.png';
+import housesTile2Asset from '@client/assets/tilesets/houses/mideum_house.png';
+import housesTile3Asset from '@client/assets/tilesets/houses/darias_house.png';
+import housesTile4Asset from '@client/assets/tilesets/houses/prohors_house.png';
 import dummy_json_map from '@shared/maps/dummy/dummy.json?url';
 import wooden_wallsAsset from '@client/assets/tilesets/fantasy-lands/interrior/Walls/FL_Houses_int_WallsD.png';
 import floorsAsset from '@client/assets/tilesets/fantasy-lands/interrior/Floors/FL_Houses_int_Floors.png';
@@ -49,15 +109,64 @@ import chairsTile3Asset from '@client/assets/tilesets/fantasy-lands/interrior/Fu
 import tablesTile0Asset from '@client/assets/tilesets/fantasy-lands/interrior/Furnitures/tables/object.png';
 import dummy_house_json_map from '@shared/maps/dummy/dummy-house.json?url';
 import bridges_and_fencesAsset from '@client/assets/tilesets/fantasy-lands/bridges_and_fences.png';
-import housesTile0Asset from '@client/assets/tilesets/fantasy-lands/houses/small_house.png';
-import housesTile1Asset from '@client/assets/tilesets/fantasy-lands/houses/small_house_2.png';
-import housesTile2Asset from '@client/assets/tilesets/fantasy-lands/houses/mideum_house.png';
-import decorationsTile0Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object.png';
-import decorationsTile1Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (1).png';
-import decorationsTile2Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (2).png';
-import decorationsTile3Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (3).png';
-import decorationsTile4Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (4).png';
-import decorationsTile5Asset from '@client/assets/tilesets/fantasy-lands/houses/decorations/object (5).png';
+import housesTile5Asset from '@client/assets/tilesets/houses/makars_house.png';
+import housesTile6Asset from '@client/assets/tilesets/houses/nastasyas_house.png';
+import house_decorationsTile0Asset from '@client/assets/tilesets/house-decrations/object (1).png';
+import house_decorationsTile1Asset from '@client/assets/tilesets/house-decrations/object (2).png';
+import house_decorationsTile2Asset from '@client/assets/tilesets/house-decrations/object (3).png';
+import house_decorationsTile3Asset from '@client/assets/tilesets/house-decrations/object (4).png';
+import house_decorationsTile4Asset from '@client/assets/tilesets/house-decrations/object (5).png';
+import house_decorationsTile5Asset from '@client/assets/tilesets/house-decrations/object (6).png';
+import house_decorationsTile6Asset from '@client/assets/tilesets/house-decrations/object (7).png';
+import house_decorationsTile7Asset from '@client/assets/tilesets/house-decrations/object (8).png';
+import house_decorationsTile8Asset from '@client/assets/tilesets/house-decrations/object (9).png';
+import house_decorationsTile9Asset from '@client/assets/tilesets/house-decrations/object (10).png';
+import house_decorationsTile10Asset from '@client/assets/tilesets/house-decrations/object (11).png';
+import house_decorationsTile11Asset from '@client/assets/tilesets/house-decrations/object (12).png';
+import house_decorationsTile12Asset from '@client/assets/tilesets/house-decrations/object (13).png';
+import house_decorationsTile13Asset from '@client/assets/tilesets/house-decrations/object (14).png';
+import house_decorationsTile14Asset from '@client/assets/tilesets/house-decrations/object (15).png';
+import house_decorationsTile15Asset from '@client/assets/tilesets/house-decrations/object (16).png';
+import house_decorationsTile16Asset from '@client/assets/tilesets/house-decrations/object.png';
+import house_decorationsTile17Asset from '@client/assets/tilesets/house-decrations/object (17).png';
+import house_decorationsTile18Asset from '@client/assets/tilesets/house-decrations/object (18).png';
+import house_decorationsTile19Asset from '@client/assets/tilesets/house-decrations/object (19).png';
+import house_decorationsTile20Asset from '@client/assets/tilesets/house-decrations/object (20).png';
+import house_decorationsTile21Asset from '@client/assets/tilesets/house-decrations/object (21).png';
+import house_decorationsTile22Asset from '@client/assets/tilesets/house-decrations/object (22).png';
+import house_decorationsTile23Asset from '@client/assets/tilesets/house-decrations/object (23).png';
+import house_decorationsTile24Asset from '@client/assets/tilesets/house-decrations/object (24).png';
+import house_decorationsTile25Asset from '@client/assets/tilesets/house-decrations/object (25).png';
+import house_decorationsTile26Asset from '@client/assets/tilesets/house-decrations/object (29).png';
+import house_decorationsTile27Asset from '@client/assets/tilesets/house-decrations/object (30).png';
+import house_decorationsTile28Asset from '@client/assets/tilesets/house-decrations/object (31).png';
+import house_decorationsTile29Asset from '@client/assets/tilesets/house-decrations/object (32).png';
+import house_decorationsTile30Asset from '@client/assets/tilesets/house-decrations/object (33).png';
+import house_decorationsTile31Asset from '@client/assets/tilesets/house-decrations/object (34).png';
+import house_decorationsTile32Asset from '@client/assets/tilesets/house-decrations/object (35).png';
+import house_decorationsTile33Asset from '@client/assets/tilesets/house-decrations/object (36).png';
+import house_decorationsTile34Asset from '@client/assets/tilesets/house-decrations/object (37).png';
+import house_decorationsTile35Asset from '@client/assets/tilesets/house-decrations/object (38).png';
+import house_decorationsTile36Asset from '@client/assets/tilesets/house-decrations/object (39).png';
+import house_decorationsTile37Asset from '@client/assets/tilesets/house-decrations/pixellab-large-blacksmith-s-anvil-1752336826547.png';
+import house_decorationsTile38Asset from '@client/assets/tilesets/house-decrations/object (40).png';
+import rpgw_treesTile55Asset from '@client/assets/tilesets/rpgw/trees/object (71).png';
+import rpgw_treesTile56Asset from '@client/assets/tilesets/rpgw/trees/object (70).png';
+import rpgw_treesTile57Asset from '@client/assets/tilesets/rpgw/trees/object (69).png';
+import rpgw_treesTile58Asset from '@client/assets/tilesets/rpgw/trees/object (68).png';
+import rpgw_treesTile59Asset from '@client/assets/tilesets/rpgw/trees/object (67).png';
+import rpgw_treesTile60Asset from '@client/assets/tilesets/rpgw/trees/object (66).png';
+import rpgw_treesTile61Asset from '@client/assets/tilesets/rpgw/trees/object (65).png';
+import rpgw_treesTile62Asset from '@client/assets/tilesets/rpgw/trees/object (64).png';
+import rpgw_treesTile63Asset from '@client/assets/tilesets/rpgw/trees/object (63).png';
+import rpgw_treesTile64Asset from '@client/assets/tilesets/rpgw/trees/object (62).png';
+import rpgw_treesTile65Asset from '@client/assets/tilesets/rpgw/trees/object (61).png';
+import rpgw_treesTile66Asset from '@client/assets/tilesets/rpgw/trees/object (60).png';
+import rpgw_treesTile67Asset from '@client/assets/tilesets/rpgw/trees/object (59).png';
+import rpgw_treesTile68Asset from '@client/assets/tilesets/rpgw/trees/object (58).png';
+import rpgw_treesTile69Asset from '@client/assets/tilesets/rpgw/trees/object (57).png';
+import rpgw_treesTile70Asset from '@client/assets/tilesets/rpgw/trees/object (56).png';
+import rpgw_treesTile71Asset from '@client/assets/tilesets/rpgw/trees/object (55).png';
 import zavrazye_json_map from '@shared/maps/zavrazye/zavrazye.json?url';
 
 import { MapPackage } from '@client/utils/types';
@@ -108,6 +217,256 @@ export const map: Record<string, MapPackage> = {
         type: 'sprite',
         asset: water_envAsset,
         config: {"frameWidth":32,"frameHeight":32}
+        },{
+        key: 'rpgw_trees',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: rpgw_treesTile0Asset,
+          config: {"frameWidth":92,"frameHeight":172}
+          },{
+          id: 1,
+          asset: rpgw_treesTile1Asset,
+          config: {"frameWidth":48,"frameHeight":85}
+          },{
+          id: 2,
+          asset: rpgw_treesTile2Asset,
+          config: {"frameWidth":85,"frameHeight":194}
+          },{
+          id: 3,
+          asset: rpgw_treesTile3Asset,
+          config: {"frameWidth":60,"frameHeight":143}
+          },{
+          id: 4,
+          asset: rpgw_treesTile4Asset,
+          config: {"frameWidth":29,"frameHeight":71}
+          },{
+          id: 5,
+          asset: rpgw_treesTile5Asset,
+          config: {"frameWidth":65,"frameHeight":168}
+          },{
+          id: 6,
+          asset: rpgw_treesTile6Asset,
+          config: {"frameWidth":79,"frameHeight":156}
+          },{
+          id: 7,
+          asset: rpgw_treesTile7Asset,
+          config: {"frameWidth":44,"frameHeight":91}
+          },{
+          id: 8,
+          asset: rpgw_treesTile8Asset,
+          config: {"frameWidth":56,"frameHeight":155}
+          },{
+          id: 9,
+          asset: rpgw_treesTile9Asset,
+          config: {"frameWidth":51,"frameHeight":136}
+          },{
+          id: 10,
+          asset: rpgw_treesTile10Asset,
+          config: {"frameWidth":26,"frameHeight":119}
+          },{
+          id: 11,
+          asset: rpgw_treesTile11Asset,
+          config: {"frameWidth":28,"frameHeight":131}
+          },{
+          id: 12,
+          asset: rpgw_treesTile12Asset,
+          config: {"frameWidth":39,"frameHeight":90}
+          },{
+          id: 13,
+          asset: rpgw_treesTile13Asset,
+          config: {"frameWidth":38,"frameHeight":91}
+          },{
+          id: 14,
+          asset: rpgw_treesTile14Asset,
+          config: {"frameWidth":26,"frameHeight":65}
+          },{
+          id: 15,
+          asset: rpgw_treesTile15Asset,
+          config: {"frameWidth":26,"frameHeight":77}
+          },{
+          id: 16,
+          asset: rpgw_treesTile16Asset,
+          config: {"frameWidth":130,"frameHeight":244}
+          },{
+          id: 17,
+          asset: rpgw_treesTile17Asset,
+          config: {"frameWidth":92,"frameHeight":172}
+          },{
+          id: 18,
+          asset: rpgw_treesTile18Asset,
+          config: {"frameWidth":48,"frameHeight":85}
+          },{
+          id: 19,
+          asset: rpgw_treesTile19Asset,
+          config: {"frameWidth":85,"frameHeight":194}
+          },{
+          id: 20,
+          asset: rpgw_treesTile20Asset,
+          config: {"frameWidth":60,"frameHeight":143}
+          },{
+          id: 21,
+          asset: rpgw_treesTile21Asset,
+          config: {"frameWidth":29,"frameHeight":71}
+          },{
+          id: 22,
+          asset: rpgw_treesTile22Asset,
+          config: {"frameWidth":65,"frameHeight":168}
+          },{
+          id: 23,
+          asset: rpgw_treesTile23Asset,
+          config: {"frameWidth":79,"frameHeight":156}
+          },{
+          id: 24,
+          asset: rpgw_treesTile24Asset,
+          config: {"frameWidth":44,"frameHeight":91}
+          },{
+          id: 25,
+          asset: rpgw_treesTile25Asset,
+          config: {"frameWidth":37,"frameHeight":34}
+          },{
+          id: 26,
+          asset: rpgw_treesTile26Asset,
+          config: {"frameWidth":29,"frameHeight":23}
+          },{
+          id: 27,
+          asset: rpgw_treesTile27Asset,
+          config: {"frameWidth":26,"frameHeight":21}
+          },{
+          id: 28,
+          asset: rpgw_treesTile28Asset,
+          config: {"frameWidth":26,"frameHeight":43}
+          },{
+          id: 29,
+          asset: rpgw_treesTile29Asset,
+          config: {"frameWidth":22,"frameHeight":37}
+          },{
+          id: 30,
+          asset: rpgw_treesTile30Asset,
+          config: {"frameWidth":17,"frameHeight":24}
+          },{
+          id: 31,
+          asset: rpgw_treesTile31Asset,
+          config: {"frameWidth":48,"frameHeight":72}
+          },{
+          id: 32,
+          asset: rpgw_treesTile32Asset,
+          config: {"frameWidth":42,"frameHeight":72}
+          },{
+          id: 33,
+          asset: rpgw_treesTile33Asset,
+          config: {"frameWidth":42,"frameHeight":49}
+          },{
+          id: 34,
+          asset: rpgw_treesTile34Asset,
+          config: {"frameWidth":31,"frameHeight":62}
+          },{
+          id: 35,
+          asset: rpgw_treesTile35Asset,
+          config: {"frameWidth":56,"frameHeight":155}
+          },{
+          id: 36,
+          asset: rpgw_treesTile36Asset,
+          config: {"frameWidth":51,"frameHeight":136}
+          },{
+          id: 37,
+          asset: rpgw_treesTile37Asset,
+          config: {"frameWidth":26,"frameHeight":119}
+          },{
+          id: 38,
+          asset: rpgw_treesTile38Asset,
+          config: {"frameWidth":28,"frameHeight":131}
+          },{
+          id: 39,
+          asset: rpgw_treesTile39Asset,
+          config: {"frameWidth":56,"frameHeight":50}
+          },{
+          id: 40,
+          asset: rpgw_treesTile40Asset,
+          config: {"frameWidth":39,"frameHeight":32}
+          },{
+          id: 41,
+          asset: rpgw_treesTile41Asset,
+          config: {"frameWidth":28,"frameHeight":30}
+          },{
+          id: 42,
+          asset: rpgw_treesTile42Asset,
+          config: {"frameWidth":48,"frameHeight":72}
+          },{
+          id: 43,
+          asset: rpgw_treesTile43Asset,
+          config: {"frameWidth":42,"frameHeight":72}
+          },{
+          id: 44,
+          asset: rpgw_treesTile44Asset,
+          config: {"frameWidth":42,"frameHeight":49}
+          },{
+          id: 45,
+          asset: rpgw_treesTile45Asset,
+          config: {"frameWidth":31,"frameHeight":62}
+          },{
+          id: 46,
+          asset: rpgw_treesTile46Asset,
+          config: {"frameWidth":48,"frameHeight":38}
+          },{
+          id: 47,
+          asset: rpgw_treesTile47Asset,
+          config: {"frameWidth":39,"frameHeight":28}
+          },{
+          id: 48,
+          asset: rpgw_treesTile48Asset,
+          config: {"frameWidth":27,"frameHeight":32}
+          },{
+          id: 49,
+          asset: rpgw_treesTile49Asset,
+          config: {"frameWidth":24,"frameHeight":27}
+          },{
+          id: 50,
+          asset: rpgw_treesTile50Asset,
+          config: {"frameWidth":48,"frameHeight":38}
+          },{
+          id: 51,
+          asset: rpgw_treesTile51Asset,
+          config: {"frameWidth":39,"frameHeight":28}
+          },{
+          id: 52,
+          asset: rpgw_treesTile52Asset,
+          config: {"frameWidth":27,"frameHeight":32}
+          },{
+          id: 53,
+          asset: rpgw_treesTile53Asset,
+          config: {"frameWidth":24,"frameHeight":27}
+          },{
+          id: 54,
+          asset: rpgw_treesTile54Asset,
+          config: {"frameWidth":130,"frameHeight":244}
+          }
+        ]
+        },{
+        key: 'houses',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: housesTile0Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 1,
+          asset: housesTile1Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 2,
+          asset: housesTile2Asset,
+          config: {"frameWidth":416,"frameHeight":288}
+          },{
+          id: 3,
+          asset: housesTile3Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 4,
+          asset: housesTile4Asset,
+          config: {"frameWidth":256,"frameHeight":192}
+          }
+        ]
         }]
     },
 'dummy-house': {
@@ -339,35 +698,183 @@ export const map: Record<string, MapPackage> = {
           id: 2,
           asset: housesTile2Asset,
           config: {"frameWidth":416,"frameHeight":288}
+          },{
+          id: 3,
+          asset: housesTile3Asset,
+          config: {"frameWidth":192,"frameHeight":224}
+          },{
+          id: 4,
+          asset: housesTile4Asset,
+          config: {"frameWidth":256,"frameHeight":192}
+          },{
+          id: 5,
+          asset: housesTile5Asset,
+          config: {"frameWidth":192,"frameHeight":192}
+          },{
+          id: 6,
+          asset: housesTile6Asset,
+          config: {"frameWidth":256,"frameHeight":224}
           }
         ]
         },{
-        key: 'decorations',
+        key: 'house-decorations',
         type: 'multiple',
         frames: [{
           id: 0,
-          asset: decorationsTile0Asset,
-          config: {"frameWidth":62,"frameHeight":52}
+          asset: house_decorationsTile0Asset,
+          config: {"frameWidth":86,"frameHeight":55}
           },{
           id: 1,
-          asset: decorationsTile1Asset,
-          config: {"frameWidth":62,"frameHeight":52}
+          asset: house_decorationsTile1Asset,
+          config: {"frameWidth":88,"frameHeight":55}
           },{
           id: 2,
-          asset: decorationsTile2Asset,
-          config: {"frameWidth":52,"frameHeight":48}
+          asset: house_decorationsTile2Asset,
+          config: {"frameWidth":54,"frameHeight":103}
           },{
           id: 3,
-          asset: decorationsTile3Asset,
-          config: {"frameWidth":52,"frameHeight":48}
+          asset: house_decorationsTile3Asset,
+          config: {"frameWidth":54,"frameHeight":103}
           },{
           id: 4,
-          asset: decorationsTile4Asset,
-          config: {"frameWidth":55,"frameHeight":59}
+          asset: house_decorationsTile4Asset,
+          config: {"frameWidth":54,"frameHeight":103}
           },{
           id: 5,
-          asset: decorationsTile5Asset,
+          asset: house_decorationsTile5Asset,
+          config: {"frameWidth":54,"frameHeight":103}
+          },{
+          id: 6,
+          asset: house_decorationsTile6Asset,
+          config: {"frameWidth":54,"frameHeight":103}
+          },{
+          id: 7,
+          asset: house_decorationsTile7Asset,
+          config: {"frameWidth":54,"frameHeight":103}
+          },{
+          id: 8,
+          asset: house_decorationsTile8Asset,
+          config: {"frameWidth":54,"frameHeight":103}
+          },{
+          id: 9,
+          asset: house_decorationsTile9Asset,
+          config: {"frameWidth":54,"frameHeight":103}
+          },{
+          id: 10,
+          asset: house_decorationsTile10Asset,
+          config: {"frameWidth":62,"frameHeight":52}
+          },{
+          id: 11,
+          asset: house_decorationsTile11Asset,
+          config: {"frameWidth":62,"frameHeight":52}
+          },{
+          id: 12,
+          asset: house_decorationsTile12Asset,
+          config: {"frameWidth":52,"frameHeight":48}
+          },{
+          id: 13,
+          asset: house_decorationsTile13Asset,
+          config: {"frameWidth":52,"frameHeight":48}
+          },{
+          id: 14,
+          asset: house_decorationsTile14Asset,
           config: {"frameWidth":55,"frameHeight":59}
+          },{
+          id: 15,
+          asset: house_decorationsTile15Asset,
+          config: {"frameWidth":55,"frameHeight":59}
+          },{
+          id: 16,
+          asset: house_decorationsTile16Asset,
+          config: {"frameWidth":88,"frameHeight":55}
+          },{
+          id: 17,
+          asset: house_decorationsTile17Asset,
+          config: {"frameWidth":63,"frameHeight":48}
+          },{
+          id: 18,
+          asset: house_decorationsTile18Asset,
+          config: {"frameWidth":63,"frameHeight":48}
+          },{
+          id: 19,
+          asset: house_decorationsTile19Asset,
+          config: {"frameWidth":48,"frameHeight":49}
+          },{
+          id: 20,
+          asset: house_decorationsTile20Asset,
+          config: {"frameWidth":54,"frameHeight":66}
+          },{
+          id: 21,
+          asset: house_decorationsTile21Asset,
+          config: {"frameWidth":32,"frameHeight":45}
+          },{
+          id: 22,
+          asset: house_decorationsTile22Asset,
+          config: {"frameWidth":17,"frameHeight":135}
+          },{
+          id: 23,
+          asset: house_decorationsTile23Asset,
+          config: {"frameWidth":17,"frameHeight":135}
+          },{
+          id: 24,
+          asset: house_decorationsTile24Asset,
+          config: {"frameWidth":96,"frameHeight":73}
+          },{
+          id: 25,
+          asset: house_decorationsTile25Asset,
+          config: {"frameWidth":96,"frameHeight":73}
+          },{
+          id: 26,
+          asset: house_decorationsTile26Asset,
+          config: {"frameWidth":33,"frameHeight":28}
+          },{
+          id: 27,
+          asset: house_decorationsTile27Asset,
+          config: {"frameWidth":33,"frameHeight":28}
+          },{
+          id: 28,
+          asset: house_decorationsTile28Asset,
+          config: {"frameWidth":29,"frameHeight":24}
+          },{
+          id: 29,
+          asset: house_decorationsTile29Asset,
+          config: {"frameWidth":32,"frameHeight":30}
+          },{
+          id: 30,
+          asset: house_decorationsTile30Asset,
+          config: {"frameWidth":42,"frameHeight":33}
+          },{
+          id: 31,
+          asset: house_decorationsTile31Asset,
+          config: {"frameWidth":21,"frameHeight":20}
+          },{
+          id: 32,
+          asset: house_decorationsTile32Asset,
+          config: {"frameWidth":48,"frameHeight":42}
+          },{
+          id: 33,
+          asset: house_decorationsTile33Asset,
+          config: {"frameWidth":17,"frameHeight":25}
+          },{
+          id: 34,
+          asset: house_decorationsTile34Asset,
+          config: {"frameWidth":26,"frameHeight":27}
+          },{
+          id: 35,
+          asset: house_decorationsTile35Asset,
+          config: {"frameWidth":23,"frameHeight":37}
+          },{
+          id: 36,
+          asset: house_decorationsTile36Asset,
+          config: {"frameWidth":42,"frameHeight":48}
+          },{
+          id: 37,
+          asset: house_decorationsTile37Asset,
+          config: {"frameWidth":32,"frameHeight":32}
+          },{
+          id: 38,
+          asset: house_decorationsTile38Asset,
+          config: {"frameWidth":68,"frameHeight":63}
           }
         ]
         },{
@@ -380,6 +887,299 @@ export const map: Record<string, MapPackage> = {
         type: 'sprite',
         asset: treeAsset,
         config: {"frameWidth":128,"frameHeight":128}
+        },{
+        key: 'rpgw_trees',
+        type: 'multiple',
+        frames: [{
+          id: 0,
+          asset: rpgw_treesTile0Asset,
+          config: {"frameWidth":92,"frameHeight":172}
+          },{
+          id: 1,
+          asset: rpgw_treesTile1Asset,
+          config: {"frameWidth":48,"frameHeight":85}
+          },{
+          id: 2,
+          asset: rpgw_treesTile2Asset,
+          config: {"frameWidth":85,"frameHeight":194}
+          },{
+          id: 3,
+          asset: rpgw_treesTile3Asset,
+          config: {"frameWidth":60,"frameHeight":143}
+          },{
+          id: 4,
+          asset: rpgw_treesTile4Asset,
+          config: {"frameWidth":29,"frameHeight":71}
+          },{
+          id: 5,
+          asset: rpgw_treesTile5Asset,
+          config: {"frameWidth":65,"frameHeight":168}
+          },{
+          id: 6,
+          asset: rpgw_treesTile6Asset,
+          config: {"frameWidth":79,"frameHeight":156}
+          },{
+          id: 7,
+          asset: rpgw_treesTile7Asset,
+          config: {"frameWidth":44,"frameHeight":91}
+          },{
+          id: 8,
+          asset: rpgw_treesTile8Asset,
+          config: {"frameWidth":56,"frameHeight":155}
+          },{
+          id: 9,
+          asset: rpgw_treesTile9Asset,
+          config: {"frameWidth":51,"frameHeight":136}
+          },{
+          id: 10,
+          asset: rpgw_treesTile10Asset,
+          config: {"frameWidth":26,"frameHeight":119}
+          },{
+          id: 11,
+          asset: rpgw_treesTile11Asset,
+          config: {"frameWidth":28,"frameHeight":131}
+          },{
+          id: 12,
+          asset: rpgw_treesTile12Asset,
+          config: {"frameWidth":39,"frameHeight":90}
+          },{
+          id: 13,
+          asset: rpgw_treesTile13Asset,
+          config: {"frameWidth":38,"frameHeight":91}
+          },{
+          id: 14,
+          asset: rpgw_treesTile14Asset,
+          config: {"frameWidth":26,"frameHeight":65}
+          },{
+          id: 15,
+          asset: rpgw_treesTile15Asset,
+          config: {"frameWidth":26,"frameHeight":77}
+          },{
+          id: 16,
+          asset: rpgw_treesTile16Asset,
+          config: {"frameWidth":130,"frameHeight":244}
+          },{
+          id: 17,
+          asset: rpgw_treesTile17Asset,
+          config: {"frameWidth":92,"frameHeight":172}
+          },{
+          id: 18,
+          asset: rpgw_treesTile18Asset,
+          config: {"frameWidth":48,"frameHeight":85}
+          },{
+          id: 19,
+          asset: rpgw_treesTile19Asset,
+          config: {"frameWidth":85,"frameHeight":194}
+          },{
+          id: 20,
+          asset: rpgw_treesTile20Asset,
+          config: {"frameWidth":60,"frameHeight":143}
+          },{
+          id: 21,
+          asset: rpgw_treesTile21Asset,
+          config: {"frameWidth":29,"frameHeight":71}
+          },{
+          id: 22,
+          asset: rpgw_treesTile22Asset,
+          config: {"frameWidth":65,"frameHeight":168}
+          },{
+          id: 23,
+          asset: rpgw_treesTile23Asset,
+          config: {"frameWidth":79,"frameHeight":156}
+          },{
+          id: 24,
+          asset: rpgw_treesTile24Asset,
+          config: {"frameWidth":44,"frameHeight":91}
+          },{
+          id: 25,
+          asset: rpgw_treesTile25Asset,
+          config: {"frameWidth":37,"frameHeight":34}
+          },{
+          id: 26,
+          asset: rpgw_treesTile26Asset,
+          config: {"frameWidth":29,"frameHeight":23}
+          },{
+          id: 27,
+          asset: rpgw_treesTile27Asset,
+          config: {"frameWidth":26,"frameHeight":21}
+          },{
+          id: 28,
+          asset: rpgw_treesTile28Asset,
+          config: {"frameWidth":26,"frameHeight":43}
+          },{
+          id: 29,
+          asset: rpgw_treesTile29Asset,
+          config: {"frameWidth":22,"frameHeight":37}
+          },{
+          id: 30,
+          asset: rpgw_treesTile30Asset,
+          config: {"frameWidth":17,"frameHeight":24}
+          },{
+          id: 31,
+          asset: rpgw_treesTile31Asset,
+          config: {"frameWidth":48,"frameHeight":72}
+          },{
+          id: 32,
+          asset: rpgw_treesTile32Asset,
+          config: {"frameWidth":42,"frameHeight":72}
+          },{
+          id: 33,
+          asset: rpgw_treesTile33Asset,
+          config: {"frameWidth":42,"frameHeight":49}
+          },{
+          id: 34,
+          asset: rpgw_treesTile34Asset,
+          config: {"frameWidth":31,"frameHeight":62}
+          },{
+          id: 35,
+          asset: rpgw_treesTile35Asset,
+          config: {"frameWidth":56,"frameHeight":155}
+          },{
+          id: 36,
+          asset: rpgw_treesTile36Asset,
+          config: {"frameWidth":51,"frameHeight":136}
+          },{
+          id: 37,
+          asset: rpgw_treesTile37Asset,
+          config: {"frameWidth":26,"frameHeight":119}
+          },{
+          id: 38,
+          asset: rpgw_treesTile38Asset,
+          config: {"frameWidth":28,"frameHeight":131}
+          },{
+          id: 39,
+          asset: rpgw_treesTile39Asset,
+          config: {"frameWidth":56,"frameHeight":50}
+          },{
+          id: 40,
+          asset: rpgw_treesTile40Asset,
+          config: {"frameWidth":39,"frameHeight":32}
+          },{
+          id: 41,
+          asset: rpgw_treesTile41Asset,
+          config: {"frameWidth":28,"frameHeight":30}
+          },{
+          id: 42,
+          asset: rpgw_treesTile42Asset,
+          config: {"frameWidth":48,"frameHeight":72}
+          },{
+          id: 43,
+          asset: rpgw_treesTile43Asset,
+          config: {"frameWidth":42,"frameHeight":72}
+          },{
+          id: 44,
+          asset: rpgw_treesTile44Asset,
+          config: {"frameWidth":42,"frameHeight":49}
+          },{
+          id: 45,
+          asset: rpgw_treesTile45Asset,
+          config: {"frameWidth":31,"frameHeight":62}
+          },{
+          id: 46,
+          asset: rpgw_treesTile46Asset,
+          config: {"frameWidth":48,"frameHeight":38}
+          },{
+          id: 47,
+          asset: rpgw_treesTile47Asset,
+          config: {"frameWidth":39,"frameHeight":28}
+          },{
+          id: 48,
+          asset: rpgw_treesTile48Asset,
+          config: {"frameWidth":27,"frameHeight":32}
+          },{
+          id: 49,
+          asset: rpgw_treesTile49Asset,
+          config: {"frameWidth":24,"frameHeight":27}
+          },{
+          id: 50,
+          asset: rpgw_treesTile50Asset,
+          config: {"frameWidth":48,"frameHeight":38}
+          },{
+          id: 51,
+          asset: rpgw_treesTile51Asset,
+          config: {"frameWidth":39,"frameHeight":28}
+          },{
+          id: 52,
+          asset: rpgw_treesTile52Asset,
+          config: {"frameWidth":27,"frameHeight":32}
+          },{
+          id: 53,
+          asset: rpgw_treesTile53Asset,
+          config: {"frameWidth":24,"frameHeight":27}
+          },{
+          id: 54,
+          asset: rpgw_treesTile54Asset,
+          config: {"frameWidth":130,"frameHeight":244}
+          },{
+          id: 55,
+          asset: rpgw_treesTile55Asset,
+          config: {"frameWidth":20,"frameHeight":22}
+          },{
+          id: 56,
+          asset: rpgw_treesTile56Asset,
+          config: {"frameWidth":20,"frameHeight":22}
+          },{
+          id: 57,
+          asset: rpgw_treesTile57Asset,
+          config: {"frameWidth":20,"frameHeight":22}
+          },{
+          id: 58,
+          asset: rpgw_treesTile58Asset,
+          config: {"frameWidth":27,"frameHeight":29}
+          },{
+          id: 59,
+          asset: rpgw_treesTile59Asset,
+          config: {"frameWidth":27,"frameHeight":29}
+          },{
+          id: 60,
+          asset: rpgw_treesTile60Asset,
+          config: {"frameWidth":27,"frameHeight":29}
+          },{
+          id: 61,
+          asset: rpgw_treesTile61Asset,
+          config: {"frameWidth":25,"frameHeight":10}
+          },{
+          id: 62,
+          asset: rpgw_treesTile62Asset,
+          config: {"frameWidth":16,"frameHeight":7}
+          },{
+          id: 63,
+          asset: rpgw_treesTile63Asset,
+          config: {"frameWidth":18,"frameHeight":9}
+          },{
+          id: 64,
+          asset: rpgw_treesTile64Asset,
+          config: {"frameWidth":19,"frameHeight":12}
+          },{
+          id: 65,
+          asset: rpgw_treesTile65Asset,
+          config: {"frameWidth":16,"frameHeight":9}
+          },{
+          id: 66,
+          asset: rpgw_treesTile66Asset,
+          config: {"frameWidth":20,"frameHeight":47}
+          },{
+          id: 67,
+          asset: rpgw_treesTile67Asset,
+          config: {"frameWidth":18,"frameHeight":39}
+          },{
+          id: 68,
+          asset: rpgw_treesTile68Asset,
+          config: {"frameWidth":15,"frameHeight":32}
+          },{
+          id: 69,
+          asset: rpgw_treesTile69Asset,
+          config: {"frameWidth":20,"frameHeight":47}
+          },{
+          id: 70,
+          asset: rpgw_treesTile70Asset,
+          config: {"frameWidth":18,"frameHeight":39}
+          },{
+          id: 71,
+          asset: rpgw_treesTile71Asset,
+          config: {"frameWidth":15,"frameHeight":32}
+          }
+        ]
         }]
     }
 };

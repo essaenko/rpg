@@ -24,7 +24,7 @@ export class SpriteSystem extends System {
         sprite.sprite.input.cursor = `url(${Cursors.Loot}), pointer`;
       }
 
-      sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height * 0.3;
+      sprite.sprite.depth = sprite.sprite.y + sprite.sprite.height / 2;
 
       if (entity.has('transparent')) {
         if (

@@ -1,7 +1,7 @@
 import { migration as bag } from './bag.migration';
 import { migration as quests } from './quests.migration';
 import { migration as spellBook } from './spell-book.migration';
-import { migration as equip } from './equip.migration';
+import { migration as gear } from './gear.migration';
 import { migration as appearance } from './appearance.migration';
 import { migration as physics } from './physics.migration';
 import { migration as tag } from './tag.migration';
@@ -19,7 +19,7 @@ dotenv.config();
     bag,
     quests,
     spellBook,
-    equip,
+    gear,
     appearance,
     physics,
     tag,

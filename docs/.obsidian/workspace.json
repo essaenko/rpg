@@ -11,24 +11,28 @@
             "id": "96952db278d7c925",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "rpg/Graphics/CastSystem.excalidraw.md"
+                "file": "Шрифты.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "CastSystem.excalidraw"
+              "icon": "lucide-file",
+              "title": "Шрифты"
             }
           },
           {
-            "id": "120c2d10c2c94a2d",
+            "id": "2a04b6ec623d8693",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "rpg/Excalidraw/Drawing 2025-06-02 18.01.48.excalidraw.md"
+                "file": "rpg/Завряжье/Жители.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-06-02 18.01.48.excalidraw"
+              "icon": "lucide-file",
+              "title": "Жители"
             }
           }
         ],
@@ -180,12 +184,19 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "120c2d10c2c94a2d",
+  "active": "2a04b6ec623d8693",
   "lastOpenFiles": [
-    "rpg/Graphics/CastSystem.excalidraw.md",
-    "rpg/Excalidraw/Drawing 2025-06-02 18.01.48.excalidraw.md",
+    "Система прогрессии.md",
+    "rpg/Завряжье/Жители.md",
+    "rpg/Завряжье",
+    "Шрифты.md",
+    "assets",
+    "assets/Pasted image 20250709234245.png",
     "rpg/Mechanics.md",
-    "Untitled.md",
-    "rpg/DisDock.md"
+    "rpg/DisDock.md",
+    "rpg/Graphics/CastSystem.excalidraw.md",
+    "rpg/Graphics/Drawing 2025-02-12 19.55.54.excalidraw.md",
+    "rpg/Excalidraw/Drawing 2025-02-10 14.27.05.excalidraw.md",
+    "rpg/Excalidraw/Drawing 2025-06-02 18.01.48.excalidraw.md"
   ]
 }

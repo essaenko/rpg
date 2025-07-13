@@ -32,6 +32,7 @@ export class AppearanceSystem extends System {
         sprite.anims.createFromAseprite(appearance.key);
         sprite.name = 'body';
         sprite.setPipeline('Light2D');
+        sprite.setOrigin(0.5, 0.5);
 
         appearance.sprites.add(sprite);
         appearance.sprites.setSize(body.width, body.height);
@@ -50,7 +51,7 @@ export class AppearanceSystem extends System {
       }
 
       if (appearance.sprites) {
-        appearance.sprites.depth = position.y + appearance.sprites.height * appearance.sprites.originY;
+        appearance.sprites.depth = position.y + appearance.sprites.height / 2;
 
         if (appearance.rotation) {
           appearance.sprites.setRotation(appearance.rotation - Math.PI / 2);

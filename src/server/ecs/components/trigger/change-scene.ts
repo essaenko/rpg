@@ -2,7 +2,7 @@ import { Entity, NetworkEntity } from '@shared/ecs/entity';
 import { Trigger } from './trigger';
 import { Location } from '../game/ui/location';
 import { Position } from '../physics/position';
-import { TransportEventTypes, type Pointer2D as PositionType } from '@shared/types';
+import { TransportEventTypes } from '@shared/types';
 import { MDBClient } from '@server/mongodb';
 import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
@@ -20,6 +20,10 @@ export class ChangeScene extends Trigger {
     const position = entity.get<Position>('position');
     const map = maps[this.scene];
     const spawn = map?.layers.find(({ name }) => name === 'locations')?.objects?.find(({ type }) => type === 'spawn');
+
+    console.log(
+      `Change scene event was captured for entity: ${entity.id}. Changing scene from ${location.value} to ${this.scene}`,
+    );
 
     if (location && position && entity instanceof NetworkEntity && spawn) {
       location.value = this.scene;

@@ -15,8 +15,9 @@
     "clean": "rimraf build",
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
     "migrate": "npx tsx ./src/server/mongodb/migrations/index.ts",
-    "codegen-aseprite": "npx tsx ./src/tools/aseprite-map-codegen.ts",
-    "codegen-bundle": "npx tsx src/tools/maps/map-bundle-codegen.ts"
+    "codegen-aseprite": "npx tsx src/tools/codegen/aseprite-map-codegen.ts",
+    "codegen-bundle": "npx tsx src/tools/codegen/maps/include-external-tilesets.ts && npx tsx src/tools/codegen/maps/map-bundle-codegen.ts",
+    "create-client-system": "npx tsx src/tools/codegen/ecs/client-system-codegen.ts"
   },
   "author": "",
   "license": "MIT",

@@ -1,11 +1,11 @@
 import { ItemSave } from '@server/mongodb/types';
 import { Item } from './item';
-import { EquipItem } from '@shared/schemas/game/item/equip-item';
+import { GearItem } from '@shared/schemas/game/item/gear-item';
 import { Weapon } from '@shared/schemas/game/item/weapon';
 
 export const map = {
   item: Item,
-  'equip-item': EquipItem,
+  'gear-item': GearItem,
   weapon: Weapon,
 } as const;
 

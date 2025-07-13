@@ -1,9 +1,9 @@
-import { EquipItem } from '@shared/schemas/game/item/equip-item';
+import { GearItem } from '@shared/schemas/game/item/gear-item';
 import { type } from '@colyseus/schema';
 import { WeaponHand, WeaponType } from '@shared/types';
 import { WeaponSave } from '@server/mongodb/types';
 
-export class Weapon extends EquipItem {
+export class Weapon extends GearItem {
   constructor() {
     super();
   }

@@ -1,0 +1,14 @@
+{ "columns":25,
+ "image":"..\/..\/..\/client\/assets\/tilesets\/rpgw\/g_terrain4.png",
+ "imageheight":896,
+ "imagewidth":800,
+ "margin":0,
+ "name":"rpgw_terrain4",
+ "spacing":0,
+ "tilecount":700,
+ "tiledversion":"1.11.1-99-gec89c545",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

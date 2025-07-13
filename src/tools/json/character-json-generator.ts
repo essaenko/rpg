@@ -1,14 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Class } from '@server/ecs/components/game/mechanics/class';
-import {
-  Animation,
-  Class as Classes,
-  EquipSlot,
-  Fraction as Fractions,
-  ResourceType,
-  WeaponHand,
-  WeaponType,
-} from '@shared/types';
+import { Animation, Class as Classes, Fraction as Fractions, ResourceType } from '@shared/types';
 import { Body } from '@server/ecs/components/physics/body';
 import { Position } from '@server/ecs/components/physics/position';
 import { Collider } from '@server/ecs/components/physics/collider';
@@ -18,7 +10,7 @@ import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { MainStats } from '@server/ecs/components/game/stats/main-stats';
 import { SecondaryStats } from '@server/ecs/components/game/stats/secondary-stats';
-import { Equip } from '@server/ecs/components/game/item/equip';
+import { Gear } from '@server/ecs/components/game/item/gear';
 import { Name } from '@server/ecs/components/game/ui/name';
 import { Entity } from '@shared/ecs/entity';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
@@ -92,7 +84,7 @@ character.add(new Appearance());
 character.get<Appearance>('appearance').key = 'dummy';
 character.get<Appearance>('appearance').animation = Animation.Idle;
 
-character.add(new Equip());
+character.add(new Gear());
 character.add(new SpellBook());
 
 const classc = new Class();

@@ -1,7 +1,6 @@
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
-import { IN_GAME_DAY_TIME } from '@client/utils/const';
 import { TransportEventTypes } from '@shared/types';
 import { nanoid } from 'nanoid';
 import { Entity } from '../ecs/entity/entity';
@@ -41,9 +40,9 @@ export class WorldScene extends NetworkScene {
           this.load.spritesheet(key, asset, config);
         }
         if (isMultipleSpriteAsset(a)) {
-          const { key, type, frames } = a;
+          const { key, frames } = a;
 
-          frames.forEach(frame => {
+          frames.forEach((frame) => {
             this.load.image(`${key}_fr${frame.id}`, frame.asset);
           });
         }
@@ -68,11 +67,11 @@ export class WorldScene extends NetworkScene {
             const source = this.textures.createCanvas(
               asset.key,
               asset.frames.reduce((acc, fr) => acc + fr.config.frameWidth, 0),
-              Math.max(...asset.frames.map(({ config: { frameHeight }}) => frameHeight))
+              Math.max(...asset.frames.map(({ config: { frameHeight } }) => frameHeight)),
             );
             let padding = 0;
 
-            asset.frames.forEach((frame, index) => {
+            asset.frames.forEach((frame) => {
               source.drawFrame(`${asset.key}_fr${frame.id}`, 0, padding, 0);
               source.add(frame.id, 0, padding, 0, frame.config.frameWidth, frame.config.frameHeight);
               padding += frame.config.frameWidth;
@@ -128,8 +127,8 @@ export class WorldScene extends NetworkScene {
     this.lights.enable();
 
     const color = {
-      day: Phaser.Display.Color.ValueToColor(0x2a2a55),    // ночь
-      night: Phaser.Display.Color.ValueToColor(0xfbf3d5),  // день
+      day: Phaser.Display.Color.ValueToColor(0x2a2a55), // ночь
+      night: Phaser.Display.Color.ValueToColor(0xfbf3d5), // день
     };
 
     const fn = () => {
@@ -139,24 +138,13 @@ export class WorldScene extends NetworkScene {
       const total = minute * 60 + second;
       const inCycle = total % 3600;
       const isDay = inCycle < 1800;
-      const cyclePos = isDay
-        ? 100 - (inCycle / 1800) * 100
-        : ((inCycle - 1800) / 1800) * 100;
-      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(
-        color.day,
-        color.night,
-        100,
-        cyclePos
-      );
+      const cyclePos = isDay ? 100 - (inCycle / 1800) * 100 : ((inCycle - 1800) / 1800) * 100;
+      const colorObj = Phaser.Display.Color.Interpolate.ColorWithColor(color.day, color.night, 100, cyclePos);
       this.lights.lights.forEach((light) => {
         light.setIntensity(1.5 * (1 - cyclePos / 100));
       });
 
-      this.lights.setAmbientColor(
-        Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b)
-      );
-
-
+      this.lights.setAmbientColor(Phaser.Display.Color.GetColor(colorObj.r, colorObj.g, colorObj.b));
     };
 
     // обновляем освещение раз в секунду
@@ -188,6 +176,7 @@ export class WorldScene extends NetworkScene {
             sprite.setTexture(tileset.name, key);
             sprite.setPipeline('Light2D');
             sprite.play(`${tileset.name}-animation-${key + +tileset.firstgid}`);
+            sprite.depth = layer.tilemapLayer.depth - 1;
           }
         }
       }
@@ -235,7 +224,11 @@ export class WorldScene extends NetworkScene {
           position.y = obj.y;
           entity.add(position);
 
-          if (obj.properties?.find(({ name, value }: { name?: string; value?: boolean }) => name === 'transparent' && !!value)) {
+          if (
+            obj.properties?.find(
+              ({ name, value }: { name?: string; value?: boolean }) => name === 'transparent' && !!value,
+            )
+          ) {
             const transparent = new Transparent();
 
             entity.add(transparent);

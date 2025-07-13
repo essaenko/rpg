@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { Client, Room } from 'colyseus.js';
+import { Room } from 'colyseus.js';
 
 import type { SceneState } from '@shared/schemas/scene';
 
@@ -24,6 +24,7 @@ import { LightSystem } from '@client/ecs/systems/physics/light';
 import { GameObjectsSystem } from '@client/ecs/systems/game-objects';
 import { SceneSystem } from '@client/ecs/systems/scene';
 import { Cast } from '@client/ecs/systems/cast';
+import { DeathSystem } from '@client/ecs/systems/mechanics/death';
 
 export class NetworkScene extends Phaser.Scene {
   onJoin?: () => void;
@@ -50,6 +51,8 @@ export class NetworkScene extends Phaser.Scene {
     this.ecs.addSystem(new TargetSystem());
     this.ecs.addSystem(new GraphicsSystem());
     this.ecs.addSystem(new AppearanceSystem());
+
+    this.ecs.addSystem(new DeathSystem());
 
     this.ecs.addSystem(new QuestGiverSystem());
     this.ecs.addSystem(new InteractionSystem());
