@@ -88,13 +88,7 @@ export class QuadTree<T extends Entity = Entity> {
   public query(x: number, y: number, width: number, height: number): T[] {
     if (this.intersects(x, y, width, height)) {
       if (this.nodes) {
-        const result = [];
-
-        for (const node of this.nodes) {
-          result.push(...node.query(x, y, width, height));
-        }
-
-        return result;
+        return this.nodes.map((it) => it.query(x, y, width, height)).flat();
       }
 
       return Array.from(this.objects);

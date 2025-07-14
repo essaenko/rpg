@@ -12,6 +12,10 @@ import { matchMaker } from 'colyseus';
 import { MDBClient } from '@server/mongodb';
 import { Entity } from '@shared/ecs/entity';
 import { Location } from '@server/ecs/components/game/ui/location';
+import Logger from 'js-logger';
+
+const logger = Logger.get('MainProcess');
+Logger.setLevel(Logger.DEBUG);
 
 export default config({
   initializeGameServer: (gameServer) => {
@@ -19,9 +23,10 @@ export default config({
     /**
      * Define your room handlers:
      */
+    logger.debug('Defining rooms from assets');
     Object.keys(assets).forEach((location) => {
       gameServer.define(location, DynamicallyLoadableScene);
-    })
+    });
 
     // gameServer.simulateLatency(100);
   },
@@ -35,9 +40,11 @@ export default config({
       res.send("It's time to kick ass and chew bubblegum!");
     });
     app.get('/scene', (req, res) => {
+      logger.info('Scene was retrieved via network');
       res.send(JSON.stringify({ scene: 'dummy' }));
     });
     app.get('/join/:charID', async (req, res) => {
+      logger.debug(`Char config was retrieved for ${req.params.charID}`);
       if (req.params.charID) {
         const save = await MDBClient.instance().readPlayer(req.params.charID);
 
@@ -58,7 +65,7 @@ export default config({
 
             res.json({
               ...seat,
-              scene: location.value
+              scene: location.value,
             });
 
             return;
@@ -70,8 +77,8 @@ export default config({
       res.json({
         status: 'error',
         error: 'Cant join the game',
-      })
-    })
+      });
+    });
 
     /**
      * Use @colyseus/playground

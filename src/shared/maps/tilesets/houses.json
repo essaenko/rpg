@@ -9,7 +9,7 @@
  "name":"houses",
  "objectalignment":"center",
  "spacing":0,
- "tilecount":7,
+ "tilecount":8,
  "tiledversion":"1.11.1-99-gec89c545",
  "tileheight":288,
  "tiles":[
@@ -199,9 +199,38 @@
                      "rotation":0,
                      "type":"collider",
                      "visible":true,
-                     "width":175,
+                     "width":171.666666666667,
                      "x":24.6666666666667,
                      "y":76
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":7,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/houses\/yaromirs_house.png",
+         "imageheight":288,
+         "imagewidth":288,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":139,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":203.333333333333,
+                     "x":25.6666666666667,
+                     "y":146
                     }],
              "opacity":1,
              "type":"objectgroup",

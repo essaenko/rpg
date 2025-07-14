@@ -1,11 +1,12 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const clientPath = path.resolve(__dirname, '../client');
+const clientPath = path.resolve(process.cwd(), './src/client');
 
 (async () => {
   try {
-    const aseprites = await fs.readdir(path.resolve(clientPath, './assets/sprites/aseprite'));
+    const images = await fs.readdir(path.resolve(clientPath, './assets/sprites/aseprite/png'));
+    const configs = await fs.readdir(path.resolve(clientPath, './assets/sprites/aseprite/json'));
     const assets: {
       [name: string]: {
         asset: string;
@@ -14,7 +15,7 @@ const clientPath = path.resolve(__dirname, '../client');
       };
     } = {};
     const imports = [];
-    const names = aseprites
+    const names = images
       .map((file) => file.split('.').slice(0, -1).join('.'))
       .reduce((acc, name) => {
         acc.add(name);
@@ -23,9 +24,9 @@ const clientPath = path.resolve(__dirname, '../client');
       }, new Set<string>());
 
     for (const name of names.keys()) {
-      if (aseprites.includes(`${name}.png`) && aseprites.includes(`${name}.json`)) {
-        imports.push(`import ${name.replaceAll('-', '_')}Asset from './aseprite/${name}.png'`);
-        imports.push(`import ${name.replaceAll('-', '_')}Json from './aseprite/${name}.json?url'`);
+      if (images.includes(`${name}.png`) && configs.includes(`${name}.json`)) {
+        imports.push(`import ${name.replaceAll('-', '_')}Asset from './aseprite/png/${name}.png'`);
+        imports.push(`import ${name.replaceAll('-', '_')}Json from './aseprite/json/${name}.json?url'`);
         assets[name] = {
           asset: `${name.replaceAll('-', '_')}Asset`,
           json: `${name.replaceAll('-', '_')}Json`,

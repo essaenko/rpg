@@ -30,10 +30,10 @@
         },
         "builder/house-builder.tmx": {
             "scale": 2,
-            "selectedLayer": 5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 206,
-                "y": 247.25
+                "x": 184,
+                "y": 226.75
             }
         },
         "builder/house-builder.tmx#FL_Houses_decoratives": {
@@ -43,7 +43,7 @@
             "scaleInDock": 1.5
         },
         "builder/house-builder.tmx#FL_Houses_ext_building elements": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         },
         "builder/house-builder.tmx#FL_Houses_ext_roofsA1": {
             "scaleInDock": 0.5
@@ -58,7 +58,7 @@
             "scaleInDock": 1
         },
         "builder/house-builder.tmx#FL_Houses_ext_side_Roofs": {
-            "scaleInDock": 0.5
+            "scaleInDock": 1
         },
         "builder/house-builder.tmx#FL_Houses_ext_terrain_floors": {
             "dynamicWrapping": false,
@@ -427,16 +427,16 @@
                 9,
                 6
             ],
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 1393.5,
-                "y": 1099.25
+                "x": 578.6666666666666,
+                "y": 1675.333333333333
             }
         },
         "zavrazye/zavrazye.tmx#bridges_and_fences": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.75
+            "scaleInDock": 1.5
         },
         "zavrazye/zavrazye.tmx#dummy-tile": {
             "scaleInDock": 1
@@ -457,7 +457,7 @@
     },
     "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/zavrazye",
     "last.externalTilesetPath": "/home/essaenko/projects/rpg/src/shared/maps/tilesets",
-    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/rpgw/trees",
+    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/houses",
     "lastUsedTilesetExportFilter": "JSON файлы с наборами тайлов (*.tsj *.json)",
     "map.fixedSize": false,
     "map.height": 5,

@@ -111,6 +111,7 @@ import dummy_house_json_map from '@shared/maps/dummy/dummy-house.json?url';
 import bridges_and_fencesAsset from '@client/assets/tilesets/fantasy-lands/bridges_and_fences.png';
 import housesTile5Asset from '@client/assets/tilesets/houses/makars_house.png';
 import housesTile6Asset from '@client/assets/tilesets/houses/nastasyas_house.png';
+import housesTile7Asset from '@client/assets/tilesets/houses/yaromirs_house.png';
 import house_decorationsTile0Asset from '@client/assets/tilesets/house-decrations/object (1).png';
 import house_decorationsTile1Asset from '@client/assets/tilesets/house-decrations/object (2).png';
 import house_decorationsTile2Asset from '@client/assets/tilesets/house-decrations/object (3).png';
@@ -714,6 +715,10 @@ export const map: Record<string, MapPackage> = {
           id: 6,
           asset: housesTile6Asset,
           config: {"frameWidth":256,"frameHeight":224}
+          },{
+          id: 7,
+          asset: housesTile7Asset,
+          config: {"frameWidth":288,"frameHeight":288}
           }
         ]
         },{
@@ -1186,4 +1191,4 @@ export const map: Record<string, MapPackage> = {
 
 export const isMapBundleKey = (name: string): name is keyof typeof map => {
   return name in map;
-};
+}

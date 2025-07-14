@@ -26,6 +26,9 @@ import { ChangeScene } from '@server/ecs/components/trigger/change-scene';
 import { RoutePath } from '@server/ecs/components/physics/route-path';
 import { Behavior } from '@server/ecs/components/game/behaviour/behavior';
 import { PatrolTree } from '@server/mechanics/behaviors/patrol';
+import Logger from 'js-logger';
+
+const SceneLogger = Logger.get('DynamicallyLoadableScene');
 
 export class DynamicallyLoadableScene extends Scene {
   constructor() {
@@ -33,6 +36,7 @@ export class DynamicallyLoadableScene extends Scene {
   }
 
   async onCreate(options: { scene?: string }) {
+    SceneLogger.debug('onCreate scheduled');
     super.onCreate(options);
 
     this.state = new SceneState();

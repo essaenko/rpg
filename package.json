@@ -59,6 +59,7 @@
     "express": "^4.18.2",
     "install": "^0.13.0",
     "js-event-bus": "^1.1.1",
+    "js-logger": "^1.6.1",
     "mongodb": "6.10",
     "nanoid": "^5.0.8",
     "phaser": "^3.88.0",

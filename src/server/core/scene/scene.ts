@@ -31,6 +31,9 @@ import { ProjectileSystem } from '@server/ecs/systems/core/projectile';
 import { EventSystem } from '@server/ecs/systems/core/events';
 import { ChannelingSystem } from '@server/ecs/systems/spells/channeling';
 import { BehaviorSystem } from '@server/ecs/systems/behaviour/behavior';
+import Logger from 'js-logger';
+
+const SceneLogger = Logger.get('Scene');
 
 export abstract class Scene extends Room<SceneState> {
   public ecs: ECSContainer;
@@ -48,9 +51,9 @@ export abstract class Scene extends Room<SceneState> {
   }
 
   protected constructor() {
+    SceneLogger.debug('Scene creation');
     super();
     this.ecs = new ECSContainer(this);
-
     this.ecs.addSystem(new AreaOfInterestsSystem());
     this.ecs.addSystem(new GameObjectsSystem());
 
@@ -82,7 +85,6 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new DamageSystem());
     this.ecs.addSystem(new HotSystem());
     this.ecs.addSystem(new DotSystem());
-
     this.ecs.addService(new ClientsService());
   }
 

@@ -5,6 +5,9 @@ import { Entity } from './entity';
 import { Scene } from '@server/core/scene/scene';
 import { Service } from '@shared/ecs/service/service';
 import { QuadTree } from './tree';
+import Logger from 'js-logger';
+
+const ContainerLogger = Logger.get('ECSContainer');
 
 export class ECSContainer {
   private systems: Map<string, System> = new Map();
@@ -13,16 +16,16 @@ export class ECSContainer {
   private tree: QuadTree;
 
   constructor(public scene: Scene) {
-    scene.clock.setInterval(() => {
-      this.tree.update();
-    }, 200);
+    ContainerLogger.debug('ECSContainer created');
   }
 
   createTree(x: number, y: number, width: number, height: number) {
+    ContainerLogger.debug('QuadTree added');
     this.tree = new QuadTree(x, y, width, height);
   }
 
   addService<T extends Service = Service>(service: T): T {
+    ContainerLogger.debug(`Service ${service.name} added`);
     this.services.set(service.name, service);
 
     return service;
@@ -33,14 +36,17 @@ export class ECSContainer {
   }
 
   addSystem(system: System) {
+    ContainerLogger.debug(`System ${system.name} added`);
     this.systems.set(system.name, system);
   }
 
   removeSystem(name: string): void {
+    ContainerLogger.debug(`System ${name} removed`);
     this.systems.delete(name);
   }
 
   addEntity(entity: Entity) {
+    ContainerLogger.debug(`Entity ${entity.id} added`);
     this.entities.set(entity.id, entity);
     const position = entity.get('position') as unknown as Pointer2D;
     if (position) {
@@ -49,6 +55,7 @@ export class ECSContainer {
   }
 
   removeEntity(id: string): void {
+    ContainerLogger.debug(`Entity ${id} removed`);
     const entity = this.getEntity(id);
     entity.onDestroy();
     this.entities.delete(id);
@@ -95,21 +102,27 @@ export class ECSContainer {
   }
 
   queueTreeUpdate(entity: Entity) {
-    const pos = entity.get('position') as unknown as Pointer2D;
-
-    if (pos && this.entities.has(entity.id)) {
+    if (entity.has('position') && this.entities.has(entity.id)) {
       this.tree.queue(entity);
     }
   }
 
   update(delta: number, scene: Scene) {
+    ContainerLogger.debug('[ECSContainer]: Update scheduled]');
+    const start = performance.now();
     this.systems.forEach((sys) => {
-      sys.onUpdate(delta, this, scene);
+      sys.update(delta, this, scene);
     });
+    ContainerLogger.debug(`Update finished after: ${performance.now() - start}ms`);
+    ContainerLogger.debug(`Update QTree scheduled`);
+    const qstart = performance.now();
+    this.tree.update();
+    ContainerLogger.debug(`Update QTree finished after: ${performance.now() - qstart}ms`);
   }
 
   processMessage(client: Client, type: TransportEventTypes, message: any) {
     this.systems.forEach((system) => {
+      ContainerLogger.debug(`Message received from client: ${client.sessionId}, ${type}`);
       system.handleMessage(client, type, message, this);
     });
   }
