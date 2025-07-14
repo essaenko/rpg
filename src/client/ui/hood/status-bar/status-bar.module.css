@@ -2,16 +2,25 @@
   position: absolute;
   left: 10px;
   top: 10px;
-  width: 300px;
-  height: 100px;
-  padding: 10px;
-  background: gray;
-  border-radius: 10px;
   display: flex;
-  box-sizing: border-box;
+  flex-direction: column;
+
+  .block {
+    padding: 10px;
+    background: gray;
+    border-radius: 10px;
+    display: flex;
+    box-sizing: border-box;
+    width: min-content;
+    height: min-content;
+
+    & + & {
+      margin-top: 10px;
+    }
+  }
 
   .name {
-
+    width: max-content;
   }
 
   .avatar {

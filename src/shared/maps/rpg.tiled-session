@@ -95,15 +95,15 @@
         },
         "dummy/dummy-house.tmx": {
             "expandedObjectLayers": [
-                10,
+                9,
                 8,
-                9
+                10
             ],
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 167,
-                "y": 426
+                "y": 276.5
             }
         },
         "dummy/dummy-house.tmx#beds": {
@@ -184,20 +184,23 @@
             "scaleInDock": 1
         },
         "dummy/dummy.tmx": {
-            "expandedObjectLayers": [
-                13,
-                11,
-                6,
-                5,
-                16,
-                14,
+            "expandedGroupLayers": [
                 12
             ],
+            "expandedObjectLayers": [
+                5,
+                6,
+                16,
+                13,
+                12,
+                14,
+                11
+            ],
             "scale": 1.5,
-            "selectedLayer": 7,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 322,
-                "y": 491.33333333333337
+                "x": 335.99999999999994,
+                "y": 1203
             }
         },
         "dummy/dummy.tmx#decorations_medium": {
@@ -423,15 +426,18 @@
             "scaleInDock": 1
         },
         "zavrazye/zavrazye.tmx": {
-            "expandedObjectLayers": [
-                9,
-                6
+            "expandedGroupLayers": [
+                11
             ],
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "expandedObjectLayers": [
+                12,
+                11
+            ],
+            "scale": 1.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 578.6666666666666,
-                "y": 1675.333333333333
+                "x": 1446,
+                "y": 884.3333333333333
             }
         },
         "zavrazye/zavrazye.tmx#bridges_and_fences": {
@@ -457,7 +463,7 @@
     },
     "last.exportedFilePath": "/home/essaenko/projects/rpg/src/shared/maps/zavrazye",
     "last.externalTilesetPath": "/home/essaenko/projects/rpg/src/shared/maps/tilesets",
-    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/houses",
+    "last.imagePath": "/home/essaenko/projects/rpg/src/client/assets/tilesets/house-decrations",
     "lastUsedTilesetExportFilter": "JSON файлы с наборами тайлов (*.tsj *.json)",
     "map.fixedSize": false,
     "map.height": 5,
@@ -472,7 +478,9 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "tilesets/houses.json",
         "tilesets/rpgw_trees.json",
+        "tilesets/house-decorations.json",
         "tilesets/tree.json",
         "tilesets/tree_2_2.json",
         "tilesets/tree_1_2.json",
@@ -481,9 +489,7 @@
         "tilesets/rpgw_terrain2.json",
         "tilesets/rpgw_hills2.json",
         "builder/house-builder.tmx",
-        "tilesets/rpgw_hills1.json",
-        "tilesets/rpgw_terrain4.json",
-        "tilesets/rpgw_terrain3.json"
+        "tilesets/rpgw_hills1.json"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Файлы набора тайлов Tiled (*.tsx *.xml)",

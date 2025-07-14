@@ -1,16 +1,18 @@
-import { Component } from '@shared/ecs/component';
+import { Component, NetworkComponent } from '@shared/ecs/component';
 import { type } from '@colyseus/schema';
 
-export class MainStats extends Component {
+export class MainStats extends NetworkComponent {
   constructor() {
     super('main-stats');
   }
 
   serializable = true;
+  inited = false;
 
   @type('number') intellect: number = 0;
   @type('number') strength: number = 0;
   @type('number') agility: number = 0;
+  @type('number') stamina: number = 0;
 
   init(state: Record<string, any>): void {
     if ('intellect' in state) {
@@ -21,6 +23,9 @@ export class MainStats extends Component {
     }
     if ('agility' in state) {
       this.agility = state.agility;
+    }
+    if ('stamina' in state) {
+      this.stamina = state.stamina;
     }
   }
 }

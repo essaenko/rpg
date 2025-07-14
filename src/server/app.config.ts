@@ -13,6 +13,9 @@ import { MDBClient } from '@server/mongodb';
 import { Entity } from '@shared/ecs/entity';
 import { Location } from '@server/ecs/components/game/ui/location';
 import Logger from 'js-logger';
+import { admin } from '../admin';
+import bodyParser from 'body-parser';
+import e from 'express';
 
 const logger = Logger.get('MainProcess');
 Logger.setLevel(Logger.DEBUG);
@@ -94,6 +97,8 @@ export default config({
      * Read more: https://docs.colyseus.io/tools/monitor/#restrict-access-to-the-panel-using-a-password
      */
     app.use('/monitor', monitor());
+
+    app.use('/admin', admin());
   },
 
   beforeListen: () => {

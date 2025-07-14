@@ -15,20 +15,17 @@ import { Name } from '@server/ecs/components/game/ui/name';
 import { Entity } from '@shared/ecs/entity';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Appearance } from '@server/ecs/components/game/appearance';
-import { Player } from '@server/ecs/components/game/tag/player';
 import { Move } from '@server/ecs/components/game/move';
+import { NPC } from '@server/ecs/components/game/tag/npc';
 
 const character = new Entity();
 character.id = nanoid(9);
 
-character.add(new Class());
-character.get<Class>('class').class = Classes.Warrior;
-
-character.add(new Player());
+character.add(new NPC());
 character.add(new Move());
 
 character.add(new Name());
-character.get<Name>('name').value = 'Игрок';
+character.get<Name>('name').value = 'Свинья';
 
 character.add(new Body());
 const body = character.get<Body>('body');
@@ -73,7 +70,7 @@ const secondaryStats = character.get<SecondaryStats>('secondary-stats');
 secondaryStats.armor = 10;
 secondaryStats.attackPower = 12;
 secondaryStats.crit = 10;
-secondaryStats.avoid = 0;
+secondaryStats.dodge = 0;
 secondaryStats.block = 0;
 secondaryStats.spellPower = 6;
 secondaryStats.parry = 0;

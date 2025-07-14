@@ -19,13 +19,7 @@ export class NetworkSystem extends System {
 
   private _room: Room<SceneState>;
 
-  onUpdate(scene: WorldScene, container: ECSContainer): void {
-    container.query(['tag-object']).forEach((entity) => {
-      if (!entity.has('sprite') && entity instanceof Entity) {
-        this.initObject(entity, scene);
-      }
-    });
-  }
+  onUpdate(scene: WorldScene, container: ECSContainer): void {}
 
   observe(room: Room<SceneState>, container: ECSContainer) {
     this._room = room;
@@ -45,34 +39,5 @@ export class NetworkSystem extends System {
     entity.observe(eSchema);
 
     container.addEntity(entity);
-  }
-
-  initObject(entity: Entity, scene: WorldScene) {
-    const location = scene.name;
-    const object = entity.get<MapObject>('tag-object');
-    const position = entity.get<Position>('position');
-
-    if (isMapKey(location)) {
-      const m = maps[location];
-      const set = m.tilesets.find((set) => set.name === object.type);
-      if (set) {
-        const sprite = scene.physics.add.sprite(position.x, position.y, object.type, object.gid - set.firstgid);
-        sprite.setPipeline('Light2D');
-        sprite.setOrigin(0.5, 0.5);
-        sprite.depth = sprite.y + sprite.height / 2;
-        const animKey = `${object.type}-animation-${object.gid}`;
-
-        if (scene.anims.exists(animKey)) {
-          const animComponent = new Animation();
-          animComponent.key = animKey;
-
-          entity.add(animComponent);
-        }
-        const sComponent = new Sprite();
-        sComponent.sprite = sprite;
-
-        entity.add(sComponent);
-      }
-    }
   }
 }

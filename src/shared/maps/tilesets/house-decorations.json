@@ -9,7 +9,7 @@
  "name":"house-decorations",
  "objectalignment":"center",
  "spacing":0,
- "tilecount":39,
+ "tilecount":43,
  "tiledversion":"1.11.1-99-gec89c545",
  "tileheight":135,
  "tiles":[
@@ -433,7 +433,6 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -480,7 +479,6 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -509,7 +507,6 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -535,6 +532,170 @@
          "image":"..\/..\/..\/client\/assets\/tilesets\/house-decrations\/object (40).png",
          "imageheight":63,
          "imagewidth":68
+        }, 
+        {
+         "id":39,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/house-decrations\/object (44).png",
+         "imageheight":74,
+         "imagewidth":43,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":16.125,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":8.625,
+                     "x":18.875,
+                     "y":55
+                    }, 
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "point":true,
+                     "rotation":0,
+                     "type":"light",
+                     "visible":true,
+                     "width":0,
+                     "x":9.375,
+                     "y":34.5
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":40,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/house-decrations\/object (43).png",
+         "imageheight":74,
+         "imagewidth":43,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":16.125,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":8.625,
+                     "x":14.6875,
+                     "y":55.6875
+                    }, 
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "point":true,
+                     "rotation":0,
+                     "type":"light",
+                     "visible":true,
+                     "width":0,
+                     "x":32.5,
+                     "y":33.875
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":41,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/house-decrations\/object (42).png",
+         "imageheight":74,
+         "imagewidth":43,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":16.125,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":8.625,
+                     "x":14.8125,
+                     "y":55.1875
+                    }, 
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "point":true,
+                     "rotation":0,
+                     "type":"light",
+                     "visible":true,
+                     "width":0,
+                     "x":6.77272727272727,
+                     "y":20.6363636363636
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
+        }, 
+        {
+         "id":42,
+         "image":"..\/..\/..\/client\/assets\/tilesets\/house-decrations\/object (41).png",
+         "imageheight":74,
+         "imagewidth":43,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":16.125,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"collider",
+                     "visible":true,
+                     "width":8.625,
+                     "x":19.0625,
+                     "y":55.1875
+                    }, 
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "point":true,
+                     "rotation":0,
+                     "type":"light",
+                     "visible":true,
+                     "width":0,
+                     "x":35.875,
+                     "y":21.5
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            }
         }],
  "tilewidth":96,
  "type":"tileset",

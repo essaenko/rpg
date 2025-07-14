@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'path';
 import { assets as assetsURIs, maps } from '@shared/maps/mapping';
-import { MapPackage, MultipleSpriteAsset } from '@client/utils/types';
+import { MapPackage, MultipleSpriteAsset, MultipleSpriteAssetFrame } from '@client/utils/types';
 
 const clientPath = path.resolve(process.cwd(), 'src/client');
 const imports: Map<string, string> = new Map();
@@ -47,14 +47,25 @@ for (let key in maps) {
           const assetImport = `import ${set.name.replaceAll('-', '_')}Tile${i}Asset from '${assetPath}';`;
           imports.set(`${set.name}Tile${i}`, assetImport);
 
-          asset.frames.push({
+          const frame: MultipleSpriteAssetFrame = {
             id: tile.id,
             asset: `${set.name.replaceAll('-', '_')}Tile${i}Asset`,
             config: {
               frameWidth: tile.imagewidth,
               frameHeight: tile.imageheight,
             },
-          });
+          };
+
+          const light = tile.objectgroup?.objects?.find((obj) => obj.type === 'light');
+
+          if (light) {
+            frame.config.light = {
+              x: light.x,
+              y: light.y,
+            };
+          }
+
+          asset.frames.push(frame);
         }
       }
       assets.push(asset);

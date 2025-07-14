@@ -270,6 +270,7 @@
    { "name": "walk_left", "from": 12, "to": 15, "direction": "forward", "color": "#000000ff" },
    { "name": "eat_backward", "from": 16, "to": 19, "direction": "forward", "color": "#000000ff" },
    { "name": "walk_backward", "from": 20, "to": 23, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle_backward", "from": 20, "to": 21, "direction": "forward", "color": "#000000ff" },
    { "name": "eat_right", "from": 24, "to": 27, "direction": "forward", "color": "#000000ff" },
    { "name": "walk_right", "from": 28, "to": 31, "direction": "forward", "color": "#000000ff" }
   ],

@@ -151,6 +151,10 @@ import house_decorationsTile35Asset from '@client/assets/tilesets/house-decratio
 import house_decorationsTile36Asset from '@client/assets/tilesets/house-decrations/object (39).png';
 import house_decorationsTile37Asset from '@client/assets/tilesets/house-decrations/pixellab-large-blacksmith-s-anvil-1752336826547.png';
 import house_decorationsTile38Asset from '@client/assets/tilesets/house-decrations/object (40).png';
+import house_decorationsTile39Asset from '@client/assets/tilesets/house-decrations/object (44).png';
+import house_decorationsTile40Asset from '@client/assets/tilesets/house-decrations/object (43).png';
+import house_decorationsTile41Asset from '@client/assets/tilesets/house-decrations/object (42).png';
+import house_decorationsTile42Asset from '@client/assets/tilesets/house-decrations/object (41).png';
 import rpgw_treesTile55Asset from '@client/assets/tilesets/rpgw/trees/object (71).png';
 import rpgw_treesTile56Asset from '@client/assets/tilesets/rpgw/trees/object (70).png';
 import rpgw_treesTile57Asset from '@client/assets/tilesets/rpgw/trees/object (69).png';
@@ -880,6 +884,22 @@ export const map: Record<string, MapPackage> = {
           id: 38,
           asset: house_decorationsTile38Asset,
           config: {"frameWidth":68,"frameHeight":63}
+          },{
+          id: 39,
+          asset: house_decorationsTile39Asset,
+          config: {"frameWidth":43,"frameHeight":74,"light":{"x":9.375,"y":34.5}}
+          },{
+          id: 40,
+          asset: house_decorationsTile40Asset,
+          config: {"frameWidth":43,"frameHeight":74,"light":{"x":32.5,"y":33.875}}
+          },{
+          id: 41,
+          asset: house_decorationsTile41Asset,
+          config: {"frameWidth":43,"frameHeight":74,"light":{"x":6.77272727272727,"y":20.6363636363636}}
+          },{
+          id: 42,
+          asset: house_decorationsTile42Asset,
+          config: {"frameWidth":43,"frameHeight":74,"light":{"x":35.875,"y":21.5}}
           }
         ]
         },{

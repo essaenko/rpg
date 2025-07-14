@@ -1,13 +1,15 @@
 import { NetworkScene } from './network-scene';
 import { isMapBundleKey, map } from '@client/assets/tilesets/map';
 import Tilemap = Phaser.Tilemaps.Tilemap;
-import { TransportEventTypes } from '@shared/types';
+import { Pointer2D, TransportEventTypes } from '@shared/types';
 import { nanoid } from 'nanoid';
 import { Entity } from '../ecs/entity/entity';
 import { Position } from '@client/ecs/components/physics/position';
 import { MapObject } from '@client/ecs/components/game/tag/mapObject';
 import { isMultipleSpriteAsset, isSingleSpriteAsset } from '@client/utils/types';
 import { Transparent } from '@client/ecs/components/game/visual/transparent';
+import { maps } from '@shared/maps/mapping';
+import { DEFAULT_LIGHT_HEX_COLOR } from '@client/utils/const';
 
 export class WorldScene extends NetworkScene {
   constructor(
@@ -72,6 +74,14 @@ export class WorldScene extends NetworkScene {
             let padding = 0;
 
             asset.frames.forEach((frame) => {
+              if (frame.config.light) {
+                if (!source.customData) {
+                  source.customData = {};
+                }
+                (source.customData as any)[frame.id] = {
+                  light: frame.config.light,
+                };
+              }
               source.drawFrame(`${asset.key}_fr${frame.id}`, 0, padding, 0);
               source.add(frame.id, 0, padding, 0, frame.config.frameWidth, frame.config.frameHeight);
               padding += frame.config.frameWidth;
@@ -103,7 +113,7 @@ export class WorldScene extends NetworkScene {
         this.initTilesetAnimations();
       }
 
-      this.addLight();
+      this.addGlobalLightning();
 
       if (!this.room) {
         this.onJoin = () => {
@@ -123,7 +133,7 @@ export class WorldScene extends NetworkScene {
     this.cameras.main.setRoundPixels(true);
   }
 
-  addLight() {
+  addGlobalLightning() {
     this.lights.enable();
 
     const color = {
@@ -240,6 +250,21 @@ export class WorldScene extends NetworkScene {
           entity.add(objCom);
 
           this.ecs.addEntity(entity);
+
+          const set = maps[this.name]?.tilesets?.find((set) => set.name === obj.type);
+          const tileId = objCom.gid - set.firstgid;
+          const texture = this.textures.get(obj.type);
+          const customData = (texture?.customData as any)[tileId];
+
+          if (customData?.light) {
+            this.lights.addLight(
+              position.x - obj.width / 2 + customData.light.x,
+              position.y - obj.height / 2 + customData.light.y,
+              300,
+              DEFAULT_LIGHT_HEX_COLOR,
+              1,
+            );
+          }
         }
       });
     }

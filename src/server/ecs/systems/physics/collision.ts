@@ -175,7 +175,6 @@ export class CollisionSystem extends System {
         }
 
         if (collision) {
-          console.log('Collided with terrain');
           return true;
         }
       }

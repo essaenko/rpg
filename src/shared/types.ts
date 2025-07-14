@@ -118,6 +118,7 @@ export enum Fraction {
   Ancient = 1,
   BrotherHood,
   Neutral,
+  Hostile,
 }
 
 export enum Relation {
@@ -131,15 +132,24 @@ export const Relations: Record<Fraction, Record<Fraction, Relation>> = {
     [Fraction.Ancient]: Relation.Hostile,
     [Fraction.BrotherHood]: Relation.Friendly,
     [Fraction.Neutral]: Relation.Neutral,
+    [Fraction.Hostile]: Relation.Hostile,
   },
   [Fraction.Ancient]: {
     [Fraction.Ancient]: Relation.Friendly,
     [Fraction.BrotherHood]: Relation.Hostile,
     [Fraction.Neutral]: Relation.Neutral,
+    [Fraction.Hostile]: Relation.Hostile,
   },
   [Fraction.Neutral]: {
     [Fraction.Ancient]: Relation.Neutral,
     [Fraction.BrotherHood]: Relation.Neutral,
     [Fraction.Neutral]: Relation.Neutral,
+    [Fraction.Hostile]: Relation.Hostile,
+  },
+  [Fraction.Hostile]: {
+    [Fraction.Ancient]: Relation.Hostile,
+    [Fraction.BrotherHood]: Relation.Hostile,
+    [Fraction.Neutral]: Relation.Hostile,
+    [Fraction.Hostile]: Relation.Hostile,
   },
 };

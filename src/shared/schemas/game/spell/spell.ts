@@ -1,14 +1,15 @@
 import { ArraySchema, Schema, type } from '@colyseus/schema';
-import { Entity, NetworkEntity } from '@shared/ecs/entity';
+import { Entity } from '@shared/ecs/entity';
 import { getDistance } from '@shared/utils/physics';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
-import { Animation, Fraction as Fractions, Relation } from '@shared/types';
+import { Fraction as Fractions, Relation } from '@shared/types';
 import { getRelation } from '@shared/utils/fractions';
 import { Fraction } from '@server/ecs/components/game/mechanics/fraction';
 import { Position } from '@server/ecs/components/physics/position';
 import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Scene } from '@server/core/scene/scene';
 import { COMMON_SPELLS } from '@shared/utils/const';
+import { Resource } from '@server//ecs/components/game/stats/resource/resource';
 
 export abstract class Spell extends Schema {
   /**
@@ -67,6 +68,7 @@ export abstract class Spell extends Schema {
     const { fraction: f1 } = caster.get<Fraction>('fraction') ?? { fraction: Fractions.Neutral };
     const { fraction: f2 } = target.get<Fraction>('fraction') ?? { fraction: Fractions.Neutral };
     const death = target.get<Death>('death');
+    const resource = target.get<Resource>('resource');
 
     return (
       !death?.dead &&
@@ -74,6 +76,7 @@ export abstract class Spell extends Schema {
       getDistance(caster.get<Position>('position'), target.get<Position>('position')) <= this.range &&
       // NOTE: toString call here cause MapSchema using only string keys at the time
       (spellBook.spells.has(this.id.toString()) || COMMON_SPELLS.has(this.id)) &&
+      resource.current >= this.cost &&
       this.relation.includes(getRelation(f1, f2))
     );
   }

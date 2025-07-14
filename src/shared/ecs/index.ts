@@ -48,8 +48,8 @@ export class ECSContainer {
   addEntity(entity: Entity) {
     ContainerLogger.debug(`Entity ${entity.id} added`);
     this.entities.set(entity.id, entity);
-    const position = entity.get('position') as unknown as Pointer2D;
-    if (position) {
+
+    if (entity.has('position')) {
       this.tree.add(entity);
     }
   }
@@ -114,10 +114,16 @@ export class ECSContainer {
       sys.update(delta, this, scene);
     });
     ContainerLogger.debug(`Update finished after: ${performance.now() - start}ms`);
+    if (performance.now() - start > 10) {
+      ContainerLogger.warn('Update took to much time!!!');
+    }
     ContainerLogger.debug(`Update QTree scheduled`);
     const qstart = performance.now();
     this.tree.update();
     ContainerLogger.debug(`Update QTree finished after: ${performance.now() - qstart}ms`);
+    if (performance.now() - qstart > 10) {
+      ContainerLogger.warn('Update took to much time!!!');
+    }
   }
 
   processMessage(client: Client, type: TransportEventTypes, message: any) {

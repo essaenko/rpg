@@ -16,6 +16,8 @@ import { SpellBook } from './game/spells/spell-book';
 import { Speed } from './physics/speed';
 import { Channeling } from './game/spells/channeling';
 import { Death } from './game/mechanics/death';
+import { MainStats } from '@client/ecs/components/game/stats/main-stats';
+import { SecondaryStats } from '@client/ecs/components/game/stats/secondary-stats';
 
 export const Components = {
   body: Body,
@@ -25,6 +27,8 @@ export const Components = {
   'tag-npc': NPC,
   health: Health,
   resource: Resource,
+  'main-stats': MainStats,
+  'secondary-stats': SecondaryStats,
   appearance: Appearance,
   fraction: Fraction,
   'quest-giver': QuestGiver,

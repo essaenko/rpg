@@ -35,7 +35,8 @@ export class AppearanceSystem extends System {
         sprite.setOrigin(0.5, 0.5);
 
         appearance.sprites.add(sprite);
-        appearance.sprites.setSize(body.width, body.height);
+        appearance.sprites.setSize(sprite.width, sprite.height);
+        // appearance.sprites.setSize(body.width, body.height);
         const highlightAction = new Action();
         highlightAction.action = () => {
           const player = container.getEntity(scene.room.sessionId);

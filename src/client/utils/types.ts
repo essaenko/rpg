@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { Directions } from '@shared/types';
+import { Directions, Pointer2D } from '@shared/types';
 
 import CursorDefault from '@client/assets/cursor/Cursor Default.png';
 import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
@@ -54,8 +54,8 @@ export enum Cursors {
 export type WithArcadeBody<G extends Phaser.GameObjects.GameObject> = G & Phaser.Physics.Arcade.Body;
 
 export const isNonFunctionProperty = <T extends unknown>(key: unknown, el: T): key is NonFunctionPropNames<T> => {
-  return typeof key != null && typeof el === 'object' && isKeyOf(key, el) && (typeof el[key as keyof T]) !== 'function';
-}
+  return typeof key != null && typeof el === 'object' && isKeyOf(key, el) && typeof el[key as keyof T] !== 'function';
+};
 
 export type SingleSpriteAsset = {
   key: string;
@@ -69,16 +69,20 @@ export type SingleSpriteAsset = {
 
 export type MultipleSpriteAsset = {
   key: string;
-  type: 'multiple',
-  frames: {
-    id: number,
-    asset: string,
-    config: {
-      frameWidth: number;
-      frameHeight: number;
-    };
-  }[];
-}
+  type: 'multiple';
+  frames: MultipleSpriteAssetFrame[];
+};
+
+export type MultipleSpriteAssetFrame = {
+  id: number;
+  asset: string;
+  config: {
+    frameWidth: number;
+    frameHeight: number;
+
+    light?: Pointer2D;
+  };
+};
 
 export type MapPackage = {
   map: {
@@ -90,8 +94,8 @@ export type MapPackage = {
 
 export const isSingleSpriteAsset = (asset: unknown): asset is SingleSpriteAsset => {
   return typeof asset === 'object' && 'type' in asset && asset.type === 'sprite';
-}
+};
 
 export const isMultipleSpriteAsset = (asset: unknown): asset is MultipleSpriteAsset => {
   return typeof asset === 'object' && 'type' in asset && asset.type === 'multiple';
-}
+};

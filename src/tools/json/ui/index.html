@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Character generator</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" type="module"></script>
+</head>
+<body>
+  <form>
+    <label id="sprite-label" for="sprite-select">
+      Character sprite:
+    </label>
+    <select id="sprite-select"></select>
+    <label for="name">
+      Character name:
+    </label>
+    <input type="text" id="name">
+    <label for="class">
+      Character class:
+    </label>
+    <select id="class">
+      <option value="0" selected>None</option>
+      <option value="1">Warrior</option>
+      <option value="2">Sage</option>
+      <option value="3">Mage</option>
+      <option value="4">Hunter</option>
+    </select>
+    <label for="fraction">
+      Character fraction:
+    </label>
+    <select id="fraction">
+      <option value="3">Neutral</option>
+      <option value="4">Hostile</option>
+      <option value="1">Ancient</option>
+      <option value="2">BrotherHood</option>
+    </select>
+
+    <label style="grid-column: span 2 / span 2; justify-self: center;">
+      Body
+    </label>
+    <label for="body-width">
+      Width:
+    </label>
+    <input type="number" value="64" name="" id="body-width">
+    <label for="body-height">
+      Height:
+    </label>
+    <input type="number" value="64" name="" id="body-height">
+
+    <label style="grid-column: span 2 / span 2; justify-self: center;">
+      Collider
+    </label>
+    <label for="collider-x">
+      x:
+    </label>
+    <input type="number" value="22" name="" id="collider-x">
+    <label for="collider-y">
+      y:
+    </label>
+    <input type="number" value="40" name="" id="collider-y">
+    <label for="collider-width">
+      Width:
+    </label>
+    <input type="number" value="24" name="" id="collider-width">
+    <label for="collider-height">
+      Height:
+    </label>
+    <input type="number" value="20" name="" id="collider-height">
+
+    <label style="grid-column: span 2 / span 2; justify-self: center;">
+      Main stats
+    </label>
+    <label for="agility">
+      Agility:
+    </label>
+    <input type="number" value="0" name="" id="agility">
+    <label for="strength">
+      Strength:
+    </label>
+    <input type="number" value="0" name="" id="strength">
+    <label for="intelligence">
+      Intelligence:
+    </label>
+    <input type="number" value="0" name="" id="intelligence">
+
+    <label style="grid-column: span 2 / span 2; justify-self: center;">
+      Secondary stats
+    </label>
+
+    <label for="armor">Armor</label>
+    <input type="number" value="0" id="armor">
+    <label for="attackPower">Attack Power</label>
+    <input type="number" value="0" id="attackPower">
+    <label for="crit">Crit chance</label>
+    <input type="number" value="0" id="crit">
+    <label for="avoid">Avoiding</label>
+    <input type="number" value="0" id="avoid">
+    <label for="block">Block</label>
+    <input type="number" value="0" id="block">
+    <label for="spellPower">Spell power</label>
+    <input type="number" value="0" id="spellPower">
+    <label for="parry">Parry</label>
+    <input type="number" value="0" id="parry">
+
+    <button style="grid-column: span 2 / span 2; justify-self: center;">
+      Generate
+    </button>
+
+    <div id="result" style="grid-column: span 2 / span 2; justify-self: center;"></div>
+  </form>
+</body>
+</html>

@@ -68,11 +68,9 @@ export class QuadTree<T extends Entity = Entity> {
   }
 
   public add(obj: T) {
-    if (this.objects.size >= this.threshold) {
+    if (this.objects.size >= this.threshold && this.nodes == null) {
       this.divide();
     }
-
-    this.objects.add(obj);
 
     if (this.nodes) {
       for (const node of this.nodes) {
@@ -82,6 +80,8 @@ export class QuadTree<T extends Entity = Entity> {
           return;
         }
       }
+    } else {
+      this.objects.add(obj);
     }
   }
 
@@ -109,8 +109,8 @@ export class QuadTree<T extends Entity = Entity> {
     }
   }
 
-  public has(obj: T) {
-    return this.objects.has(obj);
+  public has(obj: T): boolean {
+    return this.objects.has(obj) || this.nodes?.some((it) => it.has(obj));
   }
 
   /**
@@ -151,6 +151,8 @@ export class QuadTree<T extends Entity = Entity> {
           break;
         }
       }
+
+      this.objects.delete(obj);
     }
   }
 

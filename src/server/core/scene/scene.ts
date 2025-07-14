@@ -32,6 +32,9 @@ import { EventSystem } from '@server/ecs/systems/core/events';
 import { ChannelingSystem } from '@server/ecs/systems/spells/channeling';
 import { BehaviorSystem } from '@server/ecs/systems/behaviour/behavior';
 import Logger from 'js-logger';
+import { MainStatsSystem } from '@server/ecs/systems/stats/main';
+import { SecondaryStatsSystem } from '@server/ecs/systems/stats/secondary';
+import { ResourceSystem } from '@server/ecs/systems/stats/resource';
 
 const SceneLogger = Logger.get('Scene');
 
@@ -80,11 +83,16 @@ export abstract class Scene extends Room<SceneState> {
     this.ecs.addSystem(new CastSystem());
     this.ecs.addSystem(new CooldownSystem());
 
+    this.ecs.addSystem(new MainStatsSystem());
+    this.ecs.addSystem(new SecondaryStatsSystem());
+
     this.ecs.addSystem(new HealthSystem());
+    this.ecs.addSystem(new ResourceSystem());
     this.ecs.addSystem(new HealSystem());
     this.ecs.addSystem(new DamageSystem());
     this.ecs.addSystem(new HotSystem());
     this.ecs.addSystem(new DotSystem());
+
     this.ecs.addService(new ClientsService());
   }
 
