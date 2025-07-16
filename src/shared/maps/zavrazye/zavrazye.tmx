@@ -1613,7 +1613,7 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="locations">
-  <object id="68" type="spawn" x="770.667" y="1736">
+  <object id="68" type="spawn" x="938.667" y="1642">
    <point/>
   </object>
  </objectgroup>

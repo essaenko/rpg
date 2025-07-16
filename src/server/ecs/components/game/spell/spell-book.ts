@@ -3,6 +3,9 @@ import { NetworkComponent } from '@shared/ecs/component';
 import { Spell } from '@shared/schemas/game/spell/spell';
 import { isSpellName, map } from '@server/mechanics/spells/map';
 import { COMMON_SPELLS } from '@shared/utils/const';
+import { SpellSlot } from '@shared/types';
+import { Gather } from '@server/mechanics/spells/common/gather';
+import { Loot } from '@server/mechanics/spells/common/loot';
 
 export class SpellBook extends NetworkComponent {
   constructor() {
@@ -11,20 +14,24 @@ export class SpellBook extends NetworkComponent {
 
   serializable = true;
 
-  @type({ map: Spell }) spells = new MapSchema<Spell>();
+  @type({ map: Spell }) spells = new MapSchema<Spell>({
+    [SpellSlot.Gather.toString()]: new Gather(),
+    [SpellSlot.Loot.toString()]: new Loot(),
+  });
 
-  init(state: { spells: number[] }): void {
-    const { spells } = state;
-
-    if (spells && Array.isArray(spells)) {
-      [...spells, ...COMMON_SPELLS].forEach((spell) => {
-        if (isSpellName(spell)) {
-          const Factory = map[spell];
-          this.spells.set(spell.toString(), new Factory());
-        }
-      });
-    }
+  setSpell(slot: SpellSlot, spell: Spell) {
+    this.spells.set(slot.toString(), spell);
   }
+
+  hasSpell(slot: SpellSlot, spell: Spell): boolean {
+    return this.spells.get(slot.toString()) === spell;
+  }
+
+  removeSpell(slot: SpellSlot) {
+    this.spells.delete(slot.toString());
+  }
+
+  init(): void {}
 
   public serialize() {
     return {

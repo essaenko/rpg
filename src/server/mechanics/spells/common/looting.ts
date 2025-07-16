@@ -4,7 +4,7 @@ import { MDBClient } from '@server/mongodb';
 import { rollLoot } from '@server/utils/game/roll';
 import { Loot } from '@server/ecs/components/game/item/loot';
 import { nanoid } from 'nanoid';
-import { Item, Stack } from '@shared/schemas/game/item/item';
+import { Item, Stack } from '@shared/schemas/game/item/core/item';
 import { isItemFactoryName, map } from '@shared/schemas/game/item/map';
 import { InteractableObject } from '@server/ecs/components/game/mechanics/interactable-object';
 import { entity } from '@colyseus/schema';

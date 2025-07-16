@@ -1,6 +1,6 @@
 import css from '@client/ui/hood/inventory/bag/bag.module.css';
 import React, { useCallback } from 'react';
-import type { Stack } from '@shared/schemas/game/item/item';
+import type { Stack } from '@shared/schemas/game/item/core/item';
 import classNames from 'classnames';
 
 export const BagUI = ({

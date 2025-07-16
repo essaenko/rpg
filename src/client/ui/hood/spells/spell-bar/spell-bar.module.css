@@ -57,5 +57,8 @@
         border-radius: 5px;
       }
     }
+    .separator {
+      width: 20px;
+    }
   }
 }

@@ -1,4 +1,7 @@
-import { EquipSlot, WeaponHand, WeaponType } from '@shared/types';
+import { GearSlot, WeaponHand, WeaponType } from '@shared/types';
+import { MainStats } from '@shared/utils/stats';
+import { GearItem } from '@shared/schemas/game/item/core/gear-item';
+import { Spells } from '@shared/utils/spells';
 
 export type EntitySave = { id: string; components: Record<string, any>[] };
 
@@ -27,17 +30,80 @@ export type ItemSave = {
   amount?: number;
 };
 
-export type EquipItemSave = ItemSave & {
-  slot: EquipSlot;
-  effect: string;
+export type ChestSave = GearItem & {
+  save?: Spells[];
+  dodge?: Spells[];
 };
 
-export type WeaponSave = EquipItemSave & {
+export type FlaskSave = GearItem & {
+  flask?: Spells;
+};
+
+export type FoodSave = GearItem & {
+  food?: Spells;
+};
+
+export type GearItemSave = ItemSave & {
+  slot: GearSlot;
+  effect: string;
+  stats: MainStats;
+};
+
+export type CharacterGearSave = {
+  name: 'gear';
+  head: {
+    id: string;
+  };
+  chest: {
+    id: string;
+    dodge?: Spells;
+    save?: Spells;
+  };
+  shoulder: {
+    id: string;
+  };
+  boots: {
+    id: string;
+  };
+  mainHand: {
+    id: string;
+    main?: Spells;
+    secondary?: Spells;
+    buff?: Spells;
+    ultimate?: Spells;
+  };
+  offHand: {
+    id: string;
+    secondary?: Spells;
+    buff?: Spells;
+  };
+  ring: {
+    id: string;
+  };
+  trinket: {
+    id: string;
+  };
+  food: {
+    id: string;
+    food?: Spells;
+  };
+  flask: {
+    id: string;
+    flask?: Spells;
+  };
+};
+
+export type WeaponSave = GearItemSave & {
   attackMin: number;
   attackMax: number;
   speed: number;
   hand: WeaponHand;
   type: WeaponType;
+
+  main?: Spells[];
+  secondary?: Spells[];
+  buff?: Spells[];
+  ultimate?: Spells[];
 };
 
 export type LootTableItem = {
@@ -51,11 +117,15 @@ export type LootTableSave = {
   count: number;
 };
 
+export const isChest = (config: unknown): config is ChestSave => {
+  return isEquipItem(config);
+};
+
 export const isWeapon = (config: unknown): config is WeaponSave => {
   return isEquipItem(config) && 'type' in config && 'hand' in config;
 };
 
-export const isEquipItem = (config: unknown): config is EquipItemSave => {
+export const isEquipItem = (config: unknown): config is GearItemSave => {
   return isItem(config) && 'slot' in config;
 };
 

@@ -5,7 +5,7 @@ import { MDBClient } from '@server/mongodb';
 import { rollLoot } from '@server/utils/game/roll';
 import { ECSContainer } from '@shared/ecs';
 import { System } from '@shared/ecs/system';
-import { Item } from '@shared/schemas/game/item/item';
+import { Item } from '@shared/schemas/game/item/core/item';
 import { isItemFactoryName, map } from '@shared/schemas/game/item/map';
 import { InteractionTypes, TransportEventTypes } from '@shared/types';
 import { Client } from 'colyseus';

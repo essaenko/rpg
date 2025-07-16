@@ -33,6 +33,8 @@ export const SpellCell = ({ keyBind }: { cell: SpellPanel | null; keyBind: Keys 
 
 const keyBindToChar = (key: Keys): string => {
   switch (key) {
+    case Keys.KeyT:
+      return 'T';
     case Keys.KeyE:
       return 'E';
     case Keys.KeyF:
@@ -47,11 +49,5 @@ const keyBindToChar = (key: Keys): string => {
       return '1';
     case Keys.Digit2:
       return '2';
-    case Keys.Digit3:
-      return '3';
-    case Keys.Digit4:
-      return '4';
-    case Keys.Digit5:
-      return '5';
   }
 };

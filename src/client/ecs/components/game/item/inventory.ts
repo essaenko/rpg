@@ -1,6 +1,6 @@
 import { NetworkComponent } from '@client/core/ecs/component/network-component';
 
-import type { Stack } from '@shared/schemas/game/item/item';
+import type { Stack } from '@shared/schemas/game/item/core/item';
 
 export class Inventory extends NetworkComponent {
   public items: Stack[] = [];

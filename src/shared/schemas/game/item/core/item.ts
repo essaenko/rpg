@@ -1,6 +1,5 @@
 import { Schema, type } from '@colyseus/schema';
 import { ItemSave } from '@server/mongodb/types';
-import { isItemFactoryName, map } from './map';
 
 export class Item extends Schema {
   @type('string') id: string = '';
@@ -16,8 +15,12 @@ export class Item extends Schema {
     this.name = state.name;
     this.description = state.description;
     this.cost = state.cost;
-    this.stackable = state.stackable;
-    this.maxStack = state.maxStack;
+    this.stackable = state.stackable ?? false;
+    this.maxStack = state.maxStack ?? 1;
+  }
+
+  validateSave(save: unknown): save is ItemSave {
+    return typeof save === 'object' && 'id' in save && 'name' in save && 'cost' in save;
   }
 }
 

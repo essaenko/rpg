@@ -6,6 +6,7 @@ import { SpellCell } from './spell-cell';
 import { usePlayerComponentState } from '@client/ui/hooks/component';
 import { Level } from '@client/ecs/components/game/mechanics/level';
 import { LVL_CAPS } from '@shared/utils/level';
+import { Keys } from '@client/utils/types';
 
 export const SpellBar: React.FC = () => {
   const binds = useMemo(() => SettingsService.instance().getSetting('bindings'), []);
@@ -15,13 +16,20 @@ export const SpellBar: React.FC = () => {
     <div className={css.root}>
       {level && (
         <div className={css['exp-bar']}>
-          <div className={css['exp-filler']} style={{ width: `${level.exp / LVL_CAPS[level.level - 1] * 100}%` }} />
+          <div className={css['exp-filler']} style={{ width: `${(level.exp / LVL_CAPS[level.level - 1]) * 100}%` }} />
         </div>
       )}
       <div className={css['speel-list']}>
-        {(Object.entries(binds) ?? new Array(10).fill(null)).map((bind = [], index) => {
-          return <SpellCell key={index} cell={bind[0]} keyBind={bind[1]} />;
-        })}
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyQ} />
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyW} />
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyE} />
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyR} />
+        <div className={css.separator}></div>
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyT} />
+        <SpellCell key={1} cell={null} keyBind={Keys.KeyF} />
+        <div className={css.separator}></div>
+        <SpellCell key={1} cell={null} keyBind={Keys.Digit1} />
+        <SpellCell key={1} cell={null} keyBind={Keys.Digit2} />
       </div>
     </div>
   );

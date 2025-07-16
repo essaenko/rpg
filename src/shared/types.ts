@@ -85,17 +85,24 @@ export enum Class {
   Hunter,
 }
 
-export enum EquipSlot {
+export enum GearSlot {
   Head = 1,
   Chest,
   Shoulder,
-  Hand,
-  Pants,
   Boots,
   MainHand,
   OffHand,
   Ring,
   Trinket,
+  Food,
+  Flask,
+}
+
+export enum GearType {
+  Cloth,
+  Leather,
+  Chain,
+  Plate,
 }
 
 export enum WeaponHand {
@@ -105,12 +112,19 @@ export enum WeaponHand {
 }
 
 export enum WeaponType {
-  Sword = 1,
-  Dagger,
-  Staff,
+  HeavyMace = 1,
+  Mace,
+  HeavyShield,
   Shield,
+  HeavyAxe,
   Axe,
+  HeavySword,
+  Sword,
+  Dagger,
+  LongBow,
   Bow,
+  CrossBow,
+  Staff,
   Wand,
 }
 
@@ -153,3 +167,16 @@ export const Relations: Record<Fraction, Record<Fraction, Relation>> = {
     [Fraction.Hostile]: Relation.Hostile,
   },
 };
+
+export enum SpellSlot {
+  Main,
+  Secondary,
+  Buff,
+  Ultimate,
+  Save,
+  Dodge,
+  Food,
+  Flask,
+  Gather,
+  Loot,
+}

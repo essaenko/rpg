@@ -1,34 +1,50 @@
-import { GearItem } from '@shared/schemas/game/item/gear-item';
-import { Component } from '@shared/ecs/component';
-import { Weapon } from '@shared/schemas/game/item/weapon';
+import { GearItem } from '@shared/schemas/game/item/core/gear-item';
+import { NetworkComponent } from '@shared/ecs/component';
+import { Weapon } from '@shared/schemas/game/item/weapon/weapon';
 import { ItemFactory } from '@shared/schemas/game/item/map';
 import { MDBClient } from '@server/mongodb';
+import { type } from '@colyseus/schema';
+import { Head } from '@shared/schemas/game/item/gear/head';
+import { Chest } from '@shared/schemas/game/item/gear/chest';
+import { Shoulder } from '@shared/schemas/game/item/gear/shoulder';
+import { Boots } from '@shared/schemas/game/item/gear/boots';
+import { Ring } from '@shared/schemas/game/item/gear/ring';
+import { Trinket } from '@shared/schemas/game/item/gear/trinket';
+import { Food } from '@shared/schemas/game/item/gear/food';
+import { Flask } from '@shared/schemas/game/item/gear/flask';
+import { CharacterGearSave, isChest, isWeapon } from '@server/mongodb/types';
+import { isKeyOf } from '@client/utils/types';
 
-export class Gear extends Component {
+export class Gear extends NetworkComponent {
   constructor() {
     super('gear');
   }
 
   serializable = true;
 
-  /* @type(GearItem) */ public head: GearItem = null;
-  /* @type(GearItem) */ public chest: GearItem = null;
-  /* @type(GearItem) */ public shoulder: GearItem = null;
-  /* @type(GearItem) */ public boots: GearItem = null;
-  /* @type(GearItem) */ public mainHand: Weapon = null;
-  /* @type(GearItem) */ public offHand: Weapon = null;
-  /* @type(GearItem) */ public ring: GearItem = null;
-  /* @type(GearItem) */ public trinket: GearItem = null;
+  dirty = true;
+  processed = false;
 
-  init(state: any): void {
+  @type(GearItem) public head: Head = null;
+  @type(GearItem) public chest: Chest = null;
+  @type(GearItem) public shoulder: Shoulder = null;
+  @type(GearItem) public boots: Boots = null;
+  @type(GearItem) public mainHand: Weapon = null;
+  @type(GearItem) public offHand: Weapon = null;
+  @type(GearItem) public ring: Ring = null;
+  @type(GearItem) public trinket: Trinket = null;
+  @type(GearItem) public food: Food = null;
+  @type(GearItem) public flask: Flask = null;
+
+  init(state: CharacterGearSave): void {
     Object.keys(this).forEach(async (key) => {
       if (key === 'name') {
         this.name = state.name;
 
         return;
       }
-      if (key in state && state[key]) {
-        const data = await MDBClient.instance().readItem(state[key]);
+      if (isKeyOf<Omit<CharacterGearSave, 'name'>>(key, state) && state[key]) {
+        const data = await MDBClient.instance().readItem(state[key].id);
 
         if (!data) {
           console.warn('Cannot find item with id:', state[key]);
@@ -38,6 +54,23 @@ export class Gear extends Component {
         if (key in this) {
           // @ts-ignore
           this[key] = ItemFactory.instantiate(data);
+          const item = this[key];
+
+          const save = state[key];
+          if (item instanceof Weapon && isWeapon(save)) {
+            (['main', 'secondary', 'buff', 'ultimate'] as const).forEach((skill) => {
+              if (skill in save) {
+                item[skill].selected = item[skill].spells.get(save[skill].toString());
+              }
+            });
+          }
+          if (item instanceof Chest && isChest(save)) {
+            (['dodge', 'save'] as const).forEach((skill) => {
+              if (skill in save) {
+                item[skill].selected = item[skill].spells.get(save[skill].toString());
+              }
+            });
+          }
         }
       }
     });
@@ -46,14 +79,16 @@ export class Gear extends Component {
   serialize(): Record<string, any> {
     return {
       name: this.name,
-      head: this.head?.id ?? undefined,
-      chest: this.chest?.id ?? undefined,
-      shoulder: this.shoulder?.id ?? undefined,
-      boots: this.boots?.id ?? undefined,
-      mainHand: this.mainHand?.id ?? undefined,
-      offHand: this.offHand?.id ?? undefined,
-      ring: this.ring?.id ?? undefined,
-      trinket: this.trinket?.id ?? undefined,
+      head: this.head?.serialize() ?? undefined,
+      chest: this.chest?.serialize() ?? undefined,
+      shoulder: this.shoulder?.serialize() ?? undefined,
+      boots: this.boots?.serialize() ?? undefined,
+      mainHand: this.mainHand?.serialize() ?? undefined,
+      offHand: this.offHand?.serialize() ?? undefined,
+      ring: this.ring?.serialize() ?? undefined,
+      trinket: this.trinket?.serialize() ?? undefined,
+      flask: this.flask?.serialize() ?? undefined,
+      food: this.food?.serialize() ?? undefined,
     };
   }
 }

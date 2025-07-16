@@ -7,7 +7,7 @@ import { usePlayerComponent } from '@client/ui/hooks/component';
 import css from './loot.module.css';
 import { Networking } from '@client/services/networking';
 import { BagUI } from '@client/ui/hood/inventory/bag/bag';
-import type { Stack } from '@shared/schemas/game/item/item';
+import type { Stack } from '@shared/schemas/game/item/core/item';
 
 export const LootUI: React.FC = () => {
   const loot = usePlayerComponent<Loot>('loot');

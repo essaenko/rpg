@@ -35,6 +35,8 @@ import Logger from 'js-logger';
 import { MainStatsSystem } from '@server/ecs/systems/stats/main';
 import { SecondaryStatsSystem } from '@server/ecs/systems/stats/secondary';
 import { ResourceSystem } from '@server/ecs/systems/stats/resource';
+import { SpellBookSystem } from '@server/ecs/systems/spells/spell-book';
+import { GearSystem } from '@server/ecs/systems/gear';
 
 const SceneLogger = Logger.get('Scene');
 
@@ -85,6 +87,8 @@ export abstract class Scene extends Room<SceneState> {
 
     this.ecs.addSystem(new MainStatsSystem());
     this.ecs.addSystem(new SecondaryStatsSystem());
+    this.ecs.addSystem(new SpellBookSystem());
+    this.ecs.addSystem(new GearSystem());
 
     this.ecs.addSystem(new HealthSystem());
     this.ecs.addSystem(new ResourceSystem());

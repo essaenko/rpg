@@ -1,6 +1,6 @@
 import { NetworkComponent } from '@shared/ecs/component';
 import { ArraySchema, type } from '@colyseus/schema';
-import { Item, Stack } from '@shared/schemas/game/item/item';
+import { Item, Stack } from '@shared/schemas/game/item/core/item';
 import { MDBClient } from '@server/mongodb';
 import { isItem } from '@server/mongodb/types';
 import { ItemFactory } from '@shared/schemas/game/item/map';

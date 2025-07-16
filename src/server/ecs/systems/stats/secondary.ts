@@ -8,6 +8,7 @@ import { SecondaryStats as Stats } from '@server/ecs/components/game/stats/secon
 import { Class } from '@server/ecs/components/game/mechanics/class';
 import { Level } from '@server/ecs/components/game/progression/level';
 import { calculateSecondaryStats } from '@shared/utils/stats';
+import { Gear } from '@server/ecs/components/game/item/gear';
 
 export class SecondaryStatsSystem extends System {
   constructor() {
@@ -17,13 +18,16 @@ export class SecondaryStatsSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer) {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene) {
-    for (const it of container.query(['secondary-stats', 'level', 'class'])) {
+    for (const it of container
+      .query(['secondary-stats', 'level', 'class', 'gear'])
+      .filter((it) => it.get<Gear>('gear').dirty)) {
       const stats = it.get<Stats>('secondary-stats');
       const cl = it.get<Class>('class');
       const lvl = it.get<Level>('level');
+      const gear = it.get<Gear>('gear');
 
       if (!stats.inited && cl && lvl) {
-        stats.init(calculateSecondaryStats(cl.class, lvl.level));
+        stats.init(calculateSecondaryStats(cl.class, lvl.level, gear));
         stats.inited = true;
       }
     }

@@ -26,14 +26,12 @@ export enum Keys {
   KeyE = 'KeyE',
   KeyR = 'KeyR',
   KeyF = 'KeyF',
+  KeyT = 'KeyT',
   Digit1 = 'Digit1',
   Digit2 = 'Digit2',
-  Digit3 = 'Digit3',
-  Digit4 = 'Digit4',
-  Digit5 = 'Digit5',
 }
 
-export const isKeyOf = (key: unknown, target: any): key is keyof typeof target => {
+export const isKeyOf = <T extends object>(key: unknown, target: any): key is keyof T => {
   return (typeof key === 'string' || typeof key === 'number' || typeof key === 'symbol') && key in target;
 };
 
