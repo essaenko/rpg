@@ -1,7 +1,7 @@
 import { Item } from '@shared/schemas/game/item/core/item';
 import { type } from '@colyseus/schema';
-import { GearSlot } from '@shared/types';
-import { GearItemSave } from '@server/mongodb/types';
+import type { GearSlot } from '@shared/types';
+import type { GearItemSave } from '@server/mongodb/types';
 import { MainStats } from '@shared/schemas/game/stats/stats';
 
 export class GearItem extends Item {

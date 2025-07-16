@@ -1,7 +1,6 @@
-import { GearSlot, WeaponHand, WeaponType } from '@shared/types';
-import { MainStats } from '@shared/utils/stats';
-import { GearItem } from '@shared/schemas/game/item/core/gear-item';
-import { Spells } from '@shared/utils/spells';
+import type { GearSlot, WeaponHand, WeaponType } from '@shared/types';
+import type { MainStats } from '@shared/utils/stats';
+import type { Spells } from '@shared/utils/spells';
 
 export type EntitySave = { id: string; components: Record<string, any>[] };
 
@@ -30,16 +29,16 @@ export type ItemSave = {
   amount?: number;
 };
 
-export type ChestSave = GearItem & {
+export type ChestSave = GearItemSave & {
   save?: Spells[];
   dodge?: Spells[];
 };
 
-export type FlaskSave = GearItem & {
+export type FlaskSave = GearItemSave & {
   flask?: Spells;
 };
 
-export type FoodSave = GearItem & {
+export type FoodSave = GearItemSave & {
   food?: Spells;
 };
 

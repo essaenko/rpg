@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "traceResolution": true,
     "outDir": "build",
     "target": "ESNext",
     "module": "CommonJS",

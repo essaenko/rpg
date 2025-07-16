@@ -12,7 +12,6 @@ import { Weapon } from '@shared/schemas/game/item/weapon/weapon';
 
 export const map = {
   item: Item,
-  'gear-item': GearItem,
   head: Head,
   chest: Chest,
   shoulder: Shoulder,

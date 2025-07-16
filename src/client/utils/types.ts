@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import { Directions, Pointer2D } from '@shared/types';
+import type { Pointer2D } from '@shared/types';
 
-import CursorDefault from '@client/assets/cursor/Cursor Default.png';
+import CursorDefault from '@client/assets/cursor/Cursor Default.png?url';
 import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
 import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
 import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';

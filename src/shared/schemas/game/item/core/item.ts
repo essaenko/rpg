@@ -1,5 +1,5 @@
 import { Schema, type } from '@colyseus/schema';
-import { ItemSave } from '@server/mongodb/types';
+import type { ItemSave } from '@server/mongodb/types';
 
 export class Item extends Schema {
   @type('string') id: string = '';

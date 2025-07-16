@@ -1,5 +1,5 @@
 import { GearItem } from '@shared/schemas/game/item/core/gear-item';
-import { GearItemSave } from '@server/mongodb/types';
+import type { GearItemSave } from '@server/mongodb/types';
 import { GearSlot } from '@shared/types';
 import { entity } from '@colyseus/schema';
 

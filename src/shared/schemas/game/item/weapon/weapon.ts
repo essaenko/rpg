@@ -1,7 +1,7 @@
 import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import { type } from '@colyseus/schema';
-import { WeaponHand, WeaponType } from '@shared/types';
-import { WeaponSave } from '@server/mongodb/types';
+import type { WeaponHand, WeaponType } from '@shared/types';
+import type { WeaponSave } from '@server/mongodb/types';
 import { isSpellName, map } from '@server/mechanics/spells/map';
 import { GearSpellList } from '@shared/schemas/game/item/core/gear-spell-list';
 

@@ -1,5 +1,5 @@
 import { GearItem } from '@shared/schemas/game/item/core/gear-item';
-import { FoodSave, GearItemSave } from '@server/mongodb/types';
+import type { FoodSave } from '@server/mongodb/types';
 import { GearSlot } from '@shared/types';
 import { type } from '@colyseus/schema';
 import { Spell } from '@shared/schemas/game/spell/spell';

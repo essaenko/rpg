@@ -1,7 +1,6 @@
 import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import { type } from '@colyseus/schema';
-import { Spell } from '@shared/schemas/game/spell/spell';
-import { ChestSave } from '@server/mongodb/types';
+import type { ChestSave } from '@server/mongodb/types';
 import { isSpellName, map } from '@server/mechanics/spells/map';
 import { GearSlot } from '@shared/types';
 import { GearSpellList } from '@shared/schemas/game/item/core/gear-spell-list';
