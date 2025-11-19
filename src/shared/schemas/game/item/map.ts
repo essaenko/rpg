@@ -4,8 +4,6 @@ import { Head } from '@shared/schemas/game/item/gear/head';
 import { Shoulder } from '@shared/schemas/game/item/gear/shoulder';
 import { Boots } from '@shared/schemas/game/item/gear/boots';
 import { Ring } from '@shared/schemas/game/item/gear/ring';
-import { Food } from '@shared/schemas/game/item/gear/food';
-import { Flask } from '@shared/schemas/game/item/gear/flask';
 import { Trinket } from '@shared/schemas/game/item/gear/trinket';
 import { Weapon } from '@shared/schemas/game/item/weapon/weapon';
 
@@ -16,8 +14,6 @@ export const map = {
   shoulder: Shoulder,
   boots: Boots,
   ring: Ring,
-  food: Food,
-  flask: Flask,
   trinket: Trinket,
   weapon: Weapon,
 } as const;

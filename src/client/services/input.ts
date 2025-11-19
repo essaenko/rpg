@@ -12,10 +12,8 @@ export class InputService {
     [SpellPanel.Spell2]: SpellSlot.Secondary,
     [SpellPanel.Spell3]: SpellSlot.Buff,
     [SpellPanel.Spell4]: SpellSlot.Ultimate,
-    [SpellPanel.Spell5]: SpellSlot.Save,
-    [SpellPanel.Spell6]: SpellSlot.Dodge,
-    [SpellPanel.Spell7]: SpellSlot.Flask,
-    [SpellPanel.Spell8]: SpellSlot.Food,
+    [SpellPanel.Spell5]: SpellSlot.Gather,
+    [SpellPanel.Spell6]: SpellSlot.Loot,
   };
   private readonly pressed = new Set<Keys>();
   private constructor() {

@@ -27,12 +27,3 @@ export const CLASS_AWAILABLE_GEAR_TYPES = {
     weapon: [WeaponType.Dagger, WeaponType.Staff, WeaponType.Wand, WeaponType.Mace, WeaponType.Shield],
   },
 };
-
-export type GearSpellTierType = 'Tier1' | 'Tier2' | 'Tier3' | 'Tier4';
-
-export const GearSpellTier: Record<GearSpellTierType, GearSpellTierType> = {
-  Tier1: 'Tier1',
-  Tier2: 'Tier2',
-  Tier3: 'Tier3',
-  Tier4: 'Tier4',
-};

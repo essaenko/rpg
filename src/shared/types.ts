@@ -94,8 +94,6 @@ export enum GearSlot {
   OffHand,
   Ring,
   Trinket,
-  Food,
-  Flask,
 }
 
 export enum GearType {
@@ -173,10 +171,6 @@ export enum SpellSlot {
   Secondary = '1',
   Buff = '2',
   Ultimate = '3',
-  Save = '4',
-  Dodge = '5',
-  Food = '6',
-  Flask = '7',
   Gather = '8',
   Loot = '9',
 }

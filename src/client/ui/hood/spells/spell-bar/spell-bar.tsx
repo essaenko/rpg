@@ -14,11 +14,6 @@ export const SpellBar: React.FC = () => {
 
   return (
     <div className={css.root}>
-      <div className={css.passives}>
-        <div className={css['passive-spell']}></div>
-        <div className={css['passive-spell']}></div>
-        <div className={css['passive-spell']}></div>
-      </div>
       {level && (
         <div className={css['exp-bar']}>
           <div className={css['exp-filler']} style={{ width: `${(level.exp / LVL_CAPS[level.level - 1]) * 100}%` }} />
@@ -32,9 +27,6 @@ export const SpellBar: React.FC = () => {
         <div className={css.separator}></div>
         <SpellCell key={1} cell={null} keyBind={Keys.KeyT} />
         <SpellCell key={1} cell={null} keyBind={Keys.KeyF} />
-        <div className={css.separator}></div>
-        <SpellCell key={1} cell={null} keyBind={Keys.Digit1} />
-        <SpellCell key={1} cell={null} keyBind={Keys.Digit2} />
       </div>
     </div>
   );

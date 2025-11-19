@@ -70,12 +70,14 @@ export abstract class Spell extends Schema {
     const death = target.get<Death>('death');
     const resource = target.get<Resource>('resource');
 
+    const hasSpell =
+      spellBook != null && Array.from(spellBook.spells.values()).some((spell) => spell.id === this.id);
+
     return (
       !death?.dead &&
       !this.cooldownTime &&
       getDistance(caster.get<Position>('position'), target.get<Position>('position')) <= this.range &&
-      // NOTE: toString call here cause MapSchema using only string keys at the time
-      (spellBook.spells.has(this.id.toString()) || COMMON_SPELLS.has(this.id)) &&
+      (hasSpell || COMMON_SPELLS.has(this.id)) &&
       resource.current >= this.cost &&
       this.relation.includes(getRelation(f1, f2))
     );

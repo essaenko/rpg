@@ -6,6 +6,7 @@ import { TargetPoint } from '@server/ecs/components/game/behaviour/patrol/target
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { Position } from '@server/ecs/components/physics/position';
 import { getDistance } from '@shared/utils/physics';
+import { SpellSlot } from '@shared/types';
 import { CastRequest } from '@server/ecs/components/game/spell/cast-request';
 
 export class Action<S extends BlueshellState, E> extends BSAction<S, E> {
@@ -28,12 +29,12 @@ export const CastSpellAtTarget = new Action<BehaviorState, void>('CastSpellAtTar
   const spellBook = entity.get<SpellBook>('spell-book');
   const [spellId, spell] = spellBook?.spells
     .entries()
-    .find(([id, spell]) => getDistance(tpos, pos) <= spell.selected.range);
+    .find(([id, spell]) => getDistance(tpos, pos) <= spell.range);
 
   if (spell) {
     const cr = new CastRequest();
     cr.target = target;
-    cr.spell = +spellId;
+    cr.spell = spellId as SpellSlot;
 
     entity.add(cr);
   }

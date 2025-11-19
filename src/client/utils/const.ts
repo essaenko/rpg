@@ -11,8 +11,6 @@ export const DEFAULT_KEY_BINDING: Record<Keys, SpellPanel> = {
   [Keys.KeyR]: SpellPanel.Spell4,
   [Keys.KeyT]: SpellPanel.Spell5,
   [Keys.KeyF]: SpellPanel.Spell6,
-  [Keys.Digit1]: SpellPanel.Spell7,
-  [Keys.Digit2]: SpellPanel.Spell8,
 };
 
 export const COLORS = {

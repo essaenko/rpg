@@ -14,8 +14,6 @@ export enum SpellPanel {
   Spell4,
   Spell5,
   Spell6,
-  Spell7,
-  Spell8,
 }
 
 export enum Keys {
@@ -23,11 +21,9 @@ export enum Keys {
   KeyW = 'KeyW',
   KeyE = 'KeyE',
   KeyR = 'KeyR',
-  KeyF = 'KeyF',
   KeyT = 'KeyT',
+  KeyF = 'KeyF',
   KeyS = 'KeyS',
-  Digit1 = 'Digit1',
-  Digit2 = 'Digit2',
 }
 
 export const isKeyOf = <T extends object>(key: unknown, target: any): key is keyof T => {

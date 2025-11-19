@@ -46,16 +46,16 @@ export class CastRequestSystem extends System {
         const spell = spellBook.spells.get(castRequest.spell);
 
         if (spell) {
-          if (spell.selected.canCast(entity, castRequest.target)) {
+          if (spell.canCast(entity, castRequest.target)) {
             const cast = new Cast();
             cast.target = castRequest.target;
-            cast.spell = spell.selected;
-            if (spell.selected.castTime > 0) {
+            cast.spell = spell;
+            if (spell.castTime > 0) {
               const channeling = new Channeling();
-              channeling.spell = spell.selected;
-              channeling.remains = spell.selected.castTime;
+              channeling.spell = spell;
+              channeling.remains = spell.castTime;
               channeling.cast = cast;
-              channeling.tick = spell.selected.tick ?? null;
+              channeling.tick = spell.tick ?? null;
 
               entity.add(channeling);
             } else {

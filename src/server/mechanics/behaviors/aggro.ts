@@ -95,7 +95,7 @@ export const AggroTree = new Sequence('AggroSequence', [
 
             if (spellBook) {
               for (const spell of spellBook.spells.values()) {
-                if (distance <= spell.selected.range) {
+                if (distance <= spell.range) {
                   return true;
                 }
               }

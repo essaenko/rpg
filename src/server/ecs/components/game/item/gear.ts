@@ -10,8 +10,6 @@ import { Shoulder } from '@shared/schemas/game/item/gear/shoulder';
 import { Boots } from '@shared/schemas/game/item/gear/boots';
 import { Ring } from '@shared/schemas/game/item/gear/ring';
 import { Trinket } from '@shared/schemas/game/item/gear/trinket';
-import { Food } from '@shared/schemas/game/item/gear/food';
-import { Flask } from '@shared/schemas/game/item/gear/flask';
 import { CharacterGearSave, isChest, isWeapon } from '@server/mongodb/types';
 
 const GEAR_SLOTS = [
@@ -23,8 +21,6 @@ const GEAR_SLOTS = [
   'offHand',
   'ring',
   'trinket',
-  'food',
-  'flask',
 ] as const;
 
 export class Gear extends NetworkComponent {
@@ -45,8 +41,6 @@ export class Gear extends NetworkComponent {
   @type(GearItem) public offHand: Weapon = null;
   @type(GearItem) public ring: Ring = null;
   @type(GearItem) public trinket: Trinket = null;
-  @type(GearItem) public food: Food = null;
-  @type(GearItem) public flask: Flask = null;
 
   init(state: CharacterGearSave): void {
     GEAR_SLOTS.forEach(async (key) => {
@@ -77,8 +71,6 @@ export class Gear extends NetworkComponent {
       offHand: this.offHand?.serialize() ?? undefined,
       ring: this.ring?.serialize() ?? undefined,
       trinket: this.trinket?.serialize() ?? undefined,
-      flask: this.flask?.serialize() ?? undefined,
-      food: this.food?.serialize() ?? undefined,
     };
   }
 }
