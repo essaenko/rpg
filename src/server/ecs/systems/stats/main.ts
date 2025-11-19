@@ -18,18 +18,32 @@ export class MainStatsSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer) {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene) {
-    for (const it of container
-      .query(['main-stats', 'level', 'class', 'gear'])
-      .filter((it) => it.get<Gear>('gear').dirty ?? false)) {
-      const stats = it.get<Stats>('main-stats');
-      const cl = it.get<Class>('class');
-      const lvl = it.get<Level>('level');
-      const gear = it.get<Gear>('gear');
+    for (const entity of container.query(['main-stats', 'level', 'class', 'gear'])) {
+      const stats = entity.get<Stats>('main-stats');
+      const cl = entity.get<Class>('class');
+      const lvl = entity.get<Level>('level');
+      const gear = entity.get<Gear>('gear');
 
-      if (!stats.inited) {
-        stats.init(calculateMainStats(cl.class, lvl.level, gear));
-        stats.inited = true;
+      if (!stats || !cl || !lvl || !gear) {
+        continue;
       }
+
+      const needsUpdate = gear.dirty || stats.dirty || stats.appliedLevel !== lvl.level || !stats.inited;
+
+      if (!needsUpdate) {
+        continue;
+      }
+
+      const recalculated = calculateMainStats(cl.class, lvl.level, gear);
+
+      stats.stamina = recalculated.stamina;
+      stats.strength = recalculated.strength;
+      stats.intellect = recalculated.intellect;
+      stats.agility = recalculated.agility;
+      stats.appliedLevel = lvl.level;
+      stats.dirty = false;
+      stats.inited = true;
+      gear.dirty = false;
     }
   }
 }

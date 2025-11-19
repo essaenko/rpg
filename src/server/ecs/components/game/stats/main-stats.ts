@@ -8,6 +8,8 @@ export class MainStats extends NetworkComponent {
 
   serializable = true;
   inited = false;
+  appliedLevel: number = 0;
+  dirty = true;
 
   @type('number') intellect: number = 0;
   @type('number') strength: number = 0;

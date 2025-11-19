@@ -5,7 +5,8 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
 import { Class } from '@server/ecs/components/game/mechanics/class';
-import { CLASS_SPELLBOOK } from '@shared/utils/spells';
+import { CLASS_SPELL_UNLOCKS } from '@shared/utils/spells';
+import { Level } from '@server/ecs/components/game/progression/level';
 
 const STATIC_SLOTS = new Set<SpellSlot>([SpellSlot.Gather, SpellSlot.Loot]);
 
@@ -17,22 +18,22 @@ export class SpellBookSystem extends System {
   handleMessage(client: Client, type: TransportEventTypes, message: any, container: ECSContainer) {}
 
   onUpdate(delta: number, container: ECSContainer, scene: Scene) {
-    for (const entity of container.query(['spell-book', 'class'])) {
+    for (const entity of container.query(['spell-book', 'class', 'level'])) {
       const spellBook = entity.get<SpellBook>('spell-book');
       const characterClass = entity.get<Class>('class');
+      const level = entity.get<Level>('level');
 
-      if (!spellBook || !characterClass?.class) {
+      if (!spellBook || !characterClass?.class || !level) {
         continue;
       }
 
-      const classSpells = CLASS_SPELLBOOK[characterClass.class] ?? {};
-      const desiredSlots = new Set(Object.keys(classSpells) as SpellSlot[]);
+      const unlocks = CLASS_SPELL_UNLOCKS[characterClass.class] ?? [];
+      const available = unlocks.filter((unlock) => unlock.level <= level.level);
+      const desiredSlots = new Set(available.map(({ slot }) => slot));
 
-      for (const [slotKey, spellId] of Object.entries(classSpells)) {
-        const slot = slotKey as SpellSlot;
-
-        if (spellId && !spellBook.hasSpell(slot, spellId)) {
-          spellBook.setSpell(slot, spellId);
+      for (const unlock of available) {
+        if (!spellBook.hasSpell(unlock.slot, unlock.spell)) {
+          spellBook.setSpell(unlock.slot, unlock.spell);
         }
       }
 

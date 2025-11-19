@@ -14,6 +14,8 @@ import { NPC } from '@server/ecs/components/game/tag/npc';
 import { Player } from '@server/ecs/components/game/tag/player';
 import { Class } from '@server/ecs/components/game/mechanics/class';
 import { Level } from '@server/ecs/components/game/progression/level';
+import { ExperienceReward } from '@server/ecs/components/game/progression/experience-reward';
+import { KillReward } from '@server/ecs/components/game/progression/kill-reward';
 import { Move } from '@server/ecs/components/game/move';
 import { Name } from '@server/ecs/components/game/ui/name';
 import { Body } from '@server/ecs/components/physics/body';
@@ -68,6 +70,8 @@ export const map = {
   class: Class,
   fraction: Fraction,
   level: Level,
+  'experience-reward': ExperienceReward,
+  'kill-reward': KillReward,
   move: Move,
   name: Name,
   location: Location,

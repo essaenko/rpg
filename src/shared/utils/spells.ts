@@ -15,21 +15,27 @@ export enum Spells {
 
 export type ClassSpellBook = Partial<Record<SpellSlot, Spells>>;
 
-export const CLASS_SPELLBOOK: Record<Class, ClassSpellBook> = {
-  [Class.Warrior]: {
-    [SpellSlot.Main]: Spells.Hit,
-    [SpellSlot.Secondary]: Spells.Dot,
-  },
-  [Class.Sage]: {
-    [SpellSlot.Main]: Spells.Heal,
-    [SpellSlot.Secondary]: Spells.Hot,
-  },
-  [Class.Mage]: {
-    [SpellSlot.Main]: Spells.Dot,
-    [SpellSlot.Secondary]: Spells.SplitFire,
-  },
-  [Class.Hunter]: {
-    [SpellSlot.Main]: Spells.Shot,
-    [SpellSlot.Secondary]: Spells.SplitFire,
-  },
+export type ClassSpellUnlock = {
+  level: number;
+  slot: SpellSlot;
+  spell: Spells;
+};
+
+export const CLASS_SPELL_UNLOCKS: Record<Class, ClassSpellUnlock[]> = {
+  [Class.Warrior]: [
+    { level: 1, slot: SpellSlot.Main, spell: Spells.Hit },
+    { level: 1, slot: SpellSlot.Secondary, spell: Spells.Dot },
+  ],
+  [Class.Sage]: [
+    { level: 1, slot: SpellSlot.Main, spell: Spells.Heal },
+    { level: 1, slot: SpellSlot.Secondary, spell: Spells.Hot },
+  ],
+  [Class.Mage]: [
+    { level: 1, slot: SpellSlot.Main, spell: Spells.Dot },
+    { level: 1, slot: SpellSlot.Secondary, spell: Spells.SplitFire },
+  ],
+  [Class.Hunter]: [
+    { level: 1, slot: SpellSlot.Main, spell: Spells.Shot },
+    { level: 1, slot: SpellSlot.Secondary, spell: Spells.SplitFire },
+  ],
 };

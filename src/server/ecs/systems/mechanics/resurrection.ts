@@ -9,6 +9,10 @@ import { Client } from 'colyseus';
 import { Position } from '@server/ecs/components/physics/position';
 import { Spawn } from '@server/ecs/components/game/mechanics/spawn';
 import { DEAD_DOLL_DESPAWN_TIMEOUT } from '@server/utils/game/const';
+import { ExperienceReward } from '@server/ecs/components/game/progression/experience-reward';
+import { Level } from '@server/ecs/components/game/progression/level';
+import { getAdjustedKillExp, getBaseKillExp } from '@shared/utils/level';
+import { KillReward } from '@server/ecs/components/game/progression/kill-reward';
 
 export class ResurrectionSystem extends System {
   constructor() {
@@ -41,6 +45,7 @@ export class ResurrectionSystem extends System {
       const death = entity.get<Death>('death');
 
       if (health.current === 0 && death.dead === false) {
+        this.grantExperience(entity, container);
         death.dead = true;
         scene.clock.setTimeout(() => {
           death.despawn = true;
@@ -63,5 +68,56 @@ export class ResurrectionSystem extends System {
         }
       }
     });
+  }
+
+  private grantExperience(entity: import('@shared/ecs/entity').Entity, container: ECSContainer) {
+    if (!entity.has('tag-npc')) {
+      return;
+    }
+
+    const victimLevel = entity.get<Level>('level')?.level ?? 1;
+    const reward = entity.get<ExperienceReward>('experience-reward');
+    const baseExp = getBaseKillExp(victimLevel, reward?.baseExp);
+    const difficulty = reward?.difficultyMultiplier ?? 1;
+    const totalBaseExp = Math.round(baseExp * difficulty);
+
+    if (totalBaseExp <= 0) {
+      return;
+    }
+
+    const participants = entity
+      .getAll<Combat>('combat')
+      ?.map(({ enemy }) => enemy)
+      .filter(
+        (participant) =>
+          participant &&
+          participant.has('tag-player') &&
+          !participant.get<Death>('death')?.dead &&
+          participant.id !== entity.id,
+      );
+
+    if (!participants?.length) {
+      return;
+    }
+
+    for (const participant of participants) {
+      const participantLevel = participant.get<Level>('level')?.level ?? 1;
+      const amount = getAdjustedKillExp(totalBaseExp, participantLevel, victimLevel);
+
+      if (amount <= 0) {
+        continue;
+      }
+
+      let existing = participant.get<KillReward>('kill-reward');
+
+      if (!existing) {
+        existing = new KillReward();
+        participant.add(existing);
+      }
+
+      existing.amount += amount;
+      existing.victimId = entity.id;
+      existing.victimLevel = victimLevel;
+    }
   }
 }
