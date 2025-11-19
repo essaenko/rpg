@@ -7,18 +7,39 @@ import { Shot } from './warrior/shot';
 import { SplitFire } from '@server/mechanics/spells/rogue/split-fire';
 import { Gather } from '@server/mechanics/spells/common/gather';
 import { Loot } from '@server/mechanics/spells/common/loot';
+import { Spell } from '@shared/schemas/game/spell/spell';
 
-export const map = {
-  [Spells.Hit]: Hit,
-  [Spells.Heal]: Heal,
-  [Spells.Dot]: Dot,
-  [Spells.Hot]: Hot,
-  [Spells.Shot]: Shot,
-  [Spells.SplitFire]: SplitFire,
-  [Spells.Gather]: Gather,
-  [Spells.Loot]: Loot,
-} as const;
+let instance: SpellsService = null;
 
-export const isSpellName = (name: number): name is keyof typeof map => {
-  return name in map;
-};
+export class SpellsService {
+  private constructor() {}
+
+  public spells = {
+    [Spells.Hit]: Hit,
+    [Spells.Heal]: Heal,
+    [Spells.Dot]: Dot,
+    [Spells.Hot]: Hot,
+    [Spells.Shot]: Shot,
+    [Spells.SplitFire]: SplitFire,
+    [Spells.Gather]: Gather,
+    [Spells.Loot]: Loot,
+  };
+
+  static get instance(): SpellsService {
+    if (!instance) {
+      instance = new SpellsService();
+    }
+
+    return instance;
+  }
+
+  public spellExists(id: number): id is Spells {
+    return id in this.spells;
+  }
+
+  public createSpell(spell: Spells | number) {
+    if (this.spellExists(spell)) {
+      return new this.spells[spell]();
+    }
+  }
+}

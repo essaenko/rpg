@@ -13,6 +13,7 @@
 /* COLORS */
 
 :root {
+  --white: #ffffff;
   --light-gray: #e7e7e7;
   --gray: gray;
   --gray-transparent: rgba(0, 0, 0, .5);

@@ -1,5 +1,4 @@
 import { Item } from './core/item';
-import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import { Chest } from '@shared/schemas/game/item/gear/chest';
 import { Head } from '@shared/schemas/game/item/gear/head';
 import { Shoulder } from '@shared/schemas/game/item/gear/shoulder';

@@ -1,13 +1,22 @@
 import { SettingsService } from '@client/services/settings';
 import { DEFAULT_KEY_BINDING } from '@client/utils/const';
 import { Keys, SpellPanel } from '@client/utils/types';
-import type { Spells } from '@shared/utils/spells';
+import { SpellSlot } from '@shared/types';
 
 let instance: InputService;
 
 export class InputService {
-  private readonly bindings: Record<SpellPanel, Keys> = DEFAULT_KEY_BINDING;
-  private readonly spellBinding: Partial<Record<SpellPanel, Spells>> = {};
+  private readonly bindings: Record<Keys, SpellPanel> = DEFAULT_KEY_BINDING;
+  private readonly spellBinding: Record<SpellPanel, SpellSlot> = {
+    [SpellPanel.Spell1]: SpellSlot.Main,
+    [SpellPanel.Spell2]: SpellSlot.Secondary,
+    [SpellPanel.Spell3]: SpellSlot.Buff,
+    [SpellPanel.Spell4]: SpellSlot.Ultimate,
+    [SpellPanel.Spell5]: SpellSlot.Save,
+    [SpellPanel.Spell6]: SpellSlot.Dodge,
+    [SpellPanel.Spell7]: SpellSlot.Flask,
+    [SpellPanel.Spell8]: SpellSlot.Food,
+  };
   private readonly pressed = new Set<Keys>();
   private constructor() {
     const binding = SettingsService.instance().getSetting('binding');
@@ -21,14 +30,10 @@ export class InputService {
     }
 
     document.addEventListener('keypress', ({ code }) => {
-      if (Object.values(this.bindings).includes(code as Keys)) {
-        this.pressed.add(code as Keys);
-      }
+      this.pressed.add(code as Keys);
     });
     document.addEventListener('keyup', ({ code }) => {
-      if (Object.values(this.bindings).includes(code as Keys)) {
-        this.pressed.delete(code as Keys);
-      }
+      this.pressed.delete(code as Keys);
     });
   }
 
@@ -36,14 +41,8 @@ export class InputService {
     return this.pressed.has(key);
   }
 
-  getSpellBinding(key: Keys): Spells | null {
-    const bind = Object.entries(this.bindings).find(([_, k]) => k === key);
-
-    if (bind) {
-      return this.spellBinding[+bind[0] as SpellPanel] ?? null;
-    }
-
-    return null;
+  getSpellBinding(key: Keys): SpellSlot | null {
+    return this.spellBinding[this.bindings[key]] ?? null;
   }
 
   static instance() {

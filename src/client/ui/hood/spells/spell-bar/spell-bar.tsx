@@ -14,6 +14,11 @@ export const SpellBar: React.FC = () => {
 
   return (
     <div className={css.root}>
+      <div className={css.passives}>
+        <div className={css['passive-spell']}></div>
+        <div className={css['passive-spell']}></div>
+        <div className={css['passive-spell']}></div>
+      </div>
       {level && (
         <div className={css['exp-bar']}>
           <div className={css['exp-filler']} style={{ width: `${(level.exp / LVL_CAPS[level.level - 1]) * 100}%` }} />

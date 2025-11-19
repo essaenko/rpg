@@ -15,6 +15,7 @@ export class Pointer extends Component {
   public frame: Image = null;
 
   public destroy(): void {
+    super.destroy();
     this.frame?.destroy();
   }
 }

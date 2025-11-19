@@ -1,6 +1,7 @@
 import type { GearSlot, WeaponHand, WeaponType } from '@shared/types';
 import type { MainStats } from '@shared/utils/stats';
 import type { Spells } from '@shared/utils/spells';
+import { GearSpellTierType } from '@shared/utils/gear';
 
 export type EntitySave = { id: string; components: Record<string, any>[] };
 
@@ -29,9 +30,14 @@ export type ItemSave = {
   amount?: number;
 };
 
+export type GearItemSpellsSave = {
+  spells?: Partial<Record<GearSpellTierType, Spells>>;
+  selected?: Spells;
+};
+
 export type ChestSave = GearItemSave & {
-  save?: Spells[];
-  dodge?: Spells[];
+  save?: GearItemSpellsSave;
+  dodge?: GearItemSpellsSave;
 };
 
 export type FlaskSave = GearItemSave & {
@@ -53,43 +59,23 @@ export type CharacterGearSave = {
   head: {
     id: string;
   };
-  chest: {
-    id: string;
-    dodge?: Spells;
-    save?: Spells;
-  };
+  chest: ChestSave;
   shoulder: {
     id: string;
   };
   boots: {
     id: string;
   };
-  mainHand: {
-    id: string;
-    main?: Spells;
-    secondary?: Spells;
-    buff?: Spells;
-    ultimate?: Spells;
-  };
-  offHand: {
-    id: string;
-    secondary?: Spells;
-    buff?: Spells;
-  };
+  mainHand: WeaponSave;
+  offHand: WeaponSave;
   ring: {
     id: string;
   };
   trinket: {
     id: string;
   };
-  food: {
-    id: string;
-    food?: Spells;
-  };
-  flask: {
-    id: string;
-    flask?: Spells;
-  };
+  food: FoodSave;
+  flask: FlaskSave;
 };
 
 export type WeaponSave = GearItemSave & {
@@ -99,10 +85,10 @@ export type WeaponSave = GearItemSave & {
   hand: WeaponHand;
   type: WeaponType;
 
-  main?: Spells[];
-  secondary?: Spells[];
-  buff?: Spells[];
-  ultimate?: Spells[];
+  main?: GearItemSpellsSave;
+  secondary?: GearItemSpellsSave;
+  buff?: GearItemSpellsSave;
+  ultimate?: GearItemSpellsSave;
 };
 
 export type LootTableItem = {

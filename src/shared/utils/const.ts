@@ -1,4 +1,5 @@
 import { Spells } from '@shared/utils/spells';
+import { GearSpellTierType } from '@shared/utils/gear';
 
 export const QUEST_GIVER_ACTION_DISTANCE = 128;
 export const INTERACTION_DISTANCE = 64;

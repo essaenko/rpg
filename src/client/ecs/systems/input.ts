@@ -17,6 +17,7 @@ export class InputSystem extends System {
 
   onUpdate(scene: WorldScene, container: ECSContainer): void {
     if (!scene.room) return;
+    const player = container.getEntity(scene.room.sessionId);
 
     const castKey: Keys =
       (Object.keys(Keys).find((key) => InputService.instance().isPressed(key as Keys)) as Keys) ?? null;
@@ -37,19 +38,26 @@ export class InputSystem extends System {
     const cursor = scene.input.activePointer;
     if (cursor.isDown && cursor.buttons === 2) {
       cursor.updateWorldPoint(scene.cameras.main);
-      const player = container.getEntity(scene.room.sessionId);
       if (player) {
         let pointer = player.get<Pointer>('pointer');
 
         if (!pointer) {
           pointer = new Pointer();
           player.add(pointer);
+
+          pointer.on('component:destroy', () => {
+            scene.room.send(TransportEventTypes.Move, [null]);
+          });
         }
         pointer.x = cursor.worldX;
         pointer.y = cursor.worldY;
         pointer.lastX = null;
         pointer.lastY = null;
       }
+    }
+
+    if (InputService.instance().isPressed(Keys.KeyS)) {
+      player.remove('pointer');
     }
   }
 }

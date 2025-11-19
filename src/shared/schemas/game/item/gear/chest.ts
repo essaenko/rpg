@@ -1,7 +1,6 @@
 import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import { type } from '@colyseus/schema';
 import type { ChestSave } from '@server/mongodb/types';
-import { isSpellName, map } from '@server/mechanics/spells/map';
 import { GearSlot } from '@shared/types';
 import { GearSpellList } from '@shared/schemas/game/item/core/gear-spell-list';
 
@@ -20,19 +19,14 @@ export class Chest extends GearItem {
   init(state: ChestSave): void {
     super.init(state);
 
-    (['save', 'dodge'] as const).forEach((key) => {
-      if (state[key] && state[key].length > 0) {
-        this[key] = new GearSpellList();
-
-        state[key].forEach((spellID, index) => {
-          if (isSpellName(spellID)) {
-            const spell = new map[spellID]();
-
-            this[key].spells.set(`tier_${index}`, spell);
-          }
-        });
-      }
-    });
+    if (state.dodge) {
+      this.dodge = new GearSpellList();
+      this.dodge.init(state.dodge);
+    }
+    if (state.save) {
+      this.save = new GearSpellList();
+      this.save.init(state.save);
+    }
   }
 
   validateSave(save: unknown): save is ChestSave {

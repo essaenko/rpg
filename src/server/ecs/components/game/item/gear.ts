@@ -13,7 +13,19 @@ import { Trinket } from '@shared/schemas/game/item/gear/trinket';
 import { Food } from '@shared/schemas/game/item/gear/food';
 import { Flask } from '@shared/schemas/game/item/gear/flask';
 import { CharacterGearSave, isChest, isWeapon } from '@server/mongodb/types';
-import { isKeyOf } from '@client/utils/types';
+
+const GEAR_SLOTS = [
+  'head',
+  'chest',
+  'shoulder',
+  'boots',
+  'mainHand',
+  'offHand',
+  'ring',
+  'trinket',
+  'food',
+  'flask',
+] as const;
 
 export class Gear extends NetworkComponent {
   constructor() {
@@ -37,13 +49,8 @@ export class Gear extends NetworkComponent {
   @type(GearItem) public flask: Flask = null;
 
   init(state: CharacterGearSave): void {
-    Object.keys(this).forEach(async (key) => {
-      if (key === 'name') {
-        this.name = state.name;
-
-        return;
-      }
-      if (isKeyOf<Omit<CharacterGearSave, 'name'>>(key, state) && state[key]) {
+    GEAR_SLOTS.forEach(async (key) => {
+      if (state[key]) {
         const data = await MDBClient.instance().readItem(state[key].id);
 
         if (!data) {
@@ -54,23 +61,6 @@ export class Gear extends NetworkComponent {
         if (key in this) {
           // @ts-ignore
           this[key] = ItemFactory.instantiate(data);
-          const item = this[key];
-
-          const save = state[key];
-          if (item instanceof Weapon && isWeapon(save)) {
-            (['main', 'secondary', 'buff', 'ultimate'] as const).forEach((skill) => {
-              if (skill in save) {
-                item[skill].selected = item[skill].spells.get(save[skill].toString());
-              }
-            });
-          }
-          if (item instanceof Chest && isChest(save)) {
-            (['dodge', 'save'] as const).forEach((skill) => {
-              if (skill in save) {
-                item[skill].selected = item[skill].spells.get(save[skill].toString());
-              }
-            });
-          }
         }
       }
     });

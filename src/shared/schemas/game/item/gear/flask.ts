@@ -2,12 +2,11 @@ import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import type { FlaskSave } from '@server/mongodb/types';
 import { GearSlot } from '@shared/types';
 import { type } from '@colyseus/schema';
-import { Spell } from '@shared/schemas/game/spell/spell';
-import { isSpellName, map } from '@server/mechanics/spells/map';
+import { Spells } from '@shared/utils/spells';
 
 export class Flask extends GearItem {
   factory = 'flask';
-  @type(Spell) flask: Spell = null;
+  @type('number') flask: Spells = null;
 
   constructor() {
     super();
@@ -18,8 +17,6 @@ export class Flask extends GearItem {
   init(state: FlaskSave): void {
     super.init(state);
 
-    if (isSpellName(state.flask)) {
-      this.flask = new map[state.flask]();
-    }
+    this.flask = +state.flask;
   }
 }

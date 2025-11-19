@@ -19,16 +19,15 @@ export class MovementSystem extends System {
   }
 
   onUpdate(scene: WorldScene, container: ECSContainer, delta: number): void {
-    const players = Array.from(container.query(['tag-player', 'pointer', 'position']));
-    const localPlayer = container.getEntity(scene.room?.sessionId);
+    const player = container.getEntity(scene.room?.sessionId);
 
-    container.query(['position']).forEach((entity) => {
-      const position = entity.get<Position>('position');
-      const { sprites } = entity.get<Appearance>('appearance') ?? {};
+    for (const it of container.query(['position'])) {
+      const position = it.get<Position>('position');
+      const { sprites } = it.get<Appearance>('appearance') ?? {};
 
       if (position && sprites) {
-        if (localPlayer === entity && isInTheSamePosition(position, sprites, SERVER_POSITION_TOLERANCE)) {
-          return;
+        if (player === it && isInTheSamePosition(position, sprites, SERVER_POSITION_TOLERANCE)) {
+          break;
         }
 
         if (sprites.x !== position.x) {
@@ -38,44 +37,41 @@ export class MovementSystem extends System {
           sprites.y = Phaser.Math.Linear(sprites.y, position.y, DEFAULT_LERP_VALUE);
         }
       }
-    });
-
-    if (players.includes(localPlayer)) {
-      const position = localPlayer.get<Position>('position');
-      const pointer = localPlayer.get<Pointer>('pointer');
-      const speed = localPlayer.get<Speed>('speed');
-      const death = localPlayer.get<Death>('death');
-      const { sprites } = localPlayer.get<Appearance>('appearance') ?? {};
-      const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
-
-      if (sprites && angle && speed && !death.dead) {
-        const vector = {
-          x: angle ? Math.cos(angle) : 0,
-          y: angle ? Math.sin(angle) : 0,
-        };
-        sprites.x += vector.x * (speed.speed * DEFAULT_SPEED) * delta;
-        sprites.y += vector.y * (speed.speed * DEFAULT_SPEED) * delta;
-      }
     }
 
-    players.forEach((entity) => {
-      const position = entity.get<Position>('position');
-      const pointer = entity.get<Pointer>('pointer');
-      const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
+    if (player) {
+      const position = player.get<Position>('position');
+      const pointer = player.get<Pointer>('pointer');
+      const speed = player.get<Speed>('speed');
+      const death = player.get<Death>('death');
+      const { sprites } = player.get<Appearance>('appearance') ?? {};
 
-      if (isInTheSamePosition(position, pointer, SERVER_POSITION_TOLERANCE)) {
-        scene.room.send(TransportEventTypes.Move, [null]);
-        entity.remove(pointer);
+      if (pointer) {
+        const angle = Phaser.Math.Angle.BetweenPoints(position, pointer);
 
-        return;
+        if (isInTheSamePosition(position, pointer, SERVER_POSITION_TOLERANCE)) {
+          scene.room.send(TransportEventTypes.Move, [null]);
+          player.remove(pointer);
+
+          return;
+        }
+
+        if (sprites && angle && speed && !death.dead) {
+          const vector = {
+            x: angle ? Math.cos(angle) : 0,
+            y: angle ? Math.sin(angle) : 0,
+          };
+          sprites.x += vector.x * (speed.speed * DEFAULT_SPEED) * delta;
+          sprites.y += vector.y * (speed.speed * DEFAULT_SPEED) * delta;
+        }
+
+        if (position.x !== pointer.lastX || position.y !== pointer.lastY) {
+          pointer.lastX = position.x;
+          pointer.lastY = position.y;
+
+          scene.room.send(TransportEventTypes.Move, [angle]);
+        }
       }
-
-      if (position.x !== pointer.lastX || position.y !== pointer.lastY) {
-        pointer.lastX = position.x;
-        pointer.lastY = position.y;
-
-        scene.room.send(TransportEventTypes.Move, [angle]);
-      }
-    });
+    }
   }
 }

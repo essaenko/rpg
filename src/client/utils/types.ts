@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import type { Pointer2D } from '@shared/types';
 
-import CursorDefault from '@client/assets/cursor/Cursor Default.png?url';
+import CursorDefault from '@client/assets/cursor/Cursor Default.png';
 import CursorLoot from '@client/assets/cursor/Cursor Mini Build Green.png';
 import CursorQuestComplete from '@client/assets/cursor/Cursor Mini Question Yellow.png';
 import CursorQuestAwailable from '@client/assets/cursor/Cursor Mini Settings Green.png';
@@ -16,8 +16,6 @@ export enum SpellPanel {
   Spell6,
   Spell7,
   Spell8,
-  Spell9,
-  Spell10,
 }
 
 export enum Keys {
@@ -27,6 +25,7 @@ export enum Keys {
   KeyR = 'KeyR',
   KeyF = 'KeyF',
   KeyT = 'KeyT',
+  KeyS = 'KeyS',
   Digit1 = 'Digit1',
   Digit2 = 'Digit2',
 }

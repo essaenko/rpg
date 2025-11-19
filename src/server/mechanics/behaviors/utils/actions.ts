@@ -26,7 +26,9 @@ export const CastSpellAtTarget = new Action<BehaviorState, void>('CastSpellAtTar
   const tpos = target.get<Position>('position');
   const pos = entity.get<Position>('position');
   const spellBook = entity.get<SpellBook>('spell-book');
-  const [spellId, spell] = spellBook?.spells.entries().find(([id, spell]) => getDistance(tpos, pos) <= spell.range);
+  const [spellId, spell] = spellBook?.spells
+    .entries()
+    .find(([id, spell]) => getDistance(tpos, pos) <= spell.selected.range);
 
   if (spell) {
     const cr = new CastRequest();

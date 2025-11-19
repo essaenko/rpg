@@ -9,7 +9,7 @@ import { Position } from '@server/ecs/components/physics/position';
 import { Death } from '@server/ecs/components/game/mechanics/death';
 import { Scene } from '@server/core/scene/scene';
 import { COMMON_SPELLS } from '@shared/utils/const';
-import { Resource } from '@server//ecs/components/game/stats/resource/resource';
+import { Resource } from '@server/ecs/components/game/stats/resource/resource';
 
 export abstract class Spell extends Schema {
   /**

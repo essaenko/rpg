@@ -5,7 +5,8 @@ import { ECSContainer } from '@shared/ecs';
 import { Scene } from '@server/core/scene/scene';
 import { Gear } from '@server/ecs/components/game/item/gear';
 import { SpellBook } from '@server/ecs/components/game/spell/spell-book';
-import { Spell } from '@shared/schemas/game/spell/spell';
+import { GearSpellList } from '@shared/schemas/game/item/core/gear-spell-list';
+import { Spells } from '@shared/utils/spells';
 
 export class SpellBookSystem extends System {
   constructor() {
@@ -22,7 +23,7 @@ export class SpellBookSystem extends System {
       if (sb && gear) {
         const { mainHand, offHand, chest, food, flask } = gear;
 
-        const spells: [SpellSlot, Spell | void][] = [
+        const spells: [SpellSlot, Spells | GearSpellList | void][] = [
           [SpellSlot.Main, mainHand?.main],
           [SpellSlot.Secondary, offHand?.secondary ?? mainHand?.secondary],
           [SpellSlot.Buff, offHand?.buff ?? mainHand?.buff],

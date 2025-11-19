@@ -20,7 +20,7 @@ export class MainStatsSystem extends System {
   onUpdate(delta: number, container: ECSContainer, scene: Scene) {
     for (const it of container
       .query(['main-stats', 'level', 'class', 'gear'])
-      .filter((it) => it.get<Gear>('gear').dirty ?? true)) {
+      .filter((it) => it.get<Gear>('gear').dirty ?? false)) {
       const stats = it.get<Stats>('main-stats');
       const cl = it.get<Class>('class');
       const lvl = it.get<Level>('level');

@@ -2,7 +2,6 @@ import { GearItem } from '@shared/schemas/game/item/core/gear-item';
 import { type } from '@colyseus/schema';
 import type { WeaponHand, WeaponType } from '@shared/types';
 import type { WeaponSave } from '@server/mongodb/types';
-import { isSpellName, map } from '@server/mechanics/spells/map';
 import { GearSpellList } from '@shared/schemas/game/item/core/gear-spell-list';
 
 export class Weapon extends GearItem {
@@ -18,10 +17,10 @@ export class Weapon extends GearItem {
   @type('number') hand: WeaponHand = null;
   @type('number') type: WeaponType = null;
 
-  @type(GearSpellList) main: GearSpellList = null;
-  @type(GearSpellList) secondary: GearSpellList = null;
-  @type(GearSpellList) buff: GearSpellList = null;
-  @type(GearSpellList) ultimate: GearSpellList = null;
+  main: GearSpellList = null;
+  secondary: GearSpellList = null;
+  buff: GearSpellList = null;
+  ultimate: GearSpellList = null;
 
   init(state: WeaponSave) {
     super.init(state);
@@ -33,16 +32,9 @@ export class Weapon extends GearItem {
     this.type = state.type;
 
     (['main', 'secondary', 'buff', 'ultimate'] as const).forEach((key) => {
-      if (state[key] && state[key].length > 0) {
+      if (state[key]) {
         this[key] = new GearSpellList();
-
-        state[key].forEach((spellID, index) => {
-          if (isSpellName(spellID)) {
-            const spell = new map[spellID]();
-
-            this[key].spells.set(`tier_${index}`, spell);
-          }
-        });
+        this[key].init(state[key]);
       }
     });
   }
@@ -55,21 +47,13 @@ export class Weapon extends GearItem {
     return Math.random() * (this.attackMax - this.attackMin) + this.attackMin;
   }
 
-  serialize() {
+  serialize(): Pick<WeaponSave, 'id' | 'main' | 'secondary' | 'buff' | 'ultimate'> {
     return {
       ...super.serialize(),
-      main: {
-        selected: this.main.selected.id,
-      },
-      secondary: {
-        selected: this.secondary.selected.id,
-      },
-      buff: {
-        selected: this.buff.selected.id,
-      },
-      ultimate: {
-        selected: this.ultimate.selected.id,
-      },
+      main: this.main?.serialize() ?? null,
+      secondary: this.secondary?.serialize() ?? null,
+      buff: this.buff?.serialize() ?? null,
+      ultimate: this.ultimate?.serialize() ?? null,
     };
   }
 }

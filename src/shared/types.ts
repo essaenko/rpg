@@ -169,14 +169,14 @@ export const Relations: Record<Fraction, Record<Fraction, Relation>> = {
 };
 
 export enum SpellSlot {
-  Main,
-  Secondary,
-  Buff,
-  Ultimate,
-  Save,
-  Dodge,
-  Food,
-  Flask,
-  Gather,
-  Loot,
+  Main = '0',
+  Secondary = '1',
+  Buff = '2',
+  Ultimate = '3',
+  Save = '4',
+  Dodge = '5',
+  Food = '6',
+  Flask = '7',
+  Gather = '8',
+  Loot = '9',
 }

@@ -4,17 +4,15 @@ export const DEFAULT_LERP_VALUE = 0.15;
 export const DEFAULT_LIGHT_HEX_COLOR = 0xffa500;
 export const SERVER_POSITION_TOLERANCE = 8;
 
-export const DEFAULT_KEY_BINDING: Record<SpellPanel, Keys> = {
-  [SpellPanel.Spell1]: Keys.KeyQ,
-  [SpellPanel.Spell2]: Keys.KeyW,
-  [SpellPanel.Spell3]: Keys.KeyE,
-  [SpellPanel.Spell4]: Keys.KeyR,
-  [SpellPanel.Spell5]: Keys.KeyF,
-  [SpellPanel.Spell6]: Keys.Digit1,
-  [SpellPanel.Spell7]: Keys.Digit2,
-  [SpellPanel.Spell8]: Keys.Digit3,
-  [SpellPanel.Spell9]: Keys.Digit4,
-  [SpellPanel.Spell10]: Keys.Digit5,
+export const DEFAULT_KEY_BINDING: Record<Keys, SpellPanel> = {
+  [Keys.KeyQ]: SpellPanel.Spell1,
+  [Keys.KeyW]: SpellPanel.Spell2,
+  [Keys.KeyE]: SpellPanel.Spell3,
+  [Keys.KeyR]: SpellPanel.Spell4,
+  [Keys.KeyT]: SpellPanel.Spell5,
+  [Keys.KeyF]: SpellPanel.Spell6,
+  [Keys.Digit1]: SpellPanel.Spell7,
+  [Keys.Digit2]: SpellPanel.Spell8,
 };
 
 export const COLORS = {

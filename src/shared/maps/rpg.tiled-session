@@ -5,11 +5,11 @@
     },
     "activeFile": "zavrazye/zavrazye.tmx",
     "expandedProjectPaths": [
-        ".",
-        "builder",
-        "tilesets",
         "zavrazye",
-        "dummy"
+        "dummy",
+        "tilesets",
+        ".",
+        "builder"
     ],
     "fileStates": {
         "": {
@@ -478,8 +478,9 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "tilesets/houses.json",
         "tilesets/rpgw_trees.json",
+        "tilesets/houses.json",
+        "zavrazye/zavrazye.tmx",
         "tilesets/house-decorations.json",
         "tilesets/tree.json",
         "tilesets/tree_2_2.json",
@@ -488,8 +489,7 @@
         "tilesets/rpgw_terrain1.json",
         "tilesets/rpgw_terrain2.json",
         "tilesets/rpgw_hills2.json",
-        "builder/house-builder.tmx",
-        "tilesets/rpgw_hills1.json"
+        "builder/house-builder.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Файлы набора тайлов Tiled (*.tsx *.xml)",
